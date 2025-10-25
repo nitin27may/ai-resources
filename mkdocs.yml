@@ -107,7 +107,8 @@ plugins:
 nav:
   - Home: index.md
   - References: references.md
-  - AI Agents: agents/index.md
+  - AI Agents: 
+    - Introduction: agents/index.md
   - MCP: mcp/index.md
 
 # Copyright footer text
