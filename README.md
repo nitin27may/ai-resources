@@ -1,15 +1,15 @@
-# AI Resources 🤖
+# AI Resources
 
 [![Deploy MkDocs to GitHub Pages](https://github.com/nitin27may/ai-resources/actions/workflows/deploy.yml/badge.svg)](https://github.com/nitin27may/ai-resources/actions/workflows/deploy.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 A comprehensive collection of AI concepts, resources, and open-source projects based on research and proof-of-concepts (POCs). This repository serves as a centralized knowledge base for artificial intelligence enthusiasts, researchers, and practitioners.
 
-## 🌐 Live Documentation
+## Live Documentation
 
 Visit the live documentation site: [AI Resources](https://nitin27may.github.io/ai-resources/)
 
-## 📋 Table of Contents
+## Table of Contents
 
 - [About](#about)
 - [Repository Structure](#repository-structure)
@@ -21,7 +21,7 @@ Visit the live documentation site: [AI Resources](https://nitin27may.github.io/a
 - [License](#license)
 - [Contact](#contact)
 
-## 📖 About
+## About
 
 This repository is a curated collection of:
 
@@ -32,7 +32,7 @@ This repository is a curated collection of:
 - **Best Practices**: Industry standards and recommended approaches
 - **Tutorials & Guides**: Step-by-step learning resources
 
-## 📁 Repository Structure
+## Repository Structure
 
 ```
 ai-resources/
@@ -56,7 +56,7 @@ ai-resources/
 └── README.md                    # This file
 ```
 
-## 🚀 Getting Started
+## Getting Started
 
 ### Prerequisites
 
@@ -90,7 +90,7 @@ ai-resources/
 
    Visit `http://localhost:8000` to view the documentation.
 
-## 🎯 Topics Covered
+## Topics Covered
 
 ### Core AI Concepts
 - Machine Learning Fundamentals
@@ -123,7 +123,7 @@ ai-resources/
 - Experimental Projects
 - Proof of Concepts (POCs)
 
-## 🤝 Contributing
+## Contributing
 
 Contributions are welcome! Whether you want to:
 
@@ -189,7 +189,7 @@ mkdocs serve --dev-addr=0.0.0.0:8000
 mkdocs build
 ```
 
-## 🚢 Deployment
+## Deployment
 
 The site is automatically deployed to GitHub Pages using GitHub Actions when changes are pushed to the `main` branch.
 
@@ -199,7 +199,7 @@ The site is automatically deployed to GitHub Pages using GitHub Actions when cha
 2. **Manual**: Use the "Deploy" workflow in GitHub Actions
 3. **Local Build**: `mkdocs build` generates static files in `site/`
 
-## 📊 Site Analytics
+## Site Analytics
 
 The documentation site includes:
 
@@ -220,13 +220,13 @@ The documentation site includes:
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 👨‍💻 Author
+## Author
 
 **Nitin Singh**
 - GitHub: [@nitin27may](https://github.com/nitin27may)
 - Website: [nitinksingh.com](https://nitinksingh.com)
 
-## 📬 Contact
+## Contact
 
 - 💬 Open an issue for questions or suggestions
 - 📧 Email: [Contact through GitHub](https://github.com/nitin27may)
@@ -240,6 +240,6 @@ If you find this repository helpful, please consider giving it a star! ⭐
 
 ---
 
-**Happy Learning! 🚀**
+**Happy Learning!**
 
 > "The best way to learn AI is to build with AI" - Keep exploring, keep building!
