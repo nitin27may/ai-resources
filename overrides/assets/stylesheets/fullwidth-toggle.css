@@ -1,0 +1,135 @@
+/* Full Width Toggle Styles */
+
+/* Toggle button styling */
+#fullwidth-toggle {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.4rem;
+    margin-left: 0.5rem;
+    border-radius: 0.1rem;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+    opacity: 0.7;
+}
+
+#fullwidth-toggle:hover {
+    background-color: var(--md-accent-fg-color--transparent);
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+#fullwidth-toggle svg {
+    width: 1.2rem;
+    height: 1.2rem;
+    fill: currentColor;
+}
+
+/* Full width mode styles */
+.fullwidth-active .md-content {
+    max-width: none !important;
+    margin: 0 auto !important;
+    padding: 0 2rem !important;
+}
+
+.fullwidth-active .md-main {
+    margin-left: 0 !important;
+}
+
+.fullwidth-active .md-main__inner {
+    max-width: none !important;
+    margin: 0 auto !important;
+}
+
+/* Hide sidebars when in full width mode */
+.fullwidth-active .md-sidebar--primary {
+    display: none !important;
+}
+
+.fullwidth-active .md-sidebar--secondary {
+    display: none !important;
+}
+
+/* Adjust content container in full width */
+.fullwidth-active .md-content__inner {
+    max-width: none !important;
+    margin: 0 auto !important;
+}
+
+/* Enhanced full width for better content display */
+.fullwidth-active .md-typeset {
+    max-width: none !important;
+}
+
+/* Smooth transitions for toggle */
+.md-sidebar--primary,
+.md-sidebar--secondary,
+.md-content,
+.md-main {
+    transition: all 0.3s ease-in-out;
+}
+
+/* Button positioning in header */
+.md-header__option {
+    display: flex;
+    align-items: center;
+}
+
+/* Responsive design for mobile */
+@media screen and (max-width: 76.1875em) {
+    #fullwidth-toggle {
+        display: none;
+    }
+}
+
+/* Dark mode support */
+[data-md-color-scheme="slate"] #fullwidth-toggle {
+    color: var(--md-primary-bg-color);
+}
+
+[data-md-color-scheme="slate"] #fullwidth-toggle:hover {
+    background-color: var(--md-accent-fg-color--transparent);
+}
+
+/* Focus styles for accessibility */
+#fullwidth-toggle:focus {
+    outline: 2px solid var(--md-accent-fg-color);
+    outline-offset: 2px;
+}
+
+/* Animation for smooth content reflow */
+.fullwidth-active .md-content__inner {
+    animation: expandContent 0.3s ease-out;
+}
+
+@keyframes expandContent {
+    from {
+        opacity: 0.8;
+        transform: translateX(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Enhanced Mermaid diagram support in full width */
+.fullwidth-active .mermaid {
+    max-width: 100% !important;
+    overflow-x: auto;
+}
+
+/* Table responsiveness in full width */
+.fullwidth-active .md-typeset table:not([class]) {
+    width: 100% !important;
+    table-layout: auto;
+}
+
+/* Code block improvements in full width */
+.fullwidth-active .md-typeset pre {
+    overflow-x: auto;
+}
+
+/* Admonition improvements in full width */
+.fullwidth-active .md-typeset .admonition {
+    max-width: none !important;
+}

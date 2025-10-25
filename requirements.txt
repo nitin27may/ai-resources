@@ -1,0 +1,23 @@
+# MkDocs and Material theme
+mkdocs>=1.5.0
+mkdocs-material>=9.4.0
+
+# Plugins for enhanced functionality
+mkdocs-mermaid2-plugin>=1.1.0
+mkdocs-glightbox>=0.3.4
+mkdocs-minify-plugin>=0.7.0
+mkdocs-redirects>=1.2.0
+
+# PDF export capabilities
+mkdocs-with-pdf>=0.9.3
+weasyprint>=59.0
+
+# Additional useful plugins
+mkdocs-awesome-pages-plugin>=2.9.0
+mkdocs-macros-plugin>=1.0.0
+mkdocs-exclude-search>=0.6.0
+mkdocs-git-revision-date-localized-plugin>=1.2.0
+
+# Development and formatting tools
+markdown>=3.4.0
+pymdown-extensions>=10.0.0

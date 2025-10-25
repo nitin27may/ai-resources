@@ -1,0 +1,139 @@
+/* Custom footer styling */
+.md-footer {
+  background-color: #263238;
+  color: #ffffff;
+}
+
+.md-footer-copyright {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.md-footer-links {
+  margin-top: 0.5rem;
+}
+
+.md-footer-link {
+  color: #ffffff;
+  text-decoration: none;
+  margin-right: 1rem;
+  opacity: 0.8;
+  transition: opacity 0.2s;
+}
+
+.md-footer-link:hover {
+  opacity: 1;
+  color: #e53935;
+}
+
+.md-footer-social {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.md-footer-social__link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  font-size: 1.2rem;
+  opacity: 0.7;
+  transition: opacity 0.2s;
+  text-decoration: none;
+}
+
+.md-footer-social__link:hover {
+  opacity: 1;
+}
+
+/* Source links styling */
+.md-footer-source-links {
+  margin-top: 0.5rem;
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.md-footer-source-link {
+  color: #90caf9;
+  text-decoration: none;
+  font-size: 0.9rem;
+  padding: 0.2rem 0.5rem;
+  border-radius: 0.2rem;
+  border: 1px solid #90caf9;
+  opacity: 0.8;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+
+.md-footer-source-link:hover {
+  opacity: 1;
+  background-color: #90caf9;
+  color: #263238;
+  transform: translateY(-1px);
+}
+
+/* Responsive design for source links */
+@media screen and (max-width: 768px) {
+  .md-footer-source-links {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .md-footer-source-link {
+    text-align: center;
+  }
+}
+
+.md-footer-meta__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 0;
+}
+
+@media screen and (max-width: 76.1875em) {
+  .md-footer-meta__inner {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .md-footer-social {
+    order: -1;
+  }
+}
+
+/* Source link styles */
+.md-footer-source {
+  margin-top: 0.5rem;
+  display: inline-block;
+  margin-right: 1rem;
+}
+
+.md-footer__link {
+  color: #ffffff;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.8rem;
+  padding: 0.2rem 0.5rem;
+  border-radius: 0.2rem;
+  transition: all 0.2s;
+  opacity: 0.8;
+}
+
+.md-footer__link:hover {
+  opacity: 1;
+  color: #e53935;
+  text-decoration: none;
+}
+
+.md-footer__link svg {
+  width: 1rem;
+  height: 1rem;
+  fill: currentColor;
+}

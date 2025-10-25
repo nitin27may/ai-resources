@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  mkdocs:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: ai-notes-mkdocs
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/docs
+    environment:
+      - ENABLE_PDF_EXPORT=1
+    command: mkdocs serve --dev-addr=0.0.0.0:8000 --livereload
+    restart: unless-stopped

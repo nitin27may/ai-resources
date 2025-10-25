@@ -1,0 +1,127 @@
+site_name: AI RESOURES
+site_url: https://nitinksingh.com/ai-resources/
+site_description: AI Resources and Notes
+repo_url: https://github.com/nitin27may/ai-resources
+repo_name: ai-resources
+edit_uri: "?path=/docs/"
+
+# Azure DevOps specific configuration
+theme:
+  name: material
+  features:
+    - navigation.tabs
+#    - navigation.sections
+    - navigation.expand
+    - navigation.path
+    - navigation.top
+    - search.suggest
+    - search.highlight
+    - content.action.edit
+    - content.action.view
+    - content.tooltips
+    - content.code.annotate
+  palette:
+    - scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  # Custom footer configuration
+  icon:
+    logo: material/book-open-page-variant
+  font:
+    text: Roboto
+    code: Roboto Mono
+  # Footer customization
+  custom_dir: overrides
+
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+      preserve_tabs: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets:
+      auto_append:
+        - includes/abbreviations.md
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - admonition
+  - toc:
+      permalink: true
+  - attr_list
+  - abbr
+  - def_list
+  - md_in_html
+  - pymdownx.details
+  - footnotes
+  - tables
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+
+# Extra CSS and JavaScript
+extra_css:
+  - assets/stylesheets/fullwidth-toggle.css
+  - assets/stylesheets/footer-custom.css
+  - assets/stylesheets/tooltip-custom.css
+
+extra_javascript:
+  - assets/javascripts/fullwidth-toggle.js
+
+# Plugins configuration
+plugins:
+  - search
+  - tags
+  - git-revision-date-localized:
+      enable_creation_date: true
+      type: date
+      fallback_to_build_date: true
+
+  - glightbox:
+      touchNavigation: true
+      loop: false
+      effect: zoom
+      slide_effect: slide
+      width: 100%
+      height: auto
+      zoomable: true
+      draggable: true
+      auto_caption: false
+      caption_position: bottom
+  - to-pdf:
+      download_link: header
+      toc_level: 3
+      cover_subtitle: All Notes from Nitin Singh
+      author: Nitin Singh
+      exclude_pages: ["index.md"]
+      enabled_if_env: ENABLE_PDF_EXPORT
+      # Media handling for diagrams
+      media_type: print
+      # Additional PDF styling
+      custom_css: overrides/assets/stylesheets/pdf-custom.css
+      # Remove page numbers
+      show_page_numbers: false
+
+nav:
+  - Home: index.md
+
+# Copyright footer text
+copyright: |
+  &copy; 2025 AI Resources Team | 
+  <a href="#" onclick="return false;">Terms & Privacy</a>
