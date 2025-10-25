@@ -92,7 +92,6 @@ plugins:
       enable_creation_date: true
       type: date
       fallback_to_build_date: true
-
   - glightbox:
       touchNavigation: true
       loop: false
@@ -104,19 +103,6 @@ plugins:
       draggable: true
       auto_caption: false
       caption_position: bottom
-  - to-pdf:
-      download_link: header
-      toc_level: 3
-      cover_subtitle: All Notes from Nitin Singh
-      author: Nitin Singh
-      exclude_pages: ["index.md"]
-      enabled_if_env: ENABLE_PDF_EXPORT
-      # Media handling for diagrams
-      media_type: print
-      # Additional PDF styling
-      custom_css: overrides/assets/stylesheets/pdf-custom.css
-      # Remove page numbers
-      show_page_numbers: false
 
 nav:
   - Home: index.md
