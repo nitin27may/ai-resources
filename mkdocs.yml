@@ -120,6 +120,7 @@ plugins:
 
 nav:
   - Home: index.md
+  - References: references.md
 
 # Copyright footer text
 copyright: |
