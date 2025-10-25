@@ -43,7 +43,7 @@ jobs:
         run: |
           mkdocs build --verbose --clean
 
-      - name: Upload artifact
+      - name: Upload artifacts
         uses: actions/upload-pages-artifact@v3
         with:
           path: './site'
