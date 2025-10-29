@@ -109,6 +109,7 @@ nav:
   - References: references.md
   - AI Agents: 
     - Introduction: agents/index.md
+    - Frameworks: agents/frameworks.md
   - MCP: mcp/index.md
 
 # Copyright footer text
