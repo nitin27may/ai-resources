@@ -1,10 +1,8 @@
 # AI Agents
 
-
-
 ## What is an AI agent?
 
-AI Agents consist of five core components: **Input**, **Reasoning**, **Tools**, **Memory**, and **Actions/Outputs**.An AI agent uses an LLM to process user inputs, make decisions, call tools or MCP servers to perform actions, and generate responses. The following diagram illustrates the core components and their interactions in an AI agent:
+AI Agents consist of five core components: **Input**, **Reasoning**, **Tools**, **Memory**, and **Actions/Outputs**. An AI agent uses an LLM to process user inputs, make decisions, call tools or MCP servers to perform actions, and generate responses. The following diagram illustrates the core components and their interactions in an AI agent:
 
 ```mermaid
 %%{init: {'theme':'base', 'themeVariables': {'fontSize':'18px'}}}%%
