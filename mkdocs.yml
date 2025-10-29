@@ -106,11 +106,11 @@ plugins:
 
 nav:
   - Home: index.md
-  - References: references.md
   - AI Agents: 
     - Introduction: agents/index.md
     - Frameworks: agents/frameworks.md
   - MCP: mcp/index.md
+  - References: references.md
 
 # Copyright footer text
 copyright: |
