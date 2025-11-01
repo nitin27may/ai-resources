@@ -1,5 +1,5 @@
 ---
-
+draft: true
 date: 2025-11-03
 authors:
   - nitin

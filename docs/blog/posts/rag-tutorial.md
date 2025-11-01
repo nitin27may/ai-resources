@@ -1,6 +1,5 @@
 ---
-draft: false
-draft_on_serve: true
+draft: true
 date: 2025-11-01
 authors:
   - nitin
