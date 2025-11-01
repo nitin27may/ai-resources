@@ -1,25 +1,67 @@
-# AI Resources
+---
+hide:
+  - navigation
+  - toc
+---
 
-Welcome to the AI Resources documentation. This comprehensive collection covers artificial intelligence concepts, research findings, and practical implementations.
+# Home
 
-## Overview
+Stay current with the latest in AI. News, updates, and insights on tools, frameworks, and best practices.
 
-This documentation serves as a centralized knowledge base for:
+---
 
-- **AI Concepts**: Fundamental and advanced artificial intelligence principles
-- **Research Notes**: Insights from recent AI research papers and studies  
-- **Open Source Projects**: Carefully selected AI tools and frameworks
-- **Proof of Concepts**: Hands-on implementations and experiments
-- **Best Practices**: Industry standards and recommended approaches
+## Learn & Build
 
-## Getting Started
+Comprehensive guides for building with generative AI.
 
-Explore the different sections to find resources relevant to your interests:
+<div class="grid cards" markdown>
 
-- **[AI Agents](agents/)**: Learn about AI agent frameworks and implementations
-- **[MCP](mcp/)**: Model Context Protocol resources and guides
-- **[References](references.md)**: Collection of useful open source projects and tools
+-   __Prompt Engineering__
 
-## Contributing
+    Master crafting effective prompts and learn best practices.
 
-This is a living document that grows with community contributions. Feel free to suggest improvements or additions to help expand this knowledge base.
+    [Learn →](prompt-engineering/index.md)
+
+-   __AI Agents__
+
+    Multi-agent systems and orchestration patterns.
+
+    [Learn →](agents/index.md)
+
+-   __RAG__
+
+    Retrieval-Augmented Generation with vector databases.
+
+    [Learn →](rag/index.md)
+
+-   __Tools__
+
+    Essential frameworks and platforms for AI applications.
+
+    [Learn →](tools/index.md)
+
+-   __MCP__
+
+    Model Context Protocol for tool integration.
+
+    [Learn →](mcp/index.md)
+
+-   __Models__
+
+    LLM comparison and deployment guidance.
+
+    [Learn →](models/index.md)
+
+</div>
+
+---
+
+## Quick Start
+
+**New to AI?** [Prompt Engineering](prompt-engineering/index.md) → [AI Agents](agents/index.md) → [RAG](rag/index.md) → [Tools](tools/index.md)
+
+---
+
+## Contribute
+
+Open-source and community-driven. [Contribute on GitHub](https://github.com/nitin27may/ai-resources){ .md-button .md-button--primary }

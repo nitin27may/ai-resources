@@ -20,7 +20,12 @@
   <script src="{{ 'assets/javascripts/mermaid-fullscreen.js' | url }}"></script>
 {% endblock %}
 
-
+{% block content %}
+  {{ super() }}
+  
+  <!-- Social Share Buttons for Blog Posts -->
+  {% include "partials/social.html" %}
+{% endblock %}
 
 {% block footer %}
   {% include "partials/footer.html" %}

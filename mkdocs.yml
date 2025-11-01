@@ -10,14 +10,16 @@ theme:
   name: material
   features:
     - navigation.tabs
-#    - navigation.sections
+    - navigation.sections
     - navigation.expand
     - navigation.path
     - navigation.top
+    - navigation.indexes
     - search.suggest
     - search.highlight
     - content.action.edit
     - content.action.view
+    - content.action.share
     - content.tooltips
     - content.code.annotate
   palette:
@@ -83,11 +85,44 @@ extra_css:
 
 extra_javascript:
   - assets/javascripts/fullwidth-toggle.js
+  - assets/javascripts/external-links.js
 
 # Plugins configuration
 plugins:
   - search
   - tags
+  - blog:
+      enabled: true
+      blog_dir: blog
+      blog_toc: true
+      post_date_format: medium
+      post_url_format: "{slug}"
+      post_excerpt: required
+      post_excerpt_max_authors: 2
+      post_excerpt_max_categories: 5
+      post_readtime: true
+      post_readtime_words_per_minute: 200
+      authors: true
+      authors_file: "{blog}/.authors.yml"
+      categories: true
+      categories_name: Categories
+      categories_url_format: "category/{slug}"
+      categories_toc: true
+      categories_slugify: !!python/object/apply:pymdownx.slugs.slugify
+        kwds:
+          case: lower
+      pagination: true
+      pagination_per_page: 5
+      pagination_format: "$link_first $link_previous ~2~ $link_next $link_last"
+      pagination_keep_content: true
+      draft: true
+      draft_on_serve: true
+      archive: true
+      archive_name: Archive
+      archive_date_format: yyyy
+      archive_url_format: "archive/{date}"
+      archive_toc: true
+      archive_url_date_format: yyyy
   - git-revision-date-localized:
       enable_creation_date: true
       type: date
@@ -103,13 +138,45 @@ plugins:
       draggable: true
       auto_caption: false
       caption_position: bottom
-
+extra:
+  analytics:
+    provider: google
+    property: G-XXXXXXXXXX
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/nitin27may/ai-resources
+    - icon: fontawesome/brands/twitter
+      link: https://twitter.com/nitinsingh
+    - icon: fontawesome/brands/linkedin
+      link: https://linkedin.com/in/nitinsingh
+  # Enable social sharing cards
+  cards:
+    enabled: true
+  comments:
+    provider: giscus
+    repo: nitin27may/ai-resources
+    repo_id: R_kgDOQJHkgQ
+    category: General
+    category_id: DIC_kwDOQJHkgc4CxT0Y
+    mapping: pathname
+    reactions_enabled: true
+    input_position: bottom
+    theme: preferred_color_scheme
+    loading: lazy
+    loading: lazy
 nav:
   - Home: index.md
-  - AI Agents: 
-    - Introduction: agents/index.md
-    - Frameworks: agents/frameworks.md
+  - Blog: blog/index.md
+  - Prompt Engineering: prompt-engineering/index.md
+  - AI Agents:
+      - Overview: agents/index.md
+      - Architecture: agents/architecture.md
+      - Design Patterns: agents/design-patterns.md
+      - Frameworks: agents/frameworks.md
+  - RAG: rag/index.md
+  - Tools: tools/index.md
   - MCP: mcp/index.md
+  - Models: models/index.md
   - References: references.md
 
 # Copyright footer text

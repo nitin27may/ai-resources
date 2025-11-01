@@ -26,54 +26,51 @@ flowchart LR
     Reasoning ==>|Execute| Output
 
     
-    style Input fill:#667eea,stroke:#5568d3,stroke-width:4px,color:#ffffff,font-weight:bold
-    style Reasoning fill:#764ba2,stroke:#5e3a82,stroke-width:4px,color:#ffffff,font-weight:bold
-    style Tools fill:#f093fb,stroke:#d946ef,stroke-width:4px,color:#ffffff,font-weight:bold
-    style Memory fill:#4facfe,stroke:#0ea5e9,stroke-width:4px,color:#ffffff,font-weight:bold
-    style Output fill:#43e97b,stroke:#22c55e,stroke-width:4px,color:#ffffff,font-weight:bold
+    style Input fill:#3b82f6,stroke:#2563eb,stroke-width:4px,color:#ffffff,font-weight:bold
+    style Reasoning fill:#8b5cf6,stroke:#7c3aed,stroke-width:4px,color:#ffffff,font-weight:bold
+    style Tools fill:#f97316,stroke:#ea580c,stroke-width:4px,color:#ffffff,font-weight:bold
+    style Memory fill:#14b8a6,stroke:#0d9488,stroke-width:4px,color:#ffffff,font-weight:bold
+    style Output fill:#10b981,stroke:#059669,stroke-width:4px,color:#ffffff,font-weight:bold
 ```
 
 Examples:
 ```mermaid
-graph TB
-    subgraph INPUT["INPUT LAYER"]
-        style INPUT fill:#FF6B6B,stroke:#C92A2A,stroke-width:3px,color:#fff
-        I1["User Queries<br/>Natural language questions<br/>Chat messages"]
-        I2["Documents & Files<br/>Images<br/>PDFs<br/>Spreadsheets"]
-        I3["External Triggers<br/>Events<br/>Alerts<br/>API calls"]
-        I4["Context<br/>Conversation history<br/>User preferences"]
+%%{init: {'theme':'base', 'themeVariables': {'fontSize':'16px'}}}%%
+
+graph LR
+    subgraph INPUT["INPUT"]
+        I1["User Queries"]
+        I2["Documents & Files"]
+        I3["External Triggers"]
+        I4["Context"]
     end
 
-    subgraph REASONING["REASONING ENGINE"]
-        style REASONING fill:#4ECDC4,stroke:#0B7285,stroke-width:3px,color:#fff
-        R1["Large Language Model<br/>Understands intent<br/>Plans actions"]
-        R2["Prompt Engineering<br/>Instructions<br/>Guidelines"]
-        R3["Orchestration<br/>Coordinates workflow<br/>Manages multi-step tasks"]
-        R4["Decision Making<br/>Selects tools<br/>Routes requests"]
+    subgraph REASONING["REASONING"]
+        R1["LLM"]
+        R2["Prompt Engineering"]
+        R3["Orchestration"]
+        R4["Decision Making"]
     end
 
     subgraph TOOLS["TOOLS"]
-        style TOOLS fill:#FFD93D,stroke:#F59F00,stroke-width:3px,color:#000
-        T1["Code Execution<br/>Run Python code<br/>Data analysis"]
-        T2["Search<br/>Document retrieval<br/>Web search"]
-        T3["Custom Functions<br/>API calls<br/>Business logic"]
-        T4["Integrations<br/>Email<br/>Databases<br/>Third-party services"]
+        T1["Code Execution"]
+        T2["Search"]
+        T3["Custom Functions"]
+        T4["Integrations"]
     end
 
     subgraph MEMORY["MEMORY"]
-        style MEMORY fill:#A78BFA,stroke:#7C3AED,stroke-width:3px,color:#fff
-        M1["Conversation History<br/>Messages<br/>Thread continuity"]
-        M2["Agent State<br/>Configuration<br/>Status tracking"]
-        M3["Knowledge Base<br/>Documents<br/>Vector embeddings"]
-        M4["File Storage<br/>Uploaded files<br/>Generated outputs"]
+        M1["Conversation History"]
+        M2["Agent State"]
+        M3["Knowledge Base"]
+        M4["File Storage"]
     end
 
-    subgraph ACTIONS["ACTIONS/OUTPUTS"]
-        style ACTIONS fill:#51CF66,stroke:#2F9E44,stroke-width:3px,color:#fff
-        A1["Text Responses<br/>Answers<br/>Summaries<br/>Explanations"]
-        A2["Generated Content<br/>Code<br/>Visualizations<br/>Reports"]
-        A3["State Changes<br/>Save conversation<br/>Update context"]
-        A4["External Actions<br/>Send notifications<br/>Trigger workflows<br/>Update systems"]
+    subgraph ACTIONS["ACTIONS"]
+        A1["Text Responses"]
+        A2["Generated Content"]
+        A3["State Changes"]
+        A4["External Actions"]
     end
 
     %% Flow connections
@@ -107,12 +104,18 @@ graph TB
     A3 --> M1
     A2 --> M4
 
-    %% Styling
-    classDef inputStyle fill:#FF6B6B,stroke:#C92A2A,stroke-width:2px,color:#fff
-    classDef reasoningStyle fill:#4ECDC4,stroke:#0B7285,stroke-width:2px,color:#fff
-    classDef toolStyle fill:#FFD93D,stroke:#F59F00,stroke-width:2px,color:#000
-    classDef memoryStyle fill:#A78BFA,stroke:#7C3AED,stroke-width:2px,color:#fff
-    classDef actionStyle fill:#51CF66,stroke:#2F9E44,stroke-width:2px,color:#fff
+    %% Styling - darker fills for better contrast
+    style INPUT fill:#3b82f6,stroke:#2563eb,stroke-width:4px,color:#fff,font-weight:bold
+    style REASONING fill:#7c3aed,stroke:#6d28d9,stroke-width:4px,color:#fff,font-weight:bold
+    style TOOLS fill:#ea580c,stroke:#c2410c,stroke-width:4px,color:#fff,font-weight:bold
+    style MEMORY fill:#0d9488,stroke:#0f766e,stroke-width:4px,color:#fff,font-weight:bold
+    style ACTIONS fill:#059669,stroke:#047857,stroke-width:4px,color:#fff,font-weight:bold
+
+    classDef inputStyle fill:#3b82f6,stroke:#2563eb,stroke-width:3px,color:#fff,font-size:14px
+    classDef reasoningStyle fill:#7c3aed,stroke:#6d28d9,stroke-width:3px,color:#fff,font-size:14px
+    classDef toolStyle fill:#ea580c,stroke:#c2410c,stroke-width:3px,color:#fff,font-size:14px
+    classDef memoryStyle fill:#0d9488,stroke:#0f766e,stroke-width:3px,color:#fff,font-size:14px
+    classDef actionStyle fill:#059669,stroke:#047857,stroke-width:3px,color:#fff,font-size:14px
 
     class I1,I2,I3,I4 inputStyle
     class R1,R2,R3,R4 reasoningStyle
@@ -166,18 +169,18 @@ graph LR
     Func2 -->|"4. Processed Data"| Agent2
     Agent2 -->|"5. Final Response"| End
     
-    style Start fill:#667eea,stroke:#5568d3,stroke-width:3px,color:#ffffff,font-weight:bold
-    style Func1 fill:#ff6b6b,stroke:#ee5a6f,stroke-width:4px,color:#ffffff,font-weight:bold
-    style Agent1 fill:#f093fb,stroke:#d946ef,stroke-width:4px,color:#ffffff,font-weight:bold
-    style Func2 fill:#feca57,stroke:#ff9f43,stroke-width:4px,color:#000000,font-weight:bold
-    style Agent2 fill:#48dbfb,stroke:#0abde3,stroke-width:4px,color:#ffffff,font-weight:bold
-    style End fill:#1dd1a1,stroke:#10ac84,stroke-width:3px,color:#ffffff,font-weight:bold
+    style Start fill:#3b82f6,stroke:#2563eb,stroke-width:3px,color:#ffffff,font-weight:bold
+    style Func1 fill:#f97316,stroke:#ea580c,stroke-width:4px,color:#ffffff,font-weight:bold
+    style Agent1 fill:#8b5cf6,stroke:#7c3aed,stroke-width:4px,color:#ffffff,font-weight:bold
+    style Func2 fill:#14b8a6,stroke:#0d9488,stroke-width:4px,color:#ffffff,font-weight:bold
+    style Agent2 fill:#ec4899,stroke:#db2777,stroke-width:4px,color:#ffffff,font-weight:bold
+    style End fill:#10b981,stroke:#059669,stroke-width:3px,color:#ffffff,font-weight:bold
     
-    linkStyle 0 stroke:#667eea,stroke-width:3px
-    linkStyle 1 stroke:#ff6b6b,stroke-width:3px
-    linkStyle 2 stroke:#f093fb,stroke-width:3px
-    linkStyle 3 stroke:#feca57,stroke-width:3px
-    linkStyle 4 stroke:#48dbfb,stroke-width:3px
+    linkStyle 0 stroke:#3b82f6,stroke-width:3px
+    linkStyle 1 stroke:#f97316,stroke-width:3px
+    linkStyle 2 stroke:#8b5cf6,stroke-width:3px
+    linkStyle 3 stroke:#14b8a6,stroke-width:3px
+    linkStyle 4 stroke:#ec4899,stroke-width:3px
 ```
 
 Workflows can also express dynamic sequences using conditional routing, model-based decision making, and concurrent execution. This is how multi-agent orchestration patterns are implemented. The orchestration patterns provide mechanisms to coordinate multiple agents to work on complex tasks that require multiple steps and decision points, addressing the limitations of single agents.
