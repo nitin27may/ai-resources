@@ -1,23 +1,41 @@
 {% extends "base.html" %}
 
 {% block extrahead %}
+  <!-- Cache control meta tags -->
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  
   <!-- Add custom CSS for full width toggle -->
-  <link rel="stylesheet" href="{{ 'assets/stylesheets/fullwidth-toggle.css' | url }}">
+  <link rel="stylesheet" href="{{ 'assets/stylesheets/fullwidth-toggle.css' | url }}?v={{ cache_bust }}">
   <!-- Add custom CSS for Mermaid diagrams -->
-  <link rel="stylesheet" href="{{ 'assets/stylesheets/mermaid-custom.css' | url }}">
+  <link rel="stylesheet" href="{{ 'assets/stylesheets/mermaid-custom.css' | url }}?v={{ cache_bust }}">
   <!-- Add custom CSS for footer -->
-  <link rel="stylesheet" href="{{ 'assets/stylesheets/footer-custom.css' | url }}">
+  <link rel="stylesheet" href="{{ 'assets/stylesheets/footer-custom.css' | url }}?v={{ cache_bust }}">
   <!-- Add custom CSS for tooltips and annotations -->
-  <link rel="stylesheet" href="{{ 'assets/stylesheets/tooltip-custom.css' | url }}">
+  <link rel="stylesheet" href="{{ 'assets/stylesheets/tooltip-custom.css' | url }}?v={{ cache_bust }}">
   {{ super() }}
 {% endblock %}
 
 {% block scripts %}
   {{ super() }}
   <!-- Add custom JavaScript for full width toggle -->
-  <script src="{{ 'assets/javascripts/fullwidth-toggle.js' | url }}"></script>
+  <script src="{{ 'assets/javascripts/fullwidth-toggle.js' | url }}?v={{ cache_bust }}"></script>
   <!-- Add custom JavaScript for Mermaid fullscreen functionality -->
-  <script src="{{ 'assets/javascripts/mermaid-fullscreen.js' | url }}"></script>
+  <script src="{{ 'assets/javascripts/mermaid-fullscreen.js' | url }}?v={{ cache_bust }}"></script>
+  
+  <!-- Service Worker for cache management -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('{{ 'sw.js' | url }}?v={{ cache_bust }}')
+        .then(function(registration) {
+          console.log('Service Worker registered with scope:', registration.scope);
+        })
+        .catch(function(error) {
+          console.log('Service Worker registration failed:', error);
+        });
+    }
+  </script>
 {% endblock %}
 
 {% block content %}

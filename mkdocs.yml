@@ -183,3 +183,7 @@ nav:
 copyright: |
   &copy; 2025 AI Resources Team | 
   <a href="#" onclick="return false;">Terms & Privacy</a>
+
+# Hooks for cache control
+hooks:
+  - hooks/cache_control.py

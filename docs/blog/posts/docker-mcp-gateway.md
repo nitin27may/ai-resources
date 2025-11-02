@@ -11,6 +11,7 @@ tags:
   - mcp
   - mcp-gateway
   - enterprise
+image: assets/images/mcp-gateway-architecture.png
 comments: true
 ---
 
