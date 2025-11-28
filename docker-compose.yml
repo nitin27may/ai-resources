@@ -4,8 +4,8 @@ services:
   mkdocs:
     build:
       context: .
-      dockerfile: Dockerfile
-    container_name: ai-notes-mkdocs
+      dockerfile: Dev.Dockerfile
+    container_name: ea-notes-mkdocs
     ports:
       - "8000:8000"
     volumes:

@@ -1,245 +1,181 @@
-# AI Resources
+# EA Notes Documentation
 
-[![Deploy MkDocs to GitHub Pages](https://github.com/nitin27may/ai-resources/actions/workflows/deploy.yml/badge.svg)](https://github.com/nitin27may/ai-resources/actions/workflows/deploy.yml)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+This repository contains Enterprise Architecture documentation and notes.
 
-A comprehensive collection of AI concepts, resources, and open-source projects based on research and proof-of-concepts (POCs). This repository serves as a centralized knowledge base for artificial intelligence enthusiasts, researchers, and practitioners.
+## Introduction
 
-## Live Documentation
-
-Visit the live documentation site: [AI Resources](https://nitin27may.github.io/ai-resources/)
-
-## Table of Contents
-
-- [About](#about)
-- [Repository Structure](#repository-structure)
-- [Getting Started](#getting-started)
-- [Topics Covered](#topics-covered)
-- [Contributing](#contributing)
-- [Local Development](#local-development)
-- [Deployment](#deployment)
-- [License](#license)
-- [Contact](#contact)
-
-## About
-
-This repository is a curated collection of:
-
-- **AI Concepts**: Fundamental and advanced artificial intelligence concepts
-- **Research Notes**: Insights from recent AI research papers and studies
-- **Open Source Projects**: Carefully selected AI tools and frameworks
-- **Proof of Concepts**: Hands-on implementations and experiments
-- **Best Practices**: Industry standards and recommended approaches
-- **Tutorials & Guides**: Step-by-step learning resources
-
-## Repository Structure
-
-```
-ai-resources/
-├── docs/                           # Documentation source files
-│   ├── index.md                   # Homepage
-│   ├── references.md              # Reference materials
-│   └── ...                       # Additional topic pages
-├── overrides/                     # Custom MkDocs theme files
-│   ├── assets/
-│   │   ├── javascripts/          # Custom JavaScript
-│   │   └── stylesheets/          # Custom CSS
-│   ├── partials/                 # Template partials
-│   └── main.html                 # Main template override
-├── .github/
-│   └── workflows/
-│       └── deploy.yml            # GitHub Actions deployment
-├── mkdocs.yml                    # MkDocs configuration
-├── requirements.txt              # Python dependencies
-├── docker-compose.yml           # Local development setup
-├── Dockerfile                   # Container configuration
-└── README.md                    # This file
-```
+This project serves as a centralized location for Enterprise Architecture documentation, including system capabilities, architectural decisions, and technical specifications.
 
 ## Getting Started
 
 ### Prerequisites
 
-- Python 3.11+
-- Git
-- Docker (optional, for containerized development)
+Choose one of the following development environments:
 
-### Quick Start
+**Option 1: Dev Container (Recommended)**
+- Visual Studio Code with Remote-Containers extension
+- Docker installed on your machine
 
-1. **Clone the repository**
+**Option 2: Docker Compose**
+- Docker and Docker Compose installed on your machine
+
+### Development Environment Setup
+
+#### Option 1: Using Dev Container (Recommended)
+
+1. **Clone this repository**:
    ```bash
-   git clone https://github.com/nitin27may/ai-resources.git
-   cd ai-resources
+   git clone <repository-url>
+   cd EA-Notes
    ```
 
-2. **Set up virtual environment**
+2. **Open in Visual Studio Code**:
    ```bash
-   python -m venv venv
-   source venv/bin/activate  # On Windows: venv\Scripts\activate
+   code .
    ```
 
-3. **Install dependencies**
-   ```bash
-   pip install -r requirements.txt
-   ```
+3. **Open in Dev Container**:
+   - When prompted, click "Reopen in Container"
+   - Or use Command Palette (`Ctrl+Shift+P` / `Cmd+Shift+P`) and select "Dev Containers: Reopen in Container"
 
-4. **Serve locally**
-   ```bash
-   mkdocs serve
-   ```
+4. **Automatic Setup**:
+   - VS Code will build the dev container (this may take a few minutes on first run)
+   - Dependencies will be automatically installed via `requirements.txt`
+   - MkDocs development server will start automatically on port 8000
 
-   Visit `http://localhost:8000` to view the documentation.
+5. **Access the site**:
+   - Open your browser and navigate to [http://localhost:8000](http://localhost:8000)
+   - The documentation site will automatically reload when you make changes to any Markdown files
 
-## Topics Covered
+**The dev container includes**:
+- Python 3.12 slim environment with native setup (no Docker Compose)
+- All required MkDocs dependencies and plugins
+- Live reload functionality with hot reloading
+- PDF export capabilities via WeasyPrint
+- Pre-configured VS Code extensions:
+  - Python support with Black formatter
+  - Markdown All in One
+  - Markdown lint
+  - Mermaid diagram support
+- Useful VS Code tasks for building and serving
+- Non-root user setup for security
 
-### Core AI Concepts
-- Machine Learning Fundamentals
-- Deep Learning Architectures
-- Natural Language Processing (NLP)
-- Computer Vision
-- Reinforcement Learning
-- Neural Networks
+#### Option 2: Using Docker Compose
 
-### Advanced Topics
-- Generative AI & Large Language Models (LLMs)
-- Transformer Architectures
-- Multi-modal AI Systems
-- AI Ethics & Responsible AI
-- Edge AI & Model Optimization
-- AI in Production & MLOps
-
-### Tools & Frameworks
-- TensorFlow & PyTorch
-- Hugging Face Ecosystem
-- OpenAI APIs & Tools
-- Cloud AI Services (Azure, AWS, GCP)
-- Open Source AI Projects
-- Development Tools & Libraries
-
-### Research & Innovation
-- Latest AI Research Papers
-- Emerging Trends & Technologies
-- Industry Case Studies
-- Experimental Projects
-- Proof of Concepts (POCs)
-
-## Contributing
-
-Contributions are welcome! Whether you want to:
-
-- Add new AI concepts or resources
-- Improve existing documentation
-- Share your research findings
-- Submit open-source project recommendations
-- Fix bugs or improve the site
-
-### How to Contribute
-
-1. **Fork the repository**
-2. **Create a feature branch**
-   ```bash
-   git checkout -b feature/amazing-ai-concept
-   ```
-3. **Add your content** in the `docs/` directory
-4. **Test locally**
-   ```bash
-   mkdocs serve
-   ```
-5. **Commit your changes**
-   ```bash
-   git commit -m "Add amazing AI concept documentation"
-   ```
-6. **Push to your fork**
-   ```bash
-   git push origin feature/amazing-ai-concept
-   ```
-7. **Create a Pull Request**
-
-### Content Guidelines
-
-- Use clear, concise language
-- Include practical examples where possible
-- Add references to original sources
-- Follow the existing documentation structure
-- Test all code examples before submitting
-
-## 💻 Local Development
-
-### Using Docker
-
-For a consistent development environment:
+1. Clone this repository
+2. Navigate to the repository root directory
+3. Run the following command to start the MkDocs Material container:
 
 ```bash
-# Build and start the container
 docker-compose up
-
-# The site will be available at http://localhost:8000
 ```
 
-### Manual Setup
+4. Open your browser and navigate to [http://localhost:8000](http://localhost:8000)
+5. The documentation site will automatically reload when you make changes to any of the Markdown files
 
+### Stopping the Documentation Site
+
+**For Dev Container:**
+- The server runs automatically in the background
+- To stop: Use the VS Code terminal and press `Ctrl+C`
+
+**For Docker Compose:**
+To stop the running container, press `Ctrl+C` in the terminal or run:
 ```bash
-# Install dependencies
-pip install -r requirements.txt
+docker-compose down
+```
 
-# Start development server with live reload
-mkdocs serve --dev-addr=0.0.0.0:8000
+## Documentation Structure
 
-# Build static site
+- `/docs/` - Contains all Markdown documentation files
+- `mkdocs.yml` - MkDocs configuration file
+- `docker-compose.yml` - Docker Compose configuration for running MkDocs Material
+
+## Adding New Documentation
+
+1. Create a new Markdown file in the `/docs/` directory
+2. Add the new file to the navigation in the `mkdocs.yml` file
+3. Restart the container if needed
+
+## Build and Deploy
+
+### Development Build
+The dev container and docker-compose setup automatically serve the documentation with live reload.
+
+### Production Build
+
+To build a static version of the documentation site for deployment:
+
+**Using Dev Container:**
+```bash
+# Open terminal in VS Code (dev container) and run:
 mkdocs build
 ```
 
-## Deployment
+**Using Docker:**
+```bash
+docker run --rm -it -v ${PWD}:/docs squidfunk/mkdocs-material build
+```
 
-The site is automatically deployed to GitHub Pages using GitHub Actions when changes are pushed to the `main` branch.
+**Using Docker with custom Dockerfile:**
+```bash
+docker build -t ea-notes-mkdocs .
+docker run --rm -v ${PWD}:/workspace ea-notes-mkdocs mkdocs build
+```
 
-### Deployment Process
+This will create a `site` directory with the static HTML files that can be deployed to any web server.
 
-1. **Automatic**: Push to `main` branch triggers deployment
-2. **Manual**: Use the "Deploy" workflow in GitHub Actions
-3. **Local Build**: `mkdocs build` generates static files in `site/`
+### PDF Export
 
-## Site Analytics
+The project is configured to generate PDF exports of the documentation. To enable PDF generation:
 
-The documentation site includes:
+1. Ensure the `ENABLE_PDF_EXPORT=1` environment variable is set (included in dev container)
+2. Run the build command as shown above
+3. PDF files will be generated alongside the HTML output
 
-- 📱 Responsive design for all devices
-- 🔍 Full-text search functionality
-- 🌓 Light/dark mode toggle
-- 🏷️ Content tagging and categorization
-- 📖 Easy navigation and content discovery
+## Development Tips
 
-## 🔗 Useful Links
+### Working with the Dev Container
 
-- [MkDocs Documentation](https://www.mkdocs.org/)
-- [Material for MkDocs](https://squidfunk.github.io/mkdocs-material/)
-- [GitHub Pages](https://pages.github.com/)
-- [Markdown Guide](https://www.markdownguide.org/)
+- **Terminal Access**: Use the integrated terminal in VS Code to run MkDocs commands
+- **File Changes**: All file changes are automatically synced and trigger live reload
+- **Port Forwarding**: Port 8000 is automatically forwarded and accessible at `http://localhost:8000`
+- **Extensions**: The dev container includes pre-configured extensions for Markdown editing and Mermaid diagrams
 
-## 📄 License
+### Useful Commands
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+```bash
+# Start the development server manually (if needed)
+mkdocs serve --dev-addr=0.0.0.0:8000 --livereload
 
-## Author
+# Build the site
+mkdocs build
 
-**Nitin Singh**
-- GitHub: [@nitin27may](https://github.com/nitin27may)
-- Website: [nitinksingh.com](https://nitinksingh.com)
+# Check for configuration issues
+mkdocs config
 
-## Contact
+# Install additional dependencies
+pip install <package-name>
+```
 
-- 💬 Open an issue for questions or suggestions
-- 📧 Email: [Contact through GitHub](https://github.com/nitin27may)
-- 🐦 Follow for updates on AI research and development
+### Troubleshooting
 
----
+**Dev Container Issues:**
+- **Config not found**: Ensure the `.devcontainer/devcontainer.json` file exists
+- **Port already in use**: If port 8000 is busy, stop any other services using port 8000 or change the port in `devcontainer.json`
+- **Container won't start**: Ensure Docker is running and you have sufficient permissions
+- **Dependencies not installing**: Try rebuilding the container (Command Palette → "Dev Containers: Rebuild Container")
 
-## ⭐ Star History
+**General Issues:**
+- **PDF export issues**: PDF export requires additional system dependencies which are included in the dev container
+- **Mermaid diagrams not rendering**: Check that the `pymdownx.superfences` extension is configured correctly in `mkdocs.yml`
+- **Live reload not working**: Ensure the development server is running with the `--livereload` flag
 
-If you find this repository helpful, please consider giving it a star! ⭐
+## Contributing
 
----
+Please follow these steps to contribute:
 
-**Happy Learning!**
-
-> "The best way to learn AI is to build with AI" - Keep exploring, keep building!
+1. Fork the repository
+2. Create a new branch
+3. Make your changes
+4. Submit a pull request

@@ -1,0 +1,67 @@
+/* PDF Export Custom Styles */
+
+/* Page settings */
+@page {
+  size: A4;
+  margin: 2cm;
+}
+
+/* Hide navigation elements in PDF */
+.md-header,
+.md-footer,
+.md-sidebar,
+.md-tabs {
+  display: none !important;
+}
+
+/* Main content styling */
+.md-content {
+  max-width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* Code blocks */
+pre {
+  page-break-inside: avoid;
+  background-color: #f5f5f5 !important;
+  border: 1px solid #ddd;
+  padding: 1em;
+}
+
+/* Tables */
+table {
+  page-break-inside: avoid;
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+/* Headings */
+h1, h2, h3, h4, h5, h6 {
+  page-break-after: avoid;
+}
+
+/* Images */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Admonitions */
+.admonition {
+  page-break-inside: avoid;
+}
+
+/* Links - show URL in print */
+@media print {
+  a[href^="http"]:after {
+    content: " (" attr(href) ")";
+    font-size: 0.8em;
+    color: #666;
+  }
+}

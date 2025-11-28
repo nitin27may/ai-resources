@@ -1,8 +1,8 @@
-site_name: AI RESOURES
-site_url: https://nitinksingh.com/ai-resources/
-site_description: AI Resources and Notes
-repo_url: https://github.com/nitin27may/ai-resources
-repo_name: ai-resources
+site_name: EA Notes
+site_url: http://localhost:8000/  # Use HTTP instead of HTTPS for local development
+site_description: Enterprise Architecture Notes and Documentation
+repo_url: https://dev.azure.com/nbfc/NBFC/_git/EA-Notes
+repo_name: EA-Notes
 edit_uri: "?path=/docs/"
 
 # Azure DevOps specific configuration
@@ -10,16 +10,14 @@ theme:
   name: material
   features:
     - navigation.tabs
-    - navigation.sections
+#    - navigation.sections
     - navigation.expand
     - navigation.path
     - navigation.top
-    - navigation.indexes
     - search.suggest
     - search.highlight
     - content.action.edit
     - content.action.view
-    - content.action.share
     - content.tooltips
     - content.code.annotate
   palette:
@@ -85,48 +83,16 @@ extra_css:
 
 extra_javascript:
   - assets/javascripts/fullwidth-toggle.js
-  - assets/javascripts/external-links.js
 
 # Plugins configuration
 plugins:
   - search
   - tags
-  - blog:
-      enabled: true
-      blog_dir: blog
-      blog_toc: true
-      post_date_format: medium
-      post_url_format: "{slug}"
-      post_excerpt: required
-      post_excerpt_max_authors: 2
-      post_excerpt_max_categories: 5
-      post_readtime: true
-      post_readtime_words_per_minute: 200
-      authors: true
-      authors_file: "{blog}/.authors.yml"
-      categories: true
-      categories_name: Categories
-      categories_url_format: "category/{slug}"
-      categories_toc: true
-      categories_slugify: !!python/object/apply:pymdownx.slugs.slugify
-        kwds:
-          case: lower
-      pagination: true
-      pagination_per_page: 5
-      pagination_format: "$link_first $link_previous ~2~ $link_next $link_last"
-      pagination_keep_content: true
-      draft: true
-      draft_on_serve: true
-      archive: true
-      archive_name: Archive
-      archive_date_format: yyyy
-      archive_url_format: "archive/{date}"
-      archive_toc: true
-      archive_url_date_format: yyyy
   - git-revision-date-localized:
       enable_creation_date: true
       type: date
       fallback_to_build_date: true
+
   - glightbox:
       touchNavigation: true
       loop: false
@@ -138,52 +104,37 @@ plugins:
       draggable: true
       auto_caption: false
       caption_position: bottom
-extra:
-  analytics:
-    provider: google
-    property: G-XXXXXXXXXX
-  social:
-    - icon: fontawesome/brands/github
-      link: https://github.com/nitin27may/ai-resources
-    - icon: fontawesome/brands/twitter
-      link: https://twitter.com/nitinsingh
-    - icon: fontawesome/brands/linkedin
-      link: https://linkedin.com/in/nitinsingh
-  # Enable social sharing cards
-  cards:
-    enabled: true
-  comments:
-    provider: giscus
-    repo: nitin27may/ai-resources
-    repo_id: R_kgDOQJHkgQ
-    category: General
-    category_id: DIC_kwDOQJHkgc4CxT0Y
-    mapping: pathname
-    reactions_enabled: true
-    input_position: bottom
-    theme: preferred_color_scheme
-    loading: lazy
-    loading: lazy
+  - to-pdf:
+      download_link: header
+      toc_level: 3
+      cover_subtitle: All Notes from Nitin Singh
+      author: Nitin Singh
+      exclude_pages: ["index.md"]
+      enabled_if_env: ENABLE_PDF_EXPORT
+      # Media handling for diagrams
+      media_type: print
+      # Additional PDF styling
+      custom_css: overrides/assets/stylesheets/pdf-custom.css
+      # Remove page numbers
+      show_page_numbers: false
+
 nav:
   - Home: index.md
-  - Blog: blog/index.md
-  - Prompt Engineering: prompt-engineering/index.md
-  - AI Agents:
-      - Overview: agents/index.md
-      - Architecture: agents/architecture.md
-      - Design Patterns: agents/design-patterns.md
-      - Frameworks: agents/frameworks.md
-  - RAG: rag/index.md
-  - Tools: tools/index.md
-  - MCP: mcp/index.md
-  - Models: models/index.md
-  - References: references.md
+  - AI & Agent Systems:
+      - AI Agents: ai-agents.md
+      - Design Patterns: design-pattern.md
+      - Design Principles: design-principles.md
+  - Governance & Compliance:
+      - AI Governance Operating Model: ai-governance-operating-model.md
+      - Risk Management Framework: risk-management-framework.md
+      - Model Lifecycle Governance: model-lifecycle-governance.md
+  - Security & Controls:
+      - Guardrails & Control Framework: guardrails-and-control-framework.md
+      - Prompt Injection Prevention: prompt-injection-prevention.md
+  - Microsoft Ignite 2025: ms-ignite-2025.md
+
 
 # Copyright footer text
 copyright: |
-  &copy; 2025 AI Resources Team | 
+  &copy; 2025 Enterprise Architecture Team | 
   <a href="#" onclick="return false;">Terms & Privacy</a>
-
-# Hooks for cache control
-hooks:
-  - hooks/cache_control.py
