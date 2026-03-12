@@ -102,12 +102,12 @@ flowchart LR
     C -->|Analysis Results| D
     D -.->|Final Report| End
     
-    style User fill:#3b82f6,stroke:#1d4ed8,stroke-width:2px,color:#fff
-    style A fill:#10b981,stroke:#059669,stroke-width:3px,color:#fff
-    style B fill:#8b5cf6,stroke:#6d28d9,stroke-width:3px,color:#fff
-    style C fill:#f97316,stroke:#ea580c,stroke-width:3px,color:#fff
-    style D fill:#14b8a6,stroke:#0d9488,stroke-width:3px,color:#fff
-    style End fill:#22c55e,stroke:#16a34a,stroke-width:2px,color:#fff
+    style User fill:#004987,stroke:#003665,stroke-width:2px,color:#fff
+    style A fill:#259638,stroke:#1C712A,stroke-width:3px,color:#fff
+    style B fill:#632C4F,stroke:#4E223E,stroke-width:3px,color:#fff
+    style C fill:#853175,stroke:#6A275E,stroke-width:3px,color:#fff
+    style D fill:#057398,stroke:#045672,stroke-width:3px,color:#fff
+    style End fill:#259638,stroke:#1C712A,stroke-width:2px,color:#fff
 ```
 
 ---
@@ -130,11 +130,11 @@ flowchart LR
     B -.->|Fail| A
     D -.->|Deployed| End
     
-    style User fill:#3b82f6,stroke:#1d4ed8,stroke-width:2px,color:#fff
-    style A fill:#10b981,stroke:#059669,stroke-width:3px,color:#fff
-    style B fill:#f97316,stroke:#ea580c,stroke-width:3px,color:#fff
-    style D fill:#8b5cf6,stroke:#6d28d9,stroke-width:3px,color:#fff
-    style End fill:#22c55e,stroke:#16a34a,stroke-width:2px,color:#fff
+    style User fill:#004987,stroke:#003665,stroke-width:2px,color:#fff
+    style A fill:#259638,stroke:#1C712A,stroke-width:3px,color:#fff
+    style B fill:#853175,stroke:#6A275E,stroke-width:3px,color:#fff
+    style D fill:#632C4F,stroke:#4E223E,stroke-width:3px,color:#fff
+    style End fill:#259638,stroke:#1C712A,stroke-width:2px,color:#fff
 ```
 
 ---
@@ -160,12 +160,12 @@ flowchart TD
     Billing -.-> End
     Sales -.-> End
     
-    style User fill:#3b82f6,stroke:#1d4ed8,stroke-width:2px,color:#fff
-    style Supervisor fill:#ec4899,stroke:#be185d,stroke-width:3px,color:#fff
-    style Tech fill:#10b981,stroke:#059669,stroke-width:3px,color:#fff
-    style Billing fill:#8b5cf6,stroke:#6d28d9,stroke-width:3px,color:#fff
-    style Sales fill:#f97316,stroke:#ea580c,stroke-width:3px,color:#fff
-    style End fill:#22c55e,stroke:#16a34a,stroke-width:2px,color:#fff
+    style User fill:#004987,stroke:#003665,stroke-width:2px,color:#fff
+    style Supervisor fill:#9E57A2,stroke:#7E4582,stroke-width:3px,color:#fff
+    style Tech fill:#259638,stroke:#1C712A,stroke-width:3px,color:#fff
+    style Billing fill:#632C4F,stroke:#4E223E,stroke-width:3px,color:#fff
+    style Sales fill:#853175,stroke:#6A275E,stroke-width:3px,color:#fff
+    style End fill:#259638,stroke:#1C712A,stroke-width:2px,color:#fff
 ```
 
 ---
@@ -206,18 +206,18 @@ flowchart TD
     Payment -.-> End3
     Refund -.-> End4
     
-    style User fill:#3b82f6,stroke:#1d4ed8,stroke-width:2px,color:#fff
-    style Main fill:#ec4899,stroke:#be185d,stroke-width:4px,color:#fff
-    style TechSup fill:#8b5cf6,stroke:#6d28d9,stroke-width:3px,color:#fff
-    style BillSup fill:#f97316,stroke:#ea580c,stroke-width:3px,color:#fff
-    style L1 fill:#10b981,stroke:#059669,stroke-width:2px,color:#fff
-    style L2 fill:#14b8a6,stroke:#0d9488,stroke-width:2px,color:#fff
-    style Payment fill:#10b981,stroke:#059669,stroke-width:2px,color:#fff
-    style Refund fill:#14b8a6,stroke:#0d9488,stroke-width:2px,color:#fff
-    style End1 fill:#22c55e,stroke:#16a34a,stroke-width:2px,color:#fff
-    style End2 fill:#22c55e,stroke:#16a34a,stroke-width:2px,color:#fff
-    style End3 fill:#22c55e,stroke:#16a34a,stroke-width:2px,color:#fff
-    style End4 fill:#22c55e,stroke:#16a34a,stroke-width:2px,color:#fff
+    style User fill:#004987,stroke:#003665,stroke-width:2px,color:#fff
+    style Main fill:#9E57A2,stroke:#7E4582,stroke-width:4px,color:#fff
+    style TechSup fill:#632C4F,stroke:#4E223E,stroke-width:3px,color:#fff
+    style BillSup fill:#853175,stroke:#6A275E,stroke-width:3px,color:#fff
+    style L1 fill:#259638,stroke:#1C712A,stroke-width:2px,color:#fff
+    style L2 fill:#057398,stroke:#045672,stroke-width:2px,color:#fff
+    style Payment fill:#259638,stroke:#1C712A,stroke-width:2px,color:#fff
+    style Refund fill:#057398,stroke:#045672,stroke-width:2px,color:#fff
+    style End1 fill:#259638,stroke:#1C712A,stroke-width:2px,color:#fff
+    style End2 fill:#259638,stroke:#1C712A,stroke-width:2px,color:#fff
+    style End3 fill:#259638,stroke:#1C712A,stroke-width:2px,color:#fff
+    style End4 fill:#259638,stroke:#1C712A,stroke-width:2px,color:#fff
 ```
 
 ---
@@ -247,13 +247,13 @@ flowchart TD
     
     Merge -.->|Final Output| End
     
-    style User fill:#3b82f6,stroke:#1d4ed8,stroke-width:2px,color:#fff
-    style Split fill:#ec4899,stroke:#be185d,stroke-width:3px,color:#fff
-    style A1 fill:#10b981,stroke:#059669,stroke-width:3px,color:#fff
-    style A2 fill:#8b5cf6,stroke:#6d28d9,stroke-width:3px,color:#fff
-    style A3 fill:#f97316,stroke:#ea580c,stroke-width:3px,color:#fff
-    style Merge fill:#14b8a6,stroke:#0d9488,stroke-width:3px,color:#fff
-    style End fill:#22c55e,stroke:#16a34a,stroke-width:2px,color:#fff
+    style User fill:#004987,stroke:#003665,stroke-width:2px,color:#fff
+    style Split fill:#9E57A2,stroke:#7E4582,stroke-width:3px,color:#fff
+    style A1 fill:#259638,stroke:#1C712A,stroke-width:3px,color:#fff
+    style A2 fill:#632C4F,stroke:#4E223E,stroke-width:3px,color:#fff
+    style A3 fill:#853175,stroke:#6A275E,stroke-width:3px,color:#fff
+    style Merge fill:#057398,stroke:#045672,stroke-width:3px,color:#fff
+    style End fill:#259638,stroke:#1C712A,stroke-width:2px,color:#fff
 ```
 
 ---
@@ -286,12 +286,12 @@ graph TD
     
     Master --> Response[Response to User]
     
-    style User fill:#E8EAF6,stroke:#3F51B5,color:#000
-    style Master fill:#FFF9C4,stroke:#F57C00,color:#000
-    style Specialist1 fill:#C8E6C9,stroke:#388E3C,color:#000
-    style Specialist2 fill:#BBDEFB,stroke:#1976D2,color:#000
-    style Specialist3 fill:#F8BBD0,stroke:#C2185B,color:#000
-    style Response fill:#E1BEE7,stroke:#7B1FA2,color:#000
+    style User fill:#E6F1F5,stroke:#004987,color:#000
+    style Master fill:#57C0E8,stroke:#853175,color:#000
+    style Specialist1 fill:#C8E5CD,stroke:#259638,color:#000
+    style Specialist2 fill:#81B8CB,stroke:#057398,color:#000
+    style Specialist3 fill:#9E57A2,stroke:#632C4F,color:#000
+    style Response fill:#C0DCE5,stroke:#632C4F,color:#000
 ```
 
 ---
@@ -325,3 +325,13 @@ graph TD
 - **Production reliability critical** → Workflow patterns with explicit task management
 - **Human oversight required** → Any pattern with human-in-the-loop integration
 - **Complex task decomposition** → Plan-Based Orchestration
+
+---
+
+## References
+
+- [Microsoft: Multi-Agent Design Patterns](https://learn.microsoft.com/en-us/azure/ai-services/agents/concepts/agent-patterns)
+- [Anthropic: Building Effective Agents](https://docs.anthropic.com/en/docs/build-with-claude/agent-patterns)
+- [LangGraph Design Patterns](https://langchain-ai.github.io/langgraph/concepts/)
+- [AutoGen Agent Patterns](https://microsoft.github.io/autogen/docs/tutorial)
+- [Semantic Kernel Orchestration](https://learn.microsoft.com/en-us/semantic-kernel/agents/)

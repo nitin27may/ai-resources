@@ -1,214 +1,123 @@
-# Enterprise Architecture - AI Resource Hub
+---
+hide:
+  - navigation
+  - toc
+tags:
+  - Home
+---
 
-Welcome to the **Enterprise Architecture AI Resource Hub** — your comprehensive guide to building, deploying, and governing AI agent systems in enterprise environments.
+# AI Knowledge Hub
+
+Your go-to resource for understanding AI -- from foundational concepts to architecture patterns. Built for everyone in the organization, regardless of technical background.
 
 ---
 
-## 📚 Documentation Categories
-
-### AI & Agent Systems
+## Find Your Path
 
 <div class="grid cards" markdown>
 
--   :material-robot-outline:{ .lg .middle } **AI Agents**
+-   :material-school-outline:{ .lg .middle } __New to AI?__
 
-    ---
+    Start here to understand the basics -- what AI is, how LLMs work, and why it matters for your role.
 
-    Comprehensive guide to AI agents, their core components, multi-agent systems, and workflows.
+    [:octicons-arrow-right-24: Getting Started](getting-started/index.md)
 
-    **Topics:** Agent architecture, components, orchestration patterns, workflows
+-   :material-book-open-variant:{ .lg .middle } __Learn the Concepts__
 
-    [:octicons-arrow-right-24: Explore AI Agents](ai-agents.md)
+    Deep dive into AI topics -- models, RAG, agents, prompting, fine-tuning, and more.
 
--   :material-sitemap:{ .lg .middle } **Design Patterns**
+    [:octicons-arrow-right-24: Explore Concepts](concepts/index.md)
 
-    ---
+-   :material-sitemap:{ .lg .middle } __Architecture Patterns__
 
-    Proven architectural patterns for building scalable AI agent systems.
+    Design patterns and principles for building AI agent systems -- for developers and architects.
 
-    **Topics:** Sequential, conditional, supervisor, hierarchical, and autonomous patterns
+    [:octicons-arrow-right-24: View Patterns](patterns/index.md)
 
-    [:octicons-arrow-right-24: View Design Patterns](design-pattern.md)
+-   :material-format-list-text:{ .lg .middle } __Quick Reference__
 
--   :material-cog-outline:{ .lg .middle } **Design Principles**
+    Look up any AI term instantly. A searchable glossary covering 60+ terms explained in plain English.
 
-    ---
+    [:octicons-arrow-right-24: Open Glossary](glossary/index.md)
 
-    Core architectural principles for developing robust agent frameworks.
+-   :material-tools:{ .lg .middle } __Tools & Frameworks__
 
-    **Topics:** Async architecture, event streaming, serialization, cancellation
+    What we use in our organization -- Semantic Kernel, LangChain, Azure AI, and more.
 
-    [:octicons-arrow-right-24: Read Design Principles](design-principles.md)
+    [:octicons-arrow-right-24: View Tools](tools-and-frameworks/index.md)
+
+-   :material-link-variant:{ .lg .middle } __References__
+
+    Curated links to official documentation, learning resources, and research.
+
+    [:octicons-arrow-right-24: Browse References](references/index.md)
 
 </div>
 
 ---
 
-### Governance & Compliance
+## Who Is This For?
 
-<div class="grid cards" markdown>
+!!! tip "Business Analysts & Product Managers"
+    Start with [Getting Started](getting-started/index.md) and the [Glossary](glossary/index.md) to build your AI vocabulary. Then explore [Concepts](concepts/index.md) for deeper understanding of RAG, agents, and enterprise patterns.
 
--   :material-shield-account:{ .lg .middle } **AI Governance Operating Model**
+!!! info "Software Engineers & Developers"
+    Jump into [Concepts](concepts/index.md) for technical deep dives, then explore [Design Patterns](patterns/design-patterns.md) and [Design Principles](patterns/design-principles.md) for implementation guidance.
 
-    ---
+!!! note "Co-op Students & New Joiners"
+    Welcome! Start with [Getting Started](getting-started/index.md) for a beginner-friendly introduction, use the [Glossary](glossary/index.md) whenever you encounter unfamiliar terms, and work through the Concepts section at your own pace.
 
-    Organizational structure and decision-making frameworks for AI initiatives.
-
-    **Topics:** Governance bodies, approval processes, escalation paths
-
-    [:octicons-arrow-right-24: View Governance Model](ai-governance-operating-model.md)
-
--   :material-alert-decagram:{ .lg .middle } **Risk Management Framework**
-
-    ---
-
-    Comprehensive framework for identifying and mitigating AI-related risks.
-
-    **Topics:** Security, privacy, compliance, operational, reputational risks
-
-    [:octicons-arrow-right-24: Explore Risk Framework](risk-management-framework.md)
-
--   :material-timeline-clock:{ .lg .middle } **Model Lifecycle Governance**
-
-    ---
-
-    Lifecycle stages and management best practices for AI models.
-
-    **Topics:** Preview, GA, legacy, deprecated, retired model stages
-
-    [:octicons-arrow-right-24: Learn Model Lifecycle](model-lifecycle-governance.md)
-
-</div>
+!!! abstract "Leaders & Decision Makers"
+    Focus on [Getting Started](getting-started/index.md) for the big picture, [Enterprise Patterns](patterns/enterprise-patterns.md) for understanding AI architectures, and [Tools & Frameworks](tools-and-frameworks/index.md) for what we use.
 
 ---
 
-### Security & Controls
-
-<div class="grid cards" markdown>
-
--   :material-security:{ .lg .middle } **Guardrails & Control Framework**
-
-    ---
-
-    Technical and behavioral controls to ensure safe AI system operation.
-
-    **Topics:** Rate limiting, content filtering, toxicity detection, monitoring
-
-    [:octicons-arrow-right-24: View Guardrails Framework](guardrails-and-control-framework.md)
-
--   :material-shield-lock:{ .lg .middle } **Prompt Injection Prevention**
-
-    ---
-
-    Strategies and techniques to protect AI systems from prompt injection attacks.
-
-    **Topics:** Attack vectors, Azure Prompt Shields, mitigation strategies
-
-    [:octicons-arrow-right-24: Read Security Guide](prompt-injection-prevention.md)
-
-</div>
-
----
-
-### Events & Announcements
-
-<div class="grid cards" markdown>
-
--   :material-microsoft:{ .lg .middle } **Microsoft Ignite 2025**
-
-    ---
-
-    Complete summary of Microsoft Ignite 2025 announcements and Azure AI Foundry platform.
-
-    **Topics:** Foundry platform, agent services, tools, models, governance
-
-    [:octicons-arrow-right-24: View Ignite Summary](ms-ignite-2025.md)
-
-</div>
-
----
-
-## 🎯 Quick Start
-
-!!! tip "New to AI Agents?"
-    Start with [AI Agents](ai-agents.md) to understand the fundamentals, then explore [Design Patterns](design-pattern.md) to learn implementation approaches.
-
-!!! info "Setting Up Governance?"
-    Begin with [AI Governance Operating Model](ai-governance-operating-model.md) and [Risk Management Framework](risk-management-framework.md).
-
-!!! warning "Security First"
-    Review [Guardrails & Control Framework](guardrails-and-control-framework.md) and [Prompt Injection Prevention](prompt-injection-prevention.md) before deployment.
-
----
-
-## 🔍 What's Inside
-
-This documentation hub provides:
-
-- **Architectural Guidance** - Patterns and principles for building AI systems
-- **Governance Frameworks** - Structures for responsible AI development
-- **Security Best Practices** - Protection mechanisms and controls
-- **Risk Management** - Frameworks for identifying and mitigating risks
-- **Latest Updates** - Coverage of Microsoft Ignite 2025 and Azure AI Foundry
-
----
-
-## 📖 Documentation Structure
+## Site Map
 
 ```mermaid
 graph TD
-    A[Enterprise AI Resource Hub] --> B[AI & Agent Systems]
-    A --> C[Governance & Compliance]
-    A --> D[Security & Controls]
-    A --> E[Events & Announcements]
-    
-    B --> B1[AI Agents]
-    B --> B2[Design Patterns]
-    B --> B3[Design Principles]
-    
-    C --> C1[Governance Model]
-    C --> C2[Risk Framework]
-    C --> C3[Model Lifecycle]
-    
-    D --> D1[Guardrails Framework]
-    D --> D2[Prompt Injection Prevention]
-    
-    E --> E1[Microsoft Ignite 2025]
-    
-    style A fill:#667eea,stroke:#5568d3,stroke-width:3px,color:#fff
-    style B fill:#f093fb,stroke:#d946ef,stroke-width:2px,color:#fff
-    style C fill:#4facfe,stroke:#0ea5e9,stroke-width:2px,color:#fff
-    style D fill:#43e97b,stroke:#22c55e,stroke-width:2px,color:#fff
-    style E fill:#feca57,stroke:#ff9f43,stroke-width:2px,color:#000
+    A[AI Knowledge Hub] --> B[Getting Started]
+    A --> C[Concepts]
+    A --> D[Patterns]
+    A --> E[Glossary]
+    A --> F[Tools & Frameworks]
+    A --> G[References]
+
+    C --> C1[Foundation & Models]
+    C --> C2[Retrieval & Data]
+    C --> C3[AI Agents]
+    C --> C4[Agentic AI]
+    C --> C5[Prompting]
+    C --> C6[Fine-Tuning]
+    C --> C7[Safety & RAI]
+    C --> C8[Infrastructure]
+
+    D --> D1[Design Patterns]
+    D --> D2[Enterprise Patterns]
+    D --> D3[Design Principles]
+
+    style A fill:#004987,stroke:#003665,stroke-width:3px,color:#fff
+    style B fill:#057398,stroke:#045672,stroke-width:2px,color:#fff
+    style C fill:#057398,stroke:#045672,stroke-width:2px,color:#fff
+    style D fill:#057398,stroke:#045672,stroke-width:2px,color:#fff
+    style E fill:#057398,stroke:#045672,stroke-width:2px,color:#fff
+    style F fill:#057398,stroke:#045672,stroke-width:2px,color:#fff
+    style G fill:#057398,stroke:#045672,stroke-width:2px,color:#fff
+    style C1 fill:#00A0DF,stroke:#0080B3,color:#fff
+    style C2 fill:#00A0DF,stroke:#0080B3,color:#fff
+    style C3 fill:#00A0DF,stroke:#0080B3,color:#fff
+    style C4 fill:#00A0DF,stroke:#0080B3,color:#fff
+    style C5 fill:#00A0DF,stroke:#0080B3,color:#fff
+    style C6 fill:#00A0DF,stroke:#0080B3,color:#fff
+    style C7 fill:#00A0DF,stroke:#0080B3,color:#fff
+    style C8 fill:#00A0DF,stroke:#0080B3,color:#fff
+    style D1 fill:#632C4F,stroke:#4E223E,color:#fff
+    style D2 fill:#632C4F,stroke:#4E223E,color:#fff
+    style D3 fill:#632C4F,stroke:#4E223E,color:#fff
 ```
 
 ---
 
-## 💡 Key Concepts
+## What's New
 
-!!! abstract "AI Agents"
-    Autonomous systems that perceive their environment, reason about context, take actions via tools or APIs, and learn through feedback to achieve defined objectives.
-
-!!! abstract "Multi-Agent Systems"
-    Collections of agents that collaborate to solve tasks, each maintaining specific capabilities—reasoning, acting, and communicating.
-
-!!! abstract "Governance"
-    Organizational structures and decision-making frameworks that ensure responsible, compliant, and effective AI development and deployment.
-
----
-
-## 🚀 Getting Started
-
-1. **Understand the Fundamentals** - Start with [AI Agents](ai-agents.md)
-2. **Learn the Patterns** - Explore [Design Patterns](design-pattern.md)
-3. **Apply the Principles** - Review [Design Principles](design-principles.md)
-4. **Implement Governance** - Set up using [Governance Model](ai-governance-operating-model.md)
-5. **Secure Your Systems** - Apply [Security Controls](guardrails-and-control-framework.md)
-
----
-
-## 📞 Support & Feedback
-
-For questions, feedback, or contributions, please reach out to the Enterprise Architecture Team.
-
-**Last Updated:** November 2025
+Check [What's New](whats-new/index.md) for the latest updates and announcements.

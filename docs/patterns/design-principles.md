@@ -87,3 +87,13 @@ All components implement serialization to JSON format, enabling programmatic and
 **Example:**
 
 The `BaseTool` interface lets you start with simple functions and later add REST API tools, database tools, or emerging standards like MCP tools without changing your agent code.
+
+---
+
+## References
+
+- [Semantic Kernel Architecture](https://learn.microsoft.com/en-us/semantic-kernel/concepts/)
+- [LangGraph Documentation](https://langchain-ai.github.io/langgraph/)
+- [AutoGen Framework](https://microsoft.github.io/autogen/)
+- [Azure AI Agent Service](https://learn.microsoft.com/en-us/azure/ai-services/agents/)
+- [OpenAI Assistants API](https://platform.openai.com/docs/assistants/overview)

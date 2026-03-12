@@ -30,11 +30,11 @@ flowchart LR
     Reasoning ==>|Execute| Output
 
     
-    style Input fill:#667eea,stroke:#5568d3,stroke-width:4px,color:#ffffff,font-weight:bold
-    style Reasoning fill:#764ba2,stroke:#5e3a82,stroke-width:4px,color:#ffffff,font-weight:bold
-    style Tools fill:#f093fb,stroke:#d946ef,stroke-width:4px,color:#ffffff,font-weight:bold
-    style Memory fill:#4facfe,stroke:#0ea5e9,stroke-width:4px,color:#ffffff,font-weight:bold
-    style Output fill:#43e97b,stroke:#22c55e,stroke-width:4px,color:#ffffff,font-weight:bold
+    style Input fill:#004987,stroke:#003665,stroke-width:4px,color:#ffffff,font-weight:bold
+    style Reasoning fill:#632C4F,stroke:#4E223E,stroke-width:4px,color:#ffffff,font-weight:bold
+    style Tools fill:#853175,stroke:#6A275E,stroke-width:4px,color:#ffffff,font-weight:bold
+    style Memory fill:#00A0DF,stroke:#0080B3,stroke-width:4px,color:#ffffff,font-weight:bold
+    style Output fill:#259638,stroke:#1C712A,stroke-width:4px,color:#ffffff,font-weight:bold
 
 ```
 
@@ -45,7 +45,7 @@ The following diagram shows a detailed view of each component with specific exam
 ```mermaid
 graph LR
     subgraph INPUT["INPUT LAYER"]
-        style INPUT fill:#FF6B6B,stroke:#C92A2A,stroke-width:3px,color:#fff
+        style INPUT fill:#057398,stroke:#045672,stroke-width:3px,color:#fff
         I1["User Queries<br/>Natural language questions<br/>Chat messages"]
         I2["Documents & Files<br/>Images<br/>PDFs<br/>Spreadsheets"]
         I3["External Triggers<br/>Events<br/>Alerts<br/>API calls"]
@@ -53,7 +53,7 @@ graph LR
     end
 
     subgraph REASONING["REASONING ENGINE"]
-        style REASONING fill:#4ECDC4,stroke:#0B7285,stroke-width:3px,color:#fff
+        style REASONING fill:#00A0DF,stroke:#0080B3,stroke-width:3px,color:#fff
         R1["Large Language Model<br/>Understands intent<br/>Plans actions"]
         R2["Prompt Engineering<br/>Instructions<br/>Guidelines"]
         R3["Orchestration<br/>Coordinates workflow<br/>Manages multi-step tasks"]
@@ -61,7 +61,7 @@ graph LR
     end
 
     subgraph TOOLS["TOOLS"]
-        style TOOLS fill:#FFD93D,stroke:#F59F00,stroke-width:3px,color:#000
+        style TOOLS fill:#57C0E8,stroke:#3BA8D0,stroke-width:3px,color:#121212
         T1["Code Execution<br/>Run Python code<br/>Data analysis"]
         T2["Search<br/>Document retrieval<br/>Web search"]
         T3["Custom Functions<br/>API calls<br/>Business logic"]
@@ -69,7 +69,7 @@ graph LR
     end
 
     subgraph MEMORY["MEMORY"]
-        style MEMORY fill:#A78BFA,stroke:#7C3AED,stroke-width:3px,color:#fff
+        style MEMORY fill:#9E57A2,stroke:#7E4582,stroke-width:3px,color:#fff
         M1["Conversation History<br/>Messages<br/>Thread continuity"]
         M2["Agent State<br/>Configuration<br/>Status tracking"]
         M3["Knowledge Base<br/>Documents<br/>Vector embeddings"]
@@ -77,7 +77,7 @@ graph LR
     end
 
     subgraph ACTIONS["ACTIONS/OUTPUTS"]
-        style ACTIONS fill:#51CF66,stroke:#2F9E44,stroke-width:3px,color:#fff
+        style ACTIONS fill:#259638,stroke:#1C712A,stroke-width:3px,color:#fff
         A1["Text Responses<br/>Answers<br/>Summaries<br/>Explanations"]
         A2["Generated Content<br/>Code<br/>Visualizations<br/>Reports"]
         A3["State Changes<br/>Save conversation<br/>Update context"]
@@ -116,11 +116,11 @@ graph LR
     A2 --> M4
 
     %% Styling
-    classDef inputStyle fill:#FF6B6B,stroke:#C92A2A,stroke-width:2px,color:#fff
-    classDef reasoningStyle fill:#4ECDC4,stroke:#0B7285,stroke-width:2px,color:#fff
-    classDef toolStyle fill:#FFD93D,stroke:#F59F00,stroke-width:2px,color:#000
-    classDef memoryStyle fill:#A78BFA,stroke:#7C3AED,stroke-width:2px,color:#fff
-    classDef actionStyle fill:#51CF66,stroke:#2F9E44,stroke-width:2px,color:#fff
+    classDef inputStyle fill:#057398,stroke:#045672,stroke-width:2px,color:#fff
+    classDef reasoningStyle fill:#00A0DF,stroke:#0080B3,stroke-width:2px,color:#fff
+    classDef toolStyle fill:#57C0E8,stroke:#3BA8D0,stroke-width:2px,color:#121212
+    classDef memoryStyle fill:#9E57A2,stroke:#7E4582,stroke-width:2px,color:#fff
+    classDef actionStyle fill:#259638,stroke:#1C712A,stroke-width:2px,color:#fff
 
     class I1,I2,I3,I4 inputStyle
     class R1,R2,R3,R4 reasoningStyle
@@ -187,7 +187,7 @@ A **multi-agent system** (or multi-agent application) is a collection of agents 
 ```mermaid 
 graph TD
     subgraph "Workflow Orchestration"    
-        User1[👤 User] --> Agent1[Agent 1]
+        User1[User] --> Agent1[Agent 1]
         Agent1 --> Agent2[Agent 2]
         Agent2 --> Agent3[Agent 3]
         
@@ -195,9 +195,9 @@ graph TD
     end
 %% Styling
 
-classDef agentStyle fill:#3B82F6,stroke:#1E40AF,stroke-width:3px,color:#fff
-classDef orchestratorStyle fill:#F59E0B,stroke:#D97706,stroke-width:3px,color:#fff
-classDef noteStyle fill:#F3F4F6,stroke:#9CA3AF,stroke-width:1px,color:#374151  
+classDef agentStyle fill:#057398,stroke:#045672,stroke-width:3px,color:#fff
+classDef orchestratorStyle fill:#853175,stroke:#6A275E,stroke-width:3px,color:#fff
+classDef noteStyle fill:#E6F1F5,stroke:#C0DCE5,stroke-width:1px,color:#374151  
 
 class Agent1,Agent2,Agent3,AgentA1,AgentA2,AgentA3,AgentA4 agentStyle
 class Orchestrator orchestratorStyle
@@ -216,7 +216,7 @@ class Note1,Note2,Patterns noteStyle
 %% Autonomous (AI Driven) Orchestration
 graph TD
     subgraph "Autonomous (AI Driven) Orchestration"
-        User2[👤 User] -.-> Orchestrator[AI Orchestrator]
+        User2[User] -.-> Orchestrator[AI Orchestrator]
         
         Orchestrator -.-> AgentA1[Agent 1]
         Orchestrator -.-> AgentA2[Agent 2]
@@ -233,10 +233,10 @@ graph TD
     end
 
 %% Styling
-classDef userStyle fill:#6B7280,stroke:#374151,stroke-width:2px,color:#fff
-classDef agentStyle fill:#3B82F6,stroke:#1E40AF,stroke-width:3px,color:#fff
-classDef orchestratorStyle fill:#F59E0B,stroke:#D97706,stroke-width:3px,color:#fff
-classDef noteStyle fill:#F3F4F6,stroke:#9CA3AF,stroke-width:1px,color:#374151
+classDef userStyle fill:#555659,stroke:#3D3D40,stroke-width:2px,color:#fff
+classDef agentStyle fill:#057398,stroke:#045672,stroke-width:3px,color:#fff
+classDef orchestratorStyle fill:#853175,stroke:#6A275E,stroke-width:3px,color:#fff
+classDef noteStyle fill:#E6F1F5,stroke:#C0DCE5,stroke-width:1px,color:#374151
 
 class User1,User2 userStyle
 class Agent1,Agent2,Agent3,AgentA1,AgentA2,AgentA3,AgentA4 agentStyle
@@ -282,18 +282,18 @@ graph LR
     Func2 -->|"4. Processed Data"| Agent2
     Agent2 -->|"5. Final Response"| End
     
-    style Start fill:#667eea,stroke:#5568d3,stroke-width:3px,color:#ffffff,font-weight:bold
-    style Func1 fill:#ff6b6b,stroke:#ee5a6f,stroke-width:4px,color:#ffffff,font-weight:bold
-    style Agent1 fill:#f093fb,stroke:#d946ef,stroke-width:4px,color:#ffffff,font-weight:bold
-    style Func2 fill:#feca57,stroke:#ff9f43,stroke-width:4px,color:#000000,font-weight:bold
-    style Agent2 fill:#48dbfb,stroke:#0abde3,stroke-width:4px,color:#ffffff,font-weight:bold
-    style End fill:#1dd1a1,stroke:#10ac84,stroke-width:3px,color:#ffffff,font-weight:bold
+    style Start fill:#004987,stroke:#003665,stroke-width:3px,color:#ffffff,font-weight:bold
+    style Func1 fill:#057398,stroke:#045672,stroke-width:4px,color:#ffffff,font-weight:bold
+    style Agent1 fill:#853175,stroke:#6A275E,stroke-width:4px,color:#ffffff,font-weight:bold
+    style Func2 fill:#57C0E8,stroke:#3BA8D0,stroke-width:4px,color:#121212,font-weight:bold
+    style Agent2 fill:#00A0DF,stroke:#0080B3,stroke-width:4px,color:#ffffff,font-weight:bold
+    style End fill:#259638,stroke:#1C712A,stroke-width:3px,color:#ffffff,font-weight:bold
     
-    linkStyle 0 stroke:#667eea,stroke-width:3px
-    linkStyle 1 stroke:#ff6b6b,stroke-width:3px
-    linkStyle 2 stroke:#f093fb,stroke-width:3px
-    linkStyle 3 stroke:#feca57,stroke-width:3px
-    linkStyle 4 stroke:#48dbfb,stroke-width:3px
+    linkStyle 0 stroke:#004987,stroke-width:3px
+    linkStyle 1 stroke:#057398,stroke-width:3px
+    linkStyle 2 stroke:#853175,stroke-width:3px
+    linkStyle 3 stroke:#57C0E8,stroke-width:3px
+    linkStyle 4 stroke:#00A0DF,stroke-width:3px
 
 ```
 
@@ -330,6 +330,17 @@ The following table summarizes common architectural patterns for implementing AI
 | **Modular Agent** | Decomposed components for reasoning, memory, and execution | Scalable assistants, analytics |
 | **Multi-Agent System (MAS)** | Multiple agents with defined roles collaborating via orchestration | Research simulation, workflow automation |
 | **Hierarchical Agents** | Supervisor agent delegates to specialized sub-agents | Complex task planning, enterprise orchestration |
+
+---
+
+## References
+
+- [Microsoft AI Agents Overview](https://learn.microsoft.com/en-us/azure/ai-services/agents/overview)
+- [Semantic Kernel Agents](https://learn.microsoft.com/en-us/semantic-kernel/agents/)
+- [AutoGen Multi-Agent Framework](https://microsoft.github.io/autogen/)
+- [LangGraph Agent Documentation](https://langchain-ai.github.io/langgraph/)
+- [Anthropic: Building Effective Agents](https://docs.anthropic.com/en/docs/build-with-claude/agent-patterns)
+- [OpenAI Function Calling Guide](https://platform.openai.com/docs/guides/function-calling)
 
 
 
