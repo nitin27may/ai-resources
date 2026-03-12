@@ -8,7 +8,7 @@ RUN apt-get update && apt-get install -y \
     libcairo2 \
     libharfbuzz0b \
     libpangocairo-1.0-0 \
-    libgdk-pixbuf2.0-0 \
+    libgdk-pixbuf-2.0-0 \
     fonts-dejavu \
     # Build dependencies
     gcc \
