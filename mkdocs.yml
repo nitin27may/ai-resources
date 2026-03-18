@@ -78,7 +78,7 @@ markdown_extensions:
 
 # Extra CSS and JavaScript
 extra_css:
-  - assets/stylesheets/nbfc-theme.css
+  - assets/stylesheets/theme.css
   - assets/stylesheets/fullwidth-toggle.css
   - assets/stylesheets/footer-custom.css
   - assets/stylesheets/tooltip-custom.css

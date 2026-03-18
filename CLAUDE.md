@@ -89,12 +89,12 @@ Use these theme-compatible hex values (work in light and dark modes):
 
 | Use | Color |
 |-----|-------|
-| Main flows | `#3b82f6` (blue) |
-| Success paths | `#10b981` (green) |
-| Processing/logic | `#8b5cf6` (purple) |
-| Warnings/important | `#f97316` (orange) |
-| Data/storage | `#14b8a6` (teal) |
-| User interactions | `#ec4899` (pink) |
+| Main flows / primary | `#0d9488` (teal) |
+| Success paths | `#16a34a` (green) |
+| Processing/logic | `#0284c7` (sky blue) |
+| Warnings/important | `#d97706` (amber) |
+| Data/storage | `#14b8a6` (teal-light) |
+| Error/danger | `#dc2626` (red) |
 
 Always set `color:#fff` on styled nodes.
 
