@@ -45,4 +45,4 @@ Console.WriteLine($"Latest agent version id: {latestVersion.Id}");
 Console.WriteLine(await jokerAgentLatest.RunAsync("Tell me a joke about a pirate."));
 
 // Cleanup by agent name removes both agent versions created (jokerAgentV1 + jokerAgentV2).
-//await aiProjectClient.Agents.DeleteAgentAsync(jokerAgentV1.Name);
+//await aiProjectClient.Agents.DeleteAgentAsync(jokerAgentV1.Name);2

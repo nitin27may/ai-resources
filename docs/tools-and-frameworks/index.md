@@ -160,7 +160,7 @@ Azure OpenAI Service provides access to OpenAI's models (GPT-4o, GPT-4, o1, o3, 
 - Enterprise security (VNet, private endpoints, managed identity)
 - Built-in content filtering and abuse monitoring
 - Regional deployment options for data residency
-- Pay-as-you-go and provisioned throughput pricing
+- Managed and provisioned deployment options
 
 [:octicons-link-external-16: Azure OpenAI Service Documentation](https://learn.microsoft.com/en-us/azure/ai-services/openai/)
 

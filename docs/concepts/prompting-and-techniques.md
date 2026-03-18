@@ -15,7 +15,7 @@ The quality of output you get from an AI model depends heavily on how you ask. *
 Prompt engineering is the art and science of crafting instructions (prompts) that get the best possible output from an AI model. It matters because:
 
 - The same model can give vastly different answers depending on how you phrase the question.
-- Good prompts reduce hallucinations, improve accuracy, and save tokens (and money).
+- Good prompts reduce hallucinations, improve accuracy, and make interactions more efficient.
 - Prompt engineering is the **lowest-effort, highest-impact** way to improve AI application quality.
 
 !!! tip "Prompt Engineering Is Iterative"
@@ -44,7 +44,7 @@ Rules:
 - Only answer questions about Contoso products and services.
 - If you do not know the answer, say "I don't have that information" and suggest contacting support.
 - Always include relevant documentation links in your response.
-- Never share pricing information -- direct pricing questions to the sales team.
+- Never share confidential internal information.
 - Respond in a professional but friendly tone.
 ```
 

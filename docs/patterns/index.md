@@ -28,4 +28,10 @@ Proven patterns and principles for building AI systems. This section is primaril
 
     [:octicons-arrow-right-24: Design Principles](design-principles.md)
 
+-   :material-shield-check-outline:{ .lg .middle } __Code Quality Pipeline__
+
+    A practical pipeline for reviewing AI-generated code with dead-code checks, duplication detection, and GitHub enforcement patterns.
+
+    [:octicons-arrow-right-24: Code Quality Pipeline](code-quality-pipeline.md)
+
 </div>

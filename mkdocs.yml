@@ -125,6 +125,7 @@ nav:
       - Design Patterns: patterns/design-patterns.md
       - Enterprise Patterns: patterns/enterprise-patterns.md
       - Design Principles: patterns/design-principles.md
+      - Code Quality Pipeline: patterns/code-quality-pipeline.md
   - Glossary: glossary/index.md
   - Tools & Frameworks: tools-and-frameworks/index.md
   - References: references/index.md

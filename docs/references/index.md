@@ -31,7 +31,7 @@ A curated collection of official documentation, learning resources, and communit
 | Resource | Description |
 |----------|-------------|
 | [OpenAI Documentation](https://platform.openai.com/docs/) | API reference and guides |
-| [OpenAI Models](https://platform.openai.com/docs/models) | Model capabilities and pricing |
+| [OpenAI Models](https://platform.openai.com/docs/models) | Model capabilities and model catalog details |
 | [Prompt Engineering Guide](https://platform.openai.com/docs/guides/prompt-engineering) | Best practices for prompting |
 | [Function Calling Guide](https://platform.openai.com/docs/guides/function-calling) | Tool use and function calling |
 | [Fine-tuning Guide](https://platform.openai.com/docs/guides/fine-tuning) | Custom model fine-tuning |

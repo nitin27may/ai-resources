@@ -28,13 +28,13 @@ Transformer
 :   The neural network architecture behind modern LLMs. It uses a mechanism called "attention" to understand relationships between words in a sentence regardless of their position. Almost every major AI model today is built on transformers.
 
 Token
-:   The basic unit LLMs process -- roughly three-quarters of a word in English. When you see pricing like "$3 per million tokens" or limits like "128K context window," this is what they are measuring. Both input and output are counted in tokens.
+:   The basic unit LLMs process -- roughly three-quarters of a word in English. Tokens are used to measure both context limits and how much text is processed during input and output.
 
 Context Window
-:   The maximum amount of text an LLM can process in a single conversation. A 128K context window means the model can consider roughly 100,000 words at once. Larger windows allow processing entire documents but cost more.
+:   The maximum amount of text an LLM can process in a single conversation. A 128K context window means the model can consider roughly 100,000 words at once. Larger windows allow processing longer conversations or larger documents in one pass.
 
 Inference
-:   The process of running a trained AI model to generate a response or prediction. When you send a prompt to ChatGPT and get an answer back, that is inference. Inference costs (compute, latency, tokens) are the primary ongoing expense of running AI.
+:   The process of running a trained AI model to generate a response or prediction. When you send a prompt to ChatGPT and get an answer back, that is inference. Inference affects system responsiveness, compute usage, and application throughput.
 
 ---
 

@@ -68,7 +68,7 @@ Instead of writing rules manually, you feed the system examples and it figures o
 Here are the essential terms you will encounter throughout this site:
 
 **Token**
-:   The basic unit LLMs process -- roughly three-quarters of a word in English. Pricing and limits are measured in tokens.
+:   The basic unit LLMs process -- roughly three-quarters of a word in English. Model inputs, outputs, and context limits are commonly measured in tokens.
 
 **Prompt**
 :   The input you give to an AI model -- your question, instruction, or context.
