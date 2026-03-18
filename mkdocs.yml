@@ -1,7 +1,7 @@
 site_name: AI Knowledge Hub
 site_url: http://localhost:8000/
 site_description: Your go-to resource for AI knowledge -- from basics to architecture patterns
-repo_url: https://dev.azure.com/nbfc/NBFC/_git/EA-AIResource
+repo_url: https://github.com/nitin27may/ai-resources
 repo_name: AI Knowledge Hub
 edit_uri: "?path=/docs/"
 
