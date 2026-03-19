@@ -142,10 +142,11 @@ nav:
       - Enterprise Patterns: patterns/enterprise-patterns.md
       - Design Principles: patterns/design-principles.md
       - Code Quality Pipeline: patterns/code-quality-pipeline.md
-  - Glossary: glossary/index.md
-  - Tools & Frameworks: tools-and-frameworks/index.md
-  - References: references/index.md
-  - What's New: whats-new/index.md
+  - Reference:
+      - Glossary: glossary/index.md
+      - Tools & Frameworks: tools-and-frameworks/index.md
+      - References: references/index.md
+      - What's New: whats-new/index.md
 
 # Copyright footer text
 copyright: |
