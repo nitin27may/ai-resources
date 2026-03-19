@@ -41,7 +41,10 @@ A curated collection of official documentation, learning resources, and communit
 | Resource | Description |
 |----------|-------------|
 | [Anthropic Documentation](https://docs.anthropic.com/) | Claude API and usage guides |
+| [Claude Code](https://docs.anthropic.com/en/docs/claude-code) | Agentic CLI tool for software engineering |
 | [Model Context Protocol (MCP)](https://modelcontextprotocol.io/) | Open standard for AI-tool integration |
+| [MCP Specification](https://modelcontextprotocol.io/specification/2025-11-25) | Full protocol specification |
+| [MCP Official Servers](https://github.com/modelcontextprotocol/servers) | GitHub, filesystem, PostgreSQL, and more |
 | [Building Effective Agents](https://docs.anthropic.com/en/docs/build-with-claude/agent-patterns) | Agent design patterns and best practices |
 | [Prompt Engineering](https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview) | Claude-specific prompting guidance |
 
@@ -60,6 +63,33 @@ A curated collection of official documentation, learning resources, and communit
 |----------|-------------|
 | [Llama](https://llama.meta.com/) | Open-source large language models |
 | [PyTorch](https://pytorch.org/docs/) | ML framework documentation |
+
+### GitHub
+
+| Resource | Description |
+|----------|-------------|
+| [GitHub Copilot Documentation](https://docs.github.com/en/copilot) | Full Copilot documentation |
+| [Copilot in the CLI](https://docs.github.com/en/copilot/how-tos/use-copilot-for-common-tasks/use-copilot-in-the-cli) | CLI integration guide |
+| [Building Copilot Extensions](https://docs.github.com/en/copilot/building-copilot-extensions) | Skillset and Agent extension docs |
+
+---
+
+## RAG & Embeddings
+
+| Resource | Level | Description |
+|----------|-------|-------------|
+| [RAG with Azure AI Search](https://learn.microsoft.com/en-us/azure/search/retrieval-augmented-generation-overview) | Intermediate | Enterprise RAG with Azure, end-to-end guide |
+| [Microsoft GraphRAG](https://microsoft.github.io/graphrag/) | Advanced | Official GraphRAG documentation |
+| [GraphRAG GitHub](https://github.com/microsoft/graphrag) | Advanced | Source code, examples, and quickstarts |
+| [GraphRAG Paper](https://arxiv.org/abs/2404.16130) | Expert | Original research paper |
+| [OpenAI Embeddings Guide](https://platform.openai.com/docs/guides/embeddings) | Intermediate | text-embedding-3 models, dimensions, usage |
+| [Cohere Embed Documentation](https://docs.cohere.com/docs/cohere-embed) | Intermediate | Embed-v4.0, input types, multilingual |
+| [MTEB Leaderboard](https://huggingface.co/spaces/mteb/leaderboard) | Intermediate | Benchmark comparison of embedding models |
+| [Pinecone Chunking Guide](https://www.pinecone.io/learn/chunking-strategies/) | Intermediate | Practical chunking strategy guide |
+| [Jina AI Late Chunking](https://jina.ai/news/late-chunking-in-long-context-embedding-models/) | Advanced | Late chunking explained with context-aware embeddings |
+| [RAGAS Documentation](https://docs.ragas.io/) | Intermediate | RAG evaluation framework |
+| [LangChain RAG Tutorial](https://python.langchain.com/docs/tutorials/rag/) | Intermediate | End-to-end RAG with LangChain |
+| [LlamaIndex Documentation](https://docs.llamaindex.ai/) | Intermediate | RAG framework with advanced retrieval patterns |
 
 ---
 

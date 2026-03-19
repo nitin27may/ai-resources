@@ -110,16 +110,32 @@ nav:
   - Home: index.md
   - Getting Started:
       - AI 101: getting-started/index.md
+      - Learning Paths: getting-started/learning-paths.md
   - Concepts:
       - concepts/index.md
-      - AI Agents: concepts/ai-agents.md
       - Foundation & Models: concepts/foundation-and-models.md
       - Retrieval & Data: concepts/retrieval-and-data.md
+      - AI Agents: concepts/ai-agents.md
       - Agentic AI: concepts/agentic-ai.md
       - Prompting & Techniques: concepts/prompting-and-techniques.md
       - Fine-Tuning & Training: concepts/fine-tuning-and-training.md
       - Safety & Responsible AI: concepts/safety-and-responsible-ai.md
       - Infrastructure & Operations: concepts/infrastructure-and-operations.md
+  - RAG & Knowledge Systems:
+      - rag/index.md
+      - RAG Fundamentals: rag/rag-fundamentals.md
+      - Embeddings: rag/embeddings.md
+      - Chunking Strategies: rag/chunking-strategies.md
+      - Vector Databases: rag/vector-databases.md
+      - GraphRAG: rag/graphrag.md
+      - RAG Evaluation: rag/rag-evaluation.md
+  - AI Developer Tools:
+      - ai-dev-tools/index.md
+      - GitHub Copilot: ai-dev-tools/github-copilot.md
+      - Copilot CLI & Extensions: ai-dev-tools/copilot-cli-extensions.md
+      - Claude Code: ai-dev-tools/claude-code.md
+      - Claude Code Skills & Agents: ai-dev-tools/claude-code-skills.md
+      - Model Context Protocol (MCP): ai-dev-tools/mcp.md
   - Patterns:
       - patterns/index.md
       - Design Patterns: patterns/design-patterns.md

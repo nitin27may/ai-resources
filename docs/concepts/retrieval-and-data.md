@@ -8,6 +8,9 @@ tags:
 
 AI models are powerful, but they have a fundamental limitation: they only know what they were trained on. **Retrieval-Augmented Generation (RAG)** bridges this gap by connecting models to your real-time, enterprise data -- without retraining. This page covers how RAG works, the data infrastructure that powers it, and when to use which approach.
 
+!!! info "This page is an overview"
+    For deep dives into each topic — embeddings, chunking strategies, vector database comparisons, GraphRAG, and evaluation — see the [RAG & Knowledge Systems](../rag/index.md) section. Each sub-page includes production guidance, model comparisons, and decision frameworks not covered here.
+
 ---
 
 ## What Is RAG?
@@ -57,6 +60,9 @@ graph TD
 ## Embeddings
 
 An **embedding** is a dense numerical vector (a list of numbers) that represents the meaning of a piece of text. Similar meanings produce vectors that are close together in high-dimensional space.
+
+!!! tip "Deep dive available"
+    For embedding model comparisons, dimension tradeoffs, input types, and production guidance, see [Embeddings](../rag/embeddings.md).
 
 | Text | Embedding (simplified) |
 |---|---|
@@ -114,6 +120,9 @@ Before you can embed documents, you need to break them into **chunks** -- smalle
 
 Chunking strategy directly impacts retrieval quality. Too large and chunks contain mixed topics. Too small and chunks lack context.
 
+!!! tip "Deep dive available"
+    For all eight chunking strategies including parent-child, late chunking, and agentic chunking — with a decision flowchart — see [Chunking Strategies](../rag/chunking-strategies.md).
+
 ### Common Strategies
 
 | Strategy | Description | Best For |
@@ -142,6 +151,9 @@ Chunking strategy directly impacts retrieval quality. Too large and chunks conta
 ## Knowledge Graphs and GraphRAG
 
 Traditional RAG retrieves isolated chunks. **GraphRAG** adds a layer of structure by building a **knowledge graph** from your documents -- capturing entities, relationships, and themes.
+
+!!! tip "Deep dive available"
+    For Microsoft GraphRAG's full architecture, local vs global query modes, cost tradeoffs, and implementation options, see [GraphRAG](../rag/graphrag.md).
 
 ### Why GraphRAG?
 
@@ -231,3 +243,11 @@ This is one of the most common decisions in AI application design. Here is a cle
 - [LangChain RAG Tutorial](https://python.langchain.com/docs/tutorials/rag/)
 - [Microsoft GraphRAG](https://microsoft.github.io/graphrag/)
 - [Pinecone Learning Center](https://www.pinecone.io/learn/)
+
+---
+
+## Next Steps
+
+- For deeper RAG coverage: [RAG & Knowledge Systems](../rag/index.md)
+- For agent-based retrieval: [Agentic AI](agentic-ai.md)
+- To compare RAG and fine-tuning approaches: [Fine-Tuning & Training](fine-tuning-and-training.md)

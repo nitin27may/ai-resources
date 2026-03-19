@@ -58,6 +58,24 @@ GraphRAG
 Chunking
 :   The process of splitting large documents into smaller, overlapping pieces before storing them in a vector database. How you chunk documents (by paragraph, page, semantic meaning) significantly impacts RAG quality. Poor chunking is the most common reason RAG systems underperform.
 
+Parent-Child Chunking
+:   A chunking strategy that stores two sizes of the same content: small child chunks (used for precise retrieval) and large parent chunks (swapped in at generation time to give the LLM more context). This balances retrieval precision with generation quality.
+
+Late Chunking
+:   An embedding technique where the full document is encoded first, then chunked after — preserving contextual information that would otherwise be lost when chunking before embedding. The Jina AI approach using ColBERT-style embeddings. Particularly effective for long documents where cross-paragraph context matters.
+
+HNSW (Hierarchical Navigable Small Worlds)
+:   The most widely used indexing algorithm for vector databases. Builds a layered graph structure that enables fast approximate nearest neighbor (ANN) search. Used by Qdrant, Weaviate, pgvector, and most modern vector databases. Trades a small amount of recall accuracy for dramatically faster query speeds.
+
+Reranking
+:   A two-stage retrieval technique where an initial fast retrieval (e.g., ANN vector search) returns a large candidate set, and a slower but more accurate cross-encoder model re-scores and re-orders the results. Significantly improves retrieval precision at the cost of latency. Common rerankers include Cohere Rerank and cross-encoder models from sentence-transformers.
+
+HyDE (Hypothetical Document Embeddings)
+:   A query expansion technique where the LLM generates a hypothetical answer to the user's question, and that hypothetical answer is embedded and used for retrieval instead of the original question. Often improves retrieval quality because the hypothetical answer is closer in embedding space to relevant documents than a short question is.
+
+RAGAS (Retrieval Augmented Generation Assessment)
+:   An open-source evaluation framework for RAG systems. Provides four key metrics: Faithfulness (does the answer match the retrieved context?), Answer Relevancy (does the answer address the question?), Context Precision (are retrieved chunks relevant?), and Context Recall (was all necessary information retrieved?). See [RAG Evaluation](../rag/rag-evaluation.md).
+
 ---
 
 ## :material-robot-outline: Agentic AI {#agentic-ai}
@@ -84,13 +102,22 @@ Multi-Agent System (MAS)
 :   An architecture where multiple specialized AI agents collaborate to handle complex workflows. For example, one agent reads a document, another validates data, and a third drafts the response. Each agent focuses on what it does best.
 
 Model Context Protocol (MCP)
-:   An open standard (created by Anthropic) that lets AI models connect to external tools and data sources through a standardized interface. Think of it as USB-C for AI -- instead of building custom integrations for every tool, MCP provides one universal connector.
+:   An open standard (created by Anthropic) that lets AI models connect to external tools and data sources through a standardized interface. Think of it as USB-C for AI -- instead of building custom integrations for every tool, MCP provides one universal connector. MCP defines three primitives: Tools (callable functions), Resources (read-only data), and Prompts (reusable templates). See [MCP](../ai-dev-tools/mcp.md).
 
 Agent-to-Agent Protocol (A2A)
 :   A protocol (from Google) that enables AI agents built on different frameworks to discover, communicate, and collaborate with each other. It solves the problem of agents being siloed within their own ecosystems.
 
 AG-UI (Agent-User Interaction Protocol)
 :   An open protocol that standardizes how AI agents stream events and state changes back to frontend user interfaces. It bridges the gap between backend agent orchestration and real-time UI updates.
+
+Copilot Extension
+:   A GitHub App that extends GitHub Copilot Chat with external tool access or custom conversational behavior. Extensions appear as @-mentions in Copilot Chat. See [Copilot CLI & Extensions](../ai-dev-tools/copilot-cli-extensions.md).
+
+Copilot Skillset
+:   A simple type of Copilot Extension that exposes OpenAPI-described functions. Copilot calls the functions on the user's behalf without requiring a full conversational agent implementation. Lower complexity than a full Agent extension.
+
+Copilot Agent Extension
+:   A full Copilot Extension that handles complete conversation turns via webhooks. Unlike Skillsets, Agent extensions maintain conversation state and can stream responses. Required when you need multi-turn interaction or dynamic responses.
 
 Orchestration
 :   The coordination layer that manages how agents, tools, and models work together in a workflow. Frameworks like LangGraph, AutoGen, and Semantic Kernel handle routing decisions, retry logic, state management, and handoffs between agents.
