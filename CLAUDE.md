@@ -53,22 +53,27 @@ All documentation lives in `docs/`. The nav is defined in `mkdocs.yml` — addin
 ```
 docs/
 ├── index.md                    # Landing page (hides nav/toc via frontmatter)
+├── getting-started/            # Beginner entry point and learning paths
 ├── concepts/                   # Deep-dive AI topics (8 modules)
-├── getting-started/            # Beginner entry point
+├── rag/                        # RAG & Knowledge Systems (fundamentals, embeddings, chunking, vector DBs, GraphRAG, evaluation)
+├── ai-dev-tools/               # GitHub Copilot, Claude Code, MCP reference
 ├── patterns/                   # Design, enterprise, and code quality patterns
-├── glossary/                   # 60+ AI terms
+├── glossary/                   # AI terms
 ├── tools-and-frameworks/       # Framework reference
 ├── references/                 # Curated external links
 └── whats-new/                  # Latest updates
 ```
 
-`samples/` contains C# code examples illustrating agent patterns (basic agent, multi-turn, function tools, MCP usage, workflow).
+`samples/` contains C# examples illustrating agent patterns: `1-basicagent.cs`, `2-agentasbackend.cs`, `3-multiturn.cs`, `4-functiontool.cs`, `mcpuse.cs`, `workflow.cs`.
 
-### Theme and Plugins
+`includes/abbreviations.md` defines site-wide abbreviation tooltips (e.g. RAG, MCP, LLM). Auto-appended to every page via `pymdownx.snippets`. Add new terms here to make them available everywhere.
 
-- **Theme**: MkDocs Material with custom CSS in `overrides/assets/stylesheets/`
+### Theme and Overrides
+
+- **Theme**: MkDocs Material; custom CSS in `overrides/assets/stylesheets/`, custom JS in `overrides/assets/javascripts/`
+- **`overrides/main.html`**: Extends base template. Forces dark mode as default (slate scheme) unless user has explicitly chosen light. Loads `mermaid-fullscreen.js` for fullscreen diagram support.
 - **Key plugins**: `search`, `tags`, `git-revision-date-localized`, `glightbox`, `minify`, `macros`, `awesome-pages`, `redirects`
-- **Diagrams**: Mermaid via `pymdownx.superfences` — no separate plugin needed
+- **Diagrams**: Mermaid via `pymdownx.superfences` — no separate plugin needed. `mermaid-custom.css` in overrides controls diagram styling.
 - **PDF export**: WeasyPrint, enabled when `ENABLE_PDF_EXPORT=1` (set in Dockerfiles)
 
 ### Deployment
