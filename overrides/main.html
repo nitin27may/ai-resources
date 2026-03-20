@@ -14,6 +14,18 @@
 
 {% block scripts %}
   {{ super() }}
+  <!-- Force dark theme as default; only respect explicit user choice of light -->
+  <script>
+    (function () {
+      var stored = localStorage.getItem("data-md-color-scheme");
+      if (stored !== "default") {
+        document.body.setAttribute("data-md-color-scheme", "slate");
+        document.body.setAttribute("data-md-color-primary", "custom");
+        document.body.setAttribute("data-md-color-accent", "custom");
+        localStorage.setItem("data-md-color-scheme", "slate");
+      }
+    })();
+  </script>
   <!-- Add custom JavaScript for full width toggle -->
   <script src="{{ 'assets/javascripts/fullwidth-toggle.js' | url }}"></script>
   <!-- Add custom JavaScript for Mermaid fullscreen functionality -->
