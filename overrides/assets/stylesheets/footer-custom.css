@@ -1,7 +1,7 @@
 /* Custom footer styling */
 .md-footer {
-  background-color: #0f172a;
-  color: #e2e8f0;
+  background-color: #1a1810;
+  color: #e5e5e5;
 }
 
 .md-footer-copyright {
@@ -24,7 +24,7 @@
 
 .md-footer-link:hover {
   opacity: 1;
-  color: #2dd4bf;
+  color: #d4af37;
 }
 
 .md-footer-social {
@@ -58,12 +58,12 @@
 }
 
 .md-footer-source-link {
-  color: #2dd4bf;
+  color: #d4af37;
   text-decoration: none;
   font-size: 0.9rem;
   padding: 0.2rem 0.5rem;
   border-radius: 0.2rem;
-  border: 1px solid #2dd4bf;
+  border: 1px solid #d4af37;
   opacity: 0.8;
   transition: all 0.2s;
   white-space: nowrap;
@@ -71,8 +71,8 @@
 
 .md-footer-source-link:hover {
   opacity: 1;
-  background-color: #2dd4bf;
-  color: #0f172a;
+  background-color: #d4af37;
+  color: #1a1810;
   transform: translateY(-1px);
 }
 
@@ -128,7 +128,7 @@
 
 .md-footer__link:hover {
   opacity: 1;
-  color: #2dd4bf;
+  color: #d4af37;
   text-decoration: none;
 }
 

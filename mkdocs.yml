@@ -39,7 +39,7 @@ theme:
   icon:
     logo: material/book-open-page-variant
   font:
-    text: Roboto
+    text: Manrope
     code: Roboto Mono
   custom_dir: overrides
 
