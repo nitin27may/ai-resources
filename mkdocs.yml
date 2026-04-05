@@ -25,21 +25,21 @@ theme:
     - content.tabs.link
   palette:
     - scheme: slate
-      primary: custom
-      accent: custom
+      primary: indigo
+      accent: indigo
       toggle:
         icon: material/brightness-4
         name: Switch to light mode
     - scheme: default
-      primary: custom
-      accent: custom
+      primary: indigo
+      accent: indigo
       toggle:
         icon: material/brightness-7
         name: Switch to dark mode
   icon:
     logo: material/book-open-page-variant
   font:
-    text: Manrope
+    text: Roboto
     code: Roboto Mono
   custom_dir: overrides
 
