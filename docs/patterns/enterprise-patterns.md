@@ -2,6 +2,7 @@
 tags:
   - Intermediate
   - Patterns
+description: Deploying AI at organisational scale: governance, risk, integration and rollout.
 ---
 
 # Enterprise AI Patterns

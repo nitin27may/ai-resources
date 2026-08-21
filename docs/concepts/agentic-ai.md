@@ -2,6 +2,7 @@
 tags:
   - Intermediate
   - Concepts
+description: The agentic ecosystem — protocols, orchestration patterns, and where these ideas came from.
 ---
 
 # Agentic AI

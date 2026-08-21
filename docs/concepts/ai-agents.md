@@ -1,3 +1,7 @@
+---
+description: The component view of an AI agent, and the question that actually matters: when a workflow beats an agent.
+---
+
 # AI Agents
 
 !!! info "Start with the hands-on module"

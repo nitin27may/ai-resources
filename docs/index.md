@@ -4,6 +4,7 @@ hide:
   - toc
 tags:
   - Home
+description: A hands-on path from a model on your laptop to an agent in production — eleven modules, ten labs, all free and local.
 ---
 
 # AI Knowledge Hub
