@@ -172,5 +172,18 @@ extra:
     property: G-5Z8HS51RCP
 
 # Copyright footer text
+#
+# The sibling links are here rather than in `extra.social` on purpose: that block
+# renders icon-only, and an icon carries no anchor text. These three doc sites are
+# published under the same domain and had no inbound link from anywhere on the web,
+# which is why Search Console reported two of them as "URL is unknown to Google" --
+# never crawled once. A footer link on all 44 pages is the cheapest fix, and the
+# anchor text is the part that does the work.
+#
+# Trailing slashes are required: GitHub Pages 301s the unslashed form of a
+# directory index, and there is no reason to spend a redirect hop on our own links.
 copyright: |
-  &copy; 2026 <a href="https://nitinksingh.com/" target="_blank">Nitin Singh</a>
+  &copy; 2026 <a href="https://nitinksingh.com/">Nitin Singh</a>
+  &middot; <a href="https://nitinksingh.com/e-commerce-agents/">E-Commerce Agents</a>
+  &middot; <a href="https://nitinksingh.com/clean-architecture-docker-dotnet-angular/">Clean Architecture Starter</a>
+  &middot; <a href="https://nitinksingh.com/mean-docker/">MEAN Stack with Docker</a>

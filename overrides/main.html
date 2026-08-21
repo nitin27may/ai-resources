@@ -10,6 +10,12 @@
     CI to start failing for reasons unrelated to content. These tags are the
     part that actually matters for how a link renders when shared; the plugin's
     additional value is generating a per-page preview image.
+
+    That left one real gap: no og:image on any of the 44 pages, so every shared
+    link rendered as a bare text card. A crawl confirmed it site-wide. One static
+    card in docs/assets covers it without taking on the plugin's build
+    dependencies. It is site-level rather than per-page, which is the trade being
+    made here -- a generic card that renders beats a per-page card that breaks CI.
   #}
   {#- `page` is undefined on some generated pages, so guard every access -#}
   {%- if page and page.title -%}{%- set page_title = page.title -%}
@@ -28,8 +34,16 @@
   <meta property="og:description" content="{{ page_desc }}">
   <meta property="og:url" content="{{ page_url }}">
   <meta property="og:locale" content="en_GB">
+  {#- Absolute, as og:image requires. config.site_url already carries the
+      /ai-resources/ path, so this must not repeat it. -#}
+  {%- set social_image = config.site_url | trim('/') ~ '/assets/social-card.png' -%}
+  <meta property="og:image" content="{{ social_image }}">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="{{ config.site_name }} — {{ config.site_description }}">
 
-  <meta name="twitter:card" content="summary">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="{{ social_image }}">
   <meta name="twitter:title" content="{{ page_title }}">
   <meta name="twitter:description" content="{{ page_desc }}">
 
