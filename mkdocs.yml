@@ -120,6 +120,7 @@ nav:
       - Evaluation: 02-agents/evaluation.md
       - Observability: 02-agents/observability.md
       - Safety: 02-agents/safety.md
+      - Production: 02-agents/production.md
   - Concepts:
       - concepts/index.md
       - Foundation & Models: concepts/foundation-and-models.md
