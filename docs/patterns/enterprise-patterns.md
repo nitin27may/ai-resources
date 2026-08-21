@@ -225,5 +225,5 @@ The right pattern depends on the problem, the users, and the organizational cont
 - [Microsoft Copilot Extensibility](https://learn.microsoft.com/en-us/microsoft-365-copilot/extensibility/)
 - [Azure AI Document Intelligence](https://learn.microsoft.com/en-us/azure/ai-services/document-intelligence/)
 - [Azure AI Bot Service](https://learn.microsoft.com/en-us/azure/bot-service/)
-- [Semantic Kernel Agents](https://learn.microsoft.com/en-us/semantic-kernel/agents/)
-- [LangGraph Agentic RAG](https://langchain-ai.github.io/langgraph/concepts/)
+- [Semantic Kernel Agents](https://learn.microsoft.com/en-us/agent-framework/)
+- [LangGraph Agentic RAG](https://docs.langchain.com/oss/python/langgraph/overview)

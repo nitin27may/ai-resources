@@ -296,6 +296,6 @@ For the tools listed on this page, good operational practices include:
 - [Knip](https://knip.dev/)
 - [Vulture](https://github.com/jendrikseipp/vulture)
 - [Ruff](https://docs.astral.sh/ruff/)
-- [JSCPD](https://kucherenko.github.io/jscpd/)
+- [JSCPD](https://github.com/kucherenko/jscpd)
 - [Lizard](https://github.com/terryyin/lizard)
 - [Deptry](https://deptry.com/)

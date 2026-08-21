@@ -195,10 +195,9 @@ Recommended reading order:
 **Phase 4 — Developer Tooling**
 
 19. [GitHub Copilot](../ai-dev-tools/github-copilot.md)
-20. [Copilot CLI & Extensions](../ai-dev-tools/copilot-cli-extensions.md)
-21. [Claude Code](../ai-dev-tools/claude-code.md)
-22. [Claude Code Skills & Agents](../ai-dev-tools/claude-code-skills.md)
-23. [MCP](../ai-dev-tools/mcp.md)
+20. [Claude Code](../ai-dev-tools/claude-code.md)
+21. [Claude Code Skills & Agents](../ai-dev-tools/claude-code-skills.md)
+22. [MCP](../ai-dev-tools/mcp.md)
 
 ---
 

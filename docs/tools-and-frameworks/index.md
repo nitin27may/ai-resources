@@ -40,25 +40,33 @@ Each entry includes a brief description, who it is for, and a link to official d
 
 Orchestration frameworks provide the building blocks for connecting large language models to tools, data, and each other. They handle prompt management, memory, tool calling, and multi-step workflows so you can focus on the application logic.
 
-### Semantic Kernel
+### Microsoft Agent Framework
 
-:material-microsoft:{ .middle } **Microsoft** | .NET, Python
+Microsoft's production SDK for building agents on .NET and Python. **Agent
+Framework 1.0 shipped on 2026-04-03**, merging Semantic Kernel and AutoGen into
+a single framework — Semantic Kernel as the foundation layer, with graph-based
+multi-agent orchestration on top.
 
-Semantic Kernel is Microsoft's open-source SDK for integrating LLMs into applications. It provides a lightweight, extensible architecture with support for prompt management, plugins (tool calling), memory, and planning. Semantic Kernel is the foundation for Microsoft Copilot and is well-suited for teams building on the .NET or Python stack.
+If you are on the Microsoft stack, this is the current answer. Both predecessors
+are covered below because you will still encounter them.
 
-**Who it is for:** Developers building LLM-powered features in .NET or Python applications, especially those already in the Microsoft ecosystem.
+**Best for:** .NET or Python teams on Azure; enterprise agent work needing
+first-class C# support.
 
-**Key capabilities:**
+[:octicons-link-external-16: Agent Framework documentation](https://learn.microsoft.com/en-us/agent-framework/)
 
-- Prompt templating and management
-- Plugin architecture for tool calling
-- Built-in memory and vector store connectors
-- Agent framework for single and multi-agent scenarios
-- Process framework for long-running business workflows
+!!! info "Semantic Kernel and AutoGen — what happened to them"
+    **Semantic Kernel** is superseded rather than deprecated. Microsoft committed
+    to critical bug fixes and security patches for at least a year after Agent
+    Framework's GA, so roughly through April 2027. Existing code keeps working;
+    new agent work should start on Agent Framework, and a migration guide is
+    published.
 
-[:octicons-link-external-16: Semantic Kernel Documentation](https://learn.microsoft.com/en-us/semantic-kernel/)
-
----
+    **AutoGen** is in **maintenance mode** — no new features, no new
+    orchestration patterns. Its last release was v0.7.5 in September 2025, and
+    the repository has had no feature commits since. It is still widely
+    recommended in listicles and comparison posts written before the merger;
+    those are out of date.
 
 ### LangChain / LangGraph
 
@@ -79,26 +87,6 @@ Semantic Kernel is Microsoft's open-source SDK for integrating LLMs into applica
 - LangSmith for observability, tracing, and evaluation
 
 [:octicons-link-external-16: LangChain Documentation](https://python.langchain.com/docs/) | [:octicons-link-external-16: LangGraph Documentation](https://langchain-ai.github.io/langgraph/)
-
----
-
-### AutoGen
-
-:material-microsoft:{ .middle } **Microsoft** | Python
-
-AutoGen is Microsoft's open-source framework for building multi-agent conversational systems. Agents in AutoGen communicate through structured conversations, enabling flexible collaboration patterns -- from simple two-agent dialogs to complex group chats with specialized roles.
-
-**Who it is for:** Researchers and developers exploring multi-agent architectures, especially those who want agents that collaborate through conversation rather than rigid orchestration.
-
-**Key capabilities:**
-
-- Multi-agent conversation framework
-- Flexible agent roles and collaboration patterns
-- Human-in-the-loop support
-- Code execution and tool use within conversations
-- Extensible agent and conversation designs
-
-[:octicons-link-external-16: AutoGen Documentation](https://microsoft.github.io/autogen/)
 
 ---
 
@@ -130,7 +118,7 @@ AI platforms provide the cloud infrastructure for hosting models, managing data,
 
 :material-microsoft-azure:{ .middle } **Microsoft** | Cloud Platform
 
-Formerly known as Azure AI Studio, Azure AI Foundry is Microsoft's unified platform for building, evaluating, and deploying AI solutions on Azure. It brings together model catalog access, prompt engineering tools, evaluation frameworks, and deployment pipelines in a single interface.
+Azure AI Foundry (formerly Azure AI Studio, and the destination for what was branded Azure AI Services) is Microsoft's unified platform for building, evaluating, and deploying AI solutions on Azure. It brings together model catalog access, prompt engineering tools, evaluation frameworks, and deployment pipelines in a single interface.
 
 **Who it is for:** Teams building AI solutions on Azure who need a centralized platform for the full AI development lifecycle.
 
@@ -146,17 +134,17 @@ Formerly known as Azure AI Studio, Azure AI Foundry is Microsoft's unified platf
 
 ---
 
-### Azure OpenAI Service
+### Azure OpenAI in Foundry Models
 
 :material-microsoft-azure:{ .middle } **Microsoft** | Cloud Service
 
-Azure OpenAI Service provides access to OpenAI's models (GPT-4o, GPT-4, o1, o3, DALL-E, Whisper) hosted on Azure infrastructure. It adds enterprise features -- virtual network support, managed identity, content filtering, and regional data residency -- that are critical for production deployments.
+Azure OpenAI provides access to OpenAI's models hosted on Azure infrastructure. It adds enterprise features -- virtual network support, managed identity, content filtering, and regional data residency -- that are critical for production deployments.
 
 **Who it is for:** Organizations that want to use OpenAI models with enterprise-grade security, compliance, and support.
 
 **Key capabilities:**
 
-- GPT-4o, GPT-4, o-series reasoning models, embeddings, image generation, speech
+- Current OpenAI chat and reasoning models, embeddings, image generation, speech — see the [model catalogue](https://learn.microsoft.com/en-us/azure/foundry/foundry-models/concepts/models-sold-directly-by-azure) for what is available now
 - Enterprise security (VNet, private endpoints, managed identity)
 - Built-in content filtering and abuse monitoring
 - Regional deployment options for data residency
@@ -254,10 +242,9 @@ Prompt Flow is a visual development tool for building, evaluating, and deploying
 
 | Tool | Category | Primary Use | Language / Platform |
 |------|----------|-------------|---------------------|
-| Semantic Kernel | Orchestration | LLM integration, plugins, agents | .NET, Python |
+| **Microsoft Agent Framework** | Orchestration | Agents, workflows, multi-agent — successor to SK and AutoGen | .NET, Python |
 | LangChain | Orchestration | LLM application building blocks | Python, JS |
 | LangGraph | Orchestration | Stateful agent orchestration | Python, JS |
-| AutoGen | Orchestration | Multi-agent conversations | Python |
 | CrewAI | Orchestration | Role-based multi-agent systems | Python |
 | Azure AI Foundry | Platform | Full AI development lifecycle | Azure |
 | Azure OpenAI Service | Platform | Enterprise OpenAI model hosting | Azure |
@@ -270,10 +257,9 @@ Prompt Flow is a visual development tool for building, evaluating, and deploying
 
 ## References
 
-- [Semantic Kernel Docs](https://learn.microsoft.com/en-us/semantic-kernel/)
+- [Microsoft Agent Framework Docs](https://learn.microsoft.com/en-us/agent-framework/)
 - [LangChain Docs](https://python.langchain.com/docs/)
 - [LangGraph Docs](https://langchain-ai.github.io/langgraph/)
-- [AutoGen Docs](https://microsoft.github.io/autogen/)
 - [Azure AI Foundry](https://learn.microsoft.com/en-us/azure/ai-studio/)
 - [Azure OpenAI Service](https://learn.microsoft.com/en-us/azure/ai-services/openai/)
 - [Azure AI Search](https://learn.microsoft.com/en-us/azure/search/)

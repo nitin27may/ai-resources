@@ -31,7 +31,7 @@ The Retrieval & Data overview page now links to a dedicated section with product
 A new section covering the AI tools that are now part of the daily engineering workflow:
 
 - [GitHub Copilot](../ai-dev-tools/github-copilot.md) — Code completion, Copilot Chat, PR reviews, tips and limitations
-- [Copilot CLI & Extensions](../ai-dev-tools/copilot-cli-extensions.md) — CLI commands, building Skillset and Agent extensions
+- Copilot CLI & Extensions — since merged into [GitHub Copilot](../ai-dev-tools/github-copilot.md); both products it covered were retired in late 2025
 - [Claude Code](../ai-dev-tools/claude-code.md) — Setup, CLAUDE.md configuration, key capabilities
 - [Claude Code Skills & Agents](../ai-dev-tools/claude-code-skills.md) — Custom slash commands, subagents, hooks, MCP integration
 - [MCP](../ai-dev-tools/mcp.md) — Protocol architecture, building servers, official servers, security

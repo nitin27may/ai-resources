@@ -1,175 +1,122 @@
 ---
 title: GitHub Copilot
-description: What GitHub Copilot is, how to use it effectively in VS Code, and what its current limitations are.
+description: Copilot as it exists in 2026 — inline completion, chat, agent mode, the standalone CLI, and MCP as the extensibility story.
 tags:
   - Beginner
   - GitHub Copilot
-status: new
 ---
 
 # GitHub Copilot
 
 !!! abstract
-    GitHub Copilot is an AI coding assistant embedded in your IDE. This page covers how it works in VS Code — inline completion, Copilot Chat, slash commands, and PR integration — along with practical tips for getting better results and an honest account of where it will let you down.
+    Copilot spans inline completion, a chat pane, an agent mode that edits across
+    files, a standalone terminal CLI, and a coding agent that opens pull
+    requests. This page covers what each is for, and is explicit about the two
+    products that were retired — because a lot of published material still
+    teaches them.
 
----
+**Verified as of 2026-08-21.**
 
-## What Is GitHub Copilot?
+!!! warning "Two things this page used to cover no longer exist"
+    **`gh copilot suggest` / `gh copilot explain`** — the GitHub CLI extension is
+    **retired**. GitHub's own documentation says so plainly. It was replaced by a
+    standalone GitHub Copilot CLI (the `copilot` command).
 
-GitHub Copilot is an AI coding assistant built by GitHub and Microsoft, powered by OpenAI models. It integrates directly into your development environment and surfaces suggestions at three levels: completing code as you type, answering questions in a chat pane, and reviewing pull requests on GitHub.com.
+    **GitHub App-based Copilot Extensions** — the `@mention` extension platform
+    was deprecated in September 2025 and **shut down on 10 November 2025**,
+    replaced by MCP servers.
 
-**Where it runs:**
+    If you find a tutorial building a Copilot Extension as a GitHub App with
+    webhooks and SSE streaming, it is describing a platform that no longer runs.
+    Extensibility is now MCP — see [Model Context Protocol](mcp.md).
 
-- VS Code (primary experience)
-- JetBrains IDEs (IntelliJ, PyCharm, WebStorm, etc.)
-- Visual Studio
-- GitHub.com (PR reviews, Copilot Workspace)
-- Terminal (via `gh copilot` CLI — covered in [Copilot CLI & Extensions](copilot-cli-extensions.md))
+## The surfaces
 
-**Three modes:**
+| Surface | What it does | When to reach for it |
+|---|---|---|
+| **Inline completion** | Completes the line or block you are typing | Constant, ambient. Boilerplate, obvious next lines |
+| **Copilot Chat** | Conversational, workspace-aware, in a side pane | Explaining unfamiliar code, generating a scaffold |
+| **Agent mode** | Multi-file edits, runs commands, iterates | A change that spans files |
+| **Copilot CLI** | The `copilot` command in a terminal | Shell tasks, away from an editor |
+| **Coding agent** | Runs on GitHub, opens exactly one PR per task | Well-specified work you can review async |
+| **Code review** | Reviews a PR diff | A second pass before a human review |
 
-- **Inline code completion** — ghost-text suggestions as you type, accepted with Tab
-- **Copilot Chat** — conversational AI in a VS Code side pane, with awareness of your workspace
-- **Copilot Workspace** — task-oriented, multi-step editing on GitHub.com (still maturing)
+Inline completion is the one people mean when they say "Copilot", and it is the
+least interesting. Agent mode and the coding agent are where the behaviour is
+genuinely different — they run a loop, which is the subject of
+[the agent loop](../02-agents/the-agent-loop.md).
 
----
+## Getting good results from completion
 
-## Code Completion
+**Open the files that matter.** Completion draws on your open tabs. If you want
+it to follow a pattern, have the file containing that pattern open.
 
-Copilot's inline completion is the most-used feature. As you type, it predicts what comes next — a single line, a full function body, a test case — and displays it as grey ghost text.
+**Write the signature and the docstring first.** A named function with a stated
+contract produces far better completions than an empty body.
 
-**Controls:**
+**Name things precisely.** `calculateTaxForInvoice` gets you a better completion
+than `calc`. The name is most of the prompt.
 
-- `Tab` — accept the suggestion
-- `Esc` — dismiss it
-- `Alt+]` / `Alt+[` — cycle through alternative suggestions
-- `Ctrl+Enter` — open a panel showing up to 10 alternatives
+**Reject fast.** Reading a wrong suggestion carefully costs more than dismissing
+it and typing. The skill is in fast rejection, not careful evaluation.
 
-**Tips for better completions:**
+## Where it will let you down
 
-Write descriptive function and variable names. Copilot uses everything visible in your editor as context. `processClaimSubmission()` gives it far more signal than `process()`.
+**It is fluent about APIs that do not exist.** Completion is pattern-matching
+over plausible code. A method that *should* exist on a library will be suggested
+with total confidence. Verify anything you have not used before.
 
-Add a comment describing intent directly above the function. This is the highest-leverage thing you can do for completion quality:
+**It reproduces your existing mistakes.** It learns your file's conventions,
+including the bad ones. A codebase with a bad pattern gets more of it.
 
-```typescript
-// Validates FNOL submission payload against business rules.
-// Returns ValidationResult with field-level errors if invalid.
-function validateFnolSubmission(payload: FnolPayload): ValidationResult {
-```
+**It is weakest exactly where you need it most.** Novel logic, unusual
+constraints, an unfamiliar domain — the cases where you would most value help are
+the cases with the least pattern to draw on.
 
-Keep related files open in editor tabs. Copilot sees open files as additional context — if your interface is in one file and your implementation is in another, having both open improves suggestions significantly.
+**Agent mode's confidence is uncalibrated.** It will report success on a change
+that does not compile. Read the diff.
 
-Write one test case manually, then let Copilot complete the rest. It pattern-matches your style quickly.
+## Extensibility is MCP now
 
----
+Since the Extensions shutdown, connecting Copilot to your own tools and data
+means writing an **MCP server**. That is a net improvement: the same server works
+in Claude Code, Cursor and anything else that speaks the protocol, instead of
+being locked to one host.
 
-## Copilot Chat in VS Code
+MCP is GA in VS Code, JetBrains, Eclipse and Xcode. See
+[Model Context Protocol](mcp.md) for how to build one.
 
-Copilot Chat is a full conversation interface embedded in VS Code. Unlike inline completion, it can answer questions, explain code, generate boilerplate, and suggest fixes — all without leaving the editor.
+## The honest picture on productivity
 
-Open it from the sidebar icon or with `Ctrl+Alt+I`.
+Copilot-style tooling is usually sold with a large speedup number. The best
+available evidence is more equivocal, and worth knowing before you commit a team
+to a metric.
 
-### Built-in Slash Commands
+METR — an independent evaluator, not a vendor — ran a randomised controlled trial
+with 16 experienced open-source developers on 246 real issues in their own
+repositories. Developers using AI tools took **19% longer**. They had predicted a
+24% speedup beforehand, and afterwards *still believed they had been sped up by
+20%*.
 
-| Command | What It Does |
-|---|---|
-| `/explain` | Explains the selected code in plain language |
-| `/fix` | Diagnoses a problem and suggests a fix |
-| `/doc` | Generates a documentation comment for the selection |
-| `/tests` | Generates unit tests for the selected function or class |
-| `/optimize` | Suggests performance improvements |
-| `/new` | Scaffolds a new file or project structure |
+A larger 2026 follow-up (57 developers, 800+ tasks, agentic tools rather than
+autocomplete) moved the point estimate toward neutral — −4% for new participants
+— with confidence intervals crossing zero, and METR themselves call it *"only very
+weak evidence"* because of severe selection effects.
 
-Slash commands work on selected code — highlight the function first, then run the command.
-
-### Chat Participants
-
-Prefix your message with `@` to scope the conversation:
-
-- `@workspace` — Copilot indexes your entire workspace and can answer questions about any file
-- `@vscode` — questions about VS Code settings, extensions, and configuration
-- `@terminal` — explain or fix commands in the integrated terminal
-
-Example: `@workspace Where is the claims processing logic for FNOL submissions?`
-
-### Inline Chat
-
-Press `Ctrl+I` on a selected block of code to open a floating chat prompt directly in the editor. Type your instruction, hit Enter, and Copilot generates a diff you can accept or discard. Faster than copy-pasting to the chat pane for small edits.
-
----
-
-## Copilot for Pull Requests
-
-**Auto-generated PR descriptions** — When creating a PR on GitHub.com, Copilot can generate a description from the diff. Click the Copilot icon in the description field. The output is a reasonable starting point but rarely publish-ready — review it before submitting.
-
-**Code review suggestions** — On GitHub.com, request a Copilot review from the Reviewers panel the same way you'd request a human reviewer. Copilot adds inline comments on the diff. It's useful for catching obvious issues quickly, but it is not a substitute for human review on security-sensitive or business-logic-heavy code.
-
-**How to request a review:**
-
-1. Open the PR on GitHub.com
-2. In the Reviewers panel on the right, click the gear icon
-3. Select "Copilot" from the list
-
-Copilot review is available on Team and Enterprise plans.
-
----
-
-## Tips for Better Results
-
-=== "Code Completion"
-
-    **Write intent before code.** A one-line comment describing what the next function does dramatically improves the quality of the generated body.
-
-    **Use consistent naming.** If your codebase uses `GetAsync` / `CreateAsync` / `DeleteAsync` patterns, Copilot will follow them — it learns from the files it can see.
-
-    **Open context files.** Keep your interface, DTOs, or service contracts open in adjacent tabs. Copilot uses all open files, not just the current one.
-
-    **Let it write boilerplate.** Copilot is fastest on predictable patterns: CRUD operations, DTO mappings, fluent configuration, test setup/teardown. Accept these without overthinking and focus your attention on the non-trivial logic it gets wrong.
-
-=== "Chat"
-
-    **Be specific about what you want.** "Refactor this" is a weak prompt. "Extract the database query into a separate repository method, keeping the existing interface" is actionable.
-
-    **Provide context inline.** Start with a framing sentence: "In this ASP.NET Core minimal API handler, the response time is too high under load." Copilot doesn't know what your code _does_ unless you tell it.
-
-    **Iterate.** The first answer is rarely final. Follow up: "That uses a blocking call — rewrite it with async/await." Treat it as a conversation, not a one-shot prompt.
-
-    **Ask it to explain before it fixes.** For complex bugs, ask `/explain` first. Understanding what Copilot thinks is happening often reveals whether it has correctly diagnosed the issue before you let it change anything.
-
-=== "PR Reviews"
-
-    **Scope the review request.** If you want Copilot to focus on a specific concern, add a description to the PR that calls it out: "Please check this change for SQL injection risks in the raw query construction."
-
-    **Don't treat it as the only review.** Copilot misses context-dependent issues — it doesn't know your team's security policies, your data model constraints, or business rules that live outside the diff.
-
-    **Use it for consistency checks.** Copilot is good at catching inconsistent error handling, missing null checks, and code that deviates from the visible patterns in the codebase. These are tedious for humans and fast for Copilot.
-
----
-
-## Limitations
-
-!!! note "Hallucinations"
-    Copilot produces confident, plausible-looking code that is sometimes wrong. This is most common with library APIs, framework-specific syntax, and edge cases in complex logic. Always verify that the generated code actually does what it claims — don't assume correctness because it compiles.
-
-!!! note "Training Cutoff"
-    Copilot's training data has a cutoff date. It may not know about breaking changes in a library released in the last 6–12 months, or recent deprecations. If you're working with a library that released a major version recently, treat Copilot's suggestions about that library with more skepticism than usual.
-
-!!! note "No Runtime Context"
-    Copilot cannot see your running application, your actual stack trace, or the state of your database. When debugging, it's working from the static code only. Paste the actual error message and stack trace into Chat explicitly — don't assume it knows what went wrong.
-
-!!! note "Context Window Limits"
-    For large codebases, Copilot can only see a subset of your files at a time. In `@workspace` mode it uses search to find relevant files, but it won't have the whole codebase in context simultaneously. If your question spans many files, you may need to paste the relevant sections explicitly or use a more agentic tool like Claude Code.
-
----
+The defensible reading in 2026: **there is no credible published evidence that
+these tools make experienced developers measurably faster on real work in their
+own codebases**, and the perception gap is roughly 40 points wide in the
+flattering direction. That does not mean they are useless — it means *your* sense
+of speedup is not evidence, and you should measure if the answer matters.
 
 ## References
 
-- [GitHub Copilot documentation](https://docs.github.com/en/copilot)
-- [Using Copilot in the CLI](https://docs.github.com/en/copilot/using-github-copilot/using-github-copilot-in-the-command-line)
+- [Copilot documentation](https://docs.github.com/en/copilot)
+- [Copilot coding agent](https://docs.github.com/en/copilot/concepts/agents/coding-agent/about-coding-agent) — 59-minute session cap, one PR per task
+- [Measuring the impact of early-2025 AI on experienced developers](https://metr.org/blog/2025-07-10-early-2025-ai-experienced-os-dev-study/) — METR's RCT
+- [Uplift update](https://metr.org/blog/2026-02-24-uplift-update/) — the larger 2026 follow-up
 
----
+## Next
 
-## Next Steps
-
-- [Copilot CLI & Extensions](copilot-cli-extensions.md) — using Copilot in the terminal and building custom extensions
-- [Claude Code](claude-code.md) — when you need an AI that can read, edit, and run code autonomously across your whole project
+[Claude Code](claude-code.md) — the other agentic CLI, and a different set of
+trade-offs.

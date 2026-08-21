@@ -12,111 +12,68 @@ status: new
 !!! abstract
     Beyond basic prompting, Claude Code supports skills (custom slash commands), subagents for parallel and isolated work, hooks that fire on tool events, and MCP server integration. This page covers each mechanism, when to use it, and how to configure it.
 
-## Skills (Slash Commands)
+## Skills
 
-Skills are Markdown files that expand into full prompts when invoked with `/skill-name`. They let you encode repeatable tasks — code review, commit message generation, ADR writing — as first-class commands rather than prompts you retype from memory.
+A skill is a folder containing a `SKILL.md`. Claude either loads it because you
+typed `/skill-name`, or **because its description matched what you asked for** —
+that second half is the defining property, and it is what makes skills different
+from a saved prompt.
+
+!!! danger "The layout matters — a flat file registers nothing"
+    A skill is a **directory**, and the directory name becomes the command:
+
+    ```
+    .claude/skills/commit/SKILL.md      <- registers /commit
+    .claude/skills/commit.md            <- registers nothing
+    ```
+
+    Guidance showing flat `.md` files directly inside `.claude/skills/` is
+    describing the older `.claude/commands/` layout. That layout still works —
+    Anthropic merged custom commands into skills, and `.claude/commands/deploy.md`
+    and `.claude/skills/deploy/SKILL.md` both create `/deploy` — but they are not
+    interchangeable paths.
 
 **Locations:**
 
-- `.claude/skills/` — project-scoped skills, checked into source control and shared with the team
-- `~/.claude/skills/` — user-scoped skills, available in every project
+| Scope | Path | Available in |
+|---|---|---|
+| Personal | `~/.claude/skills/<name>/SKILL.md` | all your projects |
+| Project | `.claude/skills/<name>/SKILL.md` | this project, shared via git |
+| Plugin | `<plugin>/skills/<name>/SKILL.md` | wherever the plugin is enabled |
 
-### Anatomy of a Skill File
-
-A skill file is a Markdown file with optional YAML frontmatter. The frontmatter declares metadata; the body is the prompt that gets injected when the skill is invoked.
+### Anatomy
 
 ```markdown
 ---
 name: commit
-description: Generate a conventional commit message for staged changes
+description: Generate a conventional commit message for staged changes.
+  Use when the user asks to commit, or mentions a commit message.
 ---
 
 Review the staged git changes and generate a conventional commit message
-following the format: `type(scope): description`.
+following `type(scope): description`.
 
 Use these types: feat, fix, docs, style, refactor, test, chore.
 
-Keep the subject line under 72 characters. If the changes span multiple
-concerns or are complex, add a body paragraph explaining the reasoning
-behind the change — not what changed, but why.
+Keep the subject under 72 characters. If the change spans multiple concerns,
+add a body explaining the reasoning — not what changed, but why.
 ```
 
-Invoke it with:
+**The `description` is load-bearing.** It is what Claude reads to decide whether
+a skill is relevant. A vague description produces a skill that never fires on its
+own; a precise one, naming the triggers, produces one that does.
 
-```
-/commit
-```
+Optional frontmatter worth knowing: `allowed-tools` scopes what the skill may
+use, and `disable-model-invocation: true` makes it user-invocable only.
 
-### More Example Skills
+### Why a skill rather than CLAUDE.md
 
-**`/review`** — structured code review checklist:
+CLAUDE.md is loaded in full, every session, and costs context whether or not you
+need it. A skill's body loads **only when used** — so long reference material
+costs almost nothing until the moment it is relevant.
 
-```markdown
----
-name: review
-description: Run a structured code review on the current changes
----
-
-Review the staged or recently edited code against these criteria:
-
-1. Correctness — does the logic match the intended behavior?
-2. Error handling — are all error paths covered?
-3. Security — SQL injection, input validation, secrets in code
-4. Performance — N+1 queries, missing indexes, unnecessary allocations
-5. Test coverage — are the new code paths tested?
-
-Output findings grouped by severity: Critical, Major, Minor, Suggestion.
-```
-
-**`/document`** — generate docstrings for a file:
-
-```markdown
----
-name: document
-description: Generate XML doc comments for all public members in the specified file
----
-
-Read the file provided and generate complete XML documentation comments for
-every public class, method, property, and constructor. Follow Microsoft XML
-documentation conventions. Include <summary>, <param>, <returns>, and
-<exception> tags where applicable. Write the summary as a complete sentence.
-```
-
-**`/adr`** — architecture decision record:
-
-```markdown
----
-name: adr
-description: Draft an Architecture Decision Record for a technical decision
----
-
-Draft an Architecture Decision Record (ADR) using this structure:
-
-# ADR-NNN: [Title]
-
-## Status
-Proposed
-
-## Context
-[What is the situation that forces a decision?]
-
-## Decision
-[What is the decision made?]
-
-## Consequences
-[What are the positive and negative outcomes?]
-
-Ask me for the title and context before drafting if not provided.
-```
-
-### Skills vs CLAUDE.md
-
-| Mechanism | When It Applies | Best For |
-|---|---|---|
-| `CLAUDE.md` | Every session, automatically | Always-on context: conventions, build commands, project overview |
-| Skills | Only when explicitly invoked | On-demand tasks you run occasionally |
-
-Put recurring conventions and constraints in `CLAUDE.md`. Put structured task templates in skills.
+The rule: facts that apply always go in CLAUDE.md. Procedures that apply
+sometimes go in a skill.
 
 ## Subagents
 
@@ -129,7 +86,6 @@ The Agent tool lets Claude Code spawn specialized subprocess agents. Each subage
 | General purpose | Complex multi-step research and tasks | Default for anything not covered by a specialized type |
 | Explore | Fast codebase exploration — file patterns, code search | When you need to find files or grep for patterns quickly |
 | Plan | Software architecture planning | Before implementing a complex feature — get a plan first |
-| claude-code-guide | Questions about Claude Code itself | Meta-questions about tool behavior, configuration, capabilities |
 
 ### When to Use Subagents
 
@@ -163,13 +119,23 @@ Use worktree isolation when:
 
 Hooks are shell commands configured in `settings.json` that Claude Code runs automatically in response to tool events. They let you enforce workflows without relying on the agent to remember to run them.
 
-### Hook Types
+### Hook events
 
-| Hook | Fires When |
+There are **31** hook events. These are the four you will reach for first:
+
+| Hook | Fires when |
 |---|---|
-| `PreToolUse` | Before Claude executes a tool — can be used to gate or log |
-| `PostToolUse` | After a tool completes — most common; use for lint, test, formatting |
-| `Stop` | When Claude finishes responding — useful for notifications or cleanup |
+| `PreToolUse` | Before a tool runs — the place to gate or block |
+| `PostToolUse` | After a tool succeeds — lint, test, format |
+| `UserPromptSubmit` | When you submit a prompt, before Claude sees it |
+| `Stop` | When Claude finishes responding — notifications, cleanup |
+
+The rest cover session lifecycle (`SessionStart`, `SessionEnd`), subagents
+(`SubagentStart`, `SubagentStop`), compaction (`PreCompact`, `PostCompact`),
+permissions (`PermissionRequest`, `PermissionDenied`), failures
+(`PostToolUseFailure`, `StopFailure`), and more. See the
+[hooks reference](https://code.claude.com/docs/en/hooks) for the full set —
+treat any list of three as a starting point, not an inventory.
 
 ### Configuration
 
@@ -235,14 +201,14 @@ MCP servers are configured in `.mcp.json` at the project root. Claude Code disco
   "mcpServers": {
     "github": {
       "command": "npx",
-      "args": ["-y", "@modelcontextprotocol/server-github"],
+      "args": ["-y", "@github/github-mcp-server"],
       "env": {
         "GITHUB_PERSONAL_ACCESS_TOKEN": "${GITHUB_TOKEN}"
       }
     },
-    "postgres": {
-      "command": "npx",
-      "args": ["-y", "@modelcontextprotocol/server-postgres", "postgresql://localhost/mydb"],
+    "weather": {
+      "command": "uv",
+      "args": ["run", "--project", "path/to/project", "python", "server.py"],
       "env": {}
     }
   }
@@ -255,7 +221,9 @@ For building custom MCP servers, configuring authentication, and the full list o
 
 ## References
 
-- [Claude Code Documentation](https://docs.anthropic.com/en/docs/claude-code)
+- [Extend Claude with skills](https://code.claude.com/docs/en/skills)
+- [Hooks reference](https://code.claude.com/docs/en/hooks) — all 31 events
+- [Subagents](https://code.claude.com/docs/en/sub-agents)
 
 ## Next Steps
 
