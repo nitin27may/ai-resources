@@ -40,12 +40,13 @@ jobs:
         uses: actions/configure-pages@v4
 
       - name: Configure Google Analytics
+        if: ${{ secrets.GOOGLE_ANALYTICS_ID != '' }}
         run: |
-          sed -i 's/G-XXXXXXXXXX/${{ secrets.GOOGLE_ANALYTICS_ID }}/g' mkdocs.yml
+          sed -i "s/G-5Z8HS51RCP/${{ secrets.GOOGLE_ANALYTICS_ID }}/g" mkdocs.yml
 
       - name: Build MkDocs site
         run: |
-          mkdocs build --verbose --clean
+          mkdocs build --strict --verbose --clean
 
       - name: Upload artifacts
         uses: actions/upload-pages-artifact@v3
