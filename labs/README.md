@@ -25,6 +25,7 @@ have no GPU, 8 GB of RAM, or only a browser.
 | [01-first-call](01-first-call/) | The model | A conversation is a list you resend. The model is stateless. |
 | [02-tool-dispatch](02-tool-dispatch/) | [Tool calling](../docs/02-agents/tool-calling.md) | The model requests; *you* execute. Arguments are an unvalidated string. |
 | [03-agent-loop](03-agent-loop/) | [The agent loop](../docs/02-agents/the-agent-loop.md) | think → act → observe → repeat, in ~30 lines. |
+| [04-loop-with-recovery](04-loop-with-recovery/) | [The harness](../docs/02-agents/the-harness.md) | Errors as context vs. limits in code; budgets that actually stop a run. |
 
 ## Swapping the model or the provider
 

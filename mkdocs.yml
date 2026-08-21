@@ -114,6 +114,7 @@ nav:
   - Agents:
       - Tool Calling: 02-agents/tool-calling.md
       - The Agent Loop: 02-agents/the-agent-loop.md
+      - The Harness: 02-agents/the-harness.md
   - Concepts:
       - concepts/index.md
       - Foundation & Models: concepts/foundation-and-models.md
