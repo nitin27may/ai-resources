@@ -73,7 +73,7 @@ The landscape breaks into three tiers, each with a different scope and mental mo
 
     Intermediate — Advanced
 
-    [:octicons-arrow-right-24: Skills & Agents](claude-code-skills-agents.md)
+    [:octicons-arrow-right-24: Skills & Agents](claude-code-skills.md)
 
 -   :material-connection: __Model Context Protocol (MCP)__
 
