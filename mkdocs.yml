@@ -159,6 +159,18 @@ nav:
       - External Links: references/index.md
       - What's New: whats-new/index.md
 
+# Same Google Analytics property as nitinksingh.com, so hub traffic reports
+# alongside the blog rather than in a silo. A GA measurement ID is a public
+# identifier -- served in every page's HTML -- so it is not a secret.
+#
+# NOTE: this block was silently deleted once by a nav rewrite that used the
+# copyright comment below as its end boundary. The deploy workflow now asserts
+# the tag is present in built output, so that cannot happen quietly again.
+extra:
+  analytics:
+    provider: google
+    property: G-5Z8HS51RCP
+
 # Copyright footer text
 copyright: |
   &copy; 2026 <a href="https://nitinksingh.com/" target="_blank">Nitin Singh</a>
