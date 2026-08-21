@@ -20,6 +20,9 @@ API_KEY = os.getenv("LAB_API_KEY", "ollama")  # Ollama ignores it; hosted APIs d
 MODEL = os.getenv("LAB_MODEL", "qwen2.5:14b")
 
 
+LAST_USAGE = {}
+
+
 def chat(messages, tools=None, temperature=0, max_tokens=4096):
     """One request to the model. Returns a portable assistant message dict.
 
@@ -41,7 +44,8 @@ def chat(messages, tools=None, temperature=0, max_tokens=4096):
     )
     try:
         with urllib.request.urlopen(req, timeout=300) as r:
-            choice = json.load(r)["choices"][0]
+            body = json.load(r)
+            choice = body["choices"][0]
     except urllib.error.URLError as e:
         raise SystemExit(
             f"\nCould not reach {BASE_URL} -- {e}\n"
@@ -50,6 +54,10 @@ def chat(messages, tools=None, temperature=0, max_tokens=4096):
         )
     msg = choice["message"]
     out = {"role": msg["role"], "content": msg.get("content") or ""}
+    # usage is what every tracing tool is built on. Carried out-of-band so it
+    # never lands in the message list and gets resent to the model.
+    LAST_USAGE.clear()
+    LAST_USAGE.update(body.get("usage") or {})
     if msg.get("tool_calls"):
         out["tool_calls"] = msg["tool_calls"]
     # A reasoning model can spend its whole output budget thinking and return

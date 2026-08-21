@@ -201,5 +201,5 @@ cost-aware design most eval writing never mentions.
 
 ## Next
 
-Observability — evaluation tells you *that* it failed; tracing tells you *where*.
-*(next module; not yet written)*
+[Observability](observability.md) — evaluation tells you *that* it failed;
+tracing tells you *where*.
