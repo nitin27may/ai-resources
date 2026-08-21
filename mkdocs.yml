@@ -117,6 +117,7 @@ nav:
       - The Harness: 02-agents/the-harness.md
       - Context Engineering: 02-agents/context-engineering.md
       - Retrieval: 02-agents/retrieval.md
+      - Evaluation: 02-agents/evaluation.md
   - Concepts:
       - concepts/index.md
       - Foundation & Models: concepts/foundation-and-models.md

@@ -106,7 +106,7 @@ Expected output — note that turn 2's argument could not have been known at tur
 answer and prints `FAIL` if the model ordered the wrong quantity, ordered twice,
 or never ordered at all. When that happens the loop is still correct — the
 *model* was wrong. That distinction is the entire subject of
-evaluation, covered later in this path, and no framework closes the gap.
+[evaluation](evaluation.md), and no framework closes the gap.
 
 ## In a framework
 
