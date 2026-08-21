@@ -86,16 +86,16 @@ Your go-to resource for understanding AI -- from foundational concepts to archit
 
 ## Who Is This For?
 
-Not sure where to start? [View structured learning paths →](getting-started/learning-paths.md)
+Not sure where to start? [View structured learning paths →](00-start-here/the-path.md)
 
 !!! tip "Business Analysts & Product Managers"
     Start with [Getting Started](getting-started/index.md) and the [Glossary](glossary/index.md) to build your AI vocabulary. Then explore [Enterprise Patterns](patterns/enterprise-patterns.md) for understanding how AI is deployed at scale.
 
 !!! info "Software Engineers & Developers"
-    Follow the [Developer Learning Path](getting-started/learning-paths.md#path-2-developer-new-to-ai): Concepts → RAG & Knowledge Systems → AI Developer Tools. The [RAG section](rag/index.md) and [AI Dev Tools section](ai-dev-tools/index.md) are specifically built for you.
+    Follow the [Developer Learning Path](00-start-here/the-path.md): Concepts → RAG & Knowledge Systems → AI Developer Tools. The [RAG section](rag/index.md) and [AI Dev Tools section](ai-dev-tools/index.md) are specifically built for you.
 
 !!! note "Co-op Students & New Joiners"
-    Welcome! Start with [Getting Started](getting-started/index.md) for a beginner-friendly introduction, use the [Glossary](glossary/index.md) whenever you encounter unfamiliar terms, and follow the [Learning Paths](getting-started/learning-paths.md) to find the right route.
+    Welcome! Start with [Getting Started](getting-started/index.md) for a beginner-friendly introduction, use the [Glossary](glossary/index.md) whenever you encounter unfamiliar terms, and follow the [Learning Paths](00-start-here/the-path.md) to find the right route.
 
 !!! abstract "Leaders & Decision Makers"
     Focus on [Getting Started](getting-started/index.md) for the big picture, [Enterprise Patterns](patterns/enterprise-patterns.md) for understanding AI architectures, and [Safety & Responsible AI](concepts/safety-and-responsible-ai.md) for governance and risk.
