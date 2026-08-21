@@ -232,5 +232,5 @@ release ago.
 
 ## Next
 
-Context engineering — deciding what the model is allowed to see, once "put
-everything in" stops working. *(next module; not yet written)*
+[Context engineering](context-engineering.md) — deciding what the model is
+allowed to see, once "put everything in" stops working.
