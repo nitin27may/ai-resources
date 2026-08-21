@@ -195,6 +195,12 @@ Microsoft Agent Framework, conversation state and trimming live behind context
 providers — see
 [`tutorials/05-context-providers`](https://github.com/nitin27may/e-commerce-agents/tree/main/tutorials/05-context-providers).
 
+## How it works in a real system
+
+[State, memory and sessions](https://nitinksingh.com/e-commerce-agents/concepts/08-state-memory-and-sessions.html) in `e-commerce-agents` explains this concept
+as it is actually implemented there — what the design does, why, and where in the
+code to look. It is the bridge between this page and the source below.
+
 ## In production
 
 [`shared/session.py`](https://github.com/nitin27may/e-commerce-agents/blob/main/agents/python/shared/session.py)

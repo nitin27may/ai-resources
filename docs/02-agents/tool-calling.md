@@ -89,6 +89,12 @@ generated from your Python type hints by a decorator, and the dispatch step is
 inside `agent.run()` — see
 [`tutorials/02-add-tools`](https://github.com/nitin27may/e-commerce-agents/tree/main/tutorials/02-add-tools).
 
+## How it works in a real system
+
+[Tools](https://nitinksingh.com/e-commerce-agents/concepts/03-tools.html) in `e-commerce-agents` explains this concept
+as it is actually implemented there — what the design does, why, and where in the
+code to look. It is the bridge between this page and the source below.
+
 ## In production
 
 [`product_discovery/tools.py`](https://github.com/nitin27may/e-commerce-agents/blob/main/agents/python/product_discovery/tools.py)

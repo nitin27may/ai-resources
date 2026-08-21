@@ -192,6 +192,12 @@ one.
 
 See [`tutorials/07-observability-otel`](https://github.com/nitin27may/e-commerce-agents/tree/main/tutorials/07-observability-otel).
 
+## How it works in a real system
+
+[Observability and cost](https://nitinksingh.com/e-commerce-agents/concepts/13-observability-and-cost.html) in `e-commerce-agents` explains this concept
+as it is actually implemented there — what the design does, why, and where in the
+code to look. It is the bridge between this page and the source below.
+
 ## In production
 
 [`shared/agent_observability.py`](https://github.com/nitin27may/e-commerce-agents/blob/main/agents/python/shared/agent_observability.py)

@@ -114,6 +114,12 @@ Frameworks implement these four steps and hand you the seams. In Microsoft Agent
 Framework the loop is inside `agent.run()`; see
 [`tutorials/01-first-agent`](https://github.com/nitin27may/e-commerce-agents/tree/main/tutorials/01-first-agent).
 
+## How it works in a real system
+
+[The agentic loop](https://nitinksingh.com/e-commerce-agents/concepts/02-the-agentic-loop.html) in `e-commerce-agents` explains this concept
+as it is actually implemented there — what the design does, why, and where in the
+code to look. It is the bridge between this page and the source below.
+
 ## In production
 
 [`shared/agent_host.py`](https://github.com/nitin27may/e-commerce-agents/blob/main/agents/python/shared/agent_host.py)

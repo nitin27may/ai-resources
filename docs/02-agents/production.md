@@ -156,6 +156,18 @@ news.
 duplicated order is a support ticket three days later, not an exception. This
 class of bug is found by reconciliation, not by monitoring.
 
+## How it works in a real system
+
+[Production concerns](https://nitinksingh.com/e-commerce-agents/concepts/14-production-concerns.html) in `e-commerce-agents` explains this concept
+as it is actually implemented there — what the design does, why, and where in the
+code to look. It is the bridge between this page and the source below.
+
+## In a framework
+
+Retry and compensation as workflow constructs — see
+[`tutorials/31-retry-and-compensation`](https://github.com/nitin27may/e-commerce-agents/tree/main/tutorials/31-retry-and-compensation)
+and [`tutorials/32-cost-control-and-budgets`](https://github.com/nitin27may/e-commerce-agents/tree/main/tutorials/32-cost-control-and-budgets).
+
 ## In production
 
 `e-commerce-agents` has each of these as a readable file:
