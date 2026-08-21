@@ -187,5 +187,5 @@ credentials. The layering is not what makes it safe; the scoping is.
 
 ## Next
 
-Production — deployment, cost, and what changes when real users arrive.
-*(next module; not yet written)*
+[Production](production.md) — deployment, cost, and what changes when real users
+arrive.
