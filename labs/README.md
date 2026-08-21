@@ -26,6 +26,7 @@ have no GPU, 8 GB of RAM, or only a browser.
 | [02-tool-dispatch](02-tool-dispatch/) | [Tool calling](../docs/02-agents/tool-calling.md) | The model requests; *you* execute. Arguments are an unvalidated string. |
 | [03-agent-loop](03-agent-loop/) | [The agent loop](../docs/02-agents/the-agent-loop.md) | think → act → observe → repeat, in ~30 lines. |
 | [04-loop-with-recovery](04-loop-with-recovery/) | [The harness](../docs/02-agents/the-harness.md) | Errors as context vs. limits in code; budgets that actually stop a run. |
+| [05-context-limits](05-context-limits/) | [Context engineering](../docs/02-agents/context-engineering.md) | Overflow is silent. What gets dropped depends on the shape of the overflow. |
 
 ## Swapping the model or the provider
 
@@ -52,7 +53,7 @@ content under a 1,024-token cap, while `qwen2.5:14b` answered the same prompt
 in 10 seconds with no trace at all.
 
 That behaviour is worth understanding, and it gets a module of its own
-(context engineering, later in the path). It is just
+([context engineering](../docs/02-agents/context-engineering.md)). It is just
 the wrong thing to meet while you are still learning what a tool call is.
 
 ## If a lab fails

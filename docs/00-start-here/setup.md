@@ -87,7 +87,7 @@ class is viable, not as a ranking.
 Reasoning models interleave a long internal monologue and can spend their whole
 output budget on it before answering — under a 1,024-token cap, `qwen3.5:9b`
 produced 3,957 characters of reasoning and zero characters of answer. That
-behaviour matters and gets its own module later in this path;
+behaviour matters and gets [its own module](../02-agents/context-engineering.md);
 it is simply the wrong thing to meet while learning what a tool call is.
 
 ## No local machine
