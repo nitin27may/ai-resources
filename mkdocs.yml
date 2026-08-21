@@ -108,9 +108,9 @@ plugins:
 nav:
   - Home: index.md
   - Start Here:
+      - The Path: 00-start-here/the-path.md
       - Setup: 00-start-here/setup.md
       - AI 101: getting-started/index.md
-      - Learning Paths: getting-started/learning-paths.md
   - Agents:
       - Tool Calling: 02-agents/tool-calling.md
       - The Agent Loop: 02-agents/the-agent-loop.md
@@ -152,6 +152,7 @@ nav:
       - Design Principles: patterns/design-principles.md
       - Code Quality Pipeline: patterns/code-quality-pipeline.md
   - Reference:
+      - Resources: reference/resources.md
       - Glossary: glossary/index.md
       - Tools & Frameworks: tools-and-frameworks/index.md
       - References: references/index.md

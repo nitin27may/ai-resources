@@ -38,7 +38,7 @@ A new section covering the AI tools that are now part of the daily engineering w
 
 #### :material-map: Learning Paths (new page)
 
-Added [Learning Paths](../getting-started/learning-paths.md) — four structured routes through the site for different roles and experience levels. Start here if you are not sure where to begin.
+Added [Learning Paths](../00-start-here/the-path.md) — four structured routes through the site for different roles and experience levels. Start here if you are not sure where to begin.
 
 #### Glossary additions
 
