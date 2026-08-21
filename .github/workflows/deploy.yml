@@ -39,11 +39,6 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v4
 
-      - name: Configure Google Analytics
-        if: ${{ secrets.GOOGLE_ANALYTICS_ID != '' }}
-        run: |
-          sed -i "s/G-5Z8HS51RCP/${{ secrets.GOOGLE_ANALYTICS_ID }}/g" mkdocs.yml
-
       - name: Build MkDocs site
         run: |
           mkdocs build --strict --verbose --clean

@@ -154,8 +154,7 @@ nav:
 # Same Google Analytics property as nitinksingh.com, so hub traffic reports
 # alongside the blog rather than in a silo. A GA measurement ID is a public
 # identifier -- it is served in every page's HTML -- so it is not a secret and
-# lives here directly. CI can still override it via the GOOGLE_ANALYTICS_ID
-# secret if this ever needs to differ per environment.
+# lives here directly rather than being injected at build time.
 extra:
   analytics:
     provider: google
