@@ -6,6 +6,11 @@ tags:
 
 # Retrieval & Data
 
+!!! info "Start with the hands-on module"
+    For the buildable version of this material, see [Retrieval](../02-agents/retrieval.md), then the [RAG section](../rag/index.md).
+    This page is the short overview; both of those go considerably deeper.
+
+
 AI models are powerful, but they have a fundamental limitation: they only know what they were trained on. **Retrieval-Augmented Generation (RAG)** bridges this gap by connecting models to your real-time, enterprise data -- without retraining. This page covers how RAG works, the data infrastructure that powers it, and when to use which approach.
 
 !!! info "This page is an overview"

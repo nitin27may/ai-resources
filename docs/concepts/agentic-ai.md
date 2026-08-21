@@ -6,6 +6,11 @@ tags:
 
 # Agentic AI
 
+!!! info "Start with the hands-on module"
+    For the buildable version of this material, see [The harness](../02-agents/the-harness.md) and [Retrieval](../02-agents/retrieval.md).
+    This page remains the broader ecosystem tour — protocols, orchestration, and where agentic patterns came from.
+
+
 Traditional AI applications take a prompt and return a response. **Agentic AI** goes further -- it can plan, use tools, make decisions, and take multi-step actions to accomplish goals. This page covers the protocols, patterns, and infrastructure that make agentic AI possible.
 
 ---
