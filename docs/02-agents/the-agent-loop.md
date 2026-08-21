@@ -131,5 +131,5 @@ skill.
 
 ## Next
 
-The harness — everything that surrounds the loop once you stop trusting the
-model. *(next module; not yet written)*
+[The harness](the-harness.md) — everything that surrounds the loop once you
+stop trusting the model.
