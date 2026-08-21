@@ -66,3 +66,36 @@ def chat(messages, tools=None, temperature=0, max_tokens=4096):
 
 def banner(text):
     print(f"\n{'=' * 68}\n{text}\n{'=' * 68}")
+
+
+EMBED_MODEL = os.getenv("LAB_EMBED_MODEL", "nomic-embed-text")
+
+
+def embed(texts):
+    """Embed a list of strings. Returns a list of float vectors.
+
+    Same endpoint shape as chat(): swap BASE_URL and this runs against a hosted
+    provider instead. Dimensions differ per model, so an index built with one
+    embedding model cannot be queried with another -- switching means reindexing.
+    """
+    payload = {"model": EMBED_MODEL, "input": texts}
+    req = urllib.request.Request(
+        f"{BASE_URL}/embeddings",
+        data=json.dumps(payload).encode(),
+        headers={"Content-Type": "application/json", "Authorization": f"Bearer {API_KEY}"},
+    )
+    try:
+        with urllib.request.urlopen(req, timeout=300) as r:
+            return [d["embedding"] for d in json.load(r)["data"]]
+    except urllib.error.URLError as e:
+        raise SystemExit(
+            f"\nCould not reach {BASE_URL} -- {e}\n"
+            f"Pull the embedding model first:  ollama pull {EMBED_MODEL}\n"
+        )
+
+
+def cosine(a, b):
+    dot = sum(x * y for x, y in zip(a, b))
+    na = sum(x * x for x in a) ** 0.5
+    nb = sum(x * x for x in b) ** 0.5
+    return dot / (na * nb) if na and nb else 0.0

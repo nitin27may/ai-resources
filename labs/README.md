@@ -11,6 +11,7 @@ later, once you can see what they are wrapping.
 
 ```bash
 ollama pull qwen2.5:14b
+ollama pull nomic-embed-text   # lab 06 only
 OLLAMA_CONTEXT_LENGTH=64000 ollama serve
 python3 labs/01-first-call/lab.py
 ```
@@ -27,6 +28,7 @@ have no GPU, 8 GB of RAM, or only a browser.
 | [03-agent-loop](03-agent-loop/) | [The agent loop](../docs/02-agents/the-agent-loop.md) | think → act → observe → repeat, in ~30 lines. |
 | [04-loop-with-recovery](04-loop-with-recovery/) | [The harness](../docs/02-agents/the-harness.md) | Errors as context vs. limits in code; budgets that actually stop a run. |
 | [05-context-limits](05-context-limits/) | [Context engineering](../docs/02-agents/context-engineering.md) | Overflow is silent. What gets dropped depends on the shape of the overflow. |
+| [06-local-rag](06-local-rag/) | [Retrieval](../docs/02-agents/retrieval.md) | Retrieval always returns something. Toy corpora hide every real failure. |
 
 ## Swapping the model or the provider
 
