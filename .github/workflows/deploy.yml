@@ -43,6 +43,18 @@ jobs:
         run: |
           mkdocs build --strict --verbose --clean
 
+      - name: Assert analytics and social tags are present
+        run: |
+          set -e
+          test -f site/index.html
+          grep -q 'G-5Z8HS51RCP' site/index.html \
+            || { echo "::error::Google Analytics tag missing from built output"; exit 1; }
+          grep -q 'property="og:title"' site/index.html \
+            || { echo "::error::Open Graph tags missing from built output"; exit 1; }
+          grep -q 'application/ld+json' site/index.html \
+            || { echo "::error::JSON-LD missing from built output"; exit 1; }
+          echo "analytics, Open Graph and JSON-LD all present"
+
       - name: Upload artifacts
         uses: actions/upload-pages-artifact@v3
         with:

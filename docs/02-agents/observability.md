@@ -105,6 +105,41 @@ not prompts or tool arguments. Turning content capture on is what makes traces
 genuinely useful for debugging, and also what puts user data in your telemetry
 backend. Decide deliberately, especially under a data-residency regime.
 
+## The failure tracing exists to catch
+
+A real one, from the repo this path cross-links, and a better illustration of
+this module than anything invented.
+
+Specialist agents received **zero** conversation history on every
+browser-originated turn. Deterministically. For weeks it read as model
+nondeterminism.
+
+The chain: the web client never sent a session header → a context variable
+stayed empty → the header forwarded between services was empty → history
+rehydration **short-circuited before reaching the database, and without
+logging**.
+
+Nothing failed. No exception, no error metric, no log line. And it was
+intermittent-looking from outside, because the orchestrator *does* hold the
+history and its prompt asks it to inline context — which worked often enough to
+look like a flaky model.
+
+Same specialist, same question, only the header differing:
+
+> **real session id** — "The Sony WH-1000XM5 headphones we just discussed have a
+> battery life of 30 hours."
+>
+> **empty** — "I couldn't retrieve the battery life for the product we just
+> discussed…"
+
+The lesson is specific: **a guard that returns "no data" without logging is
+indistinguishable from "there was no data"**, and that ambiguity is what hid it.
+The fix logs on every refusal path.
+
+Generalise it: instrument the branches where you decide *not* to do something.
+Traces naturally capture what happened; silent early returns are exactly what
+they miss, and exactly where this class of bug lives.
+
 ## Cost is not standardised
 
 OpenTelemetry defines token and duration metrics. **There is no currency metric.**
@@ -160,10 +195,13 @@ See [`tutorials/07-observability-otel`](https://github.com/nitin27may/e-commerce
 ## In production
 
 [`shared/agent_observability.py`](https://github.com/nitin27may/e-commerce-agents/blob/main/agents/python/shared/agent_observability.py)
-in `e-commerce-agents` — `StepRecorderMiddleware` records every tool call into a
-per-request step list, which the frontend renders as a live timeline. It is the
-same idea as this lab's tracer, wired into middleware so nothing has to remember
-to call it.
+in `e-commerce-agents` records every tool call into a per-request step list,
+which the frontend renders as a live timeline. Same idea as this lab's tracer,
+attached at a single middleware composition point so nothing has to remember to
+call it — `STEP_MIDDLEWARE` on the Python side, `StepRecorderMiddleware` on the
+.NET twin. That the two stacks converged on the same shape is part of the
+lesson: instrumentation belongs at the composition point, not at each call
+site.
 
 Read it with `shared/telemetry.py`, which emits OTel spans using the GenAI
 `invoke_agent` convention, and `shared/cost.py`, which carries its own price
