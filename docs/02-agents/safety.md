@@ -167,6 +167,17 @@ that is the most dangerous outcome, not the best one. It means this particular
 model resisted these two particular strings. Rewrite the injection and try again;
 the confidence a passing test produces is exactly the risk.
 
+## How it works in a real system
+
+[Guardrails](https://nitinksingh.com/e-commerce-agents/concepts/10-guardrails.html) in `e-commerce-agents` explains this concept
+as it is actually implemented there — what the design does, why, and where in the
+code to look. It is the bridge between this page and the source below.
+
+## In a framework
+
+Guardrails as composable middleware — see
+[`tutorials/25-guardrails`](https://github.com/nitin27may/e-commerce-agents/tree/main/tutorials/25-guardrails).
+
 ## In production
 
 [`shared/guardrails/`](https://github.com/nitin27may/e-commerce-agents/tree/main/agents/python/shared/guardrails)

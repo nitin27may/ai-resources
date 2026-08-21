@@ -170,6 +170,12 @@ it to; remove that instruction and it will answer from the nearest refund chunk.
 Retrieval as a tool the agent calls — see
 [`tutorials/24-rag-and-grounding`](https://github.com/nitin27may/e-commerce-agents/tree/main/tutorials/24-rag-and-grounding).
 
+## How it works in a real system
+
+[Grounding and RAG](https://nitinksingh.com/e-commerce-agents/concepts/09-grounding-and-rag.html) in `e-commerce-agents` explains this concept
+as it is actually implemented there — what the design does, why, and where in the
+code to look. It is the bridge between this page and the source below.
+
 ## In production
 
 [`product_discovery/tools.py`](https://github.com/nitin27may/e-commerce-agents/blob/main/agents/python/product_discovery/tools.py)

@@ -181,6 +181,12 @@ Frameworks hand you the harness as configuration and hooks rather than code. In
 Microsoft Agent Framework the layer is middleware — see
 [`tutorials/06-middleware`](https://github.com/nitin27may/e-commerce-agents/tree/main/tutorials/06-middleware).
 
+## How it works in a real system
+
+[The agent harness](https://nitinksingh.com/e-commerce-agents/concepts/04-agent-harness.html) in `e-commerce-agents` explains this concept
+as it is actually implemented there — what the design does, why, and where in the
+code to look. It is the bridge between this page and the source below.
+
 ## In production
 
 [`shared/middleware.py`](https://github.com/nitin27may/e-commerce-agents/blob/main/agents/python/shared/middleware.py)

@@ -181,6 +181,12 @@ shortlist models.
 
 See [`tutorials/26-evals`](https://github.com/nitin27may/e-commerce-agents/tree/main/tutorials/26-evals).
 
+## How it works in a real system
+
+[Evaluation](https://nitinksingh.com/e-commerce-agents/concepts/12-evaluation.html) in `e-commerce-agents` explains this concept
+as it is actually implemented there — what the design does, why, and where in the
+code to look. It is the bridge between this page and the source below.
+
 ## In production
 
 [`agents/python/evals/harness.py`](https://github.com/nitin27may/e-commerce-agents/blob/main/agents/python/evals/harness.py)
