@@ -26,6 +26,9 @@ It runs in your terminal. Extensions for VS Code and JetBrains are available for
 npm install -g @anthropic-ai/claude-code
 ```
 
+It also runs as a desktop app, in the browser at claude.ai/code, and as VS Code
+and JetBrains extensions.
+
 **Prerequisites:**
 
 - Node.js 18 or later
@@ -140,15 +143,42 @@ Make coordinated changes across multiple files in a single session — interface
 **Search**
 Grep for patterns, search file names with glob patterns, and read symbol definitions across the codebase. This is how Claude Code builds context before making changes rather than guessing at structure.
 
-## Memory System
+## Memory
 
-Claude Code has three memory layers:
+There are **two** mechanisms, and the distinction is who writes them.
 
-- **User memory** (`~/.claude/memory/`) — persists across sessions and projects; stores your preferences, recurring context, and things you've told it to remember
-- **Project memory** — session-scoped notes the agent maintains while working on a task; cleared when the session ends
-- **Feedback memory** — Claude Code learns your correction patterns over time, adjusting behavior in future sessions
+**CLAUDE.md files — you write these.** Loaded at the start of every session, in
+this order, all concatenated rather than overriding:
 
-For full detail on skills and project-scoped memory, see [Claude Code Skills & Agents](claude-code-skills.md).
+| Scope | Location | Shared with |
+|---|---|---|
+| Managed policy | OS-specific system path | everyone in the organisation |
+| User | `~/.claude/CLAUDE.md` | just you, all projects |
+| Project | `./CLAUDE.md` or `./.claude/CLAUDE.md` | your team, via source control |
+| Local | `./CLAUDE.local.md` | just you, this project — gitignore it |
+
+Files in parent directories load at launch; files in subdirectories load on
+demand when Claude reads something there. Target **under 200 lines** — longer
+files consume context and measurably reduce adherence. For larger projects,
+`.claude/rules/` holds topic files that can be scoped to path globs so they load
+only when relevant.
+
+**Auto memory — Claude writes this.** Notes it takes for itself as it works:
+build commands, debugging insights, preferences it infers from your corrections.
+It lives at `~/.claude/projects/<project>/memory/`, keyed off the git repository
+so all worktrees of one repo share it. A `MEMORY.md` index is loaded every
+session — the first 200 lines or 25KB, whichever comes first — with detail in
+topic files that load on demand.
+
+It persists. It is machine-local, is excluded from the transcript retention
+sweep, and is plain markdown you can read, edit or delete. `/memory` browses it.
+
+!!! warning
+    Neither of these is *enforcement*. Both are delivered as context, and the
+    model can fail to follow either. If something must happen at a specific
+    point — before every commit, after every edit — write a
+    [hook](claude-code-skills.md#hooks), which runs as a shell command regardless
+    of what the model decides.
 
 ## Working Effectively with Claude Code
 
@@ -166,7 +196,8 @@ For full detail on skills and project-scoped memory, see [Claude Code Skills & A
 
 ## References
 
-- [Claude Code Documentation](https://docs.anthropic.com/en/docs/claude-code)
+- [Claude Code documentation](https://code.claude.com/docs)
+- [How Claude remembers your project](https://code.claude.com/docs/en/memory) — the source for the section above
 
 ## Next Steps
 

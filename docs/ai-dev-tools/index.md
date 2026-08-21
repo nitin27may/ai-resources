@@ -53,7 +53,7 @@ The landscape breaks into three tiers, each with a different scope and mental mo
 
     Intermediate — Advanced
 
-    [:octicons-arrow-right-24: Copilot CLI & Extensions](copilot-cli-extensions.md)
+    [GitHub Copilot](github-copilot.md)
 
 -   :material-robot: __Claude Code__
 

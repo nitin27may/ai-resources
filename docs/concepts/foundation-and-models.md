@@ -37,7 +37,7 @@ Self-attention
 :   A mechanism that lets each token in a sequence look at all other tokens to determine context. For example, in "The cat sat on the mat because **it** was tired," attention helps the model understand that "it" refers to "the cat."
 
 Parameters
-:   The internal weights of the model that are adjusted during training. More parameters generally means more capacity to learn patterns. GPT-4 is estimated to have over a trillion parameters.
+:   The internal weights of the model that are adjusted during training. More parameters generally means more capacity to learn patterns. Frontier models are estimated at hundreds of billions to trillions of parameters, though most vendors no longer publish the figure.
 
 Pre-training
 :   The initial phase where the model learns general language patterns from a large corpus. This produces a **foundation model** that can then be fine-tuned for specific tasks.
@@ -64,15 +64,18 @@ Models do not process raw text. Instead, text is broken into **tokens** -- small
 
 The **context window** is the maximum number of tokens a model can process in a single request (input + output combined). It defines how much information the model can "see" at once.
 
-| Model | Context Window |
-|---|---|
-| GPT-4o | 128K tokens |
-| Claude 4 Sonnet | 200K tokens |
-| Gemini 2.5 Pro | 1M tokens |
-| Llama 3.1 405B | 128K tokens |
-| Phi-4 | 16K tokens |
+Context windows in the current frontier generation run from roughly **200K to
+2M tokens**, with small local models often at 4K-128K. Naming specific models
+here would date this page within months — check the provider's live model page
+for current figures: [OpenAI](https://developers.openai.com/api/docs/models),
+[Anthropic](https://platform.claude.com/docs/en/about-claude/models/overview),
+[Google](https://ai.google.dev/gemini-api/docs/models).
 
-A larger context window allows the model to work with longer documents, but also increases cost and latency.
+A larger window costs more and is slower. It is also **not** the same as usable
+context: of 13 models advertising 128K+, 11 fell below half their short-context
+accuracy at just 32K once lexical overlap between question and answer was
+removed (NoLiMa, ICML 2025). Treat the advertised number as a ceiling, not a
+working budget — see [context engineering](../02-agents/context-engineering.md).
 
 ---
 
@@ -85,13 +88,20 @@ A larger context window allows the model to work with longer documents, but also
 | **What it is** | Base model trained on broad data | Large text-focused model | Small, efficient text model | Model that handles text + images |
 | **Parameters** | Varies (billions+) | 70B - 1T+ | 1B - 14B | Varies |
 | **Typical use** | General-purpose base | Complex reasoning, generation | On-device, low-latency tasks | Image understanding, visual Q&A |
-| **Examples** | GPT-4, Claude, Gemini | GPT-4o, Claude 4 Sonnet | Phi-4, Gemma 3 | GPT-4o (vision), Gemini, Llama 3.2-Vision |
+| **Examples** | the frontier families: GPT, Claude, Gemini, Llama | the flagship tier of those families | Phi, Gemma, Qwen small variants | the multimodal variant of most frontier families |
 | **Cost** | High | High | Low to moderate | Moderate to high |
 | **Deployment** | Cloud | Cloud | Edge or cloud | Cloud |
 
 ### Foundation Models
 
-A **foundation model** is any large-scale model trained on broad, diverse data that can be adapted (via prompting, fine-tuning, or RAG) to many downstream tasks. GPT-4, Claude, and Gemini are all foundation models.
+A **foundation model** is any large-scale model trained on broad, diverse data that can be adapted (via prompting, fine-tuning, or RAG) to many downstream tasks. The GPT, Claude, Gemini and Llama families are all foundation models.
+
+!!! note "Why this page names families, not models"
+    Specific model names date faster than anything else in AI writing. A page
+    naming this quarter's flagship is wrong by the next one, and wrong in a way
+    that is hard to spot — the name still looks plausible. Reason in **capability
+    tiers**, and get current names from the vendor's live model page at the moment
+    you need one.
 
 ### Large Language Models (LLMs)
 
@@ -99,7 +109,7 @@ LLMs are foundation models specifically focused on text. They excel at complex r
 
 ### Small Language Models (SLMs)
 
-SLMs trade some capability for **efficiency**. Models like Microsoft's Phi-4 (14B parameters) or Google's Gemma can run on consumer hardware or at the edge. They are ideal when:
+SLMs trade some capability for **efficiency**. Models in the 1B-14B range — Microsoft's Phi family, Google's Gemma, the smaller Qwen variants — run on consumer hardware or at the edge. They are ideal when:
 
 - Latency must be very low
 - Cost per query must be minimal
@@ -108,7 +118,7 @@ SLMs trade some capability for **efficiency**. Models like Microsoft's Phi-4 (14
 
 ### Vision Language Models (VLMs)
 
-VLMs extend language models with the ability to process **images** alongside text. You can ask them to describe a photo, extract data from a chart, or answer questions about a diagram. Examples include GPT-4o with vision, Gemini, and Llama 3.2-Vision.
+VLMs extend language models with the ability to process **images** alongside text. You can ask them to describe a photo, extract data from a chart, or answer questions about a diagram. Most frontier families ship a multimodal variant; several open-weight families do too.
 
 ---
 
@@ -162,9 +172,9 @@ There is no single "best" model. The right choice depends on your requirements:
 
 | Requirement | Recommended Approach |
 |---|---|
-| Complex reasoning, broad knowledge | LLM (GPT-4o, Claude 4 Sonnet, Gemini 2.5 Pro) |
-| Low latency, cost-sensitive | SLM (Phi-4, Gemma) |
-| Image + text understanding | VLM (GPT-4o vision, Gemini) |
+| Complex reasoning, broad knowledge | A frontier-tier LLM |
+| Low latency, cost-sensitive | An SLM (Phi, Gemma, small Qwen) |
+| Image + text understanding | A VLM — the multimodal variant of a frontier family |
 | On-device or edge deployment | SLM with quantization |
 | Domain-specific accuracy | Fine-tuned LLM or SLM |
 | Long document processing | Model with large context window |

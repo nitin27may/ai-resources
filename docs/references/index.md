@@ -45,7 +45,7 @@ A curated collection of official documentation, learning resources, and communit
 | [Model Context Protocol (MCP)](https://modelcontextprotocol.io/) | Open standard for AI-tool integration |
 | [MCP Specification](https://modelcontextprotocol.io/specification/2025-11-25) | Full protocol specification |
 | [MCP Official Servers](https://github.com/modelcontextprotocol/servers) | GitHub, filesystem, PostgreSQL, and more |
-| [Building Effective Agents](https://docs.anthropic.com/en/docs/build-with-claude/agent-patterns) | Agent design patterns and best practices |
+| [Building Effective Agents](https://www.anthropic.com/engineering/building-effective-agents) | Agent design patterns and best practices |
 | [Prompt Engineering](https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview) | Claude-specific prompting guidance |
 
 ### Google
@@ -53,7 +53,7 @@ A curated collection of official documentation, learning resources, and communit
 | Resource | Description |
 |----------|-------------|
 | [Gemini](https://deepmind.google/technologies/gemini/) | Google's multimodal AI model |
-| [A2A Protocol](https://google.github.io/A2A/) | Agent-to-Agent communication protocol |
+| [A2A Protocol](https://a2a-protocol.org) | Agent-to-Agent communication protocol |
 | [Google AI Studio](https://aistudio.google.com/) | Prototyping with Gemini |
 | [Vertex AI](https://cloud.google.com/vertex-ai/docs) | Google Cloud AI platform |
 
@@ -70,7 +70,7 @@ A curated collection of official documentation, learning resources, and communit
 |----------|-------------|
 | [GitHub Copilot Documentation](https://docs.github.com/en/copilot) | Full Copilot documentation |
 | [Copilot in the CLI](https://docs.github.com/en/copilot/how-tos/use-copilot-for-common-tasks/use-copilot-in-the-cli) | CLI integration guide |
-| [Building Copilot Extensions](https://docs.github.com/en/copilot/building-copilot-extensions) | Skillset and Agent extension docs |
+| [Building Copilot Extensions](https://modelcontextprotocol.io/docs/learn/architecture) | Skillset and Agent extension docs |
 
 ---
 
@@ -115,7 +115,7 @@ A curated collection of official documentation, learning resources, and communit
 | Resource | Provider | Level |
 |----------|----------|-------|
 | [AI Fundamentals](https://learn.microsoft.com/en-us/training/paths/get-started-with-artificial-intelligence-on-azure/) | Microsoft Learn | Beginner |
-| [Azure AI Engineer](https://learn.microsoft.com/en-us/training/paths/azure-ai-engineer/) | Microsoft Learn | Intermediate |
+| [Azure AI Engineer](https://learn.microsoft.com/en-us/training/paths/get-started-ai-apps-agents/) | Microsoft Learn | Intermediate |
 | [Machine Learning Crash Course](https://developers.google.com/machine-learning/crash-course) | Google | Beginner |
 | [Generative AI for Beginners](https://github.com/microsoft/generative-ai-for-beginners) | Microsoft (GitHub) | Beginner |
 | [AI Agents for Beginners](https://github.com/microsoft/ai-agents-for-beginners) | Microsoft (GitHub) | Beginner |

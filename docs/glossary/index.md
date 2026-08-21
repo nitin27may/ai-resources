@@ -111,7 +111,7 @@ AG-UI (Agent-User Interaction Protocol)
 :   An open protocol that standardizes how AI agents stream events and state changes back to frontend user interfaces. It bridges the gap between backend agent orchestration and real-time UI updates.
 
 Copilot Extension
-:   A GitHub App that extends GitHub Copilot Chat with external tool access or custom conversational behavior. Extensions appear as @-mentions in Copilot Chat. See [Copilot CLI & Extensions](../ai-dev-tools/copilot-cli-extensions.md).
+:   **Retired.** A GitHub App that extended Copilot Chat with external tools via `@`-mentions. The platform was deprecated in September 2025 and shut down on 10 November 2025, replaced by [MCP](../ai-dev-tools/mcp.md) servers. Listed here because the term is still widely used in older material.
 
 Copilot Skillset
 :   A simple type of Copilot Extension that exposes OpenAPI-described functions. Copilot calls the functions on the user's behalf without requiring a full conversational agent implementation. Lower complexity than a full Agent extension.

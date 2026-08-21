@@ -292,8 +292,8 @@ Each framework has its own philosophy. LangGraph is graph-first (you define node
 ## References
 
 - [Model Context Protocol (MCP)](https://modelcontextprotocol.io/)
-- [Google A2A Protocol](https://google.github.io/A2A/)
+- [Google A2A Protocol](https://a2a-protocol.org)
 - [AG-UI Protocol](https://docs.ag-ui.com/)
 - [Microsoft AutoGen](https://microsoft.github.io/autogen/)
-- [Semantic Kernel Agents](https://learn.microsoft.com/en-us/semantic-kernel/agents/)
+- [Semantic Kernel Agents](https://learn.microsoft.com/en-us/agent-framework/)
 - [LangGraph Documentation](https://langchain-ai.github.io/langgraph/)

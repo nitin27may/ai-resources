@@ -1,6 +1,6 @@
 ---
 title: RAG Evaluation
-description: How to measure RAG system quality using RAGAS metrics — faithfulness, answer relevancy, context precision, and context recall.
+description: How to measure RAG quality — faithfulness, answer relevancy, context precision, context recall — and which tooling to actually depend on.
 tags:
   - Advanced
   - RAG
@@ -25,9 +25,23 @@ A good evaluation framework answers three distinct questions:
 - **Does the answer actually address the question?** (answer relevancy)
 - **Did retrieval return the right chunks?** (context precision + context recall)
 
-## The Four RAGAS Metrics
+!!! warning "Learn the metrics here; do not depend on the library"
+    RAGAS popularised this vocabulary and it remains the clearest way to think
+    about RAG quality — the four metrics below are worth knowing regardless of
+    tooling.
 
-RAGAS (Retrieval Augmented Generation Assessment) is an LLM-assisted evaluation framework that scores these four dimensions without requiring manual human rating of every answer. An evaluator LLM judges each response against the retrieved context and, where applicable, a ground truth reference answer.
+    The **library** is another matter. As of 2026-08-21 its last release was
+    v0.4.3 in January 2026, its last commit was February 2026, and it carries 563
+    open issues. The repository also moved organisations, so older links redirect.
+    It is not archived, but it is not something to build a pipeline on.
+
+    For tooling that is actively maintained and runs locally for free, use
+    **promptfoo** or **Phoenix** — both shipped releases this month. The metric
+    definitions transfer directly.
+
+## The Four Metrics
+
+These four dimensions, popularised by RAGAS, are scored by an LLM-assisted evaluator without requiring manual human rating of every answer. An evaluator LLM judges each response against the retrieved context and, where applicable, a ground truth reference answer.
 
 ### Faithfulness
 
@@ -129,17 +143,30 @@ The quality of your evaluation is only as good as your test set.
 
 ## Evaluation Tools
 
-=== "RAGAS"
+=== "promptfoo (recommended)"
 
     The reference implementation. LLM-based metrics, framework-agnostic, works with any vector store or RAG pipeline.
 
     ```bash
-    pip install ragas
+    npx promptfoo@latest init
     ```
 
     ```python
-    from ragas import evaluate
-    from ragas.metrics import faithfulness, answer_relevancy, context_precision, context_recall
+    # promptfoo is YAML-first and provider-agnostic. The judge can be a local
+    # model, so the whole suite runs free:
+    #
+    #   defaultTest:
+    #     options:
+    #       provider:
+    #         text:      { id: "ollama:chat:qwen2.5:14b" }
+    #         embedding: { id: "ollama:embeddings:nomic-embed-text" }
+    #
+    #   tests:
+    #     - vars: { question: "What is the refund window?" }
+    #       assert:
+    #         - type: context-faithfulness
+    #         - type: context-recall
+    #           value: States the refund window is 30 days
     from datasets import Dataset
 
     data = {
@@ -157,9 +184,12 @@ The quality of your evaluation is only as good as your test set.
     print(result)
     ```
 
-    RAGAS uses an LLM as the evaluator — configure `OPENAI_API_KEY` or point it at Azure OpenAI. Scores are returned as a dict with values between 0 and 1.
+    **Set the grader explicitly.** Left alone, promptfoo picks a hosted model
+    based on whichever API key it finds in your environment — and fails if there
+    is none. The `defaultTest.options.provider` block above pins it to a local
+    model so the suite costs nothing.
 
-    Reference: [docs.ragas.io](https://docs.ragas.io/)
+    Reference: [promptfoo.dev](https://www.promptfoo.dev/docs/configuration/expected-outputs/model-graded/)
 
 === "Azure AI Evaluation"
 
@@ -225,7 +255,9 @@ The quality of your evaluation is only as good as your test set.
 
 ## References
 
-- [RAGAS Documentation](https://docs.ragas.io/)
+- [promptfoo model-graded assertions](https://www.promptfoo.dev/docs/configuration/expected-outputs/model-graded/) — actively maintained, local judges supported
+- [Phoenix](https://github.com/Arize-ai/phoenix) — `pip install arize-phoenix && phoenix serve` for local tracing plus evals, no account
+- [RAGAS](https://github.com/vibrantlabsai/ragas) — for the metric definitions; see the caveat above before depending on it
 - [Azure AI Evaluation](https://learn.microsoft.com/en-us/azure/ai-studio/how-to/evaluate-generative-ai-app)
 
 ## Next Steps

@@ -330,8 +330,8 @@ graph TD
 
 ## References
 
-- [Microsoft: Multi-Agent Design Patterns](https://learn.microsoft.com/en-us/azure/ai-services/agents/concepts/agent-patterns)
-- [Anthropic: Building Effective Agents](https://docs.anthropic.com/en/docs/build-with-claude/agent-patterns)
-- [LangGraph Design Patterns](https://langchain-ai.github.io/langgraph/concepts/)
+- [Microsoft: Multi-Agent Design Patterns](https://learn.microsoft.com/en-us/azure/foundry/agents/overview)
+- [Anthropic: Building Effective Agents](https://www.anthropic.com/engineering/building-effective-agents)
+- [LangGraph Design Patterns](https://docs.langchain.com/oss/python/langgraph/overview)
 - [AutoGen Agent Patterns](https://microsoft.github.io/autogen/docs/tutorial)
-- [Semantic Kernel Orchestration](https://learn.microsoft.com/en-us/semantic-kernel/agents/)
+- [Semantic Kernel Orchestration](https://learn.microsoft.com/en-us/agent-framework/)

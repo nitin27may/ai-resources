@@ -137,7 +137,6 @@ nav:
   - AI Developer Tools:
       - ai-dev-tools/index.md
       - GitHub Copilot: ai-dev-tools/github-copilot.md
-      - Copilot CLI & Extensions: ai-dev-tools/copilot-cli-extensions.md
       - Claude Code: ai-dev-tools/claude-code.md
       - Claude Code Skills & Agents: ai-dev-tools/claude-code-skills.md
       - Model Context Protocol (MCP): ai-dev-tools/mcp.md

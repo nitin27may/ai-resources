@@ -92,7 +92,7 @@ The `BaseTool` interface lets you start with simple functions and later add REST
 
 ## References
 
-- [Semantic Kernel Architecture](https://learn.microsoft.com/en-us/semantic-kernel/concepts/)
+- [Semantic Kernel Architecture](https://learn.microsoft.com/en-us/agent-framework/)
 - [LangGraph Documentation](https://langchain-ai.github.io/langgraph/)
 - [AutoGen Framework](https://microsoft.github.io/autogen/)
 - [Azure AI Agent Service](https://learn.microsoft.com/en-us/azure/ai-services/agents/)

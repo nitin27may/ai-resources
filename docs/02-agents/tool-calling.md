@@ -98,7 +98,7 @@ arguments even though a schema was supplied, for exactly the reason above.
 
 ## Go deeper
 
-- [Writing effective tools for agents](https://www.anthropic.com/engineering/writing-effective-tools-for-agents) — Anthropic, Sep 2025. The best single piece on tool design: namespacing, token-efficient responses, actionable errors. Vendor-authored but concrete and non-promotional.
+- [Writing effective tools for agents](https://www.anthropic.com/engineering/writing-tools-for-agents) — Anthropic, Sep 2025. The best single piece on tool design: namespacing, token-efficient responses, actionable errors. Vendor-authored but concrete and non-promotional.
 - [Advanced tool use](https://www.anthropic.com/engineering/advanced-tool-use) — Anthropic, Nov 2025. What to do when the tool definitions themselves start costing more context than the task.
 
 ## Next

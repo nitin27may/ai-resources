@@ -336,10 +336,10 @@ The following table summarizes common architectural patterns for implementing AI
 ## References
 
 - [Microsoft AI Agents Overview](https://learn.microsoft.com/en-us/azure/ai-services/agents/overview)
-- [Semantic Kernel Agents](https://learn.microsoft.com/en-us/semantic-kernel/agents/)
+- [Semantic Kernel Agents](https://learn.microsoft.com/en-us/agent-framework/)
 - [AutoGen Multi-Agent Framework](https://microsoft.github.io/autogen/)
 - [LangGraph Agent Documentation](https://langchain-ai.github.io/langgraph/)
-- [Anthropic: Building Effective Agents](https://docs.anthropic.com/en/docs/build-with-claude/agent-patterns)
+- [Anthropic: Building Effective Agents](https://www.anthropic.com/engineering/building-effective-agents)
 - [OpenAI Function Calling Guide](https://platform.openai.com/docs/guides/function-calling)
 
 
