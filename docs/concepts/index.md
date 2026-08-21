@@ -1,6 +1,7 @@
 ---
 tags:
   - Concepts
+description: Deeper background on models, agents, retrieval, safety and operations, beyond the hands-on path.
 ---
 
 # AI Concepts

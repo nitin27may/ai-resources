@@ -1,6 +1,7 @@
 ---
 tags:
   - News
+description: Recent changes to the AI Knowledge Hub.
 ---
 
 # What's New

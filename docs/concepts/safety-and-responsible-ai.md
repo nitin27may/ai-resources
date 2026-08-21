@@ -2,6 +2,7 @@
 tags:
   - Beginner
   - Concepts
+description: Hallucination, bias, governance and responsible deployment — the broader safety picture beyond prompt injection.
 ---
 
 # Safety & Responsible AI

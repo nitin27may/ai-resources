@@ -1,3 +1,7 @@
+---
+description: Principles that hold across AI system design, independent of framework or vendor.
+---
+
 # Design Principles
 
 ## Overview

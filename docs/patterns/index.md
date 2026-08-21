@@ -2,6 +2,7 @@
 tags:
   - Patterns
   - Advanced
+description: Architectural patterns for AI systems, from single-agent design through to enterprise governance.
 ---
 
 # Architecture Patterns

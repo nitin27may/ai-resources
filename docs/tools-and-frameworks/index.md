@@ -2,6 +2,7 @@
 tags:
   - Intermediate
   - Tools
+description: The current framework and platform landscape, with honest notes on what has been superseded.
 ---
 
 # Tools & Frameworks

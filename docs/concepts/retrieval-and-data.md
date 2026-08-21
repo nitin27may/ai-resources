@@ -2,6 +2,7 @@
 tags:
   - Intermediate
   - Concepts
+description: A short overview of RAG, embeddings and vector databases before the deeper sections.
 ---
 
 # Retrieval & Data

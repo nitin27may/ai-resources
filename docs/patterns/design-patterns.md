@@ -1,3 +1,7 @@
+---
+description: Orchestration, reflection, tool use and planning — the recurring shapes of agent design.
+---
+
 # Design Patterns for AI Agent Systems
 
 ## Foundation: Basic Architecture Patterns
