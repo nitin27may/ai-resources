@@ -215,5 +215,5 @@ its present. That is this module's failure mode in production code.
 
 ## Next
 
-Retrieval — what to do when the information the model needs was never in the
-conversation to begin with. *(next module; not yet written)*
+[Retrieval](retrieval.md) — what to do when the information the model needs was
+never in the conversation to begin with.
