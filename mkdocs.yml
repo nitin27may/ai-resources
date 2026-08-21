@@ -111,7 +111,12 @@ nav:
       - The Path: 00-start-here/the-path.md
       - Setup: 00-start-here/setup.md
       - AI 101: getting-started/index.md
-  - Agents:
+  - Foundations:
+      - How Models Work: concepts/foundation-and-models.md
+      - Prompting: concepts/prompting-and-techniques.md
+      - Embeddings: rag/embeddings.md
+      - Fine-Tuning & Training: concepts/fine-tuning-and-training.md
+  - The Agent Path:
       - Tool Calling: 02-agents/tool-calling.md
       - The Agent Loop: 02-agents/the-agent-loop.md
       - The Harness: 02-agents/the-harness.md
@@ -121,51 +126,38 @@ nav:
       - Observability: 02-agents/observability.md
       - Safety: 02-agents/safety.md
       - Production: 02-agents/production.md
-  - Concepts:
-      - concepts/index.md
-      - Foundation & Models: concepts/foundation-and-models.md
-      - Retrieval & Data: concepts/retrieval-and-data.md
-      - AI Agents: concepts/ai-agents.md
-      - Agentic AI: concepts/agentic-ai.md
-      - Prompting & Techniques: concepts/prompting-and-techniques.md
-      - Fine-Tuning & Training: concepts/fine-tuning-and-training.md
-      - Safety & Responsible AI: concepts/safety-and-responsible-ai.md
-      - Infrastructure & Operations: concepts/infrastructure-and-operations.md
-  - RAG & Knowledge Systems:
+  - Retrieval in Depth:
       - rag/index.md
       - RAG Fundamentals: rag/rag-fundamentals.md
-      - Embeddings: rag/embeddings.md
       - Chunking Strategies: rag/chunking-strategies.md
       - Vector Databases: rag/vector-databases.md
       - GraphRAG: rag/graphrag.md
       - RAG Evaluation: rag/rag-evaluation.md
-  - AI Developer Tools:
-      - ai-dev-tools/index.md
-      - GitHub Copilot: ai-dev-tools/github-copilot.md
-      - Claude Code: ai-dev-tools/claude-code.md
-      - Claude Code Skills & Agents: ai-dev-tools/claude-code-skills.md
-      - Model Context Protocol (MCP): ai-dev-tools/mcp.md
+  - Wider Context:
+      - concepts/index.md
+      - AI Agents: concepts/ai-agents.md
+      - Agentic AI: concepts/agentic-ai.md
+      - Retrieval & Data: concepts/retrieval-and-data.md
+      - Safety & Responsible AI: concepts/safety-and-responsible-ai.md
+      - Infrastructure & Operations: concepts/infrastructure-and-operations.md
   - Patterns:
       - patterns/index.md
       - Design Patterns: patterns/design-patterns.md
       - Enterprise Patterns: patterns/enterprise-patterns.md
       - Design Principles: patterns/design-principles.md
       - Code Quality Pipeline: patterns/code-quality-pipeline.md
+  - Your Tools:
+      - ai-dev-tools/index.md
+      - GitHub Copilot: ai-dev-tools/github-copilot.md
+      - Claude Code: ai-dev-tools/claude-code.md
+      - Claude Code Skills & Agents: ai-dev-tools/claude-code-skills.md
+      - Model Context Protocol: ai-dev-tools/mcp.md
   - Reference:
       - Resources: reference/resources.md
       - Glossary: glossary/index.md
       - Tools & Frameworks: tools-and-frameworks/index.md
-      - References: references/index.md
+      - External Links: references/index.md
       - What's New: whats-new/index.md
-
-# Same Google Analytics property as nitinksingh.com, so hub traffic reports
-# alongside the blog rather than in a silo. A GA measurement ID is a public
-# identifier -- it is served in every page's HTML -- so it is not a secret and
-# lives here directly rather than being injected at build time.
-extra:
-  analytics:
-    provider: google
-    property: G-5Z8HS51RCP
 
 # Copyright footer text
 copyright: |

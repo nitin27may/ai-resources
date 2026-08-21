@@ -1,5 +1,10 @@
 # AI Agents
 
+!!! info "Start with the hands-on module"
+    For the buildable version of this material, see [The agent loop](../02-agents/the-agent-loop.md) and [The harness](../02-agents/the-harness.md).
+    Those build the loop by hand and show what surrounds it. This page is the component overview, kept for orientation and for its workflow-vs-agent section.
+
+
 ## What is an AI Agent?
 
 AI Agents consist of five core components: **Input**, **Reasoning**, **Tools**, **Memory**, and **Actions/Outputs**. An AI agent uses an LLM to process user inputs, make decisions, call tools or MCP servers to perform actions, and generate responses. 

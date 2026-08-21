@@ -6,6 +6,11 @@ tags:
 
 # Infrastructure & Operations
 
+!!! info "Start with the hands-on module"
+    For the buildable version of this material, see [Production](../02-agents/production.md).
+    That module covers retries, idempotency and budgets with a runnable lab. This page covers the wider MLOps picture — drift, monitoring, deployment topology.
+
+
 Building an AI model is only half the challenge. Running it reliably, efficiently, and cost-effectively in production is the other half. This page covers **MLOps** (the operational practices for machine learning), model optimization, and the infrastructure decisions that determine whether your AI system scales or stalls.
 
 ---
