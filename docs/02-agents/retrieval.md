@@ -191,5 +191,5 @@ a true answer.
 
 ## Next
 
-Evaluation — how you would have caught any of this before your users did.
-*(next module; not yet written)*
+[Evaluation](evaluation.md) — how you would have caught any of this before your
+users did.

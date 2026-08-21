@@ -29,6 +29,7 @@ have no GPU, 8 GB of RAM, or only a browser.
 | [04-loop-with-recovery](04-loop-with-recovery/) | [The harness](../docs/02-agents/the-harness.md) | Errors as context vs. limits in code; budgets that actually stop a run. |
 | [05-context-limits](05-context-limits/) | [Context engineering](../docs/02-agents/context-engineering.md) | Overflow is silent. What gets dropped depends on the shape of the overflow. |
 | [06-local-rag](06-local-rag/) | [Retrieval](../docs/02-agents/retrieval.md) | Retrieval always returns something. Toy corpora hide every real failure. |
+| [07-eval-passk](07-eval-passk/) | [Evaluation](../docs/02-agents/evaluation.md) | pass@1 flatters; pass^k is what users experience. Judges need calibrating. |
 
 ## Swapping the model or the provider
 
@@ -62,5 +63,5 @@ the wrong thing to meet while you are still learning what a tool call is.
 
 That is often the lesson, not a bug. Lab 03 prints `PASS`/`FAIL` against a
 known-correct answer. A `FAIL` means the harness ran correctly and the *model*
-got it wrong — which is exactly the gap evaluation
+got it wrong — which is exactly the gap [evaluation](../docs/02-agents/evaluation.md)
 exists to measure, and adding a framework does not close it.
