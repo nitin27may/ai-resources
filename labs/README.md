@@ -31,6 +31,7 @@ have no GPU, 8 GB of RAM, or only a browser.
 | [06-local-rag](06-local-rag/) | [Retrieval](../docs/02-agents/retrieval.md) | Retrieval always returns something. Toy corpora hide every real failure. |
 | [07-eval-passk](07-eval-passk/) | [Evaluation](../docs/02-agents/evaluation.md) | pass@1 flatters; pass^k is what users experience. Judges need calibrating. |
 | [08-tracing](08-tracing/) | [Observability](../docs/02-agents/observability.md) | A trace is a span tree. Token cost is quadratic in turns. |
+| [09-prompt-injection](09-prompt-injection/) | [Safety](../docs/02-agents/safety.md) | Tool output can instruct the agent. Prompt-level defences do not hold. |
 
 ## Swapping the model or the provider
 

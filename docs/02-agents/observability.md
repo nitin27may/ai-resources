@@ -177,5 +177,5 @@ table — for exactly the reason in the section above.
 
 ## Next
 
-Safety and failure modes — what happens when the content your agent reads is
-trying to manipulate it. *(next module; not yet written)*
+[Safety and failure modes](safety.md) — what happens when the content your agent
+reads is trying to manipulate it.
