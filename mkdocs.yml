@@ -182,8 +182,15 @@ extra:
 #
 # Trailing slashes are required: GitHub Pages 301s the unslashed form of a
 # directory index, and there is no reason to spend a redirect hop on our own links.
+#
+# The AI Engineering link below is the topical deep link, added alongside the
+# existing parent-site and sibling links. This site is the one repo with NO
+# dedicated blog post about it, so a category page is the closest honest match --
+# unlike the two sibling doc sites, which each point at a real 12-post series.
+# Swap it for a direct post link if one is ever written about the Knowledge Hub.
 copyright: |
   &copy; 2026 <a href="https://nitinksingh.com/">Nitin Singh</a>
+  &middot; <a href="https://nitinksingh.com/categories/ai-engineering/">AI Engineering articles on the blog</a>
   &middot; <a href="https://nitinksingh.com/e-commerce-agents/">E-Commerce Agents</a>
   &middot; <a href="https://nitinksingh.com/clean-architecture-docker-dotnet-angular/">Clean Architecture Starter</a>
   &middot; <a href="https://nitinksingh.com/mean-docker/">MEAN Stack with Docker</a>
