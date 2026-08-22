@@ -194,8 +194,7 @@ extra:
 # purpose. If those are wanted back, `nav` is the place -- it is already
 # per-site, so it can differ without breaking this.
 copyright: |
-  &copy; 2026 Nitin Singh &middot; MIT License
-  &middot; <a href="https://nitinksingh.com/">nitinksingh.com</a>
+  &copy; 2026 <a href="https://nitinksingh.com/">Nitin Singh</a> &middot; MIT License
   &middot; <a href="https://nitinksingh.com/ai-resources/">AI Knowledge Hub</a>
   &middot; <a href="https://nitinksingh.com/e-commerce-agents/">E-Commerce Agents</a>
   &middot; <a href="https://nitinksingh.com/clean-architecture-docker-dotnet-angular/">Clean Architecture</a>
