@@ -173,17 +173,12 @@ extra:
 
 # Copyright footer text
 #
-# The sibling links are here rather than in `extra.social` on purpose: that block
-# renders icon-only, and an icon carries no anchor text. These three doc sites are
-# published under the same domain and had no inbound link from anywhere on the web,
-# which is why Search Console reported two of them as "URL is unknown to Google" --
-# never crawled once. A footer link on all 44 pages is the cheapest fix, and the
-# anchor text is the part that does the work.
+# Identical on all four doc sites by design, so the family reads as one property
+# -- keep it byte-identical when editing.
 #
-# Trailing slashes are required: GitHub Pages 301s the unslashed form of a
-# directory index, and there is no reason to spend a redirect hop on our own links.
-copyright: |
-  &copy; 2026 <a href="https://nitinksingh.com/">Nitin Singh</a>
-  &middot; <a href="https://nitinksingh.com/e-commerce-agents/">E-Commerce Agents</a>
-  &middot; <a href="https://nitinksingh.com/clean-architecture-docker-dotnet-angular/">Clean Architecture Starter</a>
-  &middot; <a href="https://nitinksingh.com/mean-docker/">MEAN Stack with Docker</a>
+# NOTE: this site's sibling doc-site links used to live here and are now gone.
+# Unlike the three Jekyll siblings, this repo has no nav_external_links, so it
+# currently links out ONLY to the blog (via the name above). The siblings are
+# still reachable from each other and from the blog, so nothing is orphaned --
+# but if outbound links from here are wanted back, `nav` is the place.
+copyright: '&copy; 2026 <a href="https://nitinksingh.com/">Nitin Singh</a> &middot; MIT License'
