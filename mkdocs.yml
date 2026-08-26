@@ -2,7 +2,10 @@ site_name: AI Knowledge Hub
 site_url: https://nitinksingh.com/ai-resources/
 site_description: Your go-to resource for AI knowledge -- from basics to architecture patterns
 repo_url: https://github.com/nitin27may/ai-resources
-repo_name: AI Knowledge Hub
+# `owner/repo`, matching the mcp-generator and ms-graph-mcp siblings. This was
+# "AI Knowledge Hub", which is the site name -- the header widget then read as a
+# second copy of the title rather than as a link to source.
+repo_name: nitin27may/ai-resources
 edit_uri: "?path=/docs/"
 
 # Theme configuration
@@ -38,6 +41,9 @@ theme:
         name: Switch to dark mode
   icon:
     logo: material/book-open-page-variant
+    # Without this Material falls back to a generic Git mark. Both sibling MkDocs
+    # sites set it, so the family rendered inconsistently.
+    repo: fontawesome/brands/github
   font:
     text: Roboto
     code: Roboto Mono
