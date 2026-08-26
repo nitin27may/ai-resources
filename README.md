@@ -2,7 +2,7 @@
 
 A centralized learning resource covering AI concepts, patterns, and tools — from fundamentals to enterprise architecture. Built with [MkDocs Material](https://squidfunk.github.io/mkdocs-material/) and deployed to GitHub Pages.
 
-**Live site**: [https://nitin27may.github.io/ai-resources](https://nitin27may.github.io/ai-resources)
+**Live site**: [https://nitinksingh.com/ai-resources/](https://nitinksingh.com/ai-resources/)
 
 ## Topics Covered
 
