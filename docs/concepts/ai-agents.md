@@ -5,20 +5,50 @@ tags:
   - Agents
 ---
 
-# AI agents
+# What an agent is
 
 !!! abstract "Understand · 40 min · no code"
     **Before this:** [Retrieval and data](retrieval-and-data.md)  ·  **After this:** [Agentic AI](agentic-ai.md)
     **Hands-on version:** [2 The agent loop](../02-agents/the-agent-loop.md)  ·  **In depth:** [Design patterns](../patterns/design-patterns.md)
 
-!!! info "Start with the hands-on module"
-    For the buildable version of this material, see [The agent loop](../02-agents/the-agent-loop.md) and [The harness](../02-agents/the-harness.md).
-    Those build the loop by hand and show what surrounds it. This page is the component overview, kept for orientation and for its workflow-vs-agent section.
+[AI 101](../getting-started/index.md) made the point that a model cannot *do*
+anything — it only produces text. An agent is what you build around that
+limitation.
 
+## An agent is a loop
 
-## What is an AI agent?
+Strip away the vocabulary and an agent is one idea:
 
-AI Agents consist of five core components: **Input**, **Reasoning**, **Tools**, **Memory**, and **Actions/Outputs**. An AI agent uses an LLM to process user inputs, make decisions, call tools or MCP servers to perform actions, and generate responses. 
+> The model is called repeatedly. Each time, it either asks for an action or
+> gives a final answer. Your code performs the requested action, hands back the
+> result, and calls the model again. The loop ends when the model stops asking.
+
+That is the whole mechanism. Not a plan executed step by step, and not a system
+that decides for itself what it is allowed to do — a loop, where the model
+chooses the next step given everything that has happened so far.
+
+Three consequences follow, and they explain most agent behaviour:
+
+- **Nothing else stops it.** The loop ends when the model returns content
+  instead of an action request. If it never does, it runs until you impose a
+  limit. Step and cost budgets are not optional extras.
+- **The model never executes anything.** It emits a structured request — a name
+  and some arguments — and your code decides whether to honour it. Every
+  security question about agents is really a question about that decision.
+- **Each turn resends everything.** The model has no memory, so the whole
+  history goes back every time. This is why agents are expensive in a way that
+  surprises people, and why the context window becomes a live constraint.
+
+!!! warning "Agents do not learn"
+    A common and consequential misreading. The model's weights are frozen. An
+    agent that "learns from feedback" is one whose *software* writes something
+    down and includes it in a later prompt. Nothing improves by itself, and
+    yesterday's mistake will recur tomorrow unless something in your system
+    stored it and puts it back into the context.
+
+## The components
+
+Around that loop sit five parts. 
 
 ### Core components
 
@@ -77,7 +107,7 @@ graph LR
     end
 
     subgraph TOOLS["TOOLS"]
-        style TOOLS fill:#0f766e,stroke:#119b91,stroke-width:3px,color:#121212
+        style TOOLS fill:#0f766e,stroke:#119b91,stroke-width:3px,color:#fff
         T1["Code Execution<br/>Run Python code<br/>Data analysis"]
         T2["Search<br/>Document retrieval<br/>Web search"]
         T3["Custom Functions<br/>API calls<br/>Business logic"]
@@ -134,7 +164,7 @@ graph LR
     %% Styling
     classDef inputStyle fill:#0284c7,stroke:#0270a8,stroke-width:2px,color:#fff
     classDef reasoningStyle fill:#0284c7,stroke:#0270a8,stroke-width:2px,color:#fff
-    classDef toolStyle fill:#0f766e,stroke:#119b91,stroke-width:2px,color:#121212
+    classDef toolStyle fill:#0f766e,stroke:#119b91,stroke-width:2px,color:#fff
     classDef memoryStyle fill:#0f766e,stroke:#119b91,stroke-width:2px,color:#fff
     classDef actionStyle fill:#16a34a,stroke:#15803d,stroke-width:2px,color:#fff
 
@@ -146,19 +176,50 @@ graph LR
 
 ```
 
-## Conceptual overview of AI agents
+## Agent, workflow, or copilot?
 
-!!! abstract "Definition"
-    An autonomous system that perceives its environment, reasons about context, takes actions via tools or APIs, and learns through feedback to achieve defined objectives.
+"Agent" is used for three quite different things, and the differences decide
+cost, reliability and how much can go wrong.
 
-### Core architectural components
+| | **Workflow** | **Agent** | **Copilot** |
+|---|---|---|---|
+| Who decides the steps | You, in code | The model, at runtime | The person |
+| Path through the task | Fixed | Different every run | Person-led |
+| Cost and latency | Predictable | Variable, sometimes wildly | Predictable |
+| Debuggable | Like normal software | Only through traces | Directly |
+| Fails by | Throwing an error | Doing something plausible and wrong | Suggesting something you reject |
+| Reach for it when | The steps are known | The steps genuinely cannot be known in advance | A person should stay accountable |
 
-- **Perception Layer**: Interfaces that receive context or inputs (text, data, voice, sensors, APIs)
-- **Reasoning & Planning Layer**: LLM or symbolic reasoning engine responsible for decision-making
-- **Memory Layer**: Manages contextual memory — short-term (session), long-term (vector DB), and episodic (persistent state)
-- **Action Layer**: Executes actions via APIs, tools, or system commands
-- **Feedback Loop**: Evaluates outcomes and adapts strategies for continuous improvement
-- **Agent Lifecycle**: Initialization → Perception → Reasoning → Action → Evaluation → Learning
+Most production systems that succeed are workflows with model calls inside
+them, or copilots. Fully autonomous agents are the smallest category and the
+hardest to operate — which is the reverse of how they are discussed.
+
+**The order to try things:** a function, then a workflow with model calls at the
+uncertain steps, then a single agent with a small set of tools, then multiple
+agents. Each step multiplies what can go wrong. Take it only when the previous
+one has demonstrably failed.
+
+## Autonomy is a dial, not a switch
+
+Between "suggests" and "acts alone" there are useful settings, and picking one
+deliberately is most of the design work.
+
+| Level | The agent | Suits |
+|---|---|---|
+| **Suggest** | Proposes; a person performs the action | High-stakes, low-volume |
+| **Confirm** | Prepares the action; a person approves it | Irreversible actions: payments, deletion, external messages |
+| **Act and report** | Acts, then reports what it did | Reversible actions with an audit trail |
+| **Act freely** | Acts within limits set in code | Read-only work, low-value reversible writes |
+
+The dial can differ per tool in the same agent. Searching a knowledge base can
+be free; issuing a refund can require confirmation. That is a better design than
+picking one level for the whole system.
+
+!!! warning "Approval fatigue is a real failure mode"
+    A confirmation step only works while people read it. Ask someone to approve
+    forty actions an hour and they will approve the forty-first without looking.
+    If everything needs approval, nothing is really approved. Reserve it for the
+    actions that genuinely cannot be undone, and make those few.
 
 ## When to use AI agents?
 
@@ -187,6 +248,35 @@ graph LR
 
 !!! note "Complex multi-step tasks"
     A single AI agent might struggle with complex tasks that involve multiple steps and decision points. Such tasks might require a large number of tools (for example, over 20), which a single agent cannot feasibly manage. In these cases, consider using **workflows** instead.
+
+---
+
+## Why agents are hard
+
+The gap between a demo and a system that works is wider here than almost
+anywhere else in software, for reasons that are structural rather than a matter
+of effort.
+
+**Errors compound across steps.** If each step is 95% reliable, a five-step task
+succeeds about 77% of the time and a ten-step task about 60%. Nothing is broken;
+that is just what multiplying does. Reliability per step is the thing to
+improve, and shorter tasks are more valuable than they look.
+
+**Failure is plausible, not loud.** Ordinary software throws an exception. An
+agent produces a confident, well-formed, wrong result and continues. Your
+monitoring has to look for wrongness, not for errors.
+
+**The same input gives different runs.** Two identical requests can take
+different paths. Testing has to be statistical rather than exact — see
+[evaluation](../02-agents/evaluation.md).
+
+**Cost grows faster than the task.** Every turn resends the whole history, so
+cost rises with roughly the square of the number of turns. A task that takes
+twice as many steps costs about four times as much.
+
+**Debugging needs a trace.** "Why did it do that?" is unanswerable without a
+record of every call, tool result and decision. Tracing is a prerequisite, not a
+maturity milestone — see [observability](../02-agents/observability.md).
 
 ---
 
@@ -301,7 +391,7 @@ graph LR
     style Start fill:#0284c7,stroke:#0270a8,stroke-width:3px,color:#ffffff,font-weight:bold
     style Func1 fill:#0284c7,stroke:#0270a8,stroke-width:4px,color:#ffffff,font-weight:bold
     style Agent1 fill:#0f766e,stroke:#119b91,stroke-width:4px,color:#ffffff,font-weight:bold
-    style Func2 fill:#0f766e,stroke:#119b91,stroke-width:4px,color:#121212,font-weight:bold
+    style Func2 fill:#0f766e,stroke:#119b91,stroke-width:4px,color:#fff,font-weight:bold
     style Agent2 fill:#0284c7,stroke:#0270a8,stroke-width:4px,color:#ffffff,font-weight:bold
     style End fill:#16a34a,stroke:#15803d,stroke-width:3px,color:#ffffff,font-weight:bold
     

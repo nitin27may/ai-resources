@@ -41,9 +41,13 @@ checks = {
  "non-palette mermaid colours":   sum(1 for _,_,l in mermaid_lines()
                                       for c in re.findall(r"#[0-9a-fA-F]{3,6}", l)
                                       if c.lower() not in APPROVED),
- "styled nodes missing color:#fff": sum(1 for _,_,l in mermaid_lines()
-                                        if re.search(r"(fill:#|style \w+ fill)", l)
-                                        and "color:#" not in l),
+ # A styled node must carry white label text. This catches both the missing
+ # case and the wrong case: three subgraph styles carried color:#121212 on a
+ # dark teal fill, invisible in dark mode, and the rendered-contrast check did
+ # not see them because subgraph labels sit outside g.node.
+ "styled nodes without color:#fff": sum(1 for _,_,l in mermaid_lines()
+                                        if re.search(r"fill:#[0-9a-fA-F]{3,6}", l)
+                                        and not re.search(r"color:#(fff|ffffff)\b", l, re.I)),
  "\\n inside mermaid labels":     sum(l.count("\\n") for _,_,l in mermaid_lines()),
  "org-internal voice":            sum(1 for _,_,l in prose_lines() if ORG.search(l)),
  "unicode emojis":                sum(1 for _,_,l in prose_lines()
