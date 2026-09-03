@@ -1,16 +1,14 @@
-version: '3.8'
-
+# `version:` is obsolete in Compose v2 and was removed.
 services:
-  mkdocs:
+  docs:
     build:
       context: .
-      dockerfile: Dev.Dockerfile
-    container_name: ea-notes-mkdocs
+      dockerfile: Dockerfile
+    container_name: ai-resources-docs
     ports:
-      - "8000:8000"
+      - "${DOCS_PORT:-8000}:8000"
     volumes:
-      - .:/docs
-    environment:
-      - ENABLE_PDF_EXPORT=1
-    command: mkdocs serve --dev-addr=0.0.0.0:8000 --livereload
+      # Live reload. :ro because nothing in the container should write to the
+      # working tree; mkdocs serve builds in memory.
+      - .:/docs:ro
     restart: unless-stopped

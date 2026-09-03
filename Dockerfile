@@ -1,47 +1,31 @@
+# Single stage: this image only ever runs `mkdocs serve` for local authoring.
+# It is not the deployment artifact -- GitHub Actions builds the static site and
+# publishes that. There was a second, byte-identical Dev.Dockerfile; only one is
+# needed and two guarantee they drift.
 FROM python:3.12-slim
 
-# Install system dependencies for WeasyPrint and build tools
-RUN apt-get update && apt-get install -y \
-    libpango-1.0-0 \
-    libpangoft2-1.0-0 \
-    libglib2.0-0 \
-    libcairo2 \
-    libharfbuzz0b \
-    libpangocairo-1.0-0 \
-    libgdk-pixbuf-2.0-0 \
-    fonts-dejavu \
-    # Build dependencies
-    gcc \
-    g++ \
-    make \
-    libffi-dev \
-    # Git for revision date plugin
-    git \
-    && apt-get clean && rm -rf /var/lib/apt/lists/*
+# git is required by the git-revision-date-localized plugin, which reads commit
+# dates to show "last updated" on each page.
+RUN apt-get update && apt-get install -y --no-install-recommends \
+        git \
+    && rm -rf /var/lib/apt/lists/*
 
-RUN pip install --upgrade pip
+# Dependencies first, so editing content does not invalidate this layer.
+# Installed from requirements.txt rather than a hardcoded list: the previous
+# Dockerfiles pinned a different PDF plugin than requirements.txt did, for an
+# export that was never enabled.
+COPY requirements.txt /tmp/requirements.txt
+RUN pip install --no-cache-dir --upgrade pip \
+    && pip install --no-cache-dir -r /tmp/requirements.txt
 
-# Install MkDocs and required plugins based on mkdocs.yml configuration
-RUN pip install \
-    mkdocs>=1.5.0 \
-    mkdocs-material>=9.4.0 \
-    mkdocs-material-extensions \
-    pymdown-extensions>=10.3.0 \
-    mkdocs-git-revision-date-localized-plugin>=1.2.0
-
-RUN pip install mkdocs-glightbox
-
-# Install mkdocs-with-pdf - this uses WeasyPrint and has no browser dependencies
-RUN pip install mkdocs-to-pdf
-
-# Set environment variable to enable PDF export
-ENV ENABLE_PDF_EXPORT=1
-
-# Set working directory
+# Run as a non-root user.
+RUN useradd --create-home --uid 1000 docs
 WORKDIR /docs
+USER docs
 
-# Expose MkDocs development server port
 EXPOSE 8000
 
-# Start MkDocs development server on container startup
-CMD ["mkdocs", "serve", "--dev-addr=0.0.0.0:8000"]
+HEALTHCHECK --interval=30s --timeout=5s --start-period=20s --retries=3 \
+    CMD python -c "import urllib.request,sys; sys.exit(0 if urllib.request.urlopen('http://127.0.0.1:8000/').status==200 else 1)"
+
+CMD ["mkdocs", "serve", "--dev-addr=0.0.0.0:8000", "--livereload"]
