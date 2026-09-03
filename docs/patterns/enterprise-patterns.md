@@ -1,5 +1,5 @@
 ---
-description: Deploying AI at organisational scale: governance, risk, integration and rollout.
+description: The five shapes AI work takes in an organisation, how to choose between them, and why these projects actually fail.
 tags:
   - Understand
   - Patterns
@@ -14,7 +14,9 @@ tags:
 
 Enterprise AI patterns are proven architectural approaches that organizations use to integrate AI into business processes at scale. Each pattern addresses a different class of problem — from augmenting human work to fully automating document pipelines.
 
-This page covers five patterns commonly seen in enterprise AI adoption. Understanding these patterns helps teams choose the right approach for their use case and avoid over-engineering or under-investing.
+This page covers the five patterns you will actually meet, how to choose between
+them, and — the section most worth your time — why these projects fail, which is
+almost never for the reason the post-mortem gives.
 
 ---
 
@@ -216,13 +218,87 @@ graph TD
 
 The right pattern depends on the problem, the users, and the organizational context. Many real-world solutions combine multiple patterns.
 
-| Pattern | Best For | Human Involvement | Complexity |
-|---------|----------|-------------------|------------|
-| Copilot | Augmenting knowledge workers | High (human in the loop) | Medium |
-| Autonomous Agent | Automating repetitive processes | Low (human on/out of the loop) | High |
-| IDP | Document-heavy workflows | Medium (validation and exceptions) | Medium |
-| Conversational AI | Self-service and support | Medium (escalation paths) | Medium |
-| Agentic RAG | Complex information retrieval | Low to medium | High |
+| Pattern | Best for | Human involvement | Complexity | Time to value |
+|---|---|---|---|---|
+| Copilot | Augmenting knowledge workers | High — human in the loop | Medium | Weeks |
+| Intelligent document processing | Document-heavy workflows | Medium — validation and exceptions | Medium | Weeks to months |
+| Conversational AI | Self-service and support | Medium — escalation paths | Medium | Months |
+| Agentic RAG | Complex information retrieval | Low to medium | High | Months |
+| Autonomous agent | Automating repetitive processes | Low — human on or out of the loop | High | Months, often longer |
+
+### If you are choosing your first one
+
+Take them roughly in that order. It is not arbitrary: it runs from most
+forgiving to least.
+
+**Copilot first, nearly always.** A person reviews every output, so a wrong
+answer is a rejected suggestion rather than an incident. You learn what the
+model is good at on your data at the lowest possible stakes, and the same
+retrieval layer you build for it is reusable by everything after.
+
+**Then document processing**, if you have the volume. It is narrow, the output
+is checkable against the source, and the value is easy to count.
+
+**Autonomous agents last.** Not because they do not work, but because they are
+where every earlier weakness — retrieval quality, permissions, evaluation,
+observability — becomes an incident rather than an annoyance. An organisation
+that cannot yet measure whether its copilot is helping cannot safely run an
+agent.
+
+!!! tip "The pattern is a starting point, not a category"
+    Real systems mix them. A copilot with an agentic retrieval layer is common
+    and sensible. Choose the human-involvement level per action, not per
+    system — see
+    [autonomy is a dial](../concepts/ai-agents.md#autonomy-is-a-dial-not-a-switch).
+
+---
+
+## Why these projects fail
+
+Little of this is about the model, which is why post-mortems that blame model
+choice tend to be wrong.
+
+**There is no definition of success.** The most common failure by a distance. A
+pilot ships, everyone agrees it is impressive, and nobody can say whether it
+helped. Without a number agreed *before* the build — hours saved, deflection
+rate, error rate against today's manual process — the project cannot be
+defended at budget time and quietly ends. Decide how you will measure it while
+it is still cheap to change what you are measuring.
+
+**The data was not ready.** Retrieval quality is bounded by the corpus. If the
+authoritative document is one of four near-identical copies, three of them
+outdated, no amount of model quality fixes it. This is usually discovered late,
+and it is usually the real reason for poor answers.
+
+**Permissions were an afterthought.** The demo indexes everything, works
+beautifully, and then cannot go live because it will answer questions about
+salaries. Retrofitting per-user access control into a retrieval layer is close
+to a rebuild. Design it in from the first index — see
+[retrieval and permissions](../concepts/retrieval-and-data.md#retrieval-and-permissions).
+
+**It was built for the demo, not the workflow.** A separate chat interface that
+people must remember to visit gets used for two weeks. The successful pattern is
+almost always AI inside the tool people already have open, which is precisely
+why the copilot pattern dominates.
+
+**Nobody owns it after launch.** These systems drift: documents change, usage
+patterns change, model versions change underneath you. Without an owner and a
+regular quality check, a system that worked at launch degrades invisibly,
+because nothing throws an error when answers get worse.
+
+**The 80% that finishes the job was never scoped.** Demos handle the common
+case. Production is exceptions, malformed inputs, edge cases and the long tail
+of "what happens when it cannot answer". Budget for it explicitly, because it is
+the majority of the work and it never appears in the estimate.
+
+!!! warning "Pilot purgatory"
+    The characteristic failure of enterprise AI is not a system that breaks. It
+    is a portfolio of impressive pilots, none of which ever reaches production,
+    because each stalls on the same unowned problems: data quality, access
+    control, and no agreed measure of success.
+
+    Those three are organisational, not technical, and they are cheaper to fix
+    once for the organisation than repeatedly per project.
 
 ---
 
