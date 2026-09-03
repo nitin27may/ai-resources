@@ -14,6 +14,8 @@ tags:
     **Before this:** [Chunking strategies](chunking-strategies.md)  ·  **After this:** [GraphRAG](graphrag.md)
     **Hands-on version:** [5 Retrieval](../02-agents/retrieval.md)
 
+**Verified as of 2026-09-02.**
+
 !!! abstract
     Vector databases store and search high-dimensional embeddings using approximate nearest neighbor (ANN) algorithms. This page covers how they work, compares the major options, and gives you a practical decision framework for choosing between managed cloud services, self-hosted options, and lightweight alternatives.
 
@@ -54,6 +56,58 @@ Raw ANN search gives you the nearest vectors — but in practice you almost alwa
 
 Qdrant's payload filtering and Azure AI Search's hybrid filter support are both designed to handle this correctly.
 
+!!! warning "Post-filtering is not access control"
+    The distinction above is usually presented as a performance question. It is
+    also a security one.
+
+    If you retrieve first and filter afterwards, the restricted content was
+    read, ranked and returned before your filter saw it. That is survivable
+    inside a single trust boundary. It is not survivable when the filter is the
+    thing enforcing which tenant or which user may see a document, because any
+    bug, any bypassed code path, and the content is already in hand — and one
+    step later it is in a prompt.
+
+    Enforce identity and tenancy as a **pre-filter**, in the query the database
+    executes. Treat post-filtering as an optimisation for non-security
+    predicates only.
+
+### Multi-tenancy and per-user access
+
+Every serious retrieval system eventually needs "this user may see these
+documents", and it is far cheaper to design in than to retrofit.
+
+**Store the authorisation with the chunk.** At indexing time, write the groups,
+roles or tenant identifier that may read it into the chunk's metadata. The unit
+of access control has to be the chunk, because the chunk is the unit of
+retrieval — a document-level check does not help once fragments are indexed
+separately.
+
+**Pass identity into every query.** The caller's groups become a filter on the
+search itself. No filter should ever mean no results, rather than all results:
+make the parameter required, so a forgotten filter fails loudly instead of
+leaking quietly.
+
+**Choose an isolation model deliberately.**
+
+| Model | How | Suits |
+|---|---|---|
+| **Shared index, metadata filter** | One index, tenant ID on every chunk | Many small tenants; cheapest, and correctness rests entirely on the filter |
+| **Index per tenant** | Separate index or collection each | Fewer, larger tenants; strong isolation, more to operate |
+| **Cluster per tenant** | Separate deployment | Regulated or contractual isolation; most expensive |
+
+Shared-with-filter is the common default and the one that fails hardest when it
+fails, because a single missing predicate exposes everyone. If you use it, make
+the filter impossible to omit in code, and test that with a case that would
+otherwise leak.
+
+**Plan for deletion and revocation.** Access changes and people leave. Re-index
+or update metadata on permission changes, and remember that a deletion request
+must reach the vector index and any long-term agent memory, not only the
+primary database. Retrieval systems make copies; deletion has to follow them.
+
+See [retrieval and permissions](../concepts/retrieval-and-data.md#retrieval-and-permissions)
+for the same point at the overview level.
+
 ---
 
 ## Vector database comparison
@@ -92,7 +146,7 @@ flowchart LR
 
 **Chunk** — Split documents into overlapping segments (typically 256–512 tokens with 10–20% overlap). Chunk size affects both retrieval precision and context quality.
 
-**Embed** — Pass each chunk through an embedding model (e.g., `text-embedding-3-large`, `text-embedding-ada-002`). This produces a fixed-size float vector.
+**Embed** — Pass each chunk through an embedding model (e.g., `text-embedding-3-large` or `text-embedding-3-small`). This produces a fixed-size float vector.
 
 **Upsert** — Write the vector + metadata (source, chunk ID, text, timestamp, tenant ID) to the database.
 

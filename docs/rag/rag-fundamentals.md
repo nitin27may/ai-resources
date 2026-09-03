@@ -180,6 +180,43 @@ Advanced RAG adds processing steps before retrieval, improves the retrieval step
 
 ---
 
+### Contextual retrieval
+
+A chunk taken out of a document loses what the document gave it. "The limit is
+50 per minute" is useless once separated from the page that said which API it
+belongs to, and it embeds badly too, because the embedding has no idea what the
+sentence is about.
+
+Contextual retrieval fixes this at indexing time. Before embedding each chunk,
+prepend a short, chunk-specific summary of where it came from, generated once
+from the surrounding document:
+
+```
+Original chunk:
+  "The limit is 50 per minute, after which requests are queued."
+
+Indexed as:
+  "From the Billing API reference, section 4.2 Rate limiting, describing
+   the Standard tier. The limit is 50 per minute, after which requests
+   are queued."
+```
+
+The stored text becomes self-describing, so it embeds closer to the questions
+people actually ask and survives being retrieved alone. Anthropic reported large
+reductions in retrieval failure from this technique, with a further improvement
+when combined with keyword search and reranking.
+
+The trade is an indexing-time cost: one model call per chunk, once. Prompt
+caching makes this far cheaper than it first appears, since the surrounding
+document is the same across all of its chunks. Compared with the recurring cost
+of wrong answers, it is usually the better side of the trade.
+
+It also stacks with everything else on this page rather than replacing it —
+contextual retrieval improves what is stored, hybrid search improves what is
+found, reranking improves what is kept.
+
+---
+
 ## Modular RAG
 
 Modular RAG treats the pipeline as a set of interchangeable components rather than a fixed sequence. The key insight is that different query types need different pipelines.
