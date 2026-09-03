@@ -53,17 +53,28 @@ Instead of writing rules manually, you feed the system examples and it figures o
 !!! tip "Think of it Like This"
     An LLM is like an extremely well-read assistant that has absorbed vast amounts of written knowledge. It does not "think" like a human, but it can produce remarkably useful responses by predicting what text should come next based on patterns it learned.
 
-### Popular LLMs You May Have Heard Of
+### The kinds of model you will meet
 
-| Model | Created By | Key Strength |
-|-------|-----------|--------------|
-| **GPT-4o / GPT-4.1** | OpenAI | General-purpose, multimodal (text + images) |
-| **Claude** | Anthropic | Long-context analysis, safety-focused |
-| **Gemini** | Google | Multimodal, integrated with Google ecosystem |
-| **Llama** | Meta | Open-source, customizable |
-| **Phi** | Microsoft | Small, fast, runs on-device |
+Specific model names change every few months, and any list of them is wrong
+within a season. What lasts is the shape of the choice. There are three broad
+tiers, and picking the right tier matters far more than picking the right name
+inside it.
 
----
+| Tier | What it is | Typical use |
+|---|---|---|
+| **Frontier, hosted** | The largest and most capable models, run by a vendor and reached over an API. Highest cost per token, best at hard reasoning and long context. | Work where quality dominates cost: analysis, agents, code |
+| **Small and open-weight** | Smaller models you can download and run yourself, on your own hardware or a cheap server. | High volume, privacy-sensitive, or offline work; the labs on this site |
+| **On-device** | Models small enough to run on a phone or laptop chip, often with hardware acceleration. | Latency-critical or fully offline features |
+
+For what exists today and what it costs, go to the source rather than to any
+article, including this one:
+[Anthropic](https://docs.claude.com/en/docs/about-claude/models),
+[OpenAI](https://developers.openai.com/api/docs/models),
+[Google](https://ai.google.dev/gemini-api/docs/models),
+[Microsoft's Azure catalogue](https://learn.microsoft.com/en-us/azure/foundry/foundry-models/concepts/models-sold-directly-by-azure),
+and [Meta](https://www.llama.com/). Each publishes a live model page; every
+secondary summary, this one included, is a snapshot that starts ageing the day
+it is written.
 
 ## Key Terms to Know
 
@@ -95,71 +106,34 @@ Here are the essential terms you will encounter throughout this site:
 
 ---
 
-## How AI Fits Into Our Organization
+## Where to go next
 
-We use AI across several areas:
+You have the vocabulary. The next nine pages of the reading path build on this
+one in order, and each needs only the pages before it.
 
-<div class="grid cards" markdown>
+| # | Next | Why it follows |
+|---|---|---|
+| 2 | [How models work](../concepts/foundation-and-models.md) | Tokens, context windows and inference, one level below this page |
+| 3 | [Prompting](../concepts/prompting-and-techniques.md) | How to actually get what you want out of a model |
+| 4 | [Retrieval and data](../concepts/retrieval-and-data.md) | Giving the model your documents, so it stops guessing |
+| 5 | [What an agent is](../concepts/ai-agents.md) | Letting the model act, not just answer |
 
--   :material-robot-outline:{ .lg .middle } __AI Agents__
+The full route, with times, is on [Choose your path](../00-start-here/index.md).
 
-    Autonomous systems that can plan, execute tasks, and integrate with our tools and data.
+**If you write code**, the [build path](../00-start-here/the-path.md) covers the
+same ground as something you run: ten modules, ten labs, all free and local.
+Read pages 2 and 5 above first, then start there.
 
-    [:octicons-arrow-right-24: Learn about AI Agents](../concepts/ai-agents.md)
+**Keep open while you read:** the [glossary](../glossary/index.md), for any term
+that is new.
 
--   :material-database-search-outline:{ .lg .middle } __RAG & Knowledge Systems__
+## Go deeper
 
-    Connecting AI to our enterprise data so it can answer questions using our actual documents and policies.
-
-    [:octicons-arrow-right-24: Learn about RAG](../concepts/retrieval-and-data.md)
-
--   :material-account-voice:{ .lg .middle } __Copilots & Assistants__
-
-    AI embedded in our daily tools to help with writing, analysis, coding, and decision-making.
-
-    [:octicons-arrow-right-24: See Enterprise Patterns](../patterns/enterprise-patterns.md)
-
--   :material-tools:{ .lg .middle } __Frameworks & Platforms__
-
-    The specific tools and frameworks we use to build AI solutions.
-
-    [:octicons-arrow-right-24: View Our Stack](../tools-and-frameworks/index.md)
-
-</div>
-
----
-
-## Where to Go Next
-
-=== "Business Analyst / PM"
-
-    1. Browse the [Glossary](../glossary/index.md) to build vocabulary
-    2. Read [Foundation & Models](../concepts/foundation-and-models.md) to understand the building blocks
-    3. Explore [Enterprise Patterns](../patterns/enterprise-patterns.md) to see how AI fits into business workflows
-
-=== "Software Engineer"
-
-    1. Dive into [AI Agents](../concepts/ai-agents.md) and [Agentic AI](../concepts/agentic-ai.md)
-    2. Study [Design Patterns](../patterns/design-patterns.md) for implementation guidance
-    3. Review [Tools & Frameworks](../tools-and-frameworks/index.md) for our tech stack
-
-=== "Co-op Student / New Joiner"
-
-    1. Read this page fully -- you are here!
-    2. Work through [Concepts](../concepts/index.md) one topic at a time
-    3. Keep the [Glossary](../glossary/index.md) open as a reference
-
-=== "Leader / Decision Maker"
-
-    1. Skim [Foundation & Models](../concepts/foundation-and-models.md) for the landscape
-    2. Read [Enterprise Patterns](../patterns/enterprise-patterns.md) for strategic context
-    3. Check [Tools & Frameworks](../tools-and-frameworks/index.md) for what we invest in
-
----
-
-## References
-
-- [Microsoft AI Fundamentals Learning Path](https://learn.microsoft.com/en-us/training/paths/get-started-with-artificial-intelligence-on-azure/)
-- [Google Machine Learning Crash Course](https://developers.google.com/machine-learning/crash-course)
-- [OpenAI Documentation](https://platform.openai.com/docs/overview)
-- [Anthropic Documentation](https://docs.anthropic.com/)
+- [Google's Machine Learning Crash Course](https://developers.google.com/machine-learning/crash-course)
+  — free, and the clearest introduction to what "learning from data" means if
+  you want the layer beneath this page.
+- [Microsoft Learn: get started with AI apps and agents](https://learn.microsoft.com/en-us/training/paths/get-started-ai-apps-agents/)
+  — a structured path with hands-on modules, free to work through.
+- [Anthropic's documentation](https://docs.claude.com/) and
+  [OpenAI's](https://developers.openai.com/api/docs) — the primary sources.
+  Prefer them to any summary, including this site, whenever a detail matters.

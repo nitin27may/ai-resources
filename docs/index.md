@@ -2,189 +2,111 @@
 hide:
   - navigation
   - toc
-description: A hands-on path from a model on your laptop to an agent in production — ten modules, ten labs, all free and local.
 tags:
   - Start here
   - Home
+description: A free path from AI basics to agents in production. Read to understand, or build ten labs that run on your own machine.
 ---
 
 # AI Knowledge Hub
 
-Your go-to resource for understanding AI -- from foundational concepts to architecture patterns. Built for everyone in the organization, regardless of technical background.
+An open reference on how modern AI systems actually work, from the first
+explanation of what a language model is through to running an agent in
+production. Written for readers and builders alike, whatever their technical
+background.
+
+Everything here is free. The hands-on half runs against a model on your own
+machine: no account, no API key, no cost.
 
 ---
 
-## Find Your Path
+## Where do you want to start?
 
 <div class="grid cards" markdown>
 
--   :material-school-outline:{ .lg .middle } __New to AI?__
+-   :material-book-open-variant:{ .lg .middle } __Understand AI, no code__
 
     ---
 
-    Start here to understand the basics -- what AI is, how LLMs work, and why it matters for your role.
+    Ten pages, four to five hours. What these systems are, how they work, where
+    they fail, and how to judge a claim about them.
 
-    [:octicons-arrow-right-24: Getting Started](getting-started/index.md)
+    [:octicons-arrow-right-24: The reading path](00-start-here/index.md)
 
--   :material-book-open-variant:{ .lg .middle } __Learn the Concepts__
-
-    ---
-
-    Deep dive into AI topics -- models, RAG, agents, prompting, fine-tuning, and more.
-
-    [:octicons-arrow-right-24: Explore Concepts](concepts/index.md)
-
--   :material-database-search:{ .lg .middle } __RAG & Knowledge Systems__
+-   :material-console:{ .lg .middle } __Build an agent__
 
     ---
 
-    Production-depth coverage of embeddings, chunking, vector databases, GraphRAG, and evaluation.
+    Ten modules, ten labs. Start with a model on your laptop and finish with an
+    agent that survives retries, injection and a real budget.
 
-    [:octicons-arrow-right-24: Explore RAG](rag/index.md)
+    [:octicons-arrow-right-24: The build path](00-start-here/the-path.md)
 
--   :material-code-braces:{ .lg .middle } __AI Developer Tools__
-
-    ---
-
-    GitHub Copilot, Claude Code, Copilot Extensions, and the Model Context Protocol.
-
-    [:octicons-arrow-right-24: View Tools](ai-dev-tools/index.md)
-
--   :material-sitemap:{ .lg .middle } __Architecture Patterns__
+-   :material-format-list-text:{ .lg .middle } __Look something up__
 
     ---
 
-    Design patterns and principles for building AI agent systems -- for developers and architects.
+    Seventy-plus terms in plain English, a vetted reading list with a reason to
+    trust each item, and official documentation by vendor.
 
-    [:octicons-arrow-right-24: View Patterns](patterns/index.md)
-
--   :material-format-list-text:{ .lg .middle } __Quick Reference__
-
-    ---
-
-    Look up any AI term instantly. A searchable glossary covering 70+ terms explained in plain English.
-
-    [:octicons-arrow-right-24: Open Glossary](glossary/index.md)
-
--   :material-tools:{ .lg .middle } __Tools & Frameworks__
-
-    ---
-
-    What we use in our organization -- Semantic Kernel, LangChain, Azure AI, and more.
-
-    [:octicons-arrow-right-24: View Tools](tools-and-frameworks/index.md)
-
--   :material-link-variant:{ .lg .middle } __References__
-
-    ---
-
-    Curated links to official documentation, learning resources, and research.
-
-    [:octicons-arrow-right-24: Browse References](references/index.md)
+    [:octicons-arrow-right-24: Glossary](glossary/index.md)
 
 </div>
 
 ---
 
-## Who Is This For?
+## How this site is layered
 
-Not sure where to start? [View structured learning paths →](00-start-here/the-path.md)
+Most topics appear more than once, at different depths. That is deliberate. Each
+page tells you which layer it is on and links to the same idea one level up or
+down, so you can go as deep as you need and stop there.
 
-!!! tip "Business Analysts & Product Managers"
-    Start with [Getting Started](getting-started/index.md) and the [Glossary](glossary/index.md) to build your AI vocabulary. Then explore [Enterprise Patterns](patterns/enterprise-patterns.md) for understanding how AI is deployed at scale.
+| Layer | What it gives you | Code |
+|---|---|---|
+| __[Understand](concepts/index.md)__ | The concept in plain language, with no prerequisites | None |
+| __[Build](00-start-here/the-path.md)__ | The same idea as something you run, break, and fix | Every page |
+| __[Go deeper](rag/index.md)__ | Design-level depth for builders and architects | Some |
+| __[Reference](glossary/index.md)__ | Glossary, vetted reading, official sources | None |
 
-!!! info "Software Engineers & Developers"
-    Follow the [Developer Learning Path](00-start-here/the-path.md): Concepts → RAG & Knowledge Systems → AI Developer Tools. The [RAG section](rag/index.md) and [AI Dev Tools section](ai-dev-tools/index.md) are specifically built for you.
-
-!!! note "Co-op Students & New Joiners"
-    Welcome! Start with [Getting Started](getting-started/index.md) for a beginner-friendly introduction, use the [Glossary](glossary/index.md) whenever you encounter unfamiliar terms, and follow the [Learning Paths](00-start-here/the-path.md) to find the right route.
-
-!!! abstract "Leaders & Decision Makers"
-    Focus on [Getting Started](getting-started/index.md) for the big picture, [Enterprise Patterns](patterns/enterprise-patterns.md) for understanding AI architectures, and [Safety & Responsible AI](concepts/safety-and-responsible-ai.md) for governance and risk.
-
----
-
-## Site Map
-
-```mermaid
-graph TD
-    A[AI Knowledge Hub] --> B[Getting Started]
-    A --> C[Concepts]
-    A --> R[RAG & Knowledge Systems]
-    A --> T[AI Developer Tools]
-    A --> D[Patterns]
-    A --> E[Glossary]
-    A --> F[Tools & Frameworks]
-    A --> G[References]
-
-    B --> B1[AI 101]
-    B --> B2[Learning Paths]
-
-    C --> C1[Foundation & Models]
-    C --> C2[Retrieval & Data]
-    C --> C3[AI Agents]
-    C --> C4[Agentic AI]
-    C --> C5[Prompting]
-    C --> C6[Fine-Tuning]
-    C --> C7[Safety & RAI]
-    C --> C8[Infrastructure]
-
-    R --> R1[RAG Fundamentals]
-    R --> R2[Embeddings]
-    R --> R3[Chunking Strategies]
-    R --> R4[Vector Databases]
-    R --> R5[GraphRAG]
-    R --> R6[RAG Evaluation]
-
-    T --> T1[GitHub Copilot]
-    T --> T2[Copilot CLI & Extensions]
-    T --> T3[Claude Code]
-    T --> T4[Claude Code Skills]
-    T --> T5[MCP]
-
-    D --> D1[Design Patterns]
-    D --> D2[Enterprise Patterns]
-    D --> D3[Design Principles]
-    D --> D4[Code Quality Pipeline]
-
-    style A fill:#004987,stroke:#003665,stroke-width:3px,color:#fff
-    style B fill:#0d9488,stroke:#0b7a72,stroke-width:2px,color:#fff
-    style C fill:#0284c7,stroke:#0270a8,stroke-width:2px,color:#fff
-    style R fill:#0284c7,stroke:#0270a8,stroke-width:2px,color:#fff
-    style T fill:#0284c7,stroke:#0270a8,stroke-width:2px,color:#fff
-    style D fill:#0284c7,stroke:#0270a8,stroke-width:2px,color:#fff
-    style E fill:#0d9488,stroke:#0b7a72,stroke-width:2px,color:#fff
-    style F fill:#0d9488,stroke:#0b7a72,stroke-width:2px,color:#fff
-    style G fill:#0d9488,stroke:#0b7a72,stroke-width:2px,color:#fff
-    style B1 fill:#14b8a6,stroke:#0d9488,color:#fff
-    style B2 fill:#14b8a6,stroke:#0d9488,color:#fff
-    style C1 fill:#38bdf8,stroke:#0284c7,color:#fff
-    style C2 fill:#38bdf8,stroke:#0284c7,color:#fff
-    style C3 fill:#38bdf8,stroke:#0284c7,color:#fff
-    style C4 fill:#38bdf8,stroke:#0284c7,color:#fff
-    style C5 fill:#38bdf8,stroke:#0284c7,color:#fff
-    style C6 fill:#38bdf8,stroke:#0284c7,color:#fff
-    style C7 fill:#38bdf8,stroke:#0284c7,color:#fff
-    style C8 fill:#38bdf8,stroke:#0284c7,color:#fff
-    style R1 fill:#38bdf8,stroke:#0284c7,color:#fff
-    style R2 fill:#38bdf8,stroke:#0284c7,color:#fff
-    style R3 fill:#38bdf8,stroke:#0284c7,color:#fff
-    style R4 fill:#38bdf8,stroke:#0284c7,color:#fff
-    style R5 fill:#38bdf8,stroke:#0284c7,color:#fff
-    style R6 fill:#38bdf8,stroke:#0284c7,color:#fff
-    style T1 fill:#38bdf8,stroke:#0284c7,color:#fff
-    style T2 fill:#38bdf8,stroke:#0284c7,color:#fff
-    style T3 fill:#38bdf8,stroke:#0284c7,color:#fff
-    style T4 fill:#38bdf8,stroke:#0284c7,color:#fff
-    style T5 fill:#38bdf8,stroke:#0284c7,color:#fff
-    style D1 fill:#38bdf8,stroke:#0284c7,color:#fff
-    style D2 fill:#38bdf8,stroke:#0284c7,color:#fff
-    style D3 fill:#38bdf8,stroke:#0284c7,color:#fff
-    style D4 fill:#38bdf8,stroke:#0284c7,color:#fff
-```
+Retrieval, for example, is one page in Understand, one module with a lab in
+Build, and six pages in Go deeper. You can [browse by tag](tags.md) to see every
+layer of a single topic at once.
 
 ---
 
-## What's New
+## Who this is for
 
-Check [What's New](whats-new/index.md) for the latest updates and announcements.
+!!! tip "Analysts, product managers and leaders"
+    Follow the [reading path](00-start-here/index.md). It is written to be read
+    end to end with no code. If you are evaluating a proposal or a vendor,
+    [Safety and responsible AI](concepts/safety-and-responsible-ai.md) and
+    [Enterprise AI patterns](patterns/enterprise-patterns.md) are the two pages
+    that will change what you ask for.
+
+!!! info "Engineers"
+    Skim the reading path for the vocabulary, then take the
+    [build path](00-start-here/the-path.md). Ten modules, each ending in code
+    that runs locally. Depth on retrieval is in
+    [Retrieval in depth](rag/index.md); your daily tooling is in
+    [Developer tools](ai-dev-tools/index.md).
+
+!!! note "Students and new joiners"
+    Start with [AI 101](getting-started/index.md), keep the
+    [glossary](glossary/index.md) open, and work through the reading path in
+    order. Then, if you write code, do the build path. Nothing in it costs money.
+
+!!! abstract "Architects"
+    [Design patterns](patterns/design-patterns.md) and
+    [Design principles](patterns/design-principles.md) for structure,
+    [Frameworks and platforms](tools-and-frameworks/index.md) for the current
+    landscape, and [Production](02-agents/production.md) for what breaks when
+    real users arrive.
+
+---
+
+## Recently
+
+The site was restructured in September 2026 around the two paths above. See
+[What's new](whats-new/index.md) for the detail, and
+[Resources](reference/resources.md) for what is worth reading elsewhere, with an
+explicit list of what to avoid.
