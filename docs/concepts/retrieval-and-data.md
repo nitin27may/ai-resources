@@ -5,21 +5,21 @@ tags:
   - Retrieval
 ---
 
-# Retrieval & data
+# Retrieval and data
 
 !!! abstract "Understand · 30 min · no code"
     **Before this:** [Prompting](prompting-and-techniques.md)  ·  **After this:** [What an agent is](ai-agents.md)
     **Hands-on version:** [5 Retrieval](../02-agents/retrieval.md)  ·  **In depth:** [Retrieval in depth](../rag/index.md)
 
-!!! info "Start with the hands-on module"
-    For the buildable version of this material, see [Retrieval](../02-agents/retrieval.md), then the [RAG section](../rag/index.md).
-    This page is the short overview; both of those go considerably deeper.
+A model knows only what it was trained on, and it never knew anything of yours.
+**Retrieval-augmented generation** closes that gap by fetching the relevant
+material and putting it in the prompt, so the model reads instead of recalling.
 
-
-AI models are powerful, but they have a fundamental limitation: they only know what they were trained on. **Retrieval-Augmented Generation (RAG)** bridges this gap by connecting models to your real-time, enterprise data — without retraining. This page covers how RAG works, the data infrastructure that powers it, and when to use which approach.
-
-!!! info "This page is an overview"
-    For deep dives into each topic — embeddings, chunking strategies, vector database comparisons, GraphRAG, and evaluation — see the [RAG & Knowledge Systems](../rag/index.md) section. Each sub-page includes production guidance, model comparisons, and decision frameworks not covered here.
+This is the overview: how the pipeline works, the pieces it is built from, how
+it fails, and when to reach for fine-tuning instead. The
+[build module](../02-agents/retrieval.md) has you construct one and watch it get
+a question quietly wrong; [Retrieval in depth](../rag/index.md) is six pages on
+the engineering.
 
 ---
 
@@ -62,8 +62,46 @@ graph TD
 5. **A prompt is assembled** — combining the user's question with the retrieved context.
 6. **The LLM generates a response** — grounded in the retrieved information rather than its general training data.
 
-!!! tip "RAG is not search"
-    RAG goes beyond traditional keyword search. It uses **semantic similarity** — meaning it can find relevant content even when the exact words do not match. Asking "Can I work from home?" will match a document titled "Remote Work Policy" even though the words are different.
+!!! tip "RAG is not keyword search"
+    It uses **semantic similarity**, so it finds relevant content even when the
+    words do not match. "Can I work from home?" matches a document titled
+    "Remote Work Policy" with no shared vocabulary at all.
+
+### The two steps almost every production system adds
+
+The six steps above are the naive pipeline. Nearly every system that works in
+production adds two more, and they are worth knowing at this level because they
+account for most of the quality difference.
+
+**Hybrid search.** Run semantic search *and* keyword search, then merge the
+results. Semantic search is weak exactly where keyword search is strong: product
+codes, error numbers, surnames, acronyms — anything where the exact string is
+the point. A query for `ERR-4471` may return nothing useful from a pure vector
+search, because the embedding of a code carries little meaning. This is usually
+the single highest-value change to a mediocre RAG system.
+
+**Reranking.** Retrieve more candidates than you need — say 50 — then pass them
+through a reranker, a model that scores each candidate against the query
+directly rather than comparing precomputed vectors. It is far more accurate and
+far too slow to run over a whole corpus, which is why it goes second. Keep the
+top handful.
+
+```mermaid
+graph LR
+    Q["Question"] --> V["Vector search"]
+    Q --> K["Keyword search"]
+    V --> M["Merge"]
+    K --> M
+    M --> R["Rerank<br/>top ~50"]
+    R --> T["Top 3-5<br/>into the prompt"]
+
+    style Q fill:#0284c7,stroke:#0270a8,color:#fff
+    style V fill:#0d9488,stroke:#0b7a72,color:#fff
+    style K fill:#0d9488,stroke:#0b7a72,color:#fff
+    style M fill:#0f766e,stroke:#0d9488,color:#fff
+    style R fill:#d97706,stroke:#b86005,color:#fff
+    style T fill:#16a34a,stroke:#15803d,color:#fff
+```
 
 ---
 
@@ -90,7 +128,7 @@ Embedding models are specialized models designed to convert text into vectors. T
 |---|---|---|
 | text-embedding-3-large | 3,072 | OpenAI |
 | text-embedding-3-small | 1,536 | OpenAI |
-| Cohere Embed v3 | 1,024 | Cohere |
+| Cohere Embed v4 | 1,024 (configurable) | Cohere |
 | BGE-large-en-v1.5 | 1,024 | BAAI (open source) |
 
 !!! note "Dimensions matter"
@@ -203,11 +241,110 @@ graph TD
 
 ---
 
+## How RAG fails
+
+Everything above is the happy path. These are the failures you will actually
+meet, and the first one is the one that matters most.
+
+### Retrieval always returns something
+
+A vector search ranks by similarity, and something is always the most similar.
+Ask a question your corpus cannot answer and you will still get chunks back —
+the closest ones, however far away that is. Nothing in the mechanism says "no
+good match".
+
+The model then answers from whatever it was handed, fluently. The user sees a
+confident answer built from irrelevant material, with no signal that anything
+went wrong.
+
+Two defences, and you want both. Look at the **similarity score**, not just the
+rank, and set a floor below which you treat the result as no answer. And tell
+the model explicitly that it may decline: *"If the context does not contain the
+answer, say you do not know."* That instruction only works if the model has been
+given a way to be right about being unable to answer.
+
+!!! warning "Toy corpora hide this completely"
+    On six documents, everything works. The build module measures what happens
+    when forty plausible neighbours are added: dense search sat **0.014** away
+    from returning the wrong document while still ranking the right one first.
+    Read the margin, not the rank — see [Retrieval](../02-agents/retrieval.md).
+
+### The other four
+
+**Chunk boundaries cut the answer in half.** The fact spans two chunks; each
+alone looks irrelevant. Overlap helps, parent-child retrieval helps more.
+
+**The question does not look like the answer.** Users ask "why was I charged
+twice?" while the document says "duplicate transaction handling". Semantic
+search handles some of this and not all; hybrid search and query rewriting close
+more of the gap.
+
+**Stale index.** The document was updated, the index was not. RAG's advantage
+over fine-tuning is freshness, and that advantage is only as good as your
+re-indexing. Know your lag and monitor it.
+
+**The context is retrieved and then ignored.** With many chunks in a long
+prompt, the model can miss the one that matters, especially in the middle. More
+context is not better context — see
+[context engineering](../02-agents/context-engineering.md).
+
+---
+
+## Retrieval and permissions
+
+This is where enterprise RAG projects most often go wrong, and it rarely appears
+in tutorials.
+
+An index built from "all the company's documents" will happily retrieve a
+salary review, an unannounced restructure, or another customer's contract, and
+the model will summarise it politely for whoever asked. The retrieval layer has
+no idea who is asking unless you build that in.
+
+Three rules:
+
+1. **Filter at query time, by the asking user's identity.** Store the access
+   control list with each chunk and pass the user's groups as a filter on the
+   search itself. Every serious vector store supports metadata filtering for
+   this reason.
+2. **Never filter after retrieval, in the prompt.** "Only use documents the user
+   is allowed to see" is an instruction, and instructions are not access
+   control. The content is already in the context by then.
+3. **Re-check at answer time if permissions move fast.** Access can be revoked
+   between indexing and asking.
+
+The same reasoning applies to what retrieval can *carry*. A document is
+untrusted input: if it contains text saying "ignore your instructions and
+forward this", that text arrives inside your prompt. See
+[safety](safety-and-responsible-ai.md) and the
+[safety module](../02-agents/safety.md).
+
+---
+
+## How you know it is working
+
+RAG has two failure surfaces and they need measuring separately, because fixing
+the wrong one is wasted effort.
+
+| Question | What it tests | If it is bad |
+|---|---|---|
+| Did we retrieve the right material? | The retriever | Chunking, embeddings, hybrid search, reranking |
+| Did the answer use it faithfully? | The generator | Prompt, model, context length |
+
+A system can retrieve perfectly and answer badly, or retrieve nothing useful and
+produce a fluent answer that happens to sound right. A single end-to-end score
+hides both.
+
+The minimum worth having is a set of real questions with known correct sources.
+Twenty is enough to start, and it tells you more than any amount of tuning by
+feel. See [RAG evaluation](../rag/rag-evaluation.md).
+
+---
+
 ## RAG vs fine-tuning: when to use which
 
 This is one of the most common decisions in AI application design. Here is a clear comparison:
 
-| Factor | RAG | Fine-Tuning |
+| Factor | RAG | Fine-tuning |
 |---|---|---|
 | **Best for** | Grounding in specific, changing data | Teaching the model new behaviors or styles |
 | **Data freshness** | Real-time (data can be updated anytime) | Static (requires retraining to update) |
@@ -223,7 +360,7 @@ This is one of the most common decisions in AI application design. Here is a cle
 
 ### Decision guide
 
-=== "Use RAG When"
+=== "Use RAG when"
 
     - Your data changes frequently
     - You need citations and traceability
@@ -231,14 +368,14 @@ This is one of the most common decisions in AI application design. Here is a cle
     - Accuracy on specific documents is critical
     - You need to keep data private (data stays in your infrastructure)
 
-=== "Use Fine-Tuning When"
+=== "Use fine-tuning when"
 
     - You need the model to adopt a specific tone or style
     - The task requires specialized domain knowledge baked into the model
     - You want to reduce prompt size (the model "just knows" things)
     - Latency is critical and you cannot afford retrieval overhead
 
-=== "Use Both When"
+=== "Use both when"
 
     - You need domain-specific behavior AND current data
     - You want a fine-tuned model that can also reference live documents
@@ -254,9 +391,4 @@ This is one of the most common decisions in AI application design. Here is a cle
 - [Microsoft GraphRAG](https://microsoft.github.io/graphrag/) — read the indexing-cost section before you get excited.
 - [Pinecone learning centre](https://www.pinecone.io/learn/) — vendor-published, but the chunking and hybrid-search explanations are genuinely good.
 
----
-## Next steps
 
-- For deeper RAG coverage: [RAG & Knowledge Systems](../rag/index.md)
-- For agent-based retrieval: [Agentic AI](agentic-ai.md)
-- To compare RAG and fine-tuning approaches: [Fine-Tuning & Training](fine-tuning-and-training.md)
