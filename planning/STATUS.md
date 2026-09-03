@@ -6,9 +6,9 @@ Update this file at the end of every working session. A new session reads this f
 **Branch:** `restructure/layered-hub`. One branch, one PR, one commit per phase.
 **CI:** green on PR #19 — strict build, tag assertions, sitemap guard and link check all pass.
 
-**What is left:** porting the six C# samples to Agent Framework 1.x, which is a
-real port rather than a version bump (see samples/readme.md). Everything else on
-the plan is done.
+**What is left:** nothing on the plan. Remaining optional work is merging the
+overlapping concept pages, which waits on Search Console data, and a computer-use
+page once there is something durable to write.
 
 | Phase | State | PR | Notes |
 |---|---|---|---|
@@ -56,11 +56,10 @@ harness · 5 Context engineering · 6 Memory · 7 Retrieval · 8 Evaluation ·
 
 ## Known debt, recorded not hidden
 
-- **The six C# samples target a pre-1.0 Agent Framework preview.** They compile,
-  but the current packages changed the Azure surface enough that all six fail
-  against them (`Azure.AI.Projects.OpenAI` gone, `AIProjectClient.CreateAIAgent`
-  gone, `AgentThread` moved). Porting is real work, not a version bump.
-  `samples/readme.md` states this plainly.
+- ~~The six C# samples target a pre-1.0 Agent Framework preview.~~ **Done
+  2026-09-03.** All six ported to Agent Framework 1.x and compiling from a clean
+  package cache. `samples/readme.md` documents every API change, since none of
+  them fail with a helpful message.
 - **Renumbering the build modules churns cross-references.** It happened twice
   in one session. Nav labels and prose carry the numbers; file paths do not, so
   no URL is at risk, but budget for a sitewide pass and check
