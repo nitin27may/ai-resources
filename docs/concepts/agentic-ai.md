@@ -12,12 +12,10 @@ tags:
     **Before this:** [What an agent is](ai-agents.md)  ·  **After this:** [Enterprise AI patterns](../patterns/enterprise-patterns.md)
     **Hands-on version:** [3 The harness](../02-agents/the-harness.md)  ·  **In depth:** [Model Context Protocol](../ai-dev-tools/mcp.md)
 
-!!! info "Start with the hands-on module"
-    For the buildable version of this material, see [The harness](../02-agents/the-harness.md) and [Retrieval](../02-agents/retrieval.md).
-    This page remains the broader ecosystem tour — protocols, orchestration, and where agentic patterns came from.
-
-
-Traditional AI applications take a prompt and return a response. **Agentic AI** goes further — it can plan, use tools, make decisions, and take multi-step actions to accomplish goals. This page covers the protocols, patterns, and infrastructure that make agentic AI possible.
+[What an agent is](ai-agents.md) covered the loop and when not to use one.
+This page is the ecosystem around it: the patterns agents are built from, how
+they remember, how humans stay involved, and the protocols that let agents talk
+to tools and to each other.
 
 ---
 
@@ -209,30 +207,53 @@ In a **Handoff** pattern, one agent transfers control to another when the task m
 
 ## Agent memory
 
-Agents need memory to maintain context across interactions and learn from past experience.
+The model remembers nothing. "Agent memory" is always software: something your
+code stores and chooses to put back into a later prompt.
 
-### Short-term memory
+| Kind | Where it lives | Lost when | Example |
+|---|---|---|---|
+| **Short-term** | The message list in the current context window | The session ends, or the window overflows | What the user said three messages ago |
+| **Long-term** | An external store: database, file, vector store | Never, until you delete it | That this user prefers Python |
+| **Episodic** | A record of past runs and their outcomes | Never | That this approach failed last time |
 
-- Stored within the current conversation or session.
-- Typically the messages in the LLM's context window.
-- Lost when the session ends.
-- **Example:** Remembering what the user said three messages ago.
+Retrieval and long-term memory are the same machinery pointed at different
+data: one at your documents, the other at what happened before. Everything in
+[Retrieval and data](retrieval-and-data.md) applies here too, including the fact
+that a lookup always returns something.
 
-### Long-term memory
+**The three decisions**, and they are all yours rather than the model's:
 
-- Persisted across sessions in an external store (database, vector store, file system).
-- Allows agents to remember user preferences, past interactions, and learned facts.
-- Must be explicitly managed (what to store, when to retrieve, when to forget).
-- **Example:** Remembering that the user prefers Python over JavaScript.
+1. **What to write.** Storing whole transcripts is the common mistake. Store
+   facts and decisions, not conversation.
+2. **When to read.** Retrieving all memory every turn wastes context and buries
+   the current task. Retrieve what is relevant to this turn.
+3. **When to forget.** Almost nobody builds this, and it is why memory systems
+   decay. Preferences change; superseded facts need removing, not accumulating.
 
-!!! warning "Memory is not free"
-    Every piece of information stored in memory costs tokens when retrieved. Be selective about what goes into long-term memory. Store summaries and key facts, not raw transcripts.
+!!! warning "Memory is not free, and it can poison a run"
+    Every remembered item costs tokens on every turn that retrieves it.
+
+    Worse, a wrong memory is durable. If an agent stores an incorrect
+    conclusion — a misread preference, a fact that was true last quarter — it is
+    reinjected into future prompts as established context, and the model has no
+    way to know it is wrong. One bad write can degrade every later run, and the
+    symptom looks like the model getting worse rather than the store being
+    wrong.
+
+    Treat writes with more suspicion than reads: validate what goes in, record
+    where it came from, and make it possible to inspect and delete.
 
 ---
 
 ## Human-in-the-loop
 
-Not every decision should be automated. **Human-in-the-loop (HITL)** patterns ensure that a human reviews and approves critical actions before they are executed.
+Not every decision should be automated. **Human-in-the-loop** patterns put a
+person between the agent's intention and its effect.
+
+[What an agent is](ai-agents.md#autonomy-is-a-dial-not-a-switch) covers choosing
+a level of autonomy, including per tool rather than per system, and why
+approval fatigue makes universal confirmation worthless. This section is the
+implementation side.
 
 **When to use HITL:**
 
@@ -272,31 +293,54 @@ Agentic systems are harder to debug than simple API calls. An agent might make a
 
 ---
 
-## Deterministic vs non-deterministic workflows
+## Deterministic and non-deterministic, mixed
 
-| Aspect | Deterministic | Non-Deterministic |
-|---|---|---|
-| **Flow** | Predefined sequence of steps | Agent decides the path dynamically |
-| **Predictability** | Same input always produces same flow | Flow may vary between runs |
-| **Use case** | Structured processes (approvals, pipelines) | Open-ended tasks (research, analysis) |
-| **Debugging** | Easier — follow the fixed path | Harder — need observability |
-| **Example** | "Extract data, validate, save to DB" | "Research this topic and write a report" |
+[What an agent is](ai-agents.md#agent-workflow-or-copilot) sets out the choice
+between a fixed workflow and a model-directed agent. In practice the useful
+answer is usually neither one nor the other.
 
-!!! tip "Start deterministic, add agency gradually"
-    Build your workflow as a deterministic pipeline first. Then identify specific decision points where the LLM should choose the path. This hybrid approach gives you predictability where you need it and flexibility where it helps.
+!!! tip "Start deterministic, add agency at the points that need it"
+    Build the process as an ordinary pipeline first. Then find the specific
+    steps where the path genuinely cannot be known in advance, and let the model
+    decide only there.
+
+    A document pipeline might extract, validate and store deterministically, and
+    use the model only to classify an ambiguous document or to draft a summary.
+    You get predictable cost and debuggability everywhere except the two places
+    that needed judgement.
+
+This hybrid is what most successful systems look like, and it is rarely what
+gets demonstrated, because a fixed pipeline with three model calls in it is less
+impressive than an agent that appears to decide everything for itself.
 
 ---
 
 ## Orchestration frameworks
 
-| Framework | Maintainer | Key Strengths |
-|---|---|---|
-| **LangGraph** | LangChain | Graph-based workflows, streaming, persistence, human-in-the-loop |
-| **AutoGen** | Microsoft | Multi-agent conversations, code execution, group chat |
-| **Semantic Kernel** | Microsoft | Enterprise-ready, .NET and Python, planner-based agents |
-| **CrewAI** | CrewAI | Role-based agents, easy-to-define crews and tasks |
+You do not need one of these. [The build path](../00-start-here/the-path.md)
+constructs a working agent loop in about thirty lines without any framework, and
+doing that once is the best preparation for choosing between them.
 
-Each framework has its own philosophy. LangGraph is graph-first (you define nodes and edges). AutoGen is conversation-first (agents talk to each other). Semantic Kernel is plugin-first (you compose capabilities). CrewAI is role-first (you define agent personas).
+What a framework actually gives you is the harness: retries, state, streaming,
+tracing, checkpointing and multi-agent plumbing you would otherwise write.
+
+| Framework | Maintainer | Philosophy |
+|---|---|---|
+| **Microsoft Agent Framework** | Microsoft | Graph-based orchestration on .NET and Python. The successor to Semantic Kernel and AutoGen, GA since April 2026 |
+| **LangGraph** | LangChain | Graph-first: you define nodes and edges, with checkpointing and resumable state |
+| **OpenAI Agents SDK** | OpenAI | Small surface area, with handoffs between agents as a first-class concept |
+| **Google ADK** | Google | Multi-agent composition with evaluation built in rather than bolted on |
+| **CrewAI** | CrewAI | Role-first: you define agent personas and the crew that coordinates them |
+
+!!! warning "Semantic Kernel and AutoGen"
+    Both are superseded by Microsoft Agent Framework, which merged them in April
+    2026. Existing code keeps working and Semantic Kernel still gets security
+    fixes, but new work should not start on either. They are still recommended
+    by a great deal of writing that predates the merger — including comparison
+    posts published after it.
+
+The fuller comparison, including platforms rather than just libraries, is in
+[Frameworks and platforms](../tools-and-frameworks/index.md).
 
 ---
 
