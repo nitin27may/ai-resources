@@ -2,9 +2,10 @@
 hide:
   - navigation
   - toc
-tags:
-  - Home
 description: A hands-on path from a model on your laptop to an agent in production — ten modules, ten labs, all free and local.
+tags:
+  - Start here
+  - Home
 ---
 
 # AI Knowledge Hub

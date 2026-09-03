@@ -1,7 +1,8 @@
 ---
-tags:
-  - Beginner
 description: What AI, LLMs and agents actually are, in plain language, with no code required.
+tags:
+  - Start here
+  - Models
 ---
 
 # Getting Started with AI

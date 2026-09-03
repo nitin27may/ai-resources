@@ -1,8 +1,9 @@
 ---
 title: Evaluation
 description: How you would have caught the silent failures in the last two modules before your users did.
+  - Evaluation
 tags:
-  - Advanced
+  - Build
   - Evaluation
 ---
 

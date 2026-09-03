@@ -1,10 +1,10 @@
 ---
 title: Claude Code
 description: What Claude Code is, how to set it up, and how to use CLAUDE.md to configure project-specific behavior.
-tags:
-  - Beginner
-  - Claude Code
 status: new
+tags:
+  - Tools
+  - Claude Code
 ---
 
 # Claude Code

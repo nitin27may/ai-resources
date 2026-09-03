@@ -1,9 +1,10 @@
 ---
 title: GitHub Copilot
 description: Copilot as it exists in 2026 — inline completion, chat, agent mode, the standalone CLI, and MCP as the extensibility story.
-tags:
-  - Beginner
   - GitHub Copilot
+tags:
+  - Tools
+  - Copilot
 ---
 
 # GitHub Copilot

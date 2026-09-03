@@ -1,9 +1,9 @@
 ---
-tags:
-  - Patterns
-  - Advanced
-  - Governance
 description: Using AI in a code quality pipeline — linting, review, duplication detection and CI.
+tags:
+  - Go deeper
+  - Operations
+  - Copilot
 ---
 
 # AI-Generated Code Quality Pipeline

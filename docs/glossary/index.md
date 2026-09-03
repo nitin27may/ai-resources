@@ -1,8 +1,8 @@
 ---
-tags:
-  - Beginner
-  - Reference
 description: Plain-language definitions of the AI terms you will meet across this site.
+tags:
+  - Reference
+  - Reference
 ---
 
 # AI Glossary

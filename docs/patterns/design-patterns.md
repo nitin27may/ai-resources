@@ -1,5 +1,9 @@
 ---
 description: Orchestration, reflection, tool use and planning — the recurring shapes of agent design.
+tags:
+  - Go deeper
+  - Patterns
+  - Agents
 ---
 
 # Design Patterns for AI Agent Systems

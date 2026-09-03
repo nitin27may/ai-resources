@@ -1,7 +1,9 @@
 ---
 title: Resources
 description: A short, ranked reading list with a reason to trust each item — and an explicit list of what to avoid.
+  - Reference
 tags:
+  - Reference
   - Reference
 ---
 

@@ -1,10 +1,11 @@
 ---
 title: Vector Databases
 description: Compare vector database options — Azure AI Search, Pinecone, Weaviate, Qdrant, Chroma, pgvector, and Milvus — and how to choose the right one.
-tags:
-  - Intermediate
-  - RAG
 status: new
+tags:
+  - Go deeper
+  - Retrieval
+  - Azure
 ---
 
 # Vector Databases

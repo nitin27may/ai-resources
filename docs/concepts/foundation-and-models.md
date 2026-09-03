@@ -1,8 +1,8 @@
 ---
-tags:
-  - Beginner
-  - Concepts
 description: How language models work — tokens, context windows, model families, and choosing a capability tier rather than a model name.
+tags:
+  - Understand
+  - Models
 ---
 
 # Foundation & Models

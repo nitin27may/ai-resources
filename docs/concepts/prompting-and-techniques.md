@@ -1,8 +1,8 @@
 ---
-tags:
-  - Beginner
-  - Concepts
 description: Prompting techniques that still earn their keep, and the ones models made redundant.
+tags:
+  - Understand
+  - Prompting
 ---
 
 # Prompting & Techniques

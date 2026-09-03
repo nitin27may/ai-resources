@@ -1,10 +1,10 @@
 ---
 title: RAG Fundamentals
 description: Understand the evolution from Naive RAG to Advanced, Modular, and Agentic RAG — including failure modes and mitigation techniques.
-tags:
-  - Intermediate
-  - RAG
 status: new
+tags:
+  - Go deeper
+  - Retrieval
 ---
 
 # RAG Fundamentals

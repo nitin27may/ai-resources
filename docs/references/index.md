@@ -1,7 +1,8 @@
 ---
+description: External links by topic — specifications, documentation and primary sources.
 tags:
   - Reference
-description: External links by topic — specifications, documentation and primary sources.
+  - Reference
 ---
 
 # References

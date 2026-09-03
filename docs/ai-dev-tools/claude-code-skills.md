@@ -1,10 +1,10 @@
 ---
 title: Claude Code Skills & Agents
 description: How to create custom slash command skills, use subagents for parallel work, configure hooks, and integrate MCP with Claude Code.
-tags:
-  - Intermediate
-  - Claude Code
 status: new
+tags:
+  - Tools
+  - Claude Code
 ---
 
 # Claude Code Skills & Agents

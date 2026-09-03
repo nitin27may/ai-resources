@@ -1,12 +1,12 @@
 ---
 title: AI Developer Tools
 description: An overview of AI coding tools — from IDE assistants to agentic CLI tools and the MCP ecosystem — and how they fit together.
-tags:
-  - Beginner
-  - GitHub Copilot
-  - Claude Code
-  - MCP
 status: new
+tags:
+  - Tools
+  - Claude Code
+  - Copilot
+  - MCP
 ---
 
 # AI Developer Tools

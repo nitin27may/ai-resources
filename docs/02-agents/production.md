@@ -1,8 +1,9 @@
 ---
 title: Production
 description: What changes when real users arrive — retries, idempotency, budgets, and the cost multipliers nobody plans for.
+  - Operations
 tags:
-  - Advanced
+  - Build
   - Operations
 ---
 

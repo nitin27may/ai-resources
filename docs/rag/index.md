@@ -1,10 +1,10 @@
 ---
 title: RAG & Knowledge Systems
 description: Deep-dive documentation on retrieval-augmented generation, embeddings, chunking, vector databases, GraphRAG, and evaluation.
-tags:
-  - Beginner
-  - RAG
 status: new
+tags:
+  - Go deeper
+  - Retrieval
 ---
 
 # RAG & Knowledge Systems

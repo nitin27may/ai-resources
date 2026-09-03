@@ -1,8 +1,9 @@
 ---
 title: Tool calling
 description: How a model asks for a function to be run, and why nothing happens until your code decides to run it.
+  - Agents
 tags:
-  - Intermediate
+  - Build
   - Agents
 ---
 

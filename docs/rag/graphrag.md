@@ -1,11 +1,10 @@
 ---
 title: GraphRAG
 description: How Microsoft GraphRAG works, when to use it over standard RAG, and a practical guide to local vs global query modes.
-tags:
-  - Advanced
-  - GraphRAG
-  - RAG
 status: new
+tags:
+  - Go deeper
+  - Retrieval
 ---
 
 # GraphRAG

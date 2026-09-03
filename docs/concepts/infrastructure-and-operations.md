@@ -1,8 +1,8 @@
 ---
-tags:
-  - Advanced
-  - Concepts
 description: MLOps for AI systems — model drift, monitoring, cost, and deployment topology.
+tags:
+  - Understand
+  - Operations
 ---
 
 # Infrastructure & Operations

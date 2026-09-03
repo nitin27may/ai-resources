@@ -1,8 +1,9 @@
 ---
 title: Model Context Protocol (MCP)
 description: How MCP works after the 2026-07-28 redesign — stateless requests, Streamable HTTP, extensions, and a server that runs on the current SDK.
+  - MCP
 tags:
-  - Advanced
+  - Tools
   - MCP
 ---
 

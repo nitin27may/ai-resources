@@ -1,8 +1,10 @@
 ---
 title: Observability
 description: Evaluation tells you that a run failed. Tracing tells you where, and what it cost.
+  - Operations
 tags:
-  - Advanced
+  - Build
+  - Evaluation
   - Operations
 ---
 

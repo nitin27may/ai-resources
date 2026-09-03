@@ -1,11 +1,11 @@
 ---
 title: RAG Evaluation
 description: How to measure RAG quality — faithfulness, answer relevancy, context precision, context recall — and which tooling to actually depend on.
-tags:
-  - Advanced
-  - RAG
-  - Evaluation
 status: new
+tags:
+  - Go deeper
+  - Retrieval
+  - Evaluation
 ---
 
 # RAG Evaluation

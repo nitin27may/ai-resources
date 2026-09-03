@@ -1,10 +1,11 @@
 ---
 title: Embeddings
 description: How embedding models work, how to choose between OpenAI, Cohere, and open-source options, and practical guidance for production use.
-tags:
-  - Intermediate
-  - Embeddings
 status: new
+tags:
+  - Go deeper
+  - Retrieval
+  - Models
 ---
 
 # Embeddings

@@ -1,8 +1,9 @@
 ---
-tags:
-  - Advanced
-  - Concepts
 description: When fine-tuning is the right answer, when retrieval is cheaper, and what LoRA and QLoRA actually change.
+tags:
+  - Understand
+  - Training
+  - Models
 ---
 
 # Fine-Tuning & Training

@@ -1,10 +1,10 @@
 ---
 title: Chunking Strategies
 description: A complete guide to document chunking — from fixed-size to semantic, context-aware, parent-child, late chunking, and agentic approaches.
-tags:
-  - Intermediate
-  - Chunking
 status: new
+tags:
+  - Go deeper
+  - Retrieval
 ---
 
 # Chunking Strategies

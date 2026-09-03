@@ -98,6 +98,10 @@ extra_javascript:
 # Plugins configuration
 plugins:
   - search
+  # Every page carries one layer tag (Start here, Understand, Build, Go deeper,
+  # Tools, Reference) and one to three topic tags. docs/tags.md carries the
+  # `material/tags` marker, which is what turns the chips into working links.
+  # `tags_file:` is deprecated in Material 9.7, so the marker is the mechanism.
   - tags
   # No page has moved yet. This is enabled so that when one does, its old URL
   # keeps working in the same commit that moves it. Every live URL is listed in
@@ -120,59 +124,67 @@ plugins:
       auto_caption: false
       caption_position: bottom
 
+# Six tabs, ordered as a ramp: find your route, understand the ideas, build one,
+# go deeper, look things up. Labels are sentence case.
+#
+# Nav labels are free to change; file paths are not. Every path below is a live
+# URL listed in planning/sitemap-baseline.txt and CI fails if one stops being
+# served. Moving a file requires a redirect_maps entry in the same commit.
 nav:
   - Home: index.md
-  - Start Here:
-      - The Path: 00-start-here/the-path.md
-      - Setup: 00-start-here/setup.md
+  - Start here:
+      - 00-start-here/index.md
       - AI 101: getting-started/index.md
-  - Foundations:
-      - How Models Work: concepts/foundation-and-models.md
-      - Prompting: concepts/prompting-and-techniques.md
-      - Embeddings: rag/embeddings.md
-      - Fine-Tuning & Training: concepts/fine-tuning-and-training.md
-  - The Agent Path:
-      - Tool Calling: 02-agents/tool-calling.md
-      - The Agent Loop: 02-agents/the-agent-loop.md
-      - The Harness: 02-agents/the-harness.md
-      - Context Engineering: 02-agents/context-engineering.md
-      - Retrieval: 02-agents/retrieval.md
-      - Evaluation: 02-agents/evaluation.md
-      - Observability: 02-agents/observability.md
-      - Safety: 02-agents/safety.md
-      - Production: 02-agents/production.md
-  - Retrieval in Depth:
-      - rag/index.md
-      - RAG Fundamentals: rag/rag-fundamentals.md
-      - Chunking Strategies: rag/chunking-strategies.md
-      - Vector Databases: rag/vector-databases.md
-      - GraphRAG: rag/graphrag.md
-      - RAG Evaluation: rag/rag-evaluation.md
-  - Wider Context:
+      - The build path: 00-start-here/the-path.md
+  - Understand:
       - concepts/index.md
-      - AI Agents: concepts/ai-agents.md
+      - How models work: concepts/foundation-and-models.md
+      - Prompting: concepts/prompting-and-techniques.md
+      - Retrieval and data: concepts/retrieval-and-data.md
+      - What an agent is: concepts/ai-agents.md
       - Agentic AI: concepts/agentic-ai.md
-      - Retrieval & Data: concepts/retrieval-and-data.md
-      - Safety & Responsible AI: concepts/safety-and-responsible-ai.md
-      - Infrastructure & Operations: concepts/infrastructure-and-operations.md
-  - Patterns:
-      - patterns/index.md
-      - Design Patterns: patterns/design-patterns.md
-      - Enterprise Patterns: patterns/enterprise-patterns.md
-      - Design Principles: patterns/design-principles.md
-      - Code Quality Pipeline: patterns/code-quality-pipeline.md
-  - Your Tools:
-      - ai-dev-tools/index.md
-      - GitHub Copilot: ai-dev-tools/github-copilot.md
-      - Claude Code: ai-dev-tools/claude-code.md
-      - Claude Code Skills & Agents: ai-dev-tools/claude-code-skills.md
-      - Model Context Protocol: ai-dev-tools/mcp.md
+      - Enterprise AI patterns: patterns/enterprise-patterns.md
+      - Safety and responsible AI: concepts/safety-and-responsible-ai.md
+      - Fine-tuning and training: concepts/fine-tuning-and-training.md
+      - Infrastructure and operations: concepts/infrastructure-and-operations.md
+  - Build:
+      - 0 Setup: 00-start-here/setup.md
+      - 1 Tool calling: 02-agents/tool-calling.md
+      - 2 The agent loop: 02-agents/the-agent-loop.md
+      - 3 The harness: 02-agents/the-harness.md
+      - 4 Context engineering: 02-agents/context-engineering.md
+      - 5 Retrieval: 02-agents/retrieval.md
+      - 6 Evaluation: 02-agents/evaluation.md
+      - 7 Observability: 02-agents/observability.md
+      - 8 Safety: 02-agents/safety.md
+      - 9 Production: 02-agents/production.md
+  - Go deeper:
+      - Retrieval in depth:
+          - rag/index.md
+          - RAG fundamentals: rag/rag-fundamentals.md
+          - Embeddings: rag/embeddings.md
+          - Chunking strategies: rag/chunking-strategies.md
+          - Vector databases: rag/vector-databases.md
+          - GraphRAG: rag/graphrag.md
+          - RAG evaluation: rag/rag-evaluation.md
+      - Architecture patterns:
+          - patterns/index.md
+          - Design patterns: patterns/design-patterns.md
+          - Design principles: patterns/design-principles.md
+          - Code quality pipeline: patterns/code-quality-pipeline.md
+      - Frameworks and platforms: tools-and-frameworks/index.md
+      - Developer tools:
+          - ai-dev-tools/index.md
+          - GitHub Copilot: ai-dev-tools/github-copilot.md
+          - Claude Code: ai-dev-tools/claude-code.md
+          - Claude Code skills and agents: ai-dev-tools/claude-code-skills.md
+          - Model Context Protocol: ai-dev-tools/mcp.md
   - Reference:
-      - Resources: reference/resources.md
       - Glossary: glossary/index.md
-      - Tools & Frameworks: tools-and-frameworks/index.md
-      - External Links: references/index.md
-      - What's New: whats-new/index.md
+      - Resources: reference/resources.md
+      - Official sources: references/index.md
+      - Browse by tag: tags.md
+      - What's new: whats-new/index.md
 
 # Same Google Analytics property as nitinksingh.com, so hub traffic reports
 # alongside the blog rather than in a silo. A GA measurement ID is a public

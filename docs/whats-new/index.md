@@ -1,7 +1,8 @@
 ---
-tags:
-  - News
 description: Recent changes to the AI Knowledge Hub.
+tags:
+  - Reference
+  - Reference
 ---
 
 # What's New
