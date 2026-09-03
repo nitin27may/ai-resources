@@ -63,14 +63,15 @@ first-class C# support.
 
 !!! example "Six runnable C# samples"
     The [`samples/`](https://github.com/nitin27may/ai-resources/tree/main/samples)
-    directory in this repository has six single-file C# programs against Azure AI
-    Foundry: a basic agent, an agent as a backend service, multi-turn threads, a
-    C# function as a tool, an MCP connection, and a workflow. Each declares its
-    own packages, so `dotnet run 1-basicagent.cs` is the whole setup. All six
-    are on Agent Framework 1.x and compile on .NET 10. The readme also lists what
-    changed from the pre-1.0 preview — `AgentThread` became `AgentSession`,
-    agent definitions moved to a factory, and the agents client moved packages —
-    which is useful if you have code on the older API.
+    directory has six single-file C# programs on Agent Framework 1.x against
+    Azure OpenAI: a basic agent, streaming, sessions, a C# function as a tool, an
+    MCP server, and a workflow. Each declares its own packages, so
+    `dotnet run 1-basicagent.cs` is the whole setup, and they need the same three
+    environment variables as the Python labs.
+
+    All six were run end to end rather than only compiled. The readme also lists
+    the renames from the pre-1.0 preview, none of which fail with a helpful
+    message.
 
 !!! info "Semantic Kernel and AutoGen — what happened to them"
     **Semantic Kernel** is superseded rather than deprecated. Microsoft committed

@@ -1,55 +1,50 @@
-#:package Microsoft.Agents.AI.AzureAI@1.0.0-rc5
-#:package Azure.AI.Projects.Agents@2.0.0-beta.1
-#:package Azure.Identity@1.19.0
+#:package Microsoft.Agents.AI.OpenAI@1.20.0
+#:package Azure.AI.OpenAI@2.9.0-beta.1
+
+// A function the model can ask you to run.
+//
+// Watch the split: the model emits a request naming this function and its
+// arguments; the framework matches it, runs YOUR code, and feeds the result back.
+// The model never executes anything.
 
 using System.ComponentModel;
-using Azure.AI.Projects;
-using Azure.Identity;
+using System.ClientModel;
+using Azure.AI.OpenAI;
 using Microsoft.Agents.AI;
 using Microsoft.Extensions.AI;
+using OpenAI.Chat;
 
-string endpoint = Environment.GetEnvironmentVariable("AZURE_FOUNDRY_PROJECT_ENDPOINT")
-    ?? throw new InvalidOperationException("AZURE_FOUNDRY_PROJECT_ENDPOINT is not set.");
-string deploymentName = Environment.GetEnvironmentVariable("AZURE_FOUNDRY_PROJECT_DEPLOYMENT_NAME")
-    ?? "gpt-4o-mini";
+string endpoint = Environment.GetEnvironmentVariable("AZURE_OPENAI_ENDPOINT")
+    ?? throw new InvalidOperationException("AZURE_OPENAI_ENDPOINT is not set.");
+string apiKey = Environment.GetEnvironmentVariable("AZURE_OPENAI_KEY")
+    ?? throw new InvalidOperationException("AZURE_OPENAI_KEY is not set.");
+string deployment = Environment.GetEnvironmentVariable("AZURE_OPENAI_DEPLOYMENT")
+    ?? throw new InvalidOperationException("AZURE_OPENAI_DEPLOYMENT is not set.");
 
-// The [Description] attributes are not decoration. They become the JSON Schema the
-// model reads to decide whether and how to call this function.
-[Description("Get the weather for a given location.")]
-static string GetWeather([Description("The location to get the weather for.")] string location)
-    => $"The weather in {location} is cloudy with a high of 15°C.";
-
-const string AssistantInstructions = "You are a helpful assistant that can get weather information.";
-const string AssistantName = "WeatherAssistant";
-
-AIProjectClient aiProjectClient = new(new Uri(endpoint), new AzureCliCredential());
-
-AITool tool = AIFunctionFactory.Create(GetWeather);
-
-AIAgent newAgent = await aiProjectClient.CreateAIAgentAsync(
-    name: AssistantName,
-    model: deploymentName,
-    instructions: AssistantInstructions,
-    tools: [tool]);
-
-// Retrieving an existing agent by name.
-//
-// The server stores only the tool's *schema*, never the code behind it. So the
-// invocable tools must be supplied again on retrieval, or the framework can see
-// that a call was requested but has nothing to run and you must dispatch it
-// yourself. This is the same request/response split every agent runtime has.
-AIAgent existingAgent = await aiProjectClient.GetAIAgentAsync(name: AssistantName, tools: [tool]);
-
-AgentSession session = await existingAgent.CreateSessionAsync();
-Console.WriteLine(await existingAgent.RunAsync("What is the weather like in Amsterdam?", session));
-
-// The same exchange, streamed.
-session = await existingAgent.CreateSessionAsync();
-await foreach (AgentResponseUpdate update in
-    existingAgent.RunStreamingAsync("What is the weather like in Amsterdam?", session))
+// These [Description] attributes are not documentation. They become the JSON
+// Schema the model reads to decide whether, and how, to call this.
+[Description("Get the current weather for a given location.")]
+static string GetWeather([Description("The city to get the weather for.")] string location)
 {
-    Console.Write(update);
+    Console.WriteLine($"    [tool] GetWeather(\"{location}\") was actually invoked");
+    return $"The weather in {location} is cloudy with a high of 15 C.";
 }
-Console.WriteLine();
 
-// Cleanup, if you want it -- see 2-agentasbackend.cs for the AgentsClient shape.
+AzureOpenAIClient azureClient = new(new Uri(endpoint), new ApiKeyCredential(apiKey));
+
+AITool weather = AIFunctionFactory.Create(GetWeather);
+
+AIAgent assistant = azureClient
+    .GetChatClient(deployment)
+    .AsAIAgent(
+        instructions: "You are a helpful assistant that can look up the weather.",
+        name: "WeatherAssistant",
+        tools: [weather]);
+
+AgentSession session = await assistant.CreateSessionAsync();
+Console.WriteLine(await assistant.RunAsync("What is the weather like in Amsterdam?", session));
+
+// Ask something the tool cannot answer. A well-behaved agent declines rather
+// than inventing a call -- the tool is available, not obligatory.
+Console.WriteLine();
+Console.WriteLine(await assistant.RunAsync("And what is the capital of France?", session));

@@ -45,9 +45,10 @@ them on purpose.
   document irrelevant.
 - **The labs run on Azure OpenAI**, verified end to end. Setup and the labs
   readme now carry a provider tab for it.
-- **The six C# samples are on Microsoft Agent Framework 1.x**, all compiling
-  against current packages. `samples/readme.md` documents the API changes from
-  the pre-1.0 preview, none of which fail with a helpful message.
+- **The six C# samples are on Microsoft Agent Framework 1.x and now run**,
+  against Azure OpenAI with the same three environment variables the Python labs
+  use. They previously targeted Foundry server-side agents, which needed a
+  project and an `az login`, so they could be compiled but seldom run.
 - **No URL changed.** Every page that was reachable before is reachable at the
   same address.
 
