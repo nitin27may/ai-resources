@@ -13,7 +13,7 @@ tags:
     **Before this:** [Retrieval in depth](index.md)  ·  **After this:** [Embeddings](embeddings.md)
     **Hands-on version:** [5 Retrieval](../02-agents/retrieval.md)
 
-!!! abstract "What You'll Learn"
+!!! abstract "What you'll learn"
     This page traces the evolution of RAG from its original "naive" form through the advanced retrieval techniques, modular architecture patterns, and agentic approaches used in production today. You will understand where naive RAG breaks down, what techniques address each failure mode, and when to move beyond standard RAG entirely.
 
 ---
@@ -209,7 +209,7 @@ Agentic RAG is more powerful but also harder to control and evaluate. Latency in
 
 For a deeper treatment of agentic patterns, see [Agentic AI](../concepts/agentic-ai.md).
 
-!!! warning "Don't Skip Evaluation"
+!!! warning "Don't skip evaluation"
     RAG without metrics is flying blind. You can iterate on chunking strategies, embedding models, and retrieval parameters indefinitely without knowing if quality is actually improving. Instrument your pipeline with [RAG Evaluation](rag-evaluation.md) metrics from day one — faithfulness, answer relevance, and context recall at minimum.
 
 ---

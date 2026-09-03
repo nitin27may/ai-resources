@@ -35,7 +35,7 @@ Building an AI model is only half the challenge. Running it reliably, efficientl
 | **What triggers redeployment** | Code changes | Code changes + data changes + model degradation |
 | **Pipeline** | Build, test, deploy | Ingest, train, evaluate, deploy, monitor |
 
-!!! tip "MLOps Maturity"
+!!! tip "MLOps maturity"
     Most teams start at "manual everything" (level 0) and gradually automate. You do not need a fully automated MLOps pipeline on day one. Start with version control for data and models, then add automation incrementally.
 
 ### The MLOps lifecycle
@@ -97,7 +97,7 @@ Feature drift
 | **Error rates** | Track failed predictions, timeouts, and exceptions | Error rate exceeds baseline |
 | **Token usage** | Monitor tokens consumed per request | Unexpected spikes in consumption |
 
-!!! warning "Monitoring Is Not Optional"
+!!! warning "Monitoring is not optional"
     In production AI systems, monitoring is as critical as the model itself. Without it, you will not know your model is degrading until users complain — or worse, until bad decisions are already made.
 
 ---
@@ -198,7 +198,7 @@ AI infrastructure costs can scale quickly if not managed carefully. Here are the
     - Use spot/preemptible instances for training
     - Quantize models to reduce serving costs
 
-!!! note "Track Cost Per Request"
+!!! note "Track cost per request"
     Establish a metric for **cost per request** or **cost per user interaction**. This helps you make informed decisions about model selection, prompt design, and infrastructure choices. Without this metric, costs tend to grow unnoticed.
 
 ---

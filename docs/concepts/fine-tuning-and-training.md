@@ -40,7 +40,7 @@ graph TD
     style H fill:#16a34a,stroke:#16a34a,color:#fff
 ```
 
-!!! tip "The 80/20 Rule"
+!!! tip "The 80/20 rule"
     In practice, 80% of AI use cases can be solved with good prompt engineering and RAG. Fine-tuning is for the remaining 20% where you need the model to fundamentally change how it responds.
 
 ---
@@ -94,7 +94,7 @@ Most fine-tuning APIs expect data in a conversational format:
 | Task specialization | 100-500 | 500-2,000 |
 | Deep domain expertise | 500-1,000 | 2,000-10,000 |
 
-!!! note "Quality Over Quantity"
+!!! note "Quality over quantity"
     50 high-quality, carefully curated examples will outperform 5,000 noisy, inconsistent ones. Invest in data quality. Every example should be one you would be proud to show as a correct response.
 
 ---
@@ -125,7 +125,7 @@ Instead of updating all model weights during training, LoRA:
 
 **QLoRA** combines LoRA with **quantization** — reducing the precision of the frozen model weights (e.g., from 16-bit to 4-bit). This further reduces memory requirements, making it possible to fine-tune large models on consumer-grade GPUs.
 
-!!! tip "LoRA for Experimentation"
+!!! tip "LoRA for experimentation"
     LoRA's low cost and fast iteration make it ideal for experimentation. You can quickly test whether fine-tuning will help your use case before committing to a full training run.
 
 ---
@@ -189,7 +189,7 @@ DPO (Direct Preference Optimization)
 RLAIF (RL from AI Feedback)
 :   Uses an AI model (instead of humans) to provide feedback. Scales better but may inherit biases from the feedback model.
 
-!!! note "RLHF Is Typically Done by Model Providers"
+!!! note "RLHF is typically done by model providers"
     Unless you are building a foundation model from scratch, you will likely not implement RLHF yourself. It is included here for understanding because it fundamentally shapes how all modern AI models behave.
 
 ---
@@ -218,7 +218,7 @@ Fine-tuning is not free. Here is an honest look at the investment required:
 | LoRA fine-tuning | Moderate (GPU + data prep) | Hosting + API costs | Weeks | Medium (retrain to update) |
 | Full fine-tuning | High (multi-GPU + data prep) | Hosting + API costs | Weeks to months | Low (expensive to update) |
 
-!!! warning "Do Not Fine-Tune Prematurely"
+!!! warning "Do not fine-tune prematurely"
     Fine-tuning should be your last resort, not your first approach. Exhaust prompt engineering and RAG first. If you still cannot achieve the quality you need, then consider fine-tuning — starting with LoRA.
 
 ---

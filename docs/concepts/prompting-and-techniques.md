@@ -23,7 +23,7 @@ Prompt engineering is the art and science of crafting instructions (prompts) tha
 - Good prompts reduce hallucinations, improve accuracy, and make interactions more efficient.
 - Prompt engineering is the **lowest-effort, highest-impact** way to improve AI application quality.
 
-!!! tip "Prompt Engineering Is Iterative"
+!!! tip "Prompt engineering is iterative"
     Rarely will your first prompt be perfect. Treat prompts like code — write, test, evaluate, refine. Keep a library of prompts that work well for your use cases.
 
 ---
@@ -53,7 +53,7 @@ Rules:
 - Respond in a professional but friendly tone.
 ```
 
-!!! warning "System Prompts Are Not Security Boundaries"
+!!! warning "System prompts are not security boundaries"
     Users can sometimes bypass system prompt instructions through prompt injection. Do not rely on system prompts alone for access control or sensitive data protection. Use proper application-level security.
 
 ---
@@ -100,7 +100,7 @@ Classification:
 
 **Output:** Positive
 
-!!! tip "How Many Examples?"
+!!! tip "How many examples?"
     For most tasks, 2-5 examples are sufficient. More examples improve consistency but consume tokens. Include examples that cover edge cases and the range of expected outputs.
 
 ### When to use which
@@ -157,7 +157,7 @@ You can trigger chain of thought with simple additions to your prompt:
 - "Show your work."
 - "Break this down into steps before answering."
 
-!!! note "Some Models Have Built-In CoT"
+!!! note "Some models have built-in CoT"
     Models like OpenAI's o1/o3 and DeepSeek R1 automatically use chain of thought reasoning internally. For these models, you do not need to explicitly request step-by-step reasoning — they do it by default.
 
 ---
@@ -253,7 +253,7 @@ Models sometimes need explicit negative instructions:
 
 ## Common mistakes to avoid
 
-!!! danger "Prompt Anti-Patterns"
+!!! danger "Prompt anti-patterns"
 
     **Vague instructions**: "Make it better" gives the model no direction. Be specific about what "better" means.
 

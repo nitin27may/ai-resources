@@ -34,7 +34,7 @@ A standard LLM interaction is **reactive**: you ask, it answers. An agentic syst
 | Self-correction | None | Evaluates and revises its own output |
 | Decision-making | Follows instructions literally | Chooses between approaches |
 
-!!! tip "Not Everything Needs to Be Agentic"
+!!! tip "Not everything needs to be agentic"
     Agentic systems add complexity. If a well-crafted prompt with RAG solves your problem, you do not need an agent. Use agents when the task genuinely requires multi-step reasoning, tool use, or dynamic decision-making.
 
 ---
@@ -146,7 +146,7 @@ Transport
 4. Your application executes the tool and returns the result.
 5. The model incorporates the result into its response.
 
-!!! note "The Model Does Not Execute Tools"
+!!! note "The model does not execute tools"
     The model only *decides* which tool to call and with what arguments. Your application code is responsible for actually executing the tool. This is an important security boundary.
 
 ---
@@ -225,7 +225,7 @@ Agents need memory to maintain context across interactions and learn from past e
 - Must be explicitly managed (what to store, when to retrieve, when to forget).
 - **Example:** Remembering that the user prefers Python over JavaScript.
 
-!!! warning "Memory Is Not Free"
+!!! warning "Memory is not free"
     Every piece of information stored in memory costs tokens when retrieved. Be selective about what goes into long-term memory. Store summaries and key facts, not raw transcripts.
 
 ---
@@ -282,7 +282,7 @@ Agentic systems are harder to debug than simple API calls. An agent might make a
 | **Debugging** | Easier — follow the fixed path | Harder — need observability |
 | **Example** | "Extract data, validate, save to DB" | "Research this topic and write a report" |
 
-!!! tip "Start Deterministic, Add Agency Gradually"
+!!! tip "Start deterministic, add agency gradually"
     Build your workflow as a deterministic pipeline first. Then identify specific decision points where the LLM should choose the path. This hybrid approach gives you predictability where you need it and flexibility where it helps.
 
 ---

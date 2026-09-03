@@ -18,7 +18,7 @@ AI coding tools have moved from novelty to essential infrastructure. The questio
 
 The landscape breaks into three tiers, each with a different scope and mental model:
 
-!!! info "Three-Tier Model"
+!!! info "Three-tier model"
 
     **Tier 1 — Code Completion** (:material-github: GitHub Copilot)
 

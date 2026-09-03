@@ -36,7 +36,7 @@ A **hallucination** is when an AI model generates information that sounds confid
 | **Output validation** | Programmatically check model outputs against known facts, schemas, or business rules. |
 | **Human review** | For high-stakes outputs, have a human verify before the response reaches the end user. |
 
-!!! tip "Zero Hallucinations Is Not Realistic"
+!!! tip "Zero hallucinations is not realistic"
     You cannot eliminate hallucinations entirely. The goal is to **reduce their frequency and impact**. Use layered mitigations — RAG + grounding instructions + validation — rather than relying on any single technique.
 
 ---
@@ -67,7 +67,7 @@ Direct injection
 Indirect injection
 :   Malicious instructions are hidden in external data that the model processes — for example, in a document retrieved by RAG, an email being summarized, or a web page being analyzed.
 
-!!! danger "Indirect Injection Is Harder to Detect"
+!!! danger "Indirect injection is harder to detect"
     Indirect injection is especially dangerous because the adversarial content comes from data sources, not from the user's direct input. If your RAG system retrieves a document containing hidden instructions, the model may follow them.
 
 ### Mitigation strategies
@@ -144,7 +144,7 @@ Reliability and Safety
 Inclusiveness
 :   AI should be designed to be accessible and useful to people of all abilities and backgrounds.
 
-!!! note "Principles Need Action"
+!!! note "Principles need action"
     Principles are only meaningful when translated into concrete practices. For each principle, ask: "What specific checks, tests, or processes do we have in place to uphold this?"
 
 ---
@@ -192,7 +192,7 @@ Inclusiveness
 4. **Document findings**: Record what worked, what failed, and the severity of each finding.
 5. **Remediate and retest**: Fix issues and verify the fixes work.
 
-!!! tip "Red Team Early and Often"
+!!! tip "Red team early and often"
     Do not wait until launch to red team. Test throughout development. Every time you change the system prompt, add new tools, or update the RAG pipeline, red team again.
 
 ---

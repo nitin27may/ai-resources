@@ -62,7 +62,7 @@ graph TD
 5. **A prompt is assembled** — combining the user's question with the retrieved context.
 6. **The LLM generates a response** — grounded in the retrieved information rather than its general training data.
 
-!!! tip "RAG Is Not Search"
+!!! tip "RAG is not search"
     RAG goes beyond traditional keyword search. It uses **semantic similarity** — meaning it can find relevant content even when the exact words do not match. Asking "Can I work from home?" will match a document titled "Remote Work Policy" even though the words are different.
 
 ---
@@ -93,7 +93,7 @@ Embedding models are specialized models designed to convert text into vectors. T
 | Cohere Embed v3 | 1,024 | Cohere |
 | BGE-large-en-v1.5 | 1,024 | BAAI (open source) |
 
-!!! note "Dimensions Matter"
+!!! note "Dimensions matter"
     Higher dimensions capture more nuance but require more storage and compute. For most enterprise use cases, 1,024-1,536 dimensions offer a good balance.
 
 ---
@@ -119,7 +119,7 @@ A **vector database** is a specialized data store optimized for storing, indexin
 | Chroma | Open source | Lightweight, great for prototyping |
 | pgvector | PostgreSQL extension | Use your existing Postgres infrastructure |
 
-!!! tip "Hybrid Search"
+!!! tip "Hybrid search"
     The best results often come from **hybrid search** — combining vector similarity with traditional keyword matching. Azure AI Search supports this natively with its hybrid search capability.
 
 ---
@@ -144,7 +144,7 @@ Chunking strategy directly impacts retrieval quality. Too large and chunks conta
 | **Recursive** | Try paragraph, then sentence, then character splits | General-purpose fallback |
 | **Document-aware** | Respect headings, sections, tables | Technical docs, reports with structure |
 
-!!! warning "Overlap Is Important"
+!!! warning "Overlap is important"
     Always include overlap between chunks (typically 10-20% of chunk size). Without overlap, important information that spans a chunk boundary can be lost.
 
 ### Chunk size guidelines
@@ -198,7 +198,7 @@ graph TD
     style J fill:#16a34a,stroke:#16a34a,color:#fff
 ```
 
-!!! note "GraphRAG vs Standard RAG"
+!!! note "GraphRAG vs standard RAG"
     Use standard RAG when questions are about specific facts in specific documents. Use GraphRAG when questions require synthesis across many documents or understanding of relationships between entities.
 
 ---
@@ -218,7 +218,7 @@ This is one of the most common decisions in AI application design. Here is a cle
 | **When data changes** | Re-index documents | Retrain the model |
 | **Example use case** | "Answer questions about our HR policies" | "Write emails in our brand voice" |
 
-!!! tip "Combine Them"
+!!! tip "Combine them"
     RAG and fine-tuning are not mutually exclusive. A fine-tuned model that also uses RAG can provide domain-specific behavior **and** up-to-date, grounded responses. Many production systems use both.
 
 ### Decision guide

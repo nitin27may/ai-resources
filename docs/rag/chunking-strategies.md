@@ -13,7 +13,7 @@ tags:
     **Before this:** [Embeddings](embeddings.md)  ·  **After this:** [Vector databases](vector-databases.md)
     **Hands-on version:** [5 Retrieval](../02-agents/retrieval.md)
 
-!!! abstract "What You'll Learn"
+!!! abstract "What you'll learn"
     This page covers eight document chunking strategies used in production RAG systems: fixed-size, sentence, recursive character, semantic, context-aware, parent-child, late chunking, and agentic. Each section covers how it works, when to use it, and the trade-offs involved. A decision flowchart and chunk size guidelines table at the end give you a practical starting point for any use case.
 
 ---
@@ -27,7 +27,7 @@ The core tension is straightforward:
 - **Chunks too small** — each vector represents only a fragment of a thought. Retrieval returns pieces that lack the context needed to answer the question. The answer is scattered across five retrieved chunks instead of being in one.
 - **Chunks too large** — each vector averages across many topics. Similarity scores are diluted. Irrelevant content fills the context window alongside what you actually needed.
 
-!!! tip "The Goldilocks Problem"
+!!! tip "The goldilocks problem"
     There is no universally correct chunk size. The right size depends on your document type, your query patterns, your embedding model's token limit, and how much context your LLM needs to generate a good answer. Use evaluation metrics (context recall, faithfulness) to validate chunk size decisions — don't rely on intuition alone.
 
 ---
@@ -113,7 +113,7 @@ chunks = chunker.create_documents([document_text])
 
 Chunk boundaries align with actual topic transitions, not arbitrary character counts. Chunks are more semantically coherent.
 
-!!! warning "Semantic Chunking is Expensive"
+!!! warning "Semantic chunking is expensive"
     Semantic chunking requires embedding every sentence in every document during indexing — not just the final chunks. For a 1,000-word document split into ~50 sentences, that is 50 embedding API calls where fixed-size would require 3–5. Expect 2–5× the indexing cost and time compared to recursive character chunking. Reserve this for high-value corpora where retrieval quality is worth the cost.
 
 **When to use:** dense technical documents with clearly distinct sections, research papers, long-form articles. Not cost-effective for high-volume ingestion pipelines.
@@ -138,7 +138,7 @@ Different document types warrant different strategies:
 | Tables | Keep entire table as single chunk; do not split mid-row |
 | JSON / XML | Split on top-level array elements or key sections |
 
-!!! tip "Markdown Headers Are Natural Boundaries"
+!!! tip "Markdown headers are natural boundaries"
     If your knowledge base is primarily Markdown (documentation sites, Notion exports, GitHub wikis), splitting on heading boundaries is almost always the right starting point. Each `##` section represents a complete topic. LangChain's `MarkdownHeaderTextSplitter` handles this cleanly and preserves the header as metadata on each chunk.
 
 **When to use:** structured documentation, mixed-format corpora, any situation where document structure carries semantic meaning. This is the right default for documentation-heavy knowledge bases.
@@ -193,7 +193,7 @@ Embed the full document first, then chunk the resulting contextual embeddings ra
 
 Standard chunking loses cross-chunk context: a pronoun in chunk 3 that refers to an entity introduced in chunk 1 will be embedded without knowledge of that entity. Late chunking solves this because the pronoun was attended to by all other tokens — including the entity — during the single forward pass.
 
-??? note "How Late Chunking Works"
+??? note "How late chunking works"
     In a standard RAG pipeline: `text → chunk → embed each chunk independently`. The embedding model sees only the chunk's text.
 
     In late chunking: `text → embed full document (long-context model) → chunk the token embeddings`.
@@ -233,7 +233,7 @@ The cost is significant: every document requires one or more LLM calls during in
 
 Overlap means the last N tokens of one chunk are repeated as the first N tokens of the next. This reduces the chance of splitting a critical sentence or phrase across chunk boundaries.
 
-!!! note "Overlap Example"
+!!! note "Overlap example"
     With chunk size 256 and overlap 51 (~20%):
 
     ```

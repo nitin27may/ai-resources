@@ -162,7 +162,7 @@ graph LR
 
 ## When to use AI agents?
 
-!!! success "Ideal Use Cases"
+!!! success "Ideal use cases"
     AI agents are suitable for applications that require autonomous decision-making, ad hoc planning, trial-and-error exploration, and conversation-based user interactions. They are particularly useful for scenarios where the input task is unstructured and cannot be easily defined in advance.
 
 ### Common scenarios where AI agents excel
@@ -172,7 +172,7 @@ graph LR
 3. **Code Generation and Debugging**: For software developers, AI agents can assist with implementation, code reviews, and debugging by using various programming tools and environments
 4. **Research Assistance**: For researchers and analysts, AI agents can search the web, summarize documents, and piece together information from multiple sources
 
-!!! info "Key Characteristic"
+!!! info "Key characteristic"
     AI agents are designed to operate in a dynamic and underspecified setting, where the exact sequence of steps to fulfill a user request is not known in advance and might require exploration and close collaboration with users.
 
 ## When not to use AI agents?
@@ -182,10 +182,10 @@ graph LR
 
 ### Alternative approaches
 
-!!! tip "Use Functions Instead"
+!!! tip "Use functions instead"
     If you can write a function to handle the task, do that instead of using an AI agent. You can use AI to help you write that function.
 
-!!! note "Complex Multi-Step Tasks"
+!!! note "Complex multi-step tasks"
     A single AI agent might struggle with complex tasks that involve multiple steps and decision points. Such tasks might require a large number of tools (for example, over 20), which a single agent cannot feasibly manage. In these cases, consider using **workflows** instead.
 
 ---
@@ -221,7 +221,7 @@ class Note1,Note2,Patterns noteStyle
 
 ```
 
-!!! info "Defined Orchestration"
+!!! info "Defined orchestration"
     These systems follow pre-defined collaboration patterns where each agent has clearly specified roles, responsibilities, and handoff points. The orchestration logic is explicitly programmed, creating predictable and repeatable processes.
     
     **Example**: A document processing workflow might have agents that specialize in text extraction, analysis, and formatting, working in a predetermined sequence with defined inputs and outputs for each stage.
@@ -261,7 +261,7 @@ class Note1,Note2,Patterns noteStyle
 
 ```
 
-!!! info "AI-Driven Orchestration"
+!!! info "AI-driven orchestration"
     These systems use AI models to drive orchestration decisions, allowing agents to dynamically negotiate responsibilities and adapt their collaboration based on task requirements and intermediate results. The orchestration emerges from agent interactions rather than being pre-programmed.
     
     **Use Case**: This approach is particularly valuable for complex tasks where the optimal solution strategy cannot be predetermined and must evolve through exploration and adaptation.
@@ -313,7 +313,7 @@ graph LR
 
 ```
 
-!!! note "Dynamic Workflows"
+!!! note "Dynamic workflows"
     Workflows can also express dynamic sequences using conditional routing, model-based decision making, and concurrent execution. This is how multi-agent orchestration patterns are implemented. The orchestration patterns provide mechanisms to coordinate multiple agents to work on complex tasks that require multiple steps and decision points, addressing the limitations of single agents.
 
 ### What problems do workflows solve?
@@ -322,7 +322,7 @@ Workflows provide a structured way to manage complex processes that involve mult
 
 ### Key benefits of workflows
 
-!!! success "Workflow Advantages"
+!!! success "Workflow advantages"
     
     - **Modularity**: Workflows can be broken down into smaller, reusable components, making it easier to manage and update individual parts of the process
     

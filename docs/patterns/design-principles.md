@@ -21,7 +21,7 @@ As we build our agent framework step by step, we'll make key architectural decis
 
 ### 1. async-first architecture
 
-!!! success "Why Async?"
+!!! success "Why async?"
     Agent tasks involve multiple slow operations: LLM API calls (500ms-5s), tool executions (variable), and I/O operations. Without async, your agent sits idle during each call, making multi-agent systems painfully slow.
 
 **Performance Impact:**
@@ -37,7 +37,7 @@ We embrace `async/await` throughout because retrofitting async into synchronous 
 
 ### 2. event-based streaming
 
-!!! info "Real-Time Progress Updates"
+!!! info "Real-time progress updates"
     Agent tasks can take 30+ seconds to complete multiple steps. Without streaming, users stare at blank screens wondering if anything is happening.
 
 **Benefits:**
@@ -51,7 +51,7 @@ We embrace `async/await` throughout because retrofitting async into synchronous 
 
 ### 3. component serialization
 
-!!! abstract "Configuration as Code"
+!!! abstract "Configuration as code"
     When every component (agents, tools, memory) can serialize itself to JSON, you gain powerful capabilities for configuration management.
 
 **Use Cases:**
@@ -71,7 +71,7 @@ All components implement serialization to JSON format, enabling programmatic and
 
 ### 4. graceful cancellation
 
-!!! warning "User Control is Critical"
+!!! warning "User control is critical"
     Users will start long-running agent tasks and then need to cancel them - whether due to incorrect prompts, infinite loops, or to provide feedback.
 
 **Requirements:**
@@ -85,7 +85,7 @@ All components implement serialization to JSON format, enabling programmatic and
 
 ### 5. abstract base classes with core behaviors
 
-!!! tip "Flexibility and Extensibility"
+!!! tip "Flexibility and extensibility"
     When you want to support multiple LLM providers, different tool types, or various memory backends, abstract interfaces prevent vendor lock-in and enable testing with mock implementations.
 
 **Benefits:**

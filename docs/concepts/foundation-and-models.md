@@ -21,7 +21,7 @@ A Large Language Model is a type of AI that has been trained on vast amounts of 
 
 Think of it like a very sophisticated autocomplete: you give it a sentence, and it figures out what should come next — except it can do this across paragraphs, pages, and even entire documents.
 
-!!! tip "Key Insight"
+!!! tip "Key insight"
     LLMs do not "understand" language the way humans do. They learn **statistical patterns** in text. Their ability to generate coherent, useful responses comes from the sheer scale of data and parameters, not from genuine comprehension.
 
 ### How it works (simplified)
@@ -62,7 +62,7 @@ Models do not process raw text. Instead, text is broken into **tokens** — smal
 | "Artificial intelligence" | 2-3 tokens |
 | 1,000 words of English | ~750 tokens |
 
-!!! note "Why Tokens Matter"
+!!! note "Why tokens matter"
     You are billed per token (input + output) when using commercial APIs. Understanding tokenization helps you estimate costs and optimize prompts.
 
 ### Context window
@@ -166,7 +166,7 @@ Top-p (nucleus sampling)
 Max tokens
 :   The maximum number of tokens the model will generate in its response.
 
-!!! warning "Temperature Is Not Creativity"
+!!! warning "Temperature is not creativity"
     Setting temperature to 1.0 does not make the model "more creative" in a meaningful sense. It increases randomness, which can lead to incoherent or off-topic output. For most production use cases, keep temperature between 0.0 and 0.5.
 
 ---
@@ -184,7 +184,7 @@ There is no single "best" model. The right choice depends on your requirements:
 | Domain-specific accuracy | Fine-tuned LLM or SLM |
 | Long document processing | Model with large context window |
 
-!!! tip "Start Simple"
+!!! tip "Start simple"
     Begin with a hosted LLM and well-crafted prompts. Only move to fine-tuning or smaller models when you have a clear need for cost reduction, latency improvement, or domain specialization.
 
 ---

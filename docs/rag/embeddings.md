@@ -14,7 +14,7 @@ tags:
     **Before this:** [RAG fundamentals](rag-fundamentals.md)  ·  **After this:** [Chunking strategies](chunking-strategies.md)
     **Hands-on version:** [5 Retrieval](../02-agents/retrieval.md)
 
-!!! abstract "What You'll Learn"
+!!! abstract "What you'll learn"
     This page explains how embedding models convert text into vectors, what happens inside the model at each stage, how to compare the major commercial and open-source options, and what production concerns — storage cost, batching, caching, and model consistency — you need to address before going to production.
 
 ---
@@ -84,7 +84,7 @@ flowchart LR
 | `all-mpnet-base-v2` | sentence-transformers | 768 | No | 384 | Solid local option; widely used baseline |
 | `nomic-embed-text-v1.5` | Nomic | 768 (reducible) | No | 8,192 | Open-source; supports Matryoshka; Apache 2.0 |
 
-!!! note "Check the MTEB Leaderboard"
+!!! note "Check the MTEB leaderboard"
     The [MTEB leaderboard](https://huggingface.co/spaces/mteb/leaderboard) (Massive Text Embedding Benchmark) is the standard reference for comparing embedding models across retrieval, classification, clustering, and semantic similarity tasks. Rankings shift as new models are released. Check it before committing to a model for a new project.
 
 ---
@@ -102,7 +102,7 @@ Some embedding providers distinguish between the type of content being embedded.
 
 Using `search_document` for indexing and `search_query` for queries is not optional with Cohere — it's part of the model's design. The model was trained with asymmetric embeddings: queries and documents are mapped to nearby but distinct regions of the embedding space.
 
-!!! tip "Always Match Input Types"
+!!! tip "Always match input types"
     If you index with `search_document` and retrieve with `search_document` instead of `search_query`, retrieval quality drops measurably. This is one of the most common configuration mistakes in Cohere-based RAG pipelines.
 
 ---
@@ -184,7 +184,7 @@ Query embeddings can be cached when the same or semantically identical queries a
 
 Do not cache document embeddings in memory — store them in the vector database where they belong.
 
-!!! warning "Never Mix Embedding Models"
+!!! warning "Never mix embedding models"
     Your index and your query must use the same embedding model, same version, and same input type configuration. Mixing models — even different versions of the same model — produces vectors in different spaces that cannot be meaningfully compared. If you need to upgrade embedding models, you must re-embed your entire index. Plan for this operationally: version your indexes, and keep the old index live during migration.
 
 ---
