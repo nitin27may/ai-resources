@@ -42,6 +42,64 @@ Inference
 
 ---
 
+Training cutoff
+:   The date a model's training data ends. It knows nothing after it, and it is
+    unreliable about the date itself, because that fact was also learned during
+    training.
+
+Temperature
+:   A sampling setting controlling randomness. Low values give consistent,
+    repetitive output; high values give varied, less predictable output.
+    Temperature 0 is the closest you get to determinism, and is not a guarantee.
+
+Top-p (nucleus sampling)
+:   Restricts the model to the smallest set of candidate tokens whose combined
+    probability reaches *p*. An alternative lever to temperature.
+
+Max output tokens
+:   The cap on what the model may generate in one response. A separate, much
+    smaller limit than the context window, and the usual cause of an answer
+    that stops mid-sentence.
+
+Reasoning model
+:   A model trained to work through a problem before answering, producing an
+    internal chain of reasoning that is usually hidden. Better at maths, logic
+    and planning; slower, and billed for the thinking you do not see.
+
+Mixture of experts (MoE)
+:   An architecture that routes each token to a subset of specialised
+    sub-networks, so only a fraction of the model's total parameters are active
+    per token. Why total parameter count no longer indicates cost or capability.
+
+Prompt caching
+:   Provider-side reuse of an unchanged prompt prefix, charged at a reduced rate
+    and returned faster. Requires the stable parts of the prompt to come first
+    and to stay byte-identical.
+
+Distillation
+:   Training a smaller model on a larger model's outputs so it performs well on
+    one narrow task at a fraction of the cost. It inherits the teacher's
+    mistakes.
+
+Multimodal
+:   Able to accept or produce more than text — typically images, sometimes audio
+    or video.
+
+Time to first token (TTFT)
+:   The delay before the first character of a response appears. What users
+    perceive as speed, as distinct from total generation time.
+
+KV cache
+:   Retained attention state for tokens already processed, so they are not
+    recomputed on each new token. The reason long conversations consume server
+    memory as well as tokens.
+
+Prefill and decode
+:   The two phases of inference. Prefill processes your prompt and parallelises
+    well; decode generates the answer one token at a time and does not. Shorter
+    outputs help latency more than shorter prompts.
+
+
 ## :material-database-search-outline: Retrieval & data {#retrieval-data}
 
 Retrieval-Augmented Generation (RAG)
@@ -82,6 +140,27 @@ RAGAS (Retrieval Augmented Generation Assessment)
 
 ---
 
+Hybrid search
+:   Running semantic and keyword search together and merging the results.
+    Usually the single highest-value improvement to a mediocre RAG system,
+    because keyword search covers exactly what embeddings handle worst: codes,
+    identifiers, names and acronyms.
+
+Approximate nearest neighbour (ANN)
+:   The class of algorithms vector databases use to find similar vectors
+    quickly, trading exactness for speed. HNSW is one.
+
+Cosine similarity
+:   The usual measure of closeness between two embeddings, based on the angle
+    between them rather than their magnitude. The score behind "how relevant is
+    this chunk".
+
+Similarity threshold
+:   A minimum score below which a retrieval result is treated as no match.
+    Necessary because retrieval always returns something: without a floor, an
+    unanswerable question still yields chunks and a confident answer.
+
+
 ## :material-robot-outline: Agentic AI {#agentic-ai}
 
 AI Agent
@@ -117,11 +196,12 @@ AG-UI (Agent-User Interaction Protocol)
 Copilot Extension
 :   **Retired.** A GitHub App that extended Copilot Chat with external tools via `@`-mentions. The platform was deprecated in September 2025 and shut down on 10 November 2025, replaced by [MCP](../ai-dev-tools/mcp.md) servers. Listed here because the term is still widely used in older material.
 
-Copilot Skillset
-:   A simple type of Copilot Extension that exposes OpenAPI-described functions. Copilot calls the functions on the user's behalf without requiring a full conversational agent implementation. Lower complexity than a full Agent extension.
-
-Copilot Agent Extension
-:   A full Copilot Extension that handles complete conversation turns via webhooks. Unlike Skillsets, Agent extensions maintain conversation state and can stream responses. Required when you need multi-turn interaction or dynamic responses.
+Copilot Skillset / Copilot Agent Extension
+:   **Retired**, with the platform above. The two build styles for a Copilot
+    Extension: a Skillset exposed OpenAPI-described functions, while an Agent
+    extension handled whole conversation turns over webhooks. Both were replaced
+    by [MCP](../ai-dev-tools/mcp.md) servers. Defined here only because older
+    tutorials still teach them.
 
 Orchestration
 :   The coordination layer that manages how agents, tools, and models work together in a workflow. Frameworks like LangGraph, AutoGen, and Semantic Kernel handle routing decisions, retry logic, state management, and handoffs between agents.
@@ -155,6 +235,40 @@ Deterministic vs Non-deterministic Workflows
 
 ---
 
+Agent loop
+:   The core mechanism of an agent: call the model, which either requests an
+    action or answers; perform the action; return the result; call again. It
+    ends when the model stops requesting actions, and nothing else stops it.
+
+Harness
+:   Everything around the model in an agent: the loop, tool dispatch, error
+    handling, permission checks and budgets. Most of what makes an agent work or
+    fail lives here rather than in the model.
+
+Context engineering
+:   Deciding what occupies the context window on each turn, and what is dropped,
+    summarised or moved outside it. Distinct from prompt engineering, which is
+    about wording.
+
+Context rot
+:   Degradation in a model's use of information as the context grows, so
+    advertised context length exceeds usable context length.
+
+Memory poisoning
+:   A wrong fact written to an agent's long-term memory and reinjected into
+    later prompts as established context. Durable, invisible, and it presents as
+    the model getting worse rather than the store being wrong.
+
+Approval fatigue
+:   The decay of human oversight under volume. Ask a person to approve enough
+    actions and they stop reading them, which makes a confirmation step
+    ceremonial.
+
+Excessive agency
+:   Granting an agent more capability or permission than its task requires, so a
+    single failure or injection reaches further than it needed to.
+
+
 ## :material-pencil-outline: Prompting & techniques {#prompting-techniques}
 
 Prompt Engineering
@@ -176,6 +290,22 @@ Grounding
 :   Techniques that anchor AI responses to factual, verifiable information rather than the model's training data alone. RAG is one form of grounding.
 
 ---
+
+Structured output
+:   Constraining a model to produce output matching a supplied schema, enforced
+    during generation so non-conforming text cannot be produced. Distinct from
+    asking for JSON in the prompt, and from JSON mode, which guarantees valid
+    JSON but not your fields.
+
+JSON mode
+:   A provider setting guaranteeing syntactically valid JSON. It does not
+    guarantee your field names, types or presence — use a schema for that.
+
+Lost in the middle
+:   The tendency of models to use information at the start and end of a long
+    input more reliably than information in the middle. Argues for putting
+    instructions where they will be seen, and for retrieving less.
+
 
 ## :material-tune: Fine-tuning & training {#fine-tuning-training}
 
@@ -221,6 +351,28 @@ Content Safety
 
 ---
 
+Lethal trifecta
+:   The three conditions that together make prompt injection dangerous: access
+    to private data, exposure to untrusted content, and a way to communicate
+    externally. Removing any one eliminates the attack class, which makes it a
+    design constraint rather than a filtering problem.
+
+Indirect prompt injection
+:   Injection delivered through content the system processes rather than through
+    the user's message — a retrieved document, a web page, an email, a pull
+    request. Harder to detect because the attacker never talks to your system.
+
+Jailbreak
+:   Input designed to make a model bypass its own safety training. Related to,
+    but distinct from, prompt injection, which targets the application's
+    instructions rather than the model's guardrails.
+
+Data residency
+:   The requirement that data be processed and stored in a particular
+    jurisdiction. A common reason to use a regional deployment of a model rather
+    than a vendor's default endpoint.
+
+
 ## :material-server-outline: Infrastructure & operations {#infrastructure-operations}
 
 MLOps
@@ -236,6 +388,31 @@ Edge AI
 :   Running AI models directly on local devices or on-premises servers rather than in the cloud.
 
 ---
+
+Evaluation set
+:   A fixed collection of inputs with known-good outcomes, used to tell whether
+    a change helped. Usually built from real failures. The single most valuable
+    artefact a team building on models can own.
+
+pass@k and pass^k
+:   pass@k is the chance of at least one success in k attempts, which flatters.
+    pass^k is the chance of succeeding k times in a row, which is what a user
+    experiences across repeated use. The second is the number that matters.
+
+LLM-as-judge
+:   Using a model to grade another model's output against criteria. Cheap and
+    scalable, and it needs calibrating against human judgements before its
+    scores mean anything.
+
+Idempotency
+:   The property that repeating an operation has the same effect as performing
+    it once. Essential when retrying, because a timeout does not tell you
+    whether the work already happened.
+
+Rate limit
+:   A provider cap on requests or tokens per interval. The token limit usually
+    binds first, and exceeding it is a common launch-day failure.
+
 
 ## :material-domain: Enterprise AI patterns {#enterprise-ai-patterns}
 
@@ -259,7 +436,11 @@ Agentic RAG
 ## :material-tools: Frameworks & tools {#frameworks-tools}
 
 Semantic Kernel
-:   Microsoft's open-source SDK for integrating LLMs into applications. Provides abstractions for prompt management, memory, planning, and tool integration.
+:   **Superseded.** Microsoft's SDK for integrating LLMs into applications,
+    providing prompt management, memory, planning and tool integration. Merged
+    into [Microsoft Agent Framework](../tools-and-frameworks/index.md) at its
+    1.0 release in April 2026. Existing code keeps working and security fixes
+    continue, but new work should start on Agent Framework.
 
 LangChain / LangGraph
 :   Popular open-source frameworks for building LLM-powered applications. LangChain provides building blocks, while LangGraph adds stateful graph-based orchestration.

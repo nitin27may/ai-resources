@@ -252,7 +252,7 @@ it takes.
 
 ## Key terms to know
 
-The [glossary](../glossary/index.md) has all 74. These are the ones you need to
+The [glossary](../glossary/index.md) has more than a hundred. These are the ones you need to
 read the rest of this path.
 
 **Token**

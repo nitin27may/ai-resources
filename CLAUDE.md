@@ -94,7 +94,7 @@ docs/
 ├── patterns/             # architecture patterns
 ├── ai-dev-tools/         # Copilot, Claude Code, MCP
 ├── tools-and-frameworks/ # framework and platform landscape
-├── glossary/             # 74 terms
+├── glossary/             # 100+ terms
 ├── reference/            # Resources: the vetted, ranked shelf
 ├── references/           # Official sources: primary docs by vendor
 ├── whats-new/            # dated changelog

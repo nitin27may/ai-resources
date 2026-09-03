@@ -46,7 +46,7 @@ machine: no account, no API key, no cost.
 
     ---
 
-    Seventy-plus terms in plain English, a vetted reading list with a reason to
+    More than a hundred terms in plain English, a vetted reading list with a reason to
     trust each item, and official documentation by vendor.
 
     [:octicons-arrow-right-24: Glossary](glossary/index.md)
