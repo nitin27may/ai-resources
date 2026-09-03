@@ -355,7 +355,7 @@ everything else. The rest of the reading path builds on this page in order.
 The full route, with times, is on [Choose your path](../00-start-here/index.md).
 
 **If you write code**, the [build path](../00-start-here/the-path.md) covers the
-same ground as something you run: eleven modules, eleven labs, all free and local.
+same ground as something you run: thirteen modules, thirteen labs, all free and local.
 Read pages 2 and 5 above first, then start there.
 
 **Keep open while you read:** the [glossary](../glossary/index.md).

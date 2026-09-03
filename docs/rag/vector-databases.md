@@ -12,7 +12,7 @@ tags:
 
 !!! abstract "Go deeper · 40 min · code optional"
     **Before this:** [Chunking strategies](chunking-strategies.md)  ·  **After this:** [GraphRAG](graphrag.md)
-    **Hands-on version:** [6 Retrieval](../02-agents/retrieval.md)
+    **Hands-on version:** [7 Retrieval](../02-agents/retrieval.md)
 
 **Verified as of 2026-09-02.**
 

@@ -243,6 +243,9 @@ that a lookup always returns something.
     Treat writes with more suspicion than reads: validate what goes in, record
     where it came from, and make it possible to inspect and delete.
 
+    [Module 6](../02-agents/memory.md) builds a store and poisons it, so you can
+    watch this happen rather than take it on trust.
+
 ---
 
 ## Human-in-the-loop

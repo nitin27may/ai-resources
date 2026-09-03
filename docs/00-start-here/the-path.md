@@ -1,6 +1,6 @@
 ---
 title: The path
-description: Eleven modules from a model on your laptop to an agent in production. Every one ends in something that runs, free.
+description: Thirteen modules from a model on your laptop to an agent in production. Every one ends in something that runs, free.
 tags:
   - Start here
   - Agents
@@ -13,9 +13,9 @@ tags:
     The overview of the ten build modules. The reading path, which needs no code, is on Choose your path.
 
 !!! abstract
-    Eleven modules, in order, each ending in code you run. No account, no API
+    Thirteen modules, in order, each ending in code you run. No account, no API
     key, no cost — everything works against a model on your own machine.
-    Roughly 12-15 hours if you do the labs, which is the only way it works.
+    Roughly 15-18 hours if you do the labs, which is the only way it works.
 
 **Verified as of 2026-08-21.**
 
@@ -52,11 +52,13 @@ flowchart TB
     SO --> L["3 · The agent loop<br/>think, act, observe, repeat"]:::primary
     L --> H["4 · The harness<br/>everything around the loop"]:::primary
     H --> C["5 · Context engineering<br/>what the model may see"]:::processing
-    C --> R["6 · Retrieval<br/>what it was never told"]:::processing
-    R --> E["7 · Evaluation<br/>whether it actually works"]:::warning
-    E --> O["8 · Observability<br/>where it went wrong"]:::warning
-    O --> F["9 · Safety<br/>when content fights back"]:::danger
-    F --> P(["10 · Production<br/>real users, real money"]):::storage
+    C --> M["6 · Memory<br/>what has to outlive the window"]:::processing
+    M --> R["7 · Retrieval<br/>what it was never told"]:::processing
+    R --> E["8 · Evaluation<br/>whether it actually works"]:::warning
+    E --> O["9 · Observability<br/>where it went wrong"]:::warning
+    O --> F["10 · Safety<br/>when content fights back"]:::danger
+    F --> P["11 · Production<br/>real users, real money"]:::storage
+    P --> MA(["12 · Multi-agent<br/>when splitting the work helps"]):::primary
 
     classDef success fill:#16a34a,stroke:#15803d,color:#fff
     classDef primary fill:#0d9488,stroke:#0b7a72,color:#fff
@@ -74,11 +76,13 @@ flowchart TB
 | 3 | [The agent loop](../02-agents/the-agent-loop.md) | A ~30-line loop, no framework | 1 h |
 | 4 | [The harness](../02-agents/the-harness.md) | Break it four ways; add guardrails | 1 h |
 | 5 | [Context engineering](../02-agents/context-engineering.md) | Watch the context window eat your system prompt | 1.5 h |
-| 6 | [Retrieval](../02-agents/retrieval.md) | Local RAG, and the case it silently gets wrong | 1.5 h |
-| 7 | [Evaluation](../02-agents/evaluation.md) | Measure pass^k; calibrate a judge | 2 h |
-| 8 | [Observability](../02-agents/observability.md) | A tracer, and where the tokens really go | 1 h |
-| 9 | [Safety](../02-agents/safety.md) | Inject an instruction through tool output | 1.5 h |
-| 10 | [Production](../02-agents/production.md) | Make a retry stop charging twice | 1 h |
+| 6 | [Memory](../02-agents/memory.md) | Poison a store, then make it safe to trust | 1 h |
+| 7 | [Retrieval](../02-agents/retrieval.md) | Local RAG, and the case it silently gets wrong | 1.5 h |
+| 8 | [Evaluation](../02-agents/evaluation.md) | Measure pass^k; calibrate a judge | 2 h |
+| 9 | [Observability](../02-agents/observability.md) | A tracer, and where the tokens really go | 1 h |
+| 10 | [Safety](../02-agents/safety.md) | Inject an instruction through tool output | 1.5 h |
+| 11 | [Production](../02-agents/production.md) | Make a retry stop charging twice | 1 h |
+| 12 | [Multi-agent](../02-agents/multi-agent.md) | Measure the split, then watch it lose information | 1.5 h |
 
 ## What each module actually shows you
 
@@ -103,6 +107,14 @@ on trivia or one that can be argued into anything.
 
 **Context engineering** — overflow is silent, and what gets dropped depends on
 the *shape* of the overflow. In the agent case, your system prompt goes first.
+
+**Memory** — one *inferred* fact written to the store was reported as
+established truth in every later conversation, on both providers tested. Not a
+hallucination: the model read its context correctly, and the store lied to it.
+
+**Multi-agent** — splitting the task cost 2.6x the tokens *and* produced a worse
+answer, because a specialist judged its own document irrelevant and the
+supervisor could not recover what was never returned.
 
 **Retrieval** — on six documents everything works. Add forty bland neighbours and
 dense search sits **0.014** from being wrong while still ranking first. Read the

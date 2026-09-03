@@ -164,11 +164,13 @@ nav:
       - 3 The agent loop: 02-agents/the-agent-loop.md
       - 4 The harness: 02-agents/the-harness.md
       - 5 Context engineering: 02-agents/context-engineering.md
-      - 6 Retrieval: 02-agents/retrieval.md
-      - 7 Evaluation: 02-agents/evaluation.md
-      - 8 Observability: 02-agents/observability.md
-      - 9 Safety: 02-agents/safety.md
-      - 10 Production: 02-agents/production.md
+      - 6 Memory: 02-agents/memory.md
+      - 7 Retrieval: 02-agents/retrieval.md
+      - 8 Evaluation: 02-agents/evaluation.md
+      - 9 Observability: 02-agents/observability.md
+      - 10 Safety: 02-agents/safety.md
+      - 11 Production: 02-agents/production.md
+      - 12 Multi-agent: 02-agents/multi-agent.md
   - Go deeper:
       - Retrieval in depth:
           - rag/index.md

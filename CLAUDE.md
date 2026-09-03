@@ -118,7 +118,7 @@ directly under the H1:
 ```markdown
 !!! abstract "Understand · 30 min · no code"
     **Before this:** [How models work](...)  ·  **After this:** [What an agent is](...)
-    **Hands-on version:** [5 Retrieval](...)  ·  **In depth:** [Retrieval in depth](...)
+    **Hands-on version:** [7 Retrieval](...)  ·  **In depth:** [Retrieval in depth](...)
 ```
 
 Layer is one of Start here, Understand, Build, Go deeper, Tools, Reference. Code

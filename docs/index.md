@@ -5,7 +5,7 @@ hide:
 tags:
   - Start here
   - Home
-description: A free path from AI basics to agents in production. Read to understand, or build ten labs that run on your own machine.
+description: A free path from AI basics to agents in production. Read to understand, or build thirteen labs that run on your own machine.
 ---
 
 # AI Knowledge Hub
@@ -37,7 +37,7 @@ machine: no account, no API key, no cost.
 
     ---
 
-    Eleven modules, eleven labs. Start with a model on your laptop and finish with an
+    Thirteen modules, thirteen labs. Start with a model on your laptop and finish with an
     agent that survives retries, injection and a real budget.
 
     [:octicons-arrow-right-24: The build path](00-start-here/the-path.md)
@@ -85,7 +85,7 @@ layer of a single topic at once.
 
 !!! info "Engineers"
     Skim the reading path for the vocabulary, then take the
-    [build path](00-start-here/the-path.md). Eleven modules, each ending in code
+    [build path](00-start-here/the-path.md). Thirteen modules, each ending in code
     that runs locally. Depth on retrieval is in
     [Retrieval in depth](rag/index.md); your daily tooling is in
     [Developer tools](ai-dev-tools/index.md).

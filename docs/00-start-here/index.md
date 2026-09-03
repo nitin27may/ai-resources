@@ -47,7 +47,7 @@ Safety comes after agents on purpose. The failure that matters most is an
 instruction arriving through a tool result, which only makes sense once you know
 what a tool result is.
 
-## The build path — build an agent, ten labs
+## The build path — build an agent, thirteen labs
 
 Roughly 12 to 15 hours. Everything runs against a model on your own machine: no
 account, no API key, no cost. It assumes you can read Python and use a terminal,

@@ -69,8 +69,8 @@ checks = {
  # reappearing, which is how the last miscount survived for months.
  # whats-new is a changelog: its August entry correctly records that ten
  # modules shipped then. Everywhere else, "ten modules" is now stale.
- "stale 'ten modules' claims":    sum(1 for f,_,l in prose_lines()
-                                      if re.search(r"\bten modules\b", l, re.I)
+ "stale module-count claims":    sum(1 for f,_,l in prose_lines()
+                                      if re.search(r"\b(ten|eleven) modules\b", l, re.I)
                                       and "whats-new" not in f),
 }
 for k, v in checks.items(): print(f"{k:34s} {v}")

@@ -158,7 +158,7 @@ code changes between these.
     works and requires an `api-key` header instead; the labs assume the former.
 
 !!! success "Verified on 2026-09-02"
-    All ten labs were run end to end against Azure OpenAI with only these four
+    All thirteen labs were run end to end against Azure OpenAI with only these four
     variables set, and no change to any lab. Module 5's measured result was
     identical to the local run: dense retrieval ranking the right answer first
     by a margin of 0.014.

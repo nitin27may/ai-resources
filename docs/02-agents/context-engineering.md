@@ -10,7 +10,7 @@ tags:
 # Context engineering
 
 !!! abstract "Build · 1.5 h · hands-on"
-    **Before this:** [4 The harness](the-harness.md)  ·  **After this:** [6 Retrieval](retrieval.md)
+    **Before this:** [4 The harness](the-harness.md)  ·  **After this:** [6 Memory](memory.md)
     **Overview version:** [How models work](../concepts/foundation-and-models.md)
 
 !!! abstract

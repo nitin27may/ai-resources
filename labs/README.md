@@ -29,11 +29,13 @@ have no GPU, 8 GB of RAM, or only a browser.
 | [03-agent-loop](03-agent-loop/) | [The agent loop](../docs/02-agents/the-agent-loop.md) | think → act → observe → repeat, in ~30 lines. |
 | [04-loop-with-recovery](04-loop-with-recovery/) | [The harness](../docs/02-agents/the-harness.md) | Errors as context vs. limits in code; budgets that actually stop a run. |
 | [05-context-limits](05-context-limits/) | [Context engineering](../docs/02-agents/context-engineering.md) | Overflow is silent. What gets dropped depends on the shape of the overflow. |
+| [05b-memory](05b-memory/) | [Memory](../docs/02-agents/memory.md) | The model remembers nothing. A bad write is replayed forever. |
 | [06-local-rag](06-local-rag/) | [Retrieval](../docs/02-agents/retrieval.md) | Retrieval always returns something. Toy corpora hide every real failure. |
 | [07-eval-passk](07-eval-passk/) | [Evaluation](../docs/02-agents/evaluation.md) | pass@1 flatters; pass^k is what users experience. Judges need calibrating. |
 | [08-tracing](08-tracing/) | [Observability](../docs/02-agents/observability.md) | A trace is a span tree. Token cost is quadratic in turns. |
 | [09-prompt-injection](09-prompt-injection/) | [Safety](../docs/02-agents/safety.md) | Tool output can instruct the agent. Prompt-level defences do not hold. |
 | [10-production](10-production/) | [Production](../docs/02-agents/production.md) | A retry duplicates the order. Idempotency, not fewer retries. No model needed. |
+| [11-multi-agent](11-multi-agent/) | [Multi-agent](../docs/02-agents/multi-agent.md) | Parallelise the reading, keep one writer. |
 
 ## Swapping the model or the provider
 

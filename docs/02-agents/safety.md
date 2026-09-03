@@ -9,7 +9,7 @@ tags:
 # Safety and failure modes
 
 !!! abstract "Build · 1.5 h · hands-on"
-    **Before this:** [8 Observability](observability.md)  ·  **After this:** [10 Production](production.md)
+    **Before this:** [9 Observability](observability.md)  ·  **After this:** [11 Production](production.md)
     **Overview version:** [Safety and responsible AI](../concepts/safety-and-responsible-ai.md)
 
 !!! abstract

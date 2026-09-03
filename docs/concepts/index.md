@@ -93,7 +93,7 @@ page one of this route and sets up everything here.
 ## After these
 
 **If you write code**, take the [build path](../00-start-here/the-path.md): the
-same ideas as eleven modules that each end in something you run and break,
+same ideas as thirteen modules that each end in something you run and break,
 a model on your own machine.
 
 **If you want depth on retrieval**, [Retrieval in depth](../rag/index.md) is six

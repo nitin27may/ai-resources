@@ -9,7 +9,7 @@ tags:
 # Retrieval
 
 !!! abstract "Build · 1.5 h · hands-on"
-    **Before this:** [5 Context engineering](context-engineering.md)  ·  **After this:** [7 Evaluation](evaluation.md)
+    **Before this:** [6 Memory](memory.md)  ·  **After this:** [8 Evaluation](evaluation.md)
     **Overview version:** [Retrieval and data](../concepts/retrieval-and-data.md)  ·  **In depth:** [Retrieval in depth](../rag/index.md)
 
 !!! abstract

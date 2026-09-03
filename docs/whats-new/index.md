@@ -37,6 +37,12 @@ them on purpose.
   cannot fix: asked for a required field the message never mentioned, the model
   invented one on every run, on two different providers, and every invention was
   schema-valid.
+- **Two more build modules**, both measured rather than asserted:
+  [memory](../02-agents/memory.md), where one inferred fact written to a store
+  was reported as established truth in every later conversation, and
+  [multi-agent](../02-agents/multi-agent.md), where splitting a task cost 2.6x
+  the tokens and produced a worse answer because a specialist judged its own
+  document irrelevant.
 - **The labs run on Azure OpenAI**, verified end to end. Setup and the labs
   readme now carry a provider tab for it.
 - **No URL changed.** Every page that was reachable before is reachable at the
