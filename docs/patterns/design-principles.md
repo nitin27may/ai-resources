@@ -19,7 +19,7 @@ As we build our agent framework step by step, we'll make key architectural decis
 
 ## Core architectural principles
 
-### 1. async-first architecture
+### 1. Async-first architecture
 
 !!! success "Why async?"
     Agent tasks involve multiple slow operations: LLM API calls (500ms-5s), tool executions (variable), and I/O operations. Without async, your agent sits idle during each call, making multi-agent systems painfully slow.
@@ -35,7 +35,7 @@ We embrace `async/await` throughout because retrofitting async into synchronous 
 
 ---
 
-### 2. event-based streaming
+### 2. Event-based streaming
 
 !!! info "Real-time progress updates"
     Agent tasks can take 30+ seconds to complete multiple steps. Without streaming, users stare at blank screens wondering if anything is happening.
@@ -49,7 +49,7 @@ We embrace `async/await` throughout because retrofitting async into synchronous 
 
 ---
 
-### 3. component serialization
+### 3. Component serialization
 
 !!! abstract "Configuration as code"
     When every component (agents, tools, memory) can serialize itself to JSON, you gain powerful capabilities for configuration management.
@@ -69,7 +69,7 @@ All components implement serialization to JSON format, enabling programmatic and
 
 ---
 
-### 4. graceful cancellation
+### 4. Graceful cancellation
 
 !!! warning "User control is critical"
     Users will start long-running agent tasks and then need to cancel them - whether due to incorrect prompts, infinite loops, or to provide feedback.
@@ -83,7 +83,7 @@ All components implement serialization to JSON format, enabling programmatic and
 
 ---
 
-### 5. abstract base classes with core behaviors
+### 5. Abstract base classes with core behaviors
 
 !!! tip "Flexibility and extensibility"
     When you want to support multiple LLM providers, different tool types, or various memory backends, abstract interfaces prevent vendor lock-in and enable testing with mock implementations.

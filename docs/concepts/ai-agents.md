@@ -198,7 +198,7 @@ A **multi-agent system** (or multi-agent application) is a collection of agents 
 
 ### Multi-agent orchestration patterns
 
-#### 1. multi-agent workflows (defined orchestration)
+#### 1. Multi-agent workflows (defined orchestration)
 
 ```mermaid 
 graph TD
@@ -226,7 +226,7 @@ class Note1,Note2,Patterns noteStyle
     
     **Example**: A document processing workflow might have agents that specialize in text extraction, analysis, and formatting, working in a predetermined sequence with defined inputs and outputs for each stage.
 
-#### 2. autonomous multi-agent orchestration (AI-driven orchestration)
+#### 2. Autonomous multi-agent orchestration (AI-driven orchestration)
 
 ```mermaid 
 %% Autonomous (AI Driven) Orchestration

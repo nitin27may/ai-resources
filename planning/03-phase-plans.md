@@ -200,6 +200,25 @@ Each new module follows the Build page shape (What you'll be able to do, concept
 
 9a. **Structured output** (Build, after 1 Tool calling). Schema-constrained output, validation, retry on invalid, the difference between JSON mode and schema enforcement, what to do when the provider does not support it. Lab: extract an order from free text into a schema, count validation failures with and without enforcement.
 
+   **Where it sits, now decided.** The concept is introduced in
+   [Prompting](../docs/concepts/prompting-and-techniques.md) under "Structured
+   output: stop asking, start constraining", which gives the three levels (ask
+   nicely, JSON mode, schema-constrained) and the warning that a valid schema is
+   not a correct answer. That page already links forward to `02-agents/tool-calling.md`
+   for the mechanism.
+
+   So the Build module goes **between 1 Tool calling and 2 The agent loop**, as
+   module 1b or a renumbered 2, because a tool definition *is* a schema and the
+   model's request to call it *is* schema-constrained output — the lab reuses
+   the dispatcher built in module 1 rather than introducing new machinery. Its
+   lab directory is `labs/02b-structured-output/` if the existing numbers are
+   kept, or a full renumber of `labs/` if not. Renumbering labs changes no site
+   URL (lab directories are not published pages) but does change the module
+   numbers in nav labels and in `the-path.md`, which is free.
+
+   Ladder placement: Models and prompting ladder, between Prompting and
+   4 Context engineering.
+
 9b. **Memory** (Build, after 4 Context engineering). Short-term as the message list, long-term as a store the agent reads and writes, retrieval-backed memory, the failure where stale memory poisons a run. Lab: a file-backed memory, then a poisoned entry, then the fix.
 
 9c. **Multi-agent, including agentic RAG** (Build, after 9 Production). Supervisor and handoff on the same task; the agentic RAG lab where the agent picks between two retrievers and no retrieval; the Cognition vs Anthropic trade-off measured on context sharing versus parallel reads. Lab: both orchestrations, same task, compare tokens and pass^k.

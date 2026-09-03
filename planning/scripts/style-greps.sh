@@ -49,6 +49,8 @@ checks = {
  "unicode emojis":                sum(1 for _,_,l in prose_lines()
                                       if re.search(r"[\U0001F300-\U0001FAFF☀-➿]", l)),
  "bare '## References' sections": sum(1 for _,_,l in prose_lines() if l.strip() == "## References"),
+ "numbered headings lowercased": sum(1 for _,_,l in prose_lines()
+                                      if re.match(r"^#{2,6} [0-9]+[.)] [a-z]", l)),
  "Title Case admonition titles": sum(1 for _,_,l in prose_lines()
                                       if (m := re.match(r'^\s*(?:!!!|\?\?\?\+?)\s+\w+\s+"([A-Z][a-z]+ [A-Z][a-z][^"]*)"', l))
                                       and m.group(1).split()[1] not in PROPER),
