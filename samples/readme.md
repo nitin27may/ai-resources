@@ -1,94 +1,96 @@
-# C# samples — Microsoft Agent Framework
+# C# samples — Microsoft Agent Framework on Azure OpenAI
 
-Six single-file C# programs showing agent patterns against Azure AI Foundry.
-Each one is a .NET file-based app: the `#:package` lines at the top declare its
-own dependencies, so there is no project file and no solution.
+Six single-file C# programs. Each declares its own dependencies with `#:package`
+lines, so there is no project file and no solution — `dotnet run 1-basicagent.cs`
+is the whole setup.
 
-**Verified as of 2026-09-03:** all six compile with .NET 10, from a clean package cache.
+**Verified as of 2026-09-03:** all six *run*, not merely compile, against a live
+Azure OpenAI deployment on .NET 10.
 
 | File | Shows |
 |---|---|
-| `1-basicagent.cs` | Create a server-side agent, version its instructions, run it |
-| `2-agentasbackend.cs` | Drive an agent from a backend service rather than a chat UI |
-| `3-multiturn.cs` | Threads, and how conversation state is held server-side |
-| `4-functiontool.cs` | Give an agent a C# function as a tool |
-| `mcpuse.cs` | Connect an agent to an MCP server |
-| `workflow.cs` | Multi-step orchestration with the Workflows package |
+| `1-basicagent.cs` | The smallest agent: a chat client plus instructions. Also that each call is independent |
+| `2-agentasbackend.cs` | Streaming, which is what you want behind an API or a UI |
+| `3-multiturn.cs` | Sessions — what actually carries a conversation |
+| `4-functiontool.cs` | A C# function as a tool, and an agent correctly *not* calling it |
+| `mcpuse.cs` | Tools from an MCP server, and a sandbox boundary refusing an out-of-scope read |
+| `workflow.cs` | Three agents in a fixed graph, where the model never chooses the path |
 
-## Running one
+## Running them
 
-Needs the [.NET 10 SDK](https://dotnet.microsoft.com/download) or newer.
+Needs the [.NET 10 SDK](https://dotnet.microsoft.com/download) and an Azure
+OpenAI deployment. The same three variables the Python labs use:
 
 ```bash
-# Build only
-dotnet build 1-basicagent.cs
+export AZURE_OPENAI_ENDPOINT="https://<your-resource>.openai.azure.com"
+export AZURE_OPENAI_KEY="<your key>"
+export AZURE_OPENAI_DEPLOYMENT="<your chat deployment name>"
 
-# Build and run
 dotnet run 1-basicagent.cs
 ```
 
-Running (as opposed to building) needs an Azure AI Foundry project and an Azure
-login, because the samples authenticate with `AzureCliCredential`:
+`AZURE_OPENAI_DEPLOYMENT` is the **deployment** name you chose, not the model's
+name. Sending the model name is the most common first error.
 
-```bash
-az login
-export AZURE_FOUNDRY_PROJECT_ENDPOINT="https://<your-project>.services.ai.azure.com/api/projects/<name>"
-export AZURE_FOUNDRY_PROJECT_DEPLOYMENT_NAME="<your-deployment>"
-```
+`mcpuse.cs` additionally needs `npx` on your PATH. It launches the reference
+filesystem MCP server scoped to a temporary directory, so it needs no account
+and no token.
 
-Never put those values in the repository.
+Never put a key in the repository. Export it, or keep it in a git-ignored `.env`.
+
+## Why Azure OpenAI rather than Foundry Agents
+
+These previously targeted Azure AI Foundry's server-side agents, which meant
+they needed a Foundry project and an `az login` — so they could be compiled but
+almost never run. Pointing them at an Azure OpenAI deployment with a key means
+they run with the same credentials as everything else on this site.
+
+The trade is that server-side agent versioning, a Foundry feature, is no longer
+demonstrated. That is a deployment concern rather than an agent concept, and it
+is not what these samples are for.
 
 ## Package versions
 
-Ported to **Microsoft Agent Framework 1.x** on 2026-09-03. All six compile
-against the current packages:
-
 | Package | Version |
 |---|---|
-| `Microsoft.Agents.AI` | 1.20.0 |
-| `Microsoft.Agents.AI.AzureAI` | 1.0.0-rc5 |
+| `Microsoft.Agents.AI.OpenAI` | 1.20.0 |
 | `Microsoft.Agents.AI.Workflows` | 1.20.0 |
-| `Microsoft.Agents.AI.AzureAI.Persistent` | 1.20.0-preview.260831.1 |
-| `Azure.AI.Projects.Agents` | 2.0.0-beta.1 |
+| `Azure.AI.OpenAI` | 2.9.0-beta.1 |
 | `ModelContextProtocol` | 2.2.0 |
 
-Two remain pre-release because no stable release exists yet: the Azure
-integration is at `rc5`, and the persistent-agents integration is still preview.
+`Azure.AI.OpenAI` has no current stable release that carries the API these
+samples use; 2.9.0-beta.1 is the newest published.
 
-### What changed from the pre-1.0 preview
+## If you have code on the pre-1.0 Agent Framework preview
 
-Worth reading if you have code on the November 2025 preview, because none of
-these produce a helpful error message.
+None of these renames fail with a message that points at the fix, so they are
+listed here.
 
 | Was | Now |
 |---|---|
-| `new PromptAgentDefinition(model:)` | `AgentDefinition.CreatePromptAgentDefinition(model)` — a factory, not a constructor |
-| `AgentVersionCreationOptions` in `Azure.AI.Projects.OpenAI` | moved to the new `Azure.AI.Projects.Agents` package |
-| `aiProjectClient.Agents.CreateAgentVersion(...)` | `aiProjectClient.CreateAIAgentAsync(name, creationOptions)` |
-| `aiProjectClient.GetAIAgent(...)` | `GetAIAgentAsync(...)`, or `AsAIAgent(...)` for the sync form |
 | `AgentThread` / `agent.GetNewThread()` | `AgentSession` / `await agent.CreateSessionAsync()` |
 | `AgentRunResponseUpdate` | `AgentResponseUpdate` |
 | `AgentRunUpdateEvent` | `AgentResponseUpdateEvent` |
 | `InProcessExecution.StreamAsync(...)` | `InProcessExecution.RunStreamingAsync(...)` |
-| `aiProjectClient.Agents.DeleteAgentAsync(...)` | a separate `AgentsClient`, built from `AgentsClientSettings` |
+| `new PromptAgentDefinition(model:)` | `AgentDefinition.CreatePromptAgentDefinition(model)` |
+| `AgentVersionCreationOptions` in `Azure.AI.Projects.OpenAI` | moved to `Azure.AI.Projects.Agents` |
+| `aiProjectClient.Agents.CreateAgentVersion(...)` | `aiProjectClient.CreateAIAgentAsync(name, creationOptions)` |
+| `aiProjectClient.GetAIAgent(...)` | `GetAIAgentAsync(...)`, or `AsAIAgent(...)` for the sync form |
 
-Two things that will bite regardless of your code:
+Two type clashes you will hit whatever you write:
 
-- **`AgentsClientSettings` is marked experimental** (`SCME0002`), which is an
-  *error* rather than a warning by default. The samples opt in with an explicit
-  `#pragma warning disable SCME0002` so the choice is visible rather than buried
-  in a project file.
-- **`AzureCliCredential` now exists in both `Azure.Core` and `Azure.Identity`.**
-  Referencing both packages makes the type ambiguous across assemblies.
-  `workflow.cs` omits the explicit `Azure.Identity` reference and takes the
-  transitive one.
+- **`ChatMessage`** exists in both `Microsoft.Extensions.AI` and `OpenAI.Chat`.
+  You need the `OpenAI.Chat` namespace for the `AsAIAgent` extension, so alias
+  the message type rather than dropping the using. See `workflow.cs`.
+- **`AzureCliCredential`** exists in both `Azure.Core` and `Azure.Identity`.
+  Referencing both packages makes it ambiguous across assemblies.
 
 ## Where these appear on the site
 
 - [Frameworks and platforms](https://nitinksingh.com/ai-resources/tools-and-frameworks/)
 - [Design patterns](https://nitinksingh.com/ai-resources/patterns/design-patterns/)
 
-For the framework-free version of the same ideas — a working agent loop in about
-thirty lines of Python, running against a model on your own machine — see
+For the framework-free version of the same ideas — an agent loop in about thirty
+lines of Python, running against a model on your own machine — see
 [the build path](https://nitinksingh.com/ai-resources/00-start-here/the-path/)
 and the `labs/` directory.

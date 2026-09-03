@@ -1,61 +1,49 @@
-#:package Microsoft.Agents.AI.AzureAI@1.0.0-rc5
-#:package Azure.AI.Projects.Agents@2.0.0-beta.1
-#:package Azure.Identity@1.19.0
+#:package Microsoft.Agents.AI.OpenAI@1.20.0
+#:package Azure.AI.OpenAI@2.9.0-beta.1
 
-using Azure.AI.Projects;
-using Azure.AI.Projects.Agents;
-using Azure.Identity;
+// Sessions. Sample 1 showed that each call is independent; a session is what
+// carries the conversation between them.
+//
+// The type was called AgentThread, and the factory GetNewThread(), before Agent
+// Framework 1.0.
+
+using System.ClientModel;
+using Azure.AI.OpenAI;
 using Microsoft.Agents.AI;
+using OpenAI.Chat;
 
-// AgentsClientSettings is still marked experimental in this preview. Opting in
-// explicitly, rather than silently, so the choice is visible when it stabilises.
-#pragma warning disable SCME0002
+string endpoint = Environment.GetEnvironmentVariable("AZURE_OPENAI_ENDPOINT")
+    ?? throw new InvalidOperationException("AZURE_OPENAI_ENDPOINT is not set.");
+string apiKey = Environment.GetEnvironmentVariable("AZURE_OPENAI_KEY")
+    ?? throw new InvalidOperationException("AZURE_OPENAI_KEY is not set.");
+string deployment = Environment.GetEnvironmentVariable("AZURE_OPENAI_DEPLOYMENT")
+    ?? throw new InvalidOperationException("AZURE_OPENAI_DEPLOYMENT is not set.");
 
-string endpoint = Environment.GetEnvironmentVariable("AZURE_FOUNDRY_PROJECT_ENDPOINT")
-    ?? throw new InvalidOperationException("AZURE_FOUNDRY_PROJECT_ENDPOINT is not set.");
-string deploymentName = Environment.GetEnvironmentVariable("AZURE_FOUNDRY_PROJECT_DEPLOYMENT_NAME")
-    ?? "gpt-4o-mini";
+AzureOpenAIClient azureClient = new(new Uri(endpoint), new ApiKeyCredential(apiKey));
 
-const string JokerInstructions = "You are good at telling jokes.";
-const string JokerName = "JokerAgent";
+AIAgent joker = azureClient
+    .GetChatClient(deployment)
+    .AsAIAgent(instructions: "You are good at telling jokes.", name: "JokerAgent");
 
-AIProjectClient aiProjectClient = new(new Uri(endpoint), new AzureCliCredential());
+AgentSession session = await joker.CreateSessionAsync();
+Console.WriteLine(await joker.RunAsync("Tell me a joke about a pirate.", session));
+Console.WriteLine();
+Console.WriteLine(await joker.RunAsync("Now tell the same joke as a parrot would.", session));
 
-PromptAgentDefinition definition = AgentDefinition.CreatePromptAgentDefinition(model: deploymentName);
-definition.Instructions = JokerInstructions;
-
-AIAgent jokerAgent = await aiProjectClient.CreateAIAgentAsync(
-    name: JokerName,
-    creationOptions: new AgentVersionCreationOptions(definition));
-
-// A session carries the conversation. Without one, each call is independent --
-// the model itself holds nothing between requests.
-// (This type was called AgentThread, and GetNewThread(), before Agent Framework 1.0.)
-AgentSession session = await jokerAgent.CreateSessionAsync();
-Console.WriteLine(await jokerAgent.RunAsync("Tell me a joke about a pirate.", session));
-Console.WriteLine(await jokerAgent.RunAsync(
-    "Now add some emojis to the joke and tell it in the voice of a pirate's parrot.", session));
-
-// The same conversation, streamed. A fresh session, so the second exchange below
-// has no knowledge of the one above.
-session = await jokerAgent.CreateSessionAsync();
+// A new session starts empty. The follow-up below has nothing to refer back to,
+// which is the same behaviour sample 1 showed without any session at all.
+Console.WriteLine();
+Console.WriteLine("--- new session, streamed ---");
+session = await joker.CreateSessionAsync();
 await foreach (AgentResponseUpdate update in
-    jokerAgent.RunStreamingAsync("Tell me a joke about a pirate.", session))
+    joker.RunStreamingAsync("Tell me a joke about a database.", session))
 {
     Console.Write(update);
 }
 Console.WriteLine();
-await foreach (AgentResponseUpdate update in jokerAgent.RunStreamingAsync(
-    "Now add some emojis to the joke and tell it in the voice of a pirate's parrot.", session))
+await foreach (AgentResponseUpdate update in
+    joker.RunStreamingAsync("Explain why that was funny, in one sentence.", session))
 {
     Console.Write(update);
 }
 Console.WriteLine();
-
-AgentsClient agents = new(new AgentsClientSettings
-{
-    Endpoint = new Uri(endpoint),
-    Options = new AgentsClientOptions(),
-});
-await agents.DeleteAgentAsync(JokerName);
-#pragma warning restore SCME0002
