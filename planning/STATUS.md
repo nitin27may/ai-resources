@@ -18,7 +18,7 @@ the plan is done.
 | 4 Header blocks and hand-offs | done | 3afbb9c | 44 header blocks, module 1 entry + module 9 exit, inbound floor of 2 |
 | 5 Style sweep | done | 65a9930 | 297 headings, palette, dashes. Found and fixed: blank Mermaid sitewide, unreachable light theme, 2 pinned light diagrams, teal contrast |
 | 6 Reference layer | done | 0d22cfc | Official sources rewritten with NVIDIA; 61 redirects fixed; 23 Go deeper sections; all 182 external links resolve |
-| 7 Azure OpenAI and C# | partly done | | C# half done: all 6 samples compile on .NET 10 (mcpuse.cs never did before), readme rewritten, samples linked from the site. **Still blocked:** the Azure OpenAI tab in Setup and labs needs an endpoint + key from Nitin in env vars |
+| 7 Azure OpenAI and C# | done | b612286 | All 13 labs verified against a live Azure OpenAI deployment, env vars only. Setup and labs README carry a three-provider tab. All 6 C# samples compile on .NET 10 |
 | 8 Repo docs and Docker | done | 45553ff | CLAUDE.md rewritten, copilot-instructions is a pointer, one Dockerfile (non-root, healthcheck), container verified healthy |
 | 9a Structured output | done | 89524cb | Module 2 + lab. Measured on two providers: schema holds 6/6 where prompt-only and JSON mode drop to 0/6 |
 | 9b Memory | done | 2ec9327 | Module 6 + lab. Poisoning reproduced identically on both providers |
@@ -68,8 +68,5 @@ harness · 5 Context engineering · 6 Memory · 7 Retrieval · 8 Evaluation ·
 
 ## Deferred deliberately
 
-- **'## References' -> 'Go deeper' with a reason per link** moved from phase 5
-  into phase 6, where those same links are being resolved and updated anyway.
-  23 pages still have a bare References heading.
 - **Page merges** (folding concepts/retrieval-and-data into rag/, for example)
   wait for Search Console data, then need a `redirect_maps` entry each.
