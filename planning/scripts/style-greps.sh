@@ -23,8 +23,11 @@ def mermaid_lines():
             if st.startswith("```"): inm = False; continue
             if inm: yield p, i, l
 
+# House palette (CLAUDE.md). #0f766e replaced #14b8a6 for fills that carry
+# white label text: #14b8a6 measures 2.49:1, below the 3:1 bar. #14b8a6 stays
+# valid as a stroke, where no text sits on it.
 APPROVED = {"#0d9488","#0b7a72","#16a34a","#15803d","#0284c7","#0270a8",
-            "#d97706","#b86005","#14b8a6","#119b91","#dc2626","#b91c1c",
+            "#d97706","#b86005","#0f766e","#14b8a6","#119b91","#dc2626","#b91c1c",
             "#ffffff","#fff","#121212","#374151","#555659","#3d3d40"}
 PROPER = ("Claude","GraphRAG","GitHub","Azure","Microsoft","OpenAI","Google","Copilot",
            "RAG","MCP","AI","LLM","Anthropic","Meta","Naive","Semantic","Agent","Foundry")
