@@ -4,7 +4,7 @@ Six single-file C# programs showing agent patterns against Azure AI Foundry.
 Each one is a .NET file-based app: the `#:package` lines at the top declare its
 own dependencies, so there is no project file and no solution.
 
-**Verified as of 2026-09-02:** all six compile with .NET 10.
+**Verified as of 2026-09-03:** all six compile with .NET 10, from a clean package cache.
 
 | File | Shows |
 |---|---|
@@ -38,24 +38,50 @@ export AZURE_FOUNDRY_PROJECT_DEPLOYMENT_NAME="<your-deployment>"
 
 Never put those values in the repository.
 
-## About the package versions
+## Package versions
 
-The samples pin `Microsoft.Agents.AI*@1.0.0-preview.251114.1` — a November 2025
-preview, from before Agent Framework reached 1.0 in April 2026.
+Ported to **Microsoft Agent Framework 1.x** on 2026-09-03. All six compile
+against the current packages:
 
-That is deliberate for now, and it is a known piece of debt. The current packages
-(`Microsoft.Agents.AI@1.20.0` and `Microsoft.Agents.AI.AzureAI@1.0.0-rc5`) changed
-the Azure surface enough that all six samples fail to compile against them: the
-`Azure.AI.Projects.OpenAI` namespace is gone, `AIProjectClient.CreateAIAgent` no
-longer exists, and `AgentThread` moved. Porting them is a real piece of work
-rather than a version bump, so they stay pinned to versions that build until that
-work is done. Shipping samples that look current and do not compile would be
-worse than pinning honestly.
+| Package | Version |
+|---|---|
+| `Microsoft.Agents.AI` | 1.20.0 |
+| `Microsoft.Agents.AI.AzureAI` | 1.0.0-rc5 |
+| `Microsoft.Agents.AI.Workflows` | 1.20.0 |
+| `Microsoft.Agents.AI.AzureAI.Persistent` | 1.20.0-preview.260831.1 |
+| `Azure.AI.Projects.Agents` | 2.0.0-beta.1 |
+| `ModelContextProtocol` | 2.2.0 |
 
-`mcpuse.cs` pins `Microsoft.Extensions.AI@10.0.0` rather than the 9.4.3 preview
-the others use, because `ModelContextProtocol@0.4.1-preview.1` requires it and
-the mismatch made that one sample fail to restore. That sample did not build
-before this change.
+Two remain pre-release because no stable release exists yet: the Azure
+integration is at `rc5`, and the persistent-agents integration is still preview.
+
+### What changed from the pre-1.0 preview
+
+Worth reading if you have code on the November 2025 preview, because none of
+these produce a helpful error message.
+
+| Was | Now |
+|---|---|
+| `new PromptAgentDefinition(model:)` | `AgentDefinition.CreatePromptAgentDefinition(model)` — a factory, not a constructor |
+| `AgentVersionCreationOptions` in `Azure.AI.Projects.OpenAI` | moved to the new `Azure.AI.Projects.Agents` package |
+| `aiProjectClient.Agents.CreateAgentVersion(...)` | `aiProjectClient.CreateAIAgentAsync(name, creationOptions)` |
+| `aiProjectClient.GetAIAgent(...)` | `GetAIAgentAsync(...)`, or `AsAIAgent(...)` for the sync form |
+| `AgentThread` / `agent.GetNewThread()` | `AgentSession` / `await agent.CreateSessionAsync()` |
+| `AgentRunResponseUpdate` | `AgentResponseUpdate` |
+| `AgentRunUpdateEvent` | `AgentResponseUpdateEvent` |
+| `InProcessExecution.StreamAsync(...)` | `InProcessExecution.RunStreamingAsync(...)` |
+| `aiProjectClient.Agents.DeleteAgentAsync(...)` | a separate `AgentsClient`, built from `AgentsClientSettings` |
+
+Two things that will bite regardless of your code:
+
+- **`AgentsClientSettings` is marked experimental** (`SCME0002`), which is an
+  *error* rather than a warning by default. The samples opt in with an explicit
+  `#pragma warning disable SCME0002` so the choice is visible rather than buried
+  in a project file.
+- **`AzureCliCredential` now exists in both `Azure.Core` and `Azure.Identity`.**
+  Referencing both packages makes the type ambiguous across assemblies.
+  `workflow.cs` omits the explicit `Azure.Identity` reference and takes the
+  transitive one.
 
 ## Where these appear on the site
 

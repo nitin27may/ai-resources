@@ -67,8 +67,10 @@ first-class C# support.
     Foundry: a basic agent, an agent as a backend service, multi-turn threads, a
     C# function as a tool, an MCP connection, and a workflow. Each declares its
     own packages, so `dotnet run 1-basicagent.cs` is the whole setup. All six
-    compile on .NET 10; the readme explains why they are still pinned to a
-    pre-1.0 preview.
+    are on Agent Framework 1.x and compile on .NET 10. The readme also lists what
+    changed from the pre-1.0 preview — `AgentThread` became `AgentSession`,
+    agent definitions moved to a factory, and the agents client moved packages —
+    which is useful if you have code on the older API.
 
 !!! info "Semantic Kernel and AutoGen — what happened to them"
     **Semantic Kernel** is superseded rather than deprecated. Microsoft committed

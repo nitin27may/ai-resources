@@ -2,17 +2,16 @@
 
 Guidance for Claude Code (claude.ai/code) when working in this repository.
 
-## Active restructure (2026-09)
+## Before changing docs/ or mkdocs.yml
 
-A layered restructure is in progress. **Read `planning/STATUS.md` and
-`planning/README.md` before changing anything under `docs/` or `mkdocs.yml`.**
-The planning folder holds the audit, the target structure, per-phase task lists,
-the per-page matrix, the URL fix list and the check scripts.
+Read `planning/STATUS.md` and `planning/README.md`. The planning folder holds the
+audit, the target structure, the per-page matrix, the URL fix list and the check
+scripts. The 2026-09 restructure is complete and merged; the conventions it
+established are below.
 
-Hard rule until it completes: **no file under `docs/` moves, is renamed, or is
-deleted without a `redirect_maps` entry in the same commit.** Every current URL
-is listed in `planning/sitemap-baseline.txt` and CI fails if one stops being
-served.
+Standing rule: **no file under `docs/` moves, is renamed, or is deleted without a
+`redirect_maps` entry in the same commit.** Every live URL is listed in
+`planning/sitemap-baseline.txt` and CI fails if one stops being served.
 
 ## Project overview
 
@@ -39,7 +38,7 @@ it is the organising idea of the whole site.
 | **Reference** | Everyone | None | `glossary/`, `reference/`, `references/`, `whats-new/` |
 
 Two routes run through those layers: a **reading path** (ten pages, no code) and
-the **build path** (ten modules, ten labs). Both start at
+the **build path** (thirteen modules, thirteen labs). Both start at
 `docs/00-start-here/index.md`. `planning/02-restructure-plan.md` section 2b has
 the per-topic ladders — when you add a page, place it on one.
 
@@ -89,7 +88,7 @@ docs/
 ├── 00-start-here/        # Choose your path, the build path, setup
 ├── getting-started/      # AI 101
 ├── concepts/             # the Understand layer
-├── 02-agents/            # the nine build modules
+├── 02-agents/            # the twelve build modules (0 Setup lives in 00-start-here)
 ├── rag/                  # retrieval in depth
 ├── patterns/             # architecture patterns
 ├── ai-dev-tools/         # Copilot, Claude Code, MCP
@@ -101,7 +100,7 @@ docs/
 └── tags.md               # tag index
 ```
 
-`labs/` holds the ten Python labs for the build path — standard library only,
+`labs/` holds the thirteen Python labs for the build path — standard library only,
 talking to any OpenAI-compatible endpoint. `samples/` holds C# examples.
 `planning/` is the restructure brief and is not published.
 

@@ -1,48 +1,54 @@
-#:package Microsoft.Agents.AI.AzureAI@1.0.0-preview.251114.1
+#:package Microsoft.Agents.AI.AzureAI@1.0.0-rc5
+#:package Azure.AI.Projects.Agents@2.0.0-beta.1
+#:package Azure.Identity@1.19.0
 
 using Azure.AI.Projects;
-using Azure.AI.Projects.OpenAI;
+using Azure.AI.Projects.Agents;
 using Azure.Identity;
 using Microsoft.Agents.AI;
-using Microsoft.Extensions.AI;
 
-string endpoint = Environment.GetEnvironmentVariable("AZURE_FOUNDRY_PROJECT_ENDPOINT") ?? throw new InvalidOperationException("AZURE_FOUNDRY_PROJECT_ENDPOINT is not set.");
-string deploymentName = Environment.GetEnvironmentVariable("AZURE_FOUNDRY_PROJECT_DEPLOYMENT_NAME") ?? "gpt-4o-mini";
+string endpoint = Environment.GetEnvironmentVariable("AZURE_FOUNDRY_PROJECT_ENDPOINT")
+    ?? throw new InvalidOperationException("AZURE_FOUNDRY_PROJECT_ENDPOINT is not set.");
+string deploymentName = Environment.GetEnvironmentVariable("AZURE_FOUNDRY_PROJECT_DEPLOYMENT_NAME")
+    ?? "gpt-4o-mini";
 
 const string JokerInstructionsV1 = "You are good at telling jokes.";
 const string JokerInstructionsV2 = "You are extremely hilarious at telling jokes.";
 const string JokerName = "JokerAgent";
 
-// Get a client to create/retrieve/delete server side agents with Azure Foundry Agents.
+// A client for creating, retrieving and deleting server-side agents in Azure AI Foundry.
 AIProjectClient aiProjectClient = new(new Uri(endpoint), new AzureCliCredential());
 
-// Define the agent you want to create. (Prompt Agent in this case)
-AgentVersionCreationOptions options = new(new PromptAgentDefinition(model: deploymentName) { Instructions = JokerInstructionsV1 });
+// Define the agent. A prompt agent is the simplest kind: a model plus instructions.
+// Note this is a factory call, not a constructor -- AgentDefinition is the base type
+// and each kind of agent has its own Create... method.
+PromptAgentDefinition definition = AgentDefinition.CreatePromptAgentDefinition(model: deploymentName);
+definition.Instructions = JokerInstructionsV1;
 
-// Azure.AI.Agents SDK creates and manages agent by name and versions.
-// You can create a server side agent version with the Azure.AI.Agents SDK client below.
-AgentVersion agentVersion = aiProjectClient.Agents.CreateAgentVersion(agentName: JokerName, options);
+// Foundry manages agents by name, with a version history. Creating a version returns
+// an AIAgent you can invoke straight away.
+AIAgent jokerAgentV1 = await aiProjectClient.CreateAIAgentAsync(
+    name: JokerName,
+    creationOptions: new AgentVersionCreationOptions(definition));
 
-// Note:
-//      agentVersion.Id = "<agentName>:<versionNumber>",
-//      agentVersion.Version = <versionNumber>,
-//      agentVersion.Name = <agentName>
+// Publishing a second version is the same call with a different definition. The name
+// is the stable identity; the version moves.
+PromptAgentDefinition definitionV2 = AgentDefinition.CreatePromptAgentDefinition(model: deploymentName);
+definitionV2.Instructions = JokerInstructionsV2;
+AIAgent jokerAgentV2 = await aiProjectClient.CreateAIAgentAsync(
+    name: JokerName,
+    creationOptions: new AgentVersionCreationOptions(definitionV2));
 
-// You can retrieve an AIAgent for an already created server side agent version.
-AIAgent jokerAgentV1 = aiProjectClient.GetAIAgent(agentVersion);
+// Fetching by name alone gives you whatever the latest version is.
+AIAgent jokerAgentLatest = await aiProjectClient.GetAIAgentAsync(name: JokerName);
 
-// You can also create another AIAgent version (V2) by providing the same name with a different definition/instruction.
-AIAgent jokerAgentV2 = aiProjectClient.CreateAIAgent(name: JokerName, model: deploymentName, instructions: JokerInstructionsV2);
+// The underlying Foundry version record is reachable through GetService.
+AgentVersion? latestVersion = jokerAgentLatest.GetService<AgentVersion>();
+Console.WriteLine($"Latest agent version id: {latestVersion?.Id}");
 
-// You can also get the AIAgent latest version by just providing its name.
-AIAgent jokerAgentLatest = aiProjectClient.GetAIAgent(name: JokerName);
-AgentVersion latestVersion = jokerAgentLatest.GetService<AgentVersion>()!;
-
-// The AIAgent version can be accessed via the GetService method.
-Console.WriteLine($"Latest agent version id: {latestVersion.Id}");
-
-// Once you have the AIAgent, you can invoke it like any other AIAgent.
+// Once you hold an AIAgent, it behaves like any other AIAgent regardless of where it lives.
 Console.WriteLine(await jokerAgentLatest.RunAsync("Tell me a joke about a pirate."));
 
-// Cleanup by agent name removes both agent versions created (jokerAgentV1 + jokerAgentV2).
-//await aiProjectClient.Agents.DeleteAgentAsync(jokerAgentV1.Name);
+// Deleting by name removes every version created above.
+// AgentsClient agents = new(new Uri(endpoint), new AzureCliCredential());
+// await agents.DeleteAgentAsync(JokerName);

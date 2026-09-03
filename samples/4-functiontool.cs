@@ -1,4 +1,6 @@
-#:package Microsoft.Agents.AI.AzureAI@1.0.0-preview.251114.1
+#:package Microsoft.Agents.AI.AzureAI@1.0.0-rc5
+#:package Azure.AI.Projects.Agents@2.0.0-beta.1
+#:package Azure.Identity@1.19.0
 
 using System.ComponentModel;
 using Azure.AI.Projects;
@@ -6,9 +8,13 @@ using Azure.Identity;
 using Microsoft.Agents.AI;
 using Microsoft.Extensions.AI;
 
-string endpoint = Environment.GetEnvironmentVariable("AZURE_FOUNDRY_PROJECT_ENDPOINT") ?? throw new InvalidOperationException("AZURE_FOUNDRY_PROJECT_ENDPOINT is not set.");
-string deploymentName = Environment.GetEnvironmentVariable("AZURE_FOUNDRY_PROJECT_DEPLOYMENT_NAME") ?? "gpt-4o-mini";
+string endpoint = Environment.GetEnvironmentVariable("AZURE_FOUNDRY_PROJECT_ENDPOINT")
+    ?? throw new InvalidOperationException("AZURE_FOUNDRY_PROJECT_ENDPOINT is not set.");
+string deploymentName = Environment.GetEnvironmentVariable("AZURE_FOUNDRY_PROJECT_DEPLOYMENT_NAME")
+    ?? "gpt-4o-mini";
 
+// The [Description] attributes are not decoration. They become the JSON Schema the
+// model reads to decide whether and how to call this function.
 [Description("Get the weather for a given location.")]
 static string GetWeather([Description("The location to get the weather for.")] string location)
     => $"The weather in {location} is cloudy with a high of 15°C.";
@@ -16,33 +22,34 @@ static string GetWeather([Description("The location to get the weather for.")] s
 const string AssistantInstructions = "You are a helpful assistant that can get weather information.";
 const string AssistantName = "WeatherAssistant";
 
-// Get a client to create/retrieve/delete server side agents with Azure Foundry Agents.
 AIProjectClient aiProjectClient = new(new Uri(endpoint), new AzureCliCredential());
 
-// Define the agent with function tools.
 AITool tool = AIFunctionFactory.Create(GetWeather);
 
-// Create AIAgent directly
-var newAgent = await aiProjectClient.CreateAIAgentAsync(name: AssistantName, model: deploymentName, instructions: AssistantInstructions, tools: [tool]);
+AIAgent newAgent = await aiProjectClient.CreateAIAgentAsync(
+    name: AssistantName,
+    model: deploymentName,
+    instructions: AssistantInstructions,
+    tools: [tool]);
 
-// Getting an already existing agent by name with tools.
-/* 
- * IMPORTANT: Since agents that are stored in the server only know the definition of the function tools (JSON Schema),
- * you need to provided all invocable function tools when retrieving the agent so it can invoke them automatically.
- * If no invocable tools are provided, the function calling needs to handled manually.
- */
-var existingAgent = await aiProjectClient.GetAIAgentAsync(name: AssistantName, tools: [tool]);
+// Retrieving an existing agent by name.
+//
+// The server stores only the tool's *schema*, never the code behind it. So the
+// invocable tools must be supplied again on retrieval, or the framework can see
+// that a call was requested but has nothing to run and you must dispatch it
+// yourself. This is the same request/response split every agent runtime has.
+AIAgent existingAgent = await aiProjectClient.GetAIAgentAsync(name: AssistantName, tools: [tool]);
 
-// Non-streaming agent interaction with function tools.
-AgentThread thread = existingAgent.GetNewThread();
-Console.WriteLine(await existingAgent.RunAsync("What is the weather like in Amsterdam?", thread));
+AgentSession session = await existingAgent.CreateSessionAsync();
+Console.WriteLine(await existingAgent.RunAsync("What is the weather like in Amsterdam?", session));
 
-// Streaming agent interaction with function tools.
-thread = existingAgent.GetNewThread();
-await foreach (AgentRunResponseUpdate update in existingAgent.RunStreamingAsync("What is the weather like in Amsterdam?", thread))
+// The same exchange, streamed.
+session = await existingAgent.CreateSessionAsync();
+await foreach (AgentResponseUpdate update in
+    existingAgent.RunStreamingAsync("What is the weather like in Amsterdam?", session))
 {
-    Console.WriteLine(update);
+    Console.Write(update);
 }
+Console.WriteLine();
 
-// Cleanup by agent name removes the agent version created.
-//await aiProjectClient.Agents.DeleteAgentAsync(existingAgent.Name);
+// Cleanup, if you want it -- see 2-agentasbackend.cs for the AgentsClient shape.
