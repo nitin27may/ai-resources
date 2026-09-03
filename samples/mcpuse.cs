@@ -2,8 +2,8 @@
 #:package ModelContextProtocol@0.4.1-preview.1
 #:package Microsoft.Agents.AI@1.0.0-preview.251114.1
 #:package Microsoft.Agents.AI.AzureAI@1.0.0-preview.251114.1
-#:package Microsoft.Extensions.AI@9.4.3-preview.1.25230.7
-#:package Microsoft.Extensions.AI.Abstractions@9.4.3-preview.1.25230.7
+#:package Microsoft.Extensions.AI@10.0.0
+#:package Microsoft.Extensions.AI.Abstractions@10.0.0
 // This sample shows how to create and use a simple AI agent with Azure Foundry Agents as the backend, that uses a Hosted MCP Tool.
 // In this case the Azure Foundry Agents service will invoke any MCP tools as required. MCP tools are not invoked by the Agent Framework.
 // The sample first shows how to use MCP tools with auto approval, and then how to set up a tool that requires approval before it can be invoked and how to approve such a tool.

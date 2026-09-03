@@ -1,28 +1,33 @@
 ---
 description: Orchestration, reflection, tool use and planning — the recurring shapes of agent design.
+tags:
+  - Go deeper
+  - Patterns
+  - Agents
 ---
 
-# Design Patterns for AI Agent Systems
+# Design patterns for AI agent systems
 
-## Foundation: Basic Architecture Patterns
+!!! abstract "Go deeper · 45 min · code optional"
+    **Before this:** [Architecture patterns](index.md)  ·  **After this:** [Design principles](design-principles.md)
+    **Hands-on version:** [3 The agent loop](../02-agents/the-agent-loop.md)
 
-### Simple Model
+## Foundation: basic architecture patterns
 
-#### When to use:
+### Simple model
 
+#### When to use
 - Tasks require only text generation
 - No external actions or tool usage needed
 - Direct question-answer scenarios from training data
 - Document summarization or code generation from specifications
 
-#### Characteristics:
-
+#### Characteristics
 - Fast and cost-effective
 - Easy to implement with direct LLM API calls
 - Limited to text processing, analysis, or generation
 
-#### Example Use Cases:
-
+#### Example use cases
 - Text completion and generation
 - Simple question answering
 - Content summarization
@@ -30,25 +35,22 @@ description: Orchestration, reflection, tool use and planning — the recurring 
 
 ---
 
-### Single Agent
+### Single agent
 
-#### When to use:
-
+#### When to use
 - Tasks require actions beyond text generation
 - Solution involves known action sequences with action-perception loops
 - Can be handled effectively by one type of expertise
 - Tasks involve API calls with result validation
 - No need for specialized domain expertise or complex collaboration
 
-#### Characteristics:
-
+#### Characteristics
 - Flexible with tool usage capabilities
 - Moderate complexity
 - Can handle action-taking with appropriate tools
 - May struggle with highly complex multi-step tasks
 
-#### Example Use Cases:
-
+#### Example use cases
 - Simple automation tasks
 - Basic tool calling scenarios
 - Straightforward decision-making
@@ -56,26 +58,23 @@ description: Orchestration, reflection, tool use and planning — the recurring 
 
 ---
 
-### Multi-Agent Workflow
+### Multi-agent workflow
 
-#### When to use:
-
+#### When to use
 - Solution can be expressed as a well-defined workflow
 - Benefits from specialized expertise or domain separation
 - Different parts of the task require distinct domain knowledge
 - Collaboration pattern between agents is well-understood
 - Each agent's role and handoffs follow established processes
 
-#### Characteristics:
-
+#### Characteristics
 - Structured and maintainable
 - Clear agent responsibilities
 - Orchestrated, predictable execution flow
 - Requires upfront design
 - Less flexible than autonomous approaches
 
-#### Example Use Cases:
-
+#### Example use cases
 - Content creation pipeline (research, writing, editing agents)
 - Customer service routing (triage, specialist, resolution)
 - Financial analysis (market data, risk assessment, portfolio optimization)
@@ -83,11 +82,11 @@ description: Orchestration, reflection, tool use and planning — the recurring 
 
 ---
 
-## Workflow Patterns (Explicit Control)
+## Workflow patterns (explicit control)
 
 Workflow patterns provide developer-defined execution paths with predictable behavior. These patterns borrow concepts from graph theory to model multi-agent orchestration as computational graphs where nodes represent computational units and edges define control flow between nodes.
 
-### Sequential Workflows
+### Sequential workflows
 
 Sequential workflows implement linear execution where each node's output feeds into the next node (A → B → C), ensuring ordered processing with predictable execution timing.
 
@@ -106,17 +105,17 @@ flowchart LR
     C -->|Analysis Results| D
     D -.->|Final Report| End
     
-    style User fill:#004987,stroke:#003665,stroke-width:2px,color:#fff
-    style A fill:#259638,stroke:#1C712A,stroke-width:3px,color:#fff
-    style B fill:#632C4F,stroke:#4E223E,stroke-width:3px,color:#fff
-    style C fill:#853175,stroke:#6A275E,stroke-width:3px,color:#fff
-    style D fill:#057398,stroke:#045672,stroke-width:3px,color:#fff
-    style End fill:#259638,stroke:#1C712A,stroke-width:2px,color:#fff
+    style User fill:#0284c7,stroke:#0270a8,stroke-width:2px,color:#fff
+    style A fill:#16a34a,stroke:#15803d,stroke-width:3px,color:#fff
+    style B fill:#0d9488,stroke:#0b7a72,stroke-width:3px,color:#fff
+    style C fill:#0f766e,stroke:#119b91,stroke-width:3px,color:#fff
+    style D fill:#0284c7,stroke:#0270a8,stroke-width:3px,color:#fff
+    style End fill:#16a34a,stroke:#15803d,stroke-width:2px,color:#fff
 ```
 
 ---
 
-### Conditional Workflows
+### Conditional workflows
 
 Conditional workflows use logic-based edges to determine the next node based on conditions, enabling branching execution paths and dynamic routing.
 
@@ -134,16 +133,16 @@ flowchart LR
     B -.->|Fail| A
     D -.->|Deployed| End
     
-    style User fill:#004987,stroke:#003665,stroke-width:2px,color:#fff
-    style A fill:#259638,stroke:#1C712A,stroke-width:3px,color:#fff
-    style B fill:#853175,stroke:#6A275E,stroke-width:3px,color:#fff
-    style D fill:#632C4F,stroke:#4E223E,stroke-width:3px,color:#fff
-    style End fill:#259638,stroke:#1C712A,stroke-width:2px,color:#fff
+    style User fill:#0284c7,stroke:#0270a8,stroke-width:2px,color:#fff
+    style A fill:#16a34a,stroke:#15803d,stroke-width:3px,color:#fff
+    style B fill:#0f766e,stroke:#119b91,stroke-width:3px,color:#fff
+    style D fill:#0d9488,stroke:#0b7a72,stroke-width:3px,color:#fff
+    style End fill:#16a34a,stroke:#15803d,stroke-width:2px,color:#fff
 ```
 
 ---
 
-### Supervisor Workflows
+### Supervisor workflows
 
 A supervisor workflow is a conditional workflow variant where a central control node evaluates requests and routes tasks to specialized agents based on task characteristics.
 
@@ -164,17 +163,17 @@ flowchart TD
     Billing -.-> End
     Sales -.-> End
     
-    style User fill:#004987,stroke:#003665,stroke-width:2px,color:#fff
-    style Supervisor fill:#9E57A2,stroke:#7E4582,stroke-width:3px,color:#fff
-    style Tech fill:#259638,stroke:#1C712A,stroke-width:3px,color:#fff
-    style Billing fill:#632C4F,stroke:#4E223E,stroke-width:3px,color:#fff
-    style Sales fill:#853175,stroke:#6A275E,stroke-width:3px,color:#fff
-    style End fill:#259638,stroke:#1C712A,stroke-width:2px,color:#fff
+    style User fill:#0284c7,stroke:#0270a8,stroke-width:2px,color:#fff
+    style Supervisor fill:#0f766e,stroke:#119b91,stroke-width:3px,color:#fff
+    style Tech fill:#16a34a,stroke:#15803d,stroke-width:3px,color:#fff
+    style Billing fill:#0d9488,stroke:#0b7a72,stroke-width:3px,color:#fff
+    style Sales fill:#0f766e,stroke:#119b91,stroke-width:3px,color:#fff
+    style End fill:#16a34a,stroke:#15803d,stroke-width:2px,color:#fff
 ```
 
 ---
 
-### Hierarchical Workflows
+### Hierarchical workflows
 
 ```mermaid
 flowchart TD
@@ -210,23 +209,23 @@ flowchart TD
     Payment -.-> End3
     Refund -.-> End4
     
-    style User fill:#004987,stroke:#003665,stroke-width:2px,color:#fff
-    style Main fill:#9E57A2,stroke:#7E4582,stroke-width:4px,color:#fff
-    style TechSup fill:#632C4F,stroke:#4E223E,stroke-width:3px,color:#fff
-    style BillSup fill:#853175,stroke:#6A275E,stroke-width:3px,color:#fff
-    style L1 fill:#259638,stroke:#1C712A,stroke-width:2px,color:#fff
-    style L2 fill:#057398,stroke:#045672,stroke-width:2px,color:#fff
-    style Payment fill:#259638,stroke:#1C712A,stroke-width:2px,color:#fff
-    style Refund fill:#057398,stroke:#045672,stroke-width:2px,color:#fff
-    style End1 fill:#259638,stroke:#1C712A,stroke-width:2px,color:#fff
-    style End2 fill:#259638,stroke:#1C712A,stroke-width:2px,color:#fff
-    style End3 fill:#259638,stroke:#1C712A,stroke-width:2px,color:#fff
-    style End4 fill:#259638,stroke:#1C712A,stroke-width:2px,color:#fff
+    style User fill:#0284c7,stroke:#0270a8,stroke-width:2px,color:#fff
+    style Main fill:#0f766e,stroke:#119b91,stroke-width:4px,color:#fff
+    style TechSup fill:#0d9488,stroke:#0b7a72,stroke-width:3px,color:#fff
+    style BillSup fill:#0f766e,stroke:#119b91,stroke-width:3px,color:#fff
+    style L1 fill:#16a34a,stroke:#15803d,stroke-width:2px,color:#fff
+    style L2 fill:#0284c7,stroke:#0270a8,stroke-width:2px,color:#fff
+    style Payment fill:#16a34a,stroke:#15803d,stroke-width:2px,color:#fff
+    style Refund fill:#0284c7,stroke:#0270a8,stroke-width:2px,color:#fff
+    style End1 fill:#16a34a,stroke:#15803d,stroke-width:2px,color:#fff
+    style End2 fill:#16a34a,stroke:#15803d,stroke-width:2px,color:#fff
+    style End3 fill:#16a34a,stroke:#15803d,stroke-width:2px,color:#fff
+    style End4 fill:#16a34a,stroke:#15803d,stroke-width:2px,color:#fff
 ```
 
 ---
 
-### Parallel Workflows
+### Parallel workflows
 
 ```mermaid
 flowchart TD
@@ -251,26 +250,26 @@ flowchart TD
     
     Merge -.->|Final Output| End
     
-    style User fill:#004987,stroke:#003665,stroke-width:2px,color:#fff
-    style Split fill:#9E57A2,stroke:#7E4582,stroke-width:3px,color:#fff
-    style A1 fill:#259638,stroke:#1C712A,stroke-width:3px,color:#fff
-    style A2 fill:#632C4F,stroke:#4E223E,stroke-width:3px,color:#fff
-    style A3 fill:#853175,stroke:#6A275E,stroke-width:3px,color:#fff
-    style Merge fill:#057398,stroke:#045672,stroke-width:3px,color:#fff
-    style End fill:#259638,stroke:#1C712A,stroke-width:2px,color:#fff
+    style User fill:#0284c7,stroke:#0270a8,stroke-width:2px,color:#fff
+    style Split fill:#0f766e,stroke:#119b91,stroke-width:3px,color:#fff
+    style A1 fill:#16a34a,stroke:#15803d,stroke-width:3px,color:#fff
+    style A2 fill:#0d9488,stroke:#0b7a72,stroke-width:3px,color:#fff
+    style A3 fill:#0f766e,stroke:#119b91,stroke-width:3px,color:#fff
+    style Merge fill:#0284c7,stroke:#0270a8,stroke-width:3px,color:#fff
+    style End fill:#16a34a,stroke:#15803d,stroke-width:2px,color:#fff
 ```
 
 ---
 
-## Autonomous Patterns (Emergent Control)
+## Autonomous patterns (emergent control)
 
 Autonomous patterns enable runtime-determined execution based on task state and agent reasoning. The critical concept is that the flow of control is driven by an AI model and dynamically determined at runtime. Rather than following prescribed paths, agents orchestrate through communication and shared understanding of the current task context.
 
 These patterns exist on a spectrum of control, from structured orchestration to fully emergent behavior.
 
-### Plan-Based Orchestration Pattern
+### Plan-based orchestration pattern
 
-### Handoff Pattern
+### Handoff pattern
 
 ```mermaid
 graph TD
@@ -290,40 +289,84 @@ graph TD
     
     Master --> Response[Response to User]
     
-    style User fill:#E6F1F5,stroke:#004987,color:#000
-    style Master fill:#57C0E8,stroke:#853175,color:#000
-    style Specialist1 fill:#C8E5CD,stroke:#259638,color:#000
-    style Specialist2 fill:#81B8CB,stroke:#057398,color:#000
-    style Specialist3 fill:#9E57A2,stroke:#632C4F,color:#000
-    style Response fill:#C0DCE5,stroke:#632C4F,color:#000
+    style User fill:#0f766e,stroke:#0284c7,color:#fff
+    style Master fill:#0f766e,stroke:#14b8a6,color:#fff
+    style Specialist1 fill:#16a34a,stroke:#16a34a,color:#fff
+    style Specialist2 fill:#119b91,stroke:#0284c7,color:#fff
+    style Specialist3 fill:#0f766e,stroke:#0d9488,color:#fff
+    style Response fill:#119b91,stroke:#0d9488,color:#fff
 ```
 
 ---
 
-### Conversation-Driven Pattern (AI-Driven Conversation Pattern)
+### Conversation-driven pattern (AI-driven conversation pattern)
 
 ---
 
-## Pattern Selection Criteria
+## When multiple agents actually help
 
-### Based on Task Characteristics:
+The most consequential decision on this page, and the one most often made by
+default rather than deliberately. Multi-agent architectures are attractive
+because they map neatly onto how we think about teams. That is not evidence that
+they work better.
 
+Two companies shipping real agents published opposite conclusions **one day
+apart** in June 2025, and reading them as a pair teaches the actual criterion:
+
+- Cognition argued **against** multi-agent systems: sub-agents lose the context
+  the main agent had, make conflicting assumptions, and produce work that does
+  not compose. Their prescription was a single agent with a continuous context.
+- Anthropic described a multi-agent research system that **worked**, where
+  parallel sub-agents each explored a different line of enquiry and returned
+  findings.
+
+Both are right, and the difference between the cases is the criterion:
+
+| Multi-agent tends to work | Multi-agent tends to fail |
+|---|---|
+| Read-heavy work: search, research, review | Work that writes or edits shared state |
+| Sub-tasks that are genuinely independent | Sub-tasks that depend on each other's decisions |
+| Findings compose by concatenation | Results must be reconciled into one coherent artefact |
+| Parallelism is the point | The task is sequential anyway |
+
+Cognition later [revised their position](https://cognition.com/blog/multi-agents-working):
+what works is multiple agents contributing intelligence while **writes stay
+single-threaded**. That is the rule worth remembering. Parallelise the reading;
+keep one writer.
+
+!!! warning "Each agent multiplies the cost and the failure surface"
+    Every sub-agent has its own context, resends its own history, and can fail
+    in its own plausible-looking way. Three agents is not three times the cost —
+    it is three times the cost plus the coordination overhead plus the tokens
+    spent passing context between them.
+
+    It also multiplies what you must trace. Debugging "why did it do that?"
+    across four agents needs correlated traces from the start, not after the
+    first incident.
+
+**The order to try:** one agent with more tools, then one agent with better
+retrieval, then sub-agents for parallel read-only work, then multiple writers.
+Most teams that reach for the last one have not exhausted the first.
+
+---
+
+## Pattern selection criteria
+
+### By task
 - **Well-defined, repeatable processes** → Workflow patterns (Sequential, Conditional, Parallel)
 - **Dynamic, exploratory tasks** → Autonomous patterns (Conversation-driven)
 - **Complex planning required** → Plan-Based Orchestration
 - **Domain expertise needed** → Handoff patterns
 - **Emergent solutions required** → AI-Driven Conversation
 
-### Based on System Requirements:
-
+### By system requirement
 - **High predictability needed** → Workflow patterns
 - **Maximum autonomy required** → AI-Driven Conversation
 - **Resource constraints** → Handoff patterns (minimal coordination overhead)
 - **Scalability concerns** → Parallel Workflows or Handoff patterns
 - **Transparency required** → Conversation-driven patterns (shared visibility)
 
-### Based on Implementation Considerations:
-
+### By implementation constraint
 - **Developer resources available** → Workflow patterns (explicit control)
 - **Rapid prototyping needed** → Conversation-driven patterns (simple implementation)
 - **Production reliability critical** → Workflow patterns with explicit task management
@@ -332,10 +375,12 @@ graph TD
 
 ---
 
-## References
+## Go deeper
 
-- [Microsoft: Multi-Agent Design Patterns](https://learn.microsoft.com/en-us/azure/foundry/agents/overview)
-- [Anthropic: Building Effective Agents](https://www.anthropic.com/engineering/building-effective-agents)
-- [LangGraph Design Patterns](https://docs.langchain.com/oss/python/langgraph/overview)
-- [AutoGen Agent Patterns](https://microsoft.github.io/autogen/docs/tutorial)
-- [Semantic Kernel Orchestration](https://learn.microsoft.com/en-us/agent-framework/)
+- [Anthropic: building effective agents](https://www.anthropic.com/engineering/building-effective-agents) — where most of this vocabulary comes from, and clear that the simplest pattern that works is the right one.
+- [Foundry Agent Service](https://learn.microsoft.com/en-us/azure/foundry/agents/overview) — these patterns as a managed service.
+- [Microsoft Agent Framework](https://learn.microsoft.com/en-us/agent-framework/) — graph-based orchestration on .NET and Python.
+- [LangGraph](https://docs.langchain.com/oss/python/langgraph/overview) — supervisor, hierarchical and parallel patterns as explicit graphs with checkpointing.
+- [OpenAI Agents SDK](https://openai.github.io/openai-agents-python/) — handoffs as a first-class concept, which is the pattern most frameworks model worst.
+- [C# samples in this repository](https://github.com/nitin27may/ai-resources/tree/main/samples) — the handoff, tool and workflow patterns as single-file programs you can run with `dotnet run`.
+- [Build the loop yourself](../02-agents/the-agent-loop.md) — about thirty lines. Do this once and every pattern above reads differently.

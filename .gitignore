@@ -8,25 +8,21 @@ __pycache__/
 *.so
 .Python
 env/
+.venv/
 build/
-develop-eggs/
 dist/
 downloads/
 eggs/
 .eggs/
-lib/
-lib64/
-parts/
 sdist/
-var/
 wheels/
 *.egg-info/
-.installed.cfg
 *.egg
 
 # IDE
 .vscode/settings.json
 .idea/
+.vs/
 
 # OS
 .DS_Store
@@ -39,15 +35,7 @@ Thumbs.db
 .env
 .env.local
 
-# Docker
-.dockerignore
-
-
-
-.vs
-.vs/**
-*.sqlite
-site
-bin
-obj
-**/obj/
+# .NET file-based apps drop these next to the samples
+samples/*.csproj
+samples/bin/
+samples/obj/

@@ -2,11 +2,15 @@
 title: Evaluation
 description: How you would have caught the silent failures in the last two modules before your users did.
 tags:
-  - Advanced
+  - Build
   - Evaluation
 ---
 
 # Evaluation
+
+!!! abstract "Build · 2 h · hands-on"
+    **Before this:** [7 Retrieval](retrieval.md)  ·  **After this:** [9 Observability](observability.md)
+    **In depth:** [RAG evaluation](../rag/rag-evaluation.md)
 
 !!! abstract
     The last two modules ended in failures that look exactly like success —

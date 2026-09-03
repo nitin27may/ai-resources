@@ -3,9 +3,13 @@ title: Resources
 description: A short, ranked reading list with a reason to trust each item — and an explicit list of what to avoid.
 tags:
   - Reference
+  - Reference
 ---
 
 # Resources
+
+!!! abstract "Reference · 20 min · no code"
+    **After this:** [Official sources](../references/index.md)
 
 !!! abstract
     Curation, not accumulation. Every item below has a reason to trust it stated
@@ -13,7 +17,7 @@ tags:
     at the bottom is as useful as the rest — most of it is material that ranks
     well and is quietly out of date.
 
-**Verified as of 2026-08-21.**
+**Verified as of 2026-09-02.**
 
 ## How to judge a source yourself
 

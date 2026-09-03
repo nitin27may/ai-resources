@@ -24,30 +24,56 @@ have no GPU, 8 GB of RAM, or only a browser.
 | Lab | Module | What it makes visible |
 |-----|--------|-----------------------|
 | [01-first-call](01-first-call/) | The model | A conversation is a list you resend. The model is stateless. |
+| [02b-structured-output](02b-structured-output/) | [Structured output](../docs/02-agents/structured-output.md) | A schema guarantees shape, never truth. Make refusal representable. |
 | [02-tool-dispatch](02-tool-dispatch/) | [Tool calling](../docs/02-agents/tool-calling.md) | The model requests; *you* execute. Arguments are an unvalidated string. |
 | [03-agent-loop](03-agent-loop/) | [The agent loop](../docs/02-agents/the-agent-loop.md) | think → act → observe → repeat, in ~30 lines. |
 | [04-loop-with-recovery](04-loop-with-recovery/) | [The harness](../docs/02-agents/the-harness.md) | Errors as context vs. limits in code; budgets that actually stop a run. |
 | [05-context-limits](05-context-limits/) | [Context engineering](../docs/02-agents/context-engineering.md) | Overflow is silent. What gets dropped depends on the shape of the overflow. |
+| [05b-memory](05b-memory/) | [Memory](../docs/02-agents/memory.md) | The model remembers nothing. A bad write is replayed forever. |
 | [06-local-rag](06-local-rag/) | [Retrieval](../docs/02-agents/retrieval.md) | Retrieval always returns something. Toy corpora hide every real failure. |
 | [07-eval-passk](07-eval-passk/) | [Evaluation](../docs/02-agents/evaluation.md) | pass@1 flatters; pass^k is what users experience. Judges need calibrating. |
 | [08-tracing](08-tracing/) | [Observability](../docs/02-agents/observability.md) | A trace is a span tree. Token cost is quadratic in turns. |
 | [09-prompt-injection](09-prompt-injection/) | [Safety](../docs/02-agents/safety.md) | Tool output can instruct the agent. Prompt-level defences do not hold. |
 | [10-production](10-production/) | [Production](../docs/02-agents/production.md) | A retry duplicates the order. Idempotency, not fewer retries. No model needed. |
+| [11-multi-agent](11-multi-agent/) | [Multi-agent](../docs/02-agents/multi-agent.md) | Parallelise the reading, keep one writer. |
 
 ## Swapping the model or the provider
 
-Every lab reads three environment variables and nothing else:
+Every lab reads four environment variables and nothing else. The code does not
+change between providers, which is the point — nothing here is tied to a vendor.
 
 ```bash
 # Local (default) — free
-LAB_BASE_URL=http://127.0.0.1:11434/v1  LAB_API_KEY=ollama  LAB_MODEL=qwen2.5:14b
+LAB_BASE_URL=http://127.0.0.1:11434/v1
+LAB_API_KEY=ollama
+LAB_MODEL=qwen2.5:14b
+LAB_EMBED_MODEL=nomic-embed-text
 
-# A hosted OpenAI-compatible API — identical code, one line of config
-LAB_BASE_URL=https://api.openai.com/v1  LAB_API_KEY=sk-...  LAB_MODEL=<a current model>
+# OpenAI
+LAB_BASE_URL=https://api.openai.com/v1
+LAB_API_KEY=sk-...
+LAB_MODEL=<a current model>
+LAB_EMBED_MODEL=text-embedding-3-small
+
+# Azure OpenAI
+LAB_BASE_URL=https://<resource>.openai.azure.com/openai/v1
+LAB_API_KEY=<key>
+LAB_MODEL=<chat DEPLOYMENT name, not the model name>
+LAB_EMBED_MODEL=<embedding DEPLOYMENT name>
 ```
 
-Run a lab both ways. The code does not change, which is the point — the
-concepts here are not tied to any vendor.
+**Azure notes.** `LAB_MODEL` is the deployment name you chose, not the model's
+name — sending the latter returns `DeploymentNotFound`. Chat and embeddings are
+separate deployments on Azure, unlike Ollama and OpenAI where one name serves
+both, so `LAB_EMBED_MODEL` has to be set independently or lab 06 fails while
+everything else works. The `/openai/v1` path speaks the standard OpenAI shape,
+so the key goes in `Authorization: Bearer` with no `api-version` parameter.
+
+**Verified 2026-09-02:** all ten labs run clean against Azure OpenAI with only
+these variables set and no code change. Lab 06 reproduced the documented 0.014
+margin exactly.
+
+Keys belong in your shell or a git-ignored `.env`, never in the repository.
 
 ## Why the default model is not a reasoning model
 

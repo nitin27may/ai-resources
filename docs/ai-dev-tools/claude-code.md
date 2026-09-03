@@ -1,18 +1,23 @@
 ---
 title: Claude Code
 description: What Claude Code is, how to set it up, and how to use CLAUDE.md to configure project-specific behavior.
-tags:
-  - Beginner
-  - Claude Code
 status: new
+tags:
+  - Tools
+  - Claude Code
 ---
 
 # Claude Code
 
+!!! abstract "Tools · 40 min · hands-on"
+    **Before this:** [GitHub Copilot](github-copilot.md)  ·  **After this:** [Claude Code skills and agents](claude-code-skills.md)
+
+**Verified as of 2026-09-02.**
+
 !!! abstract
     Claude Code is an agentic CLI that reads your codebase, edits files, runs shell commands, and makes multi-file changes iteratively toward a goal. This page covers installation, how the tool use loop works, and how to configure project-specific behavior with `CLAUDE.md`.
 
-## What Is Claude Code?
+## What is Claude Code?
 
 Claude Code is an agentic CLI tool — not a chatbot. You give it a goal, and it works toward that goal by reading files, editing code, running shell commands, and using tools iteratively until the task is done or it needs your input.
 
@@ -43,13 +48,13 @@ claude
 
 On first launch, Claude Code prompts for your API key if one isn't already set in the environment (`ANTHROPIC_API_KEY`). After that, each session starts by reading your project's `CLAUDE.md` if one exists.
 
-## How Claude Code Works
+## How Claude Code works
 
 Claude Code operates in a tool use loop. It plans what to do, executes one tool at a time, observes the result, and decides the next step — repeating until the task is complete or it hits a decision point that requires your input.
 
 ```mermaid
 flowchart TD
-    A([User Prompt]):::primary --> B{Claude\nPlans Next Step}:::processing
+    A([User Prompt]):::primary --> B{Claude<br/>Plans Next Step}:::processing
     B --> C[Read Files]:::storage
     B --> D[Edit Files]:::primary
     B --> E[Run Bash]:::warning
@@ -61,7 +66,7 @@ flowchart TD
 
     classDef primary fill:#0d9488,color:#fff
     classDef processing fill:#0284c7,color:#fff
-    classDef storage fill:#14b8a6,color:#fff
+    classDef storage fill:#0f766e,color:#fff
     classDef warning fill:#d97706,color:#fff
     classDef success fill:#16a34a,color:#fff
 ```
@@ -79,7 +84,7 @@ claude --dangerously-skip-permissions
 !!! warning
     `--dangerously-skip-permissions` auto-approves all operations including file writes and shell commands. Only use this in controlled, trusted environments where you understand what the agent will run.
 
-## CLAUDE.md — Project Configuration
+## CLAUDE.md — project configuration
 
 `CLAUDE.md` is a Markdown file that Claude Code reads at the start of every session. It's your mechanism for encoding project-specific context, conventions, and instructions once rather than repeating them in every prompt.
 
@@ -126,7 +131,7 @@ Deployed to AKS via Helm charts.
 !!! tip
     Treat `CLAUDE.md` like onboarding docs for a new teammate who happens to be an AI. Everything you'd tell a contractor on their first day — project structure, build steps, conventions, gotchas — belongs here.
 
-## Key Capabilities
+## Key capabilities
 
 **File operations**
 Read, edit, and create files across the entire project. Claude Code understands file relationships and makes coordinated edits — renaming a type and updating all its usages, for example.
@@ -180,7 +185,7 @@ sweep, and is plain markdown you can read, edit or delete. `/memory` browses it.
     [hook](claude-code-skills.md#hooks), which runs as a shell command regardless
     of what the model decides.
 
-## Working Effectively with Claude Code
+## Working effectively with Claude Code
 
 !!! tip
     Be specific. "Fix the bug in `auth.ts` where JWT validation fails with RS256 keys — the `verifyToken` function throws when the key is a PEM string" is better than "fix the auth bug". The more context you provide upfront, the fewer clarifying round-trips the agent needs.
@@ -194,12 +199,12 @@ sweep, and is plain markdown you can read, edit or delete. `/memory` browses it.
 !!! tip
     Use `CLAUDE.md` to encode your project conventions once rather than repeating them in every session. Conventions in `CLAUDE.md` are always active; conventions in prompts are only active for that prompt.
 
-## References
+## Go deeper
 
-- [Claude Code documentation](https://code.claude.com/docs)
-- [How Claude remembers your project](https://code.claude.com/docs/en/memory) — the source for the section above
-
-## Next Steps
+- [Claude Code documentation](https://code.claude.com/docs) — the reference for every flag, setting and surface.
+- [Memory](https://code.claude.com/docs/en/memory) — the source for the section above. Worth reading directly, because how a tool remembers your project decides how much you have to repeat yourself.
+- [Common workflows](https://code.claude.com/docs/en/common-workflows) — the patterns that survive contact with a real codebase.
+## Next steps
 
 - [Claude Code Skills & Agents](claude-code-skills.md) — custom slash commands, subagents, hooks, and MCP integration
 - [Model Context Protocol (MCP)](mcp.md) — extend Claude Code with external tools and data sources

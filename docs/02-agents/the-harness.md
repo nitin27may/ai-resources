@@ -2,11 +2,16 @@
 title: The harness
 description: Everything that surrounds the agent loop once you stop trusting the model to behave.
 tags:
-  - Intermediate
+  - Build
   - Agents
+  - Safety
 ---
 
 # The harness
+
+!!! abstract "Build · 1 h · hands-on"
+    **Before this:** [3 The agent loop](the-agent-loop.md)  ·  **After this:** [5 Context engineering](context-engineering.md)
+    **Overview version:** [Agentic AI](../concepts/agentic-ai.md)  ·  **In depth:** [Design principles](../patterns/design-principles.md)
 
 !!! abstract
     The loop is about thirty lines. Everything else a real agent needs — deciding
@@ -63,7 +68,7 @@ flowchart TB
 
     classDef primary fill:#0d9488,stroke:#0b7a72,color:#fff
     classDef processing fill:#0284c7,stroke:#0270a8,color:#fff
-    classDef storage fill:#14b8a6,stroke:#119b91,color:#fff
+    classDef storage fill:#0f766e,stroke:#119b91,color:#fff
     classDef warning fill:#d97706,stroke:#b86005,color:#fff
     classDef danger fill:#dc2626,stroke:#b91c1c,color:#fff
     classDef success fill:#16a34a,stroke:#15803d,color:#fff

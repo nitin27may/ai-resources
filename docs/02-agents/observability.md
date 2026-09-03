@@ -2,11 +2,16 @@
 title: Observability
 description: Evaluation tells you that a run failed. Tracing tells you where, and what it cost.
 tags:
-  - Advanced
+  - Build
+  - Evaluation
   - Operations
 ---
 
 # Observability
+
+!!! abstract "Build · 1 h · hands-on"
+    **Before this:** [8 Evaluation](evaluation.md)  ·  **After this:** [10 Safety](safety.md)
+    **Overview version:** [Agentic AI](../concepts/agentic-ai.md)
 
 !!! abstract
     A trace is a tree of named, timed, nested spans with attributes. That is the

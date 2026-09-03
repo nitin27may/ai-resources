@@ -2,11 +2,15 @@
 title: The agent loop
 description: Build the loop yourself in about thirty lines, so that agent.run() is never a black box again.
 tags:
-  - Intermediate
+  - Build
   - Agents
 ---
 
 # The agent loop
+
+!!! abstract "Build · 1 h · hands-on"
+    **Before this:** [1 Tool calling](tool-calling.md)  ·  **After this:** [4 The harness](the-harness.md)
+    **Overview version:** [What an agent is](../concepts/ai-agents.md)  ·  **In depth:** [Design patterns](../patterns/design-patterns.md)
 
 !!! abstract
     An agent is a model calling tools in a loop until it stops asking for them.
@@ -47,7 +51,7 @@ flowchart LR
 
     classDef primary fill:#0d9488,color:#fff
     classDef processing fill:#0284c7,color:#fff
-    classDef storage fill:#14b8a6,color:#fff
+    classDef storage fill:#0f766e,color:#fff
     classDef warning fill:#d97706,color:#fff
     classDef success fill:#16a34a,color:#fff
 ```

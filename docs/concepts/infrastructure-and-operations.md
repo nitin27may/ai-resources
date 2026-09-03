@@ -1,11 +1,15 @@
 ---
-tags:
-  - Advanced
-  - Concepts
 description: MLOps for AI systems — model drift, monitoring, cost, and deployment topology.
+tags:
+  - Understand
+  - Operations
 ---
 
-# Infrastructure & Operations
+# Infrastructure & operations
+
+!!! abstract "Understand · 15 min · no code"
+    **Before this:** [Fine-tuning and training](fine-tuning-and-training.md)  ·  **After this:** [The build path](../00-start-here/the-path.md)
+    **Hands-on version:** [11 Production](../02-agents/production.md)  ·  **In depth:** [Code quality pipeline](../patterns/code-quality-pipeline.md)
 
 !!! info "Start with the hands-on module"
     For the buildable version of this material, see [Production](../02-agents/production.md).
@@ -16,9 +20,9 @@ Building an AI model is only half the challenge. Running it reliably, efficientl
 
 ---
 
-## MLOps: DevOps for Machine Learning
+## MLOps: DevOps for machine learning
 
-**MLOps** (Machine Learning Operations) applies the principles of DevOps -- automation, monitoring, version control, CI/CD -- to the machine learning lifecycle. It bridges the gap between data science experiments and production systems.
+**MLOps** (Machine Learning Operations) applies the principles of DevOps — automation, monitoring, version control, CI/CD — to the machine learning lifecycle. It bridges the gap between data science experiments and production systems.
 
 ### MLOps vs DevOps
 
@@ -31,33 +35,33 @@ Building an AI model is only half the challenge. Running it reliably, efficientl
 | **What triggers redeployment** | Code changes | Code changes + data changes + model degradation |
 | **Pipeline** | Build, test, deploy | Ingest, train, evaluate, deploy, monitor |
 
-!!! tip "MLOps Maturity"
+!!! tip "MLOps maturity"
     Most teams start at "manual everything" (level 0) and gradually automate. You do not need a fully automated MLOps pipeline on day one. Start with version control for data and models, then add automation incrementally.
 
-### The MLOps Lifecycle
+### The MLOps lifecycle
 
 ```mermaid
 graph LR
-    A["Data\nCollection"] --> B["Data\nPreparation"]
-    B --> C["Model\nTraining"]
-    C --> D["Model\nEvaluation"]
-    D --> E["Model\nRegistry"]
+    A["Data<br/>Collection"] --> B["Data<br/>Preparation"]
+    B --> C["Model<br/>Training"]
+    C --> D["Model<br/>Evaluation"]
+    D --> E["Model<br/>Registry"]
     E --> F["Deployment"]
     F --> G["Monitoring"]
-    G -->|"Drift\nDetected"| A
+    G -->|"Drift<br/>Detected"| A
 
-    style A fill:#057398,stroke:#004987,color:#fff
-    style B fill:#00A0DF,stroke:#004987,color:#fff
-    style C fill:#632C4F,stroke:#632C4F,color:#fff
-    style D fill:#853175,stroke:#632C4F,color:#fff
-    style E fill:#9E57A2,stroke:#632C4F,color:#fff
-    style F fill:#004987,stroke:#004987,color:#fff
-    style G fill:#259638,stroke:#259638,color:#fff
+    style A fill:#0284c7,stroke:#0284c7,color:#fff
+    style B fill:#0284c7,stroke:#0284c7,color:#fff
+    style C fill:#0d9488,stroke:#0d9488,color:#fff
+    style D fill:#0f766e,stroke:#0d9488,color:#fff
+    style E fill:#0f766e,stroke:#0d9488,color:#fff
+    style F fill:#0284c7,stroke:#0284c7,color:#fff
+    style G fill:#16a34a,stroke:#16a34a,color:#fff
 ```
 
 **Key stages:**
 
-1. **Data Collection**: Gather raw data from sources -- databases, APIs, logs, user interactions.
+1. **Data Collection**: Gather raw data from sources — databases, APIs, logs, user interactions.
 2. **Data Preparation**: Clean, transform, and feature-engineer the data. Track lineage so you know where every data point came from.
 3. **Model Training**: Train (or fine-tune) the model. Log hyperparameters, metrics, and artifacts.
 4. **Model Evaluation**: Compare the new model against baselines using defined metrics. Automated evaluation gates prevent bad models from reaching production.
@@ -67,11 +71,11 @@ graph LR
 
 ---
 
-## Model Drift and Monitoring
+## Model drift and monitoring
 
 **Model drift** is the gradual degradation of model performance over time. A model that was accurate at launch may become unreliable as the real world changes around it.
 
-### Types of Drift
+### Types of drift
 
 Data drift
 :   The distribution of input data changes. For example, a customer sentiment model trained on pre-pandemic reviews may perform poorly on post-pandemic data because the language and topics shifted.
@@ -82,7 +86,7 @@ Concept drift
 Feature drift
 :   The data pipeline changes, causing features to be computed differently or become unavailable. For example, a feature that previously held "days since last purchase" is now always zero due to a data pipeline bug.
 
-### Monitoring Strategy
+### Monitoring strategy
 
 | What to Monitor | How | Alert Threshold |
 |---|---|---|
@@ -93,16 +97,16 @@ Feature drift
 | **Error rates** | Track failed predictions, timeouts, and exceptions | Error rate exceeds baseline |
 | **Token usage** | Monitor tokens consumed per request | Unexpected spikes in consumption |
 
-!!! warning "Monitoring Is Not Optional"
-    In production AI systems, monitoring is as critical as the model itself. Without it, you will not know your model is degrading until users complain -- or worse, until bad decisions are already made.
+!!! warning "Monitoring is not optional"
+    In production AI systems, monitoring is as critical as the model itself. Without it, you will not know your model is degrading until users complain — or worse, until bad decisions are already made.
 
 ---
 
-## Quantization and Model Optimization
+## Quantization and model optimization
 
-**Quantization** reduces the precision of a model's numerical weights -- for example, from 32-bit floating point (FP32) to 8-bit integers (INT8) or even 4-bit. This dramatically reduces model size, memory usage, and inference latency, often with minimal impact on quality.
+**Quantization** reduces the precision of a model's numerical weights — for example, from 32-bit floating point (FP32) to 8-bit integers (INT8) or even 4-bit. This dramatically reduces model size, memory usage, and inference latency, often with minimal impact on quality.
 
-### How Quantization Works
+### How quantization works
 
 | Precision | Bits per Weight | Relative Size | Typical Quality Impact |
 |---|---|---|---|
@@ -111,7 +115,7 @@ Feature drift
 | INT8 | 8 | 0.25x | Minimal for most tasks |
 | INT4 | 4 | 0.125x | Noticeable on complex reasoning |
 
-### Quantization Methods
+### Quantization methods
 
 Post-training quantization (PTQ)
 :   Applied after training is complete. No additional training data is needed. Fast and easy but may lose more quality than training-aware methods.
@@ -127,11 +131,11 @@ GPTQ / AWQ / GGUF
 
 ---
 
-## Edge AI and On-Device Inference
+## Edge AI and on-device inference
 
-**Edge AI** runs models directly on local devices -- laptops, phones, IoT devices, on-premise servers -- rather than sending data to the cloud. This is increasingly practical with small language models and quantization.
+**Edge AI** runs models directly on local devices — laptops, phones, IoT devices, on-premise servers — rather than sending data to the cloud. This is increasingly practical with small language models and quantization.
 
-### When to Use Edge AI
+### When to use edge AI
 
 | Scenario | Why Edge Makes Sense |
 |---|---|
@@ -141,7 +145,7 @@ GPTQ / AWQ / GGUF
 | **Cost at scale** | No per-query API costs for high-volume use cases |
 | **Regulatory compliance** | Data residency requirements mandate local processing |
 
-### Edge AI Technologies
+### Edge AI technologies
 
 | Technology | Description |
 |---|---|
@@ -151,17 +155,91 @@ GPTQ / AWQ / GGUF
 | **Apple Core ML** | On-device inference optimized for Apple hardware |
 | **Windows ML** | ML inference on Windows devices using DirectML |
 
-### Trade-Offs
+### Trade-offs
 
 Edge AI is not free. You gain privacy, latency, and cost benefits, but you trade model capability. A 3B-parameter quantized model running on a laptop will not match the quality of GPT-4o running in the cloud. Choose edge deployment when the trade-off makes sense for your use case.
 
 ---
 
-## Cost Management in AI
+## Serving models, and where latency comes from
+
+If you call a hosted API, the provider handles this and you should still
+understand it, because it explains what you can and cannot make faster.
+
+Generation happens one token at a time, and each token depends on the one
+before, so a response cannot be produced in parallel. That single fact drives
+almost everything about latency.
+
+| Term | What it means | Why you care |
+|---|---|---|
+| **Time to first token** | Delay before the first character appears | What users actually perceive as speed |
+| **Tokens per second** | Generation rate after the first token | How long a long answer takes |
+| **Prefill** | Processing your prompt before generating | Grows with prompt length; parallelisable |
+| **Decode** | Generating the response | Grows with answer length; not parallelisable |
+| **KV cache** | Retained attention state so earlier tokens are not recomputed | Why long conversations use memory, not just tokens |
+
+Three practical consequences:
+
+- **Stream the response.** It does not reduce total time, but it cuts perceived
+  latency enormously. A user watching text appear after 300ms is having a better
+  experience than one staring at a spinner for six seconds, even when the second
+  finishes sooner.
+- **Shorter outputs are the real speed lever.** Prompt length affects prefill,
+  which is fast and parallel. Output length affects decode, which is neither.
+  "Answer in one sentence" does more for latency than trimming the prompt.
+- **Batching trades latency for throughput.** Serving stacks group concurrent
+  requests to use the GPU efficiently. Good for cost per request, slightly worse
+  for any individual one.
+
+If you self-host, this is what a serving engine such as vLLM or NVIDIA NIM does
+for you: continuous batching, paged KV cache, and an OpenAI-compatible endpoint
+so your application code does not change. Running a model with a naive loop
+gives a small fraction of the throughput of the same hardware served properly.
+
+---
+
+## Rate limits, quotas and failover
+
+The operational surprise that hits most teams first, and it is rarely in the
+design document.
+
+Providers limit both requests and tokens per minute, and the token limit usually
+binds first. A feature that works in testing fails at launch not because the
+code is wrong but because ten concurrent users with long prompts exceed a quota
+nobody checked.
+
+What this demands:
+
+- **Retry with exponential backoff and jitter**, honouring the `Retry-After`
+  header. Retrying immediately makes an overload worse.
+- **Retry only what is safe to retry.** A timeout does not tell you whether the
+  work happened. If the call had a side effect, retrying can duplicate it —
+  which is why idempotency keys exist. See
+  [production](../02-agents/production.md).
+- **A queue for anything that can be asynchronous.** Batch endpoints cost
+  substantially less for work that does not need an immediate answer.
+- **Know your fallback before you need it.** A second deployment in another
+  region, or a smaller model that degrades quality instead of failing. Decide
+  which, and test it; a fallback path that has never run is not a fallback.
+- **Cap per user and per tenant.** Without it, one runaway loop consumes the
+  quota for everyone, and the outage looks like a provider problem.
+
+!!! warning "Model versions move underneath you"
+    A model name is not a version. Providers update what a name points to, and
+    deprecate versions on their own schedule. Behaviour can change without any
+    deployment on your side.
+
+    Pin an explicit version where the provider allows it, subscribe to
+    deprecation notices, and keep an evaluation set you can rerun to answer
+    "did it get worse?" with evidence rather than impressions.
+
+---
+
+## Cost management in AI
 
 AI infrastructure costs can scale quickly if not managed carefully. Here are the main cost drivers and how to control them:
 
-### Cost Drivers
+### Cost drivers
 
 | Cost Driver | Description | How to Optimize |
 |---|---|---|
@@ -171,7 +249,7 @@ AI infrastructure costs can scale quickly if not managed carefully. Here are the
 | **Data processing** | ETL pipelines, embedding generation, indexing | Batch operations, incremental updates instead of full re-indexing |
 | **Monitoring** | Logging, tracing, evaluation | Sample traces rather than logging everything, set retention policies |
 
-### Cost Optimization Strategies
+### Cost optimization strategies
 
 === "Prompt Optimization"
 
@@ -194,12 +272,12 @@ AI infrastructure costs can scale quickly if not managed carefully. Here are the
     - Use spot/preemptible instances for training
     - Quantize models to reduce serving costs
 
-!!! note "Track Cost Per Request"
+!!! note "Track cost per request"
     Establish a metric for **cost per request** or **cost per user interaction**. This helps you make informed decisions about model selection, prompt design, and infrastructure choices. Without this metric, costs tend to grow unnoticed.
 
 ---
 
-## Putting It All Together
+## Putting it all together
 
 A production AI system brings together all of these concerns:
 
@@ -216,9 +294,10 @@ Each layer has its own best practices, but they are deeply interconnected. A cha
 
 ---
 
-## References
+## Go deeper
 
-- [Azure Machine Learning](https://learn.microsoft.com/en-us/azure/machine-learning/)
-- [MLflow](https://mlflow.org/docs/latest/index.html)
-- [ONNX Runtime Quantization](https://onnxruntime.ai/docs/performance/model-optimizations/quantization.html)
-- [Azure AI Foundry](https://learn.microsoft.com/en-us/azure/ai-studio/)
+- [Azure Machine Learning](https://learn.microsoft.com/en-us/azure/machine-learning/) — the full MLOps toolchain, most of which you do not need for LLM applications.
+- [Azure AI Foundry](https://learn.microsoft.com/en-us/azure/foundry/) — the parts you probably do need: deployments, evaluation and content filtering.
+- [MLflow](https://mlflow.org/docs/latest/index.html) — experiment tracking and a model registry that works outside any one cloud.
+- [ONNX Runtime quantization](https://onnxruntime.ai/docs/performance/model-optimizations/quantization.html) — the mechanics behind "make it smaller and faster", with the accuracy trade-off stated.
+- [NVIDIA NIM](https://docs.nvidia.com/nim/) — the realistic route to self-hosting a model behind an OpenAI-compatible endpoint.

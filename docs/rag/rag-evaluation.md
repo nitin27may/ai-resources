@@ -1,19 +1,25 @@
 ---
 title: RAG Evaluation
 description: How to measure RAG quality — faithfulness, answer relevancy, context precision, context recall — and which tooling to actually depend on.
-tags:
-  - Advanced
-  - RAG
-  - Evaluation
 status: new
+tags:
+  - Go deeper
+  - Retrieval
+  - Evaluation
 ---
 
-# RAG Evaluation
+# RAG evaluation
+
+!!! abstract "Go deeper · 40 min · code optional"
+    **Before this:** [GraphRAG](graphrag.md)  ·  **After this:** [8 Evaluation](../02-agents/evaluation.md)
+    **Hands-on version:** [8 Evaluation](../02-agents/evaluation.md)
+
+**Verified as of 2026-09-02.**
 
 !!! abstract
     Building a RAG system is straightforward. Knowing whether it actually works is harder. This page covers the four RAGAS metrics that give you a quantitative view of retrieval and generation quality, how to build a golden dataset for repeatable evaluation, and which tools integrate that pipeline into your workflow.
 
-## Why Evaluation Matters
+## Why evaluation matters
 
 You can't improve what you don't measure. Two RAG systems that produce plausible-looking answers can differ by 20% or more in actual retrieval quality — a difference invisible from casual inspection.
 
@@ -39,7 +45,7 @@ A good evaluation framework answers three distinct questions:
     **promptfoo** or **Phoenix** — both shipped releases this month. The metric
     definitions transfer directly.
 
-## The Four Metrics
+## The four metrics
 
 These four dimensions, popularised by RAGAS, are scored by an LLM-assisted evaluator without requiring manual human rating of every answer. An evaluator LLM judges each response against the retrieved context and, where applicable, a ground truth reference answer.
 
@@ -51,7 +57,7 @@ Faithfulness measures whether every claim in the generated answer is supported b
 
 **Logic:** The evaluator breaks the generated answer into individual claims and checks each one against the retrieved chunks. The score is the fraction of claims that are supported.
 
-### Answer Relevancy
+### Answer relevancy
 
 Answer relevancy measures whether the answer addresses the question that was actually asked. A score of 1.0 means the answer is directly on-topic and complete. A score near 0 means the answer is evasive, off-topic, or only tangentially related.
 
@@ -59,7 +65,7 @@ Answer relevancy measures whether the answer addresses the question that was act
 
 **Logic:** The evaluator generates candidate questions that the answer could plausibly be responding to, then measures how similar those reverse-engineered questions are to the original. High similarity means the answer stayed on-topic.
 
-### Context Precision
+### Context precision
 
 Context precision measures whether the retrieved chunks are actually relevant to the question. A score of 1.0 means every retrieved chunk contributed useful signal. A score near 0 means most of what was retrieved was noise — the retrieval cast too wide a net.
 
@@ -67,7 +73,7 @@ Context precision measures whether the retrieved chunks are actually relevant to
 
 **Logic:** Each retrieved chunk is scored for relevance to the question. Chunks ranked higher get more weight — so returning a relevant chunk at position 1 scores better than returning it buried at position 8.
 
-### Context Recall
+### Context recall
 
 Context recall measures whether retrieval found all the information necessary to answer the question correctly. A score of 1.0 means nothing critical was missed. A score near 0 means significant relevant information exists in the corpus but wasn't retrieved.
 
@@ -84,22 +90,22 @@ Context recall measures whether retrieval found all the information necessary to
 | Context Precision | Retrieved chunks are relevant | No | Retrieval is noisy — too much irrelevant content |
 | Context Recall | Retrieved chunks cover the answer | Yes | Retrieval is missing critical information |
 
-## Evaluation Pipeline
+## Evaluation pipeline
 
 The evaluation loop runs your test set through the full RAG pipeline, then scores each question/context/answer triple with RAGAS.
 
 ```mermaid
 flowchart LR
-    A([Test Dataset\nquestions + ground truth]):::primary --> B[RAG Pipeline]
-    B --> C([Retrieved Contexts\n+ Generated Answers]):::storage
-    C --> D[Evaluator LLM\nRAGAS]:::processing
+    A([Test Dataset<br/>questions + ground truth]):::primary --> B[RAG Pipeline]
+    B --> C([Retrieved Contexts<br/>+ Generated Answers]):::storage
+    C --> D[Evaluator LLM<br/>RAGAS]:::processing
     D --> E([Metric Scores]):::success
-    E --> F[Identify\nWeak Points]:::warning
+    E --> F[Identify<br/>Weak Points]:::warning
     F --> G[Tune System]:::primary
     G --> B
 
     classDef primary fill:#0d9488,color:#fff
-    classDef storage fill:#14b8a6,color:#fff
+    classDef storage fill:#0f766e,color:#fff
     classDef processing fill:#0284c7,color:#fff
     classDef success fill:#16a34a,color:#fff
     classDef warning fill:#d97706,color:#fff
@@ -114,7 +120,7 @@ flowchart LR
 5. **Tune** — adjust chunking, embedding model, `k`, reranker, or prompt based on findings
 6. **Repeat** — re-run the full set to confirm improvement didn't regress other metrics
 
-## Common Failure Patterns
+## Common failure patterns
 
 | Symptom | Root Cause | Fix |
 |---|---|---|
@@ -124,7 +130,7 @@ flowchart LR
 | High context recall but low faithfulness | Generation model diverges from context | Swap to a model with stronger instruction following, or tighten the system prompt |
 | Low answer relevancy | Retrieval returns context from a related but different topic | Improve query expansion or add a query rewriting step before retrieval |
 
-## Building a Golden Dataset
+## Building a golden dataset
 
 The quality of your evaluation is only as good as your test set.
 
@@ -141,7 +147,7 @@ The quality of your evaluation is only as good as your test set.
 !!! note
     Synthetic datasets are fine to start with — just validate a sample manually before trusting the scores. LLM-generated questions can be biased toward easily-answerable content and may miss the ambiguous or multi-hop queries that expose real weaknesses.
 
-## Evaluation Tools
+## Evaluation tools
 
 === "promptfoo (recommended)"
 
@@ -213,7 +219,7 @@ The quality of your evaluation is only as good as your test set.
 
     Good choice if your RAG pipeline is already deployed on Azure — evaluation runs in the same environment without exporting data to a third-party service.
 
-    Reference: [Azure AI Evaluation docs](https://learn.microsoft.com/en-us/azure/ai-studio/how-to/evaluate-generative-ai-app)
+    Reference: [Azure AI Evaluation docs](https://learn.microsoft.com/en-us/azure/foundry/how-to/evaluate-generative-ai-app)
 
 === "DeepEval"
 
@@ -253,14 +259,14 @@ The quality of your evaluation is only as good as your test set.
 
     LangSmith supports custom evaluators, dataset management, and comparison views across runs — useful for tracking metric changes across experiments rather than just point-in-time scores.
 
-## References
+## Go deeper
 
-- [promptfoo model-graded assertions](https://www.promptfoo.dev/docs/configuration/expected-outputs/model-graded/) — actively maintained, local judges supported
-- [Phoenix](https://github.com/Arize-ai/phoenix) — `pip install arize-phoenix && phoenix serve` for local tracing plus evals, no account
-- [RAGAS](https://github.com/vibrantlabsai/ragas) — for the metric definitions; see the caveat above before depending on it
-- [Azure AI Evaluation](https://learn.microsoft.com/en-us/azure/ai-studio/how-to/evaluate-generative-ai-app)
-
-## Next Steps
+- [promptfoo model-graded assertions](https://www.promptfoo.dev/docs/configuration/expected-outputs/model-graded/) — actively maintained, runs in CI, and supports local judges. Set the grader explicitly or it reaches for a hosted model.
+- [Phoenix](https://github.com/Arize-ai/phoenix) — `pip install arize-phoenix && phoenix serve` gives tracing and evals with no account. Elastic 2.0 licensed, not OSI open source.
+- [RAGAS](https://github.com/vibrantlabsai/ragas) — learn the metric definitions here. See the caveat above before depending on the library.
+- [Azure AI evaluation](https://learn.microsoft.com/en-us/azure/foundry/how-to/evaluate-generative-ai-app) — the managed option, if your data cannot leave Azure.
+- [Evaluation](../02-agents/evaluation.md) — the agent-level version, where pass^k and judge calibration matter more than any single metric.
+## Next steps
 
 - [RAG Fundamentals](rag-fundamentals.md) — understand retrieval architecture before optimizing it
 - [Vector Databases](vector-databases.md) — the storage layer that context precision and recall depend on

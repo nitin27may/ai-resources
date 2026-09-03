@@ -2,11 +2,15 @@
 title: Retrieval
 description: Getting information the model was never trained on into its context — and why it works on your test corpus and fails on your real one.
 tags:
-  - Intermediate
-  - RAG
+  - Build
+  - Retrieval
 ---
 
 # Retrieval
+
+!!! abstract "Build · 1.5 h · hands-on"
+    **Before this:** [6 Memory](memory.md)  ·  **After this:** [8 Evaluation](evaluation.md)
+    **Overview version:** [Retrieval and data](../concepts/retrieval-and-data.md)  ·  **In depth:** [Retrieval in depth](../rag/index.md)
 
 !!! abstract
     Retrieval fetches information the model does not have and puts it in context.
@@ -38,7 +42,7 @@ flowchart LR
 
     classDef primary fill:#0d9488,stroke:#0b7a72,color:#fff
     classDef processing fill:#0284c7,stroke:#0270a8,color:#fff
-    classDef storage fill:#14b8a6,stroke:#119b91,color:#fff
+    classDef storage fill:#0f766e,stroke:#119b91,color:#fff
     classDef warning fill:#d97706,stroke:#b86005,color:#fff
     classDef success fill:#16a34a,stroke:#15803d,color:#fff
 ```

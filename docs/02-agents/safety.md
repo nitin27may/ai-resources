@@ -2,11 +2,15 @@
 title: Safety and failure modes
 description: What happens when the content your agent reads is trying to manipulate it — and why the fix is architectural, not a better prompt.
 tags:
-  - Advanced
+  - Build
   - Safety
 ---
 
 # Safety and failure modes
+
+!!! abstract "Build · 1.5 h · hands-on"
+    **Before this:** [9 Observability](observability.md)  ·  **After this:** [11 Production](production.md)
+    **Overview version:** [Safety and responsible AI](../concepts/safety-and-responsible-ai.md)
 
 !!! abstract
     An agent that reads anything it did not write can be instructed by it. The

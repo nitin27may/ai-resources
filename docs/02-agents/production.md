@@ -2,11 +2,15 @@
 title: Production
 description: What changes when real users arrive — retries, idempotency, budgets, and the cost multipliers nobody plans for.
 tags:
-  - Advanced
+  - Build
   - Operations
 ---
 
 # Production
+
+!!! abstract "Build · 1 h · hands-on"
+    **Before this:** [10 Safety](safety.md)  ·  **After this:** [12 Multi-agent](multi-agent.md)
+    **Overview version:** [Infrastructure and operations](../concepts/infrastructure-and-operations.md)  ·  **In depth:** [Architecture patterns](../patterns/index.md)
 
 !!! abstract
     Everything so far assumed tools succeed, runs finish, and nobody is paying.
@@ -114,7 +118,7 @@ flowchart LR
     classDef primary fill:#0d9488,stroke:#0b7a72,color:#fff
     classDef processing fill:#0284c7,stroke:#0270a8,color:#fff
     classDef warning fill:#d97706,stroke:#b86005,color:#fff
-    classDef storage fill:#14b8a6,stroke:#119b91,color:#fff
+    classDef storage fill:#0f766e,stroke:#119b91,color:#fff
     classDef danger fill:#dc2626,stroke:#b91c1c,color:#fff
 ```
 
@@ -187,12 +191,23 @@ schedule. Cost-aware CI is the part most production writing skips.
 - [12-Factor Agents](https://github.com/humanlayer/12-factor-agents) — own your control flow, compact errors into context. A 2025 document.
 - [Building effective agents](https://www.anthropic.com/engineering/building-effective-agents) — read the superseded banner; the patterns vocabulary still holds.
 
-## Next
+## Where to go from here
 
 You have finished the agent spine: setup, tool calling, the loop, the harness,
-context, retrieval, evaluation, observability, safety and production.
+context, retrieval, evaluation, observability, safety and production. That is a
+working agent you understand end to end, which is the point at which the rest of
+this site becomes worth reading.
 
-For depth on any stage of retrieval, the [RAG section](../rag/index.md) goes
-further. For the same ideas in a framework and then in a running system, every
-module links into
-[`e-commerce-agents`](https://github.com/nitin27may/e-commerce-agents).
+| Go to | If you want |
+|---|---|
+| [Retrieval in depth](../rag/index.md) | The six-part treatment of chunking, embeddings, vector databases, GraphRAG and RAG evaluation. Module 5 was the outline; this is the engineering |
+| [Architecture patterns](../patterns/index.md) | Multi-agent structure: supervisor, handoff, hierarchical, parallel. What to reach for when one agent stops being enough |
+| [Frameworks and platforms](../tools-and-frameworks/index.md) | The current landscape, and which parts of the harness you just built a framework will give you |
+| [Developer tools](../ai-dev-tools/index.md) | Copilot, Claude Code and MCP — the agents you use rather than the ones you write |
+| [Resources](../reference/resources.md) | A ranked reading list with a reason to trust each item, and an explicit list of what to avoid |
+
+For the same ideas inside a framework and then in a running multi-agent system,
+every module on this path links into
+[`e-commerce-agents`](https://github.com/nitin27may/e-commerce-agents): a
+Microsoft Agent Framework tutorial chapter, and the file where the idea is
+actually implemented.

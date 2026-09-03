@@ -1,21 +1,24 @@
 ---
 title: AI Developer Tools
 description: An overview of AI coding tools — from IDE assistants to agentic CLI tools and the MCP ecosystem — and how they fit together.
-tags:
-  - Beginner
-  - GitHub Copilot
-  - Claude Code
-  - MCP
 status: new
+tags:
+  - Tools
+  - Claude Code
+  - Copilot
+  - MCP
 ---
 
-# AI Developer Tools
+# AI developer tools
+
+!!! abstract "Tools · 10 min · no code"
+    **Before this:** [Frameworks and platforms](../tools-and-frameworks/index.md)  ·  **After this:** [GitHub Copilot](github-copilot.md)
 
 AI coding tools have moved from novelty to essential infrastructure. The question is no longer whether to use them, but which ones fit which tasks — and how to use them without accumulating bad habits.
 
 The landscape breaks into three tiers, each with a different scope and mental model:
 
-!!! info "Three-Tier Model"
+!!! info "Three-tier model"
 
     **Tier 1 — Code Completion** (:material-github: GitHub Copilot)
 
@@ -31,7 +34,7 @@ The landscape breaks into three tiers, each with a different scope and mental mo
 
 ---
 
-## What's in This Section
+## What's in this section
 
 <div class="grid cards" markdown>
 
@@ -89,7 +92,7 @@ The landscape breaks into three tiers, each with a different scope and mental mo
 
 ---
 
-## Next Steps
+## Next steps
 
 - [GitHub Copilot](github-copilot.md) — start here if you're new to AI coding tools
 - [Claude Code](claude-code.md) — start here if you want agentic, autonomous coding assistance

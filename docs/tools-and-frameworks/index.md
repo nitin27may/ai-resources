@@ -1,13 +1,18 @@
 ---
-tags:
-  - Intermediate
-  - Tools
 description: The current framework and platform landscape, with honest notes on what has been superseded.
+tags:
+  - Go deeper
+  - Patterns
+  - Azure
 ---
 
-# Tools & Frameworks
+# Tools & frameworks
 
-The AI ecosystem moves fast. This page provides a curated overview of the tools and frameworks most relevant to building enterprise AI solutions -- organized into orchestration frameworks, AI platforms, and developer tools.
+!!! abstract "Go deeper · 30 min · no code"
+    **Before this:** [Code quality pipeline](../patterns/code-quality-pipeline.md)  ·  **After this:** [Developer tools](../ai-dev-tools/index.md)
+    **In depth:** [Resources](../reference/resources.md)
+
+The AI ecosystem moves fast. This page provides a curated overview of the tools and frameworks most relevant to building enterprise AI solutions — organized into orchestration frameworks, AI platforms, and developer tools.
 
 Each entry includes a brief description, who it is for, and a link to official documentation.
 
@@ -37,7 +42,7 @@ Each entry includes a brief description, who it is for, and a link to official d
 
 ---
 
-## Orchestration Frameworks
+## Orchestration frameworks
 
 Orchestration frameworks provide the building blocks for connecting large language models to tools, data, and each other. They handle prompt management, memory, tool calling, and multi-step workflows so you can focus on the application logic.
 
@@ -56,6 +61,15 @@ first-class C# support.
 
 [:octicons-link-external-16: Agent Framework documentation](https://learn.microsoft.com/en-us/agent-framework/)
 
+!!! example "Six runnable C# samples"
+    The [`samples/`](https://github.com/nitin27may/ai-resources/tree/main/samples)
+    directory in this repository has six single-file C# programs against Azure AI
+    Foundry: a basic agent, an agent as a backend service, multi-turn threads, a
+    C# function as a tool, an MCP connection, and a workflow. Each declares its
+    own packages, so `dotnet run 1-basicagent.cs` is the whole setup. All six
+    compile on .NET 10; the readme explains why they are still pinned to a
+    pre-1.0 preview.
+
 !!! info "Semantic Kernel and AutoGen — what happened to them"
     **Semantic Kernel** is superseded rather than deprecated. Microsoft committed
     to critical bug fixes and security patches for at least a year after Agent
@@ -73,9 +87,9 @@ first-class C# support.
 
 :material-language-python:{ .middle } **LangChain AI** | Python, JavaScript/TypeScript
 
-**LangChain** is a popular open-source framework for building applications with LLMs. It provides composable building blocks -- chains, tools, retrievers, memory -- that snap together to create complex LLM workflows.
+**LangChain** is a popular open-source framework for building applications with LLMs. It provides composable building blocks — chains, tools, retrievers, memory — that snap together to create complex LLM workflows.
 
-**LangGraph** extends LangChain with a stateful, graph-based orchestration layer. Where LangChain chains are linear, LangGraph models workflows as directed graphs with cycles, conditional branching, and persistent state -- making it ideal for building agents and multi-step reasoning systems.
+**LangGraph** extends LangChain with a stateful, graph-based orchestration layer. Where LangChain chains are linear, LangGraph models workflows as directed graphs with cycles, conditional branching, and persistent state — making it ideal for building agents and multi-step reasoning systems.
 
 **Who it is for:** Python and JavaScript developers building LLM applications, especially those who need flexibility and a large ecosystem of integrations.
 
@@ -87,7 +101,7 @@ first-class C# support.
 - Built-in support for RAG, agents, and conversational memory
 - LangSmith for observability, tracing, and evaluation
 
-[:octicons-link-external-16: LangChain Documentation](https://python.langchain.com/docs/) | [:octicons-link-external-16: LangGraph Documentation](https://langchain-ai.github.io/langgraph/)
+[:octicons-link-external-16: LangChain Documentation](https://docs.langchain.com/oss/python/langchain/overview) | [:octicons-link-external-16: LangGraph Documentation](https://docs.langchain.com/oss/python/langgraph/overview)
 
 ---
 
@@ -111,7 +125,58 @@ CrewAI is a role-based multi-agent framework that models teams of AI agents work
 
 ---
 
-## AI Platforms
+### OpenAI Agents SDK
+
+:material-language-python:{ .middle } **OpenAI** | Python, TypeScript
+
+OpenAI's supported framework for building agents: tool calling, handoffs between
+agents, guardrails, sessions and tracing, with a small surface area. It replaced
+Swarm, which was explicitly an experiment and is still recommended by out-of-date
+comparison posts.
+
+**Who it is for:** teams already on the OpenAI API who want the vendor's own
+abstractions rather than a general-purpose framework.
+
+[:octicons-link-external-16: Agents SDK documentation](https://openai.github.io/openai-agents-python/)
+
+---
+
+### Google Agent Development Kit
+
+:material-google:{ .middle } **Google** | Python, Java
+
+Google's open-source agent framework, with multi-agent composition, a local
+development UI, and evaluation built in rather than bolted on. Deploys to Google
+Cloud but is not locked to it.
+
+**Who it is for:** teams on Gemini, or anyone who wants evaluation treated as a
+first-class part of the framework.
+
+[:octicons-link-external-16: ADK documentation](https://google.github.io/adk-docs/)
+
+---
+
+## How to choose
+
+The decision is usually made for you by three things, in this order:
+
+1. **Language.** .NET narrows it to Microsoft Agent Framework. Python opens
+   everything.
+2. **Where the model lives.** Azure pulls toward Agent Framework and Foundry;
+   Gemini toward ADK; OpenAI direct toward the Agents SDK. All of them can call
+   any OpenAI-compatible endpoint, so this is a pull, not a constraint.
+3. **Whether you need a graph.** Branching, cycles, checkpoints and resumable
+   state are LangGraph's reason to exist. If your flow is linear, a framework
+   buys you less than it costs.
+
+A fourth consideration that is easy to miss: you can build the loop yourself.
+[The build path](../00-start-here/the-path.md) does exactly that in about thirty
+lines, and knowing what a framework is doing for you is the difference between
+choosing one and inheriting one.
+
+---
+
+## AI platforms
 
 AI platforms provide the cloud infrastructure for hosting models, managing data, and building production-grade AI solutions. These are the services your AI applications run on.
 
@@ -131,15 +196,15 @@ Azure AI Foundry (formerly Azure AI Studio, and the destination for what was bra
 - Deployment to managed endpoints
 - Integration with Azure AI Search, Content Safety, and other Azure services
 
-[:octicons-link-external-16: Azure AI Foundry Documentation](https://learn.microsoft.com/en-us/azure/ai-studio/)
+[:octicons-link-external-16: Azure AI Foundry Documentation](https://learn.microsoft.com/en-us/azure/foundry/)
 
 ---
 
-### Azure OpenAI in Foundry Models
+### Azure OpenAI in Foundry models
 
 :material-microsoft-azure:{ .middle } **Microsoft** | Cloud Service
 
-Azure OpenAI provides access to OpenAI's models hosted on Azure infrastructure. It adds enterprise features -- virtual network support, managed identity, content filtering, and regional data residency -- that are critical for production deployments.
+Azure OpenAI provides access to OpenAI's models hosted on Azure infrastructure. It adds enterprise features — virtual network support, managed identity, content filtering, and regional data residency — that are critical for production deployments.
 
 **Who it is for:** Organizations that want to use OpenAI models with enterprise-grade security, compliance, and support.
 
@@ -151,7 +216,7 @@ Azure OpenAI provides access to OpenAI's models hosted on Azure infrastructure. 
 - Regional deployment options for data residency
 - Managed and provisioned deployment options
 
-[:octicons-link-external-16: Azure OpenAI Service Documentation](https://learn.microsoft.com/en-us/azure/ai-services/openai/)
+[:octicons-link-external-16: Azure OpenAI Service Documentation](https://learn.microsoft.com/en-us/azure/foundry/)
 
 ---
 
@@ -175,7 +240,7 @@ Azure AI Search (formerly Azure Cognitive Search) is a fully managed search serv
 
 ---
 
-## Developer Tools
+## Developer tools
 
 Developer tools help you build, test, and ship AI-powered applications more effectively. These tools integrate into your existing development workflow.
 
@@ -205,7 +270,7 @@ GitHub Copilot is an AI pair programmer that provides code suggestions, completi
 
 Azure AI Document Intelligence (formerly Form Recognizer) extracts text, key-value pairs, tables, and structure from documents using pre-built and custom models. It powers intelligent document processing (IDP) pipelines, turning unstructured documents into structured data.
 
-**Who it is for:** Teams building document processing pipelines -- invoices, receipts, contracts, forms, and any document that needs automated data extraction.
+**Who it is for:** Teams building document processing pipelines — invoices, receipts, contracts, forms, and any document that needs automated data extraction.
 
 **Key capabilities:**
 
@@ -223,7 +288,7 @@ Azure AI Document Intelligence (formerly Form Recognizer) extracts text, key-val
 
 :material-transit-connection-variant:{ .middle } **Microsoft** | Development Tool
 
-Prompt Flow is a visual development tool for building, evaluating, and deploying LLM-based workflows. It provides a graph-based interface where you connect prompts, tools, and logic into executable flows -- then evaluate them systematically before deploying to production.
+Prompt Flow is a visual development tool for building, evaluating, and deploying LLM-based workflows. It provides a graph-based interface where you connect prompts, tools, and logic into executable flows — then evaluate them systematically before deploying to production.
 
 **Who it is for:** AI developers who want a structured, visual approach to building and testing LLM applications, with built-in evaluation and CI/CD integration.
 
@@ -239,11 +304,13 @@ Prompt Flow is a visual development tool for building, evaluating, and deploying
 
 ---
 
-## Comparison at a Glance
+## Comparison at a glance
 
 | Tool | Category | Primary Use | Language / Platform |
 |------|----------|-------------|---------------------|
 | **Microsoft Agent Framework** | Orchestration | Agents, workflows, multi-agent — successor to SK and AutoGen | .NET, Python |
+| OpenAI Agents SDK | Orchestration | Agents, handoffs, guardrails, tracing | Python, TypeScript |
+| Google ADK | Orchestration | Multi-agent composition with built-in evaluation | Python, Java |
 | LangChain | Orchestration | LLM application building blocks | Python, JS |
 | LangGraph | Orchestration | Stateful agent orchestration | Python, JS |
 | CrewAI | Orchestration | Role-based multi-agent systems | Python |
@@ -256,13 +323,12 @@ Prompt Flow is a visual development tool for building, evaluating, and deploying
 
 ---
 
-## References
+## Go deeper
 
-- [Microsoft Agent Framework Docs](https://learn.microsoft.com/en-us/agent-framework/)
-- [LangChain Docs](https://python.langchain.com/docs/)
-- [LangGraph Docs](https://langchain-ai.github.io/langgraph/)
-- [Azure AI Foundry](https://learn.microsoft.com/en-us/azure/ai-studio/)
-- [Azure OpenAI Service](https://learn.microsoft.com/en-us/azure/ai-services/openai/)
-- [Azure AI Search](https://learn.microsoft.com/en-us/azure/search/)
-- [GitHub Copilot](https://docs.github.com/en/copilot)
-- [CrewAI Docs](https://docs.crewai.com/)
+- [Microsoft Agent Framework](https://learn.microsoft.com/en-us/agent-framework/) — the current Microsoft SDK, and the migration target from Semantic Kernel and AutoGen.
+- [OpenAI Agents SDK](https://openai.github.io/openai-agents-python/) — small surface area, handoffs as a first-class concept.
+- [Google ADK](https://google.github.io/adk-docs/) — multi-agent composition with evaluation built in.
+- [LangChain](https://docs.langchain.com/oss/python/langchain/overview) and [LangGraph](https://docs.langchain.com/oss/python/langgraph/overview) — the widest integration ecosystem, and the graph layer for anything with cycles.
+- [CrewAI](https://docs.crewai.com/) — role-based orchestration with very little boilerplate.
+- [Azure AI Foundry](https://learn.microsoft.com/en-us/azure/foundry/) — the platform the Microsoft stack deploys onto.
+- [Official sources](../references/index.md) — primary documentation for every vendor on this page.

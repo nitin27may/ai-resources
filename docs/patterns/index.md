@@ -1,11 +1,15 @@
 ---
-tags:
-  - Patterns
-  - Advanced
 description: Architectural patterns for AI systems, from single-agent design through to enterprise governance.
+tags:
+  - Go deeper
+  - Patterns
 ---
 
-# Architecture Patterns
+# Architecture patterns
+
+!!! abstract "Go deeper · 5 min · no code"
+    **Before this:** [11 Production](../02-agents/production.md)  ·  **After this:** [Design patterns](design-patterns.md)
+    Structure for agent systems. Enterprise AI patterns sits in Understand, because it needs no code.
 
 Proven patterns and principles for building AI systems. This section is primarily for developers, architects, and technical leads, but anyone can benefit from understanding how AI systems are structured.
 
@@ -25,7 +29,7 @@ Proven patterns and principles for building AI systems. This section is primaril
 
 -   :material-cog-outline:{ .lg .middle } __Design Principles__
 
-    Core architectural principles -- async-first, event streaming, serialization, and extensibility.
+    Core architectural principles — async-first, event streaming, serialization, and extensibility.
 
     [:octicons-arrow-right-24: Design Principles](design-principles.md)
 

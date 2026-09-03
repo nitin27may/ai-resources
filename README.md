@@ -1,48 +1,47 @@
 # AI Knowledge Hub
 
-A centralized learning resource covering AI concepts, patterns, and tools — from fundamentals to enterprise architecture. Built with [MkDocs Material](https://squidfunk.github.io/mkdocs-material/) and deployed to GitHub Pages.
+An open reference on how modern AI systems work, from the first explanation of
+what a language model is through to running an agent in production. Written for
+readers and builders alike. Built with
+[MkDocs Material](https://squidfunk.github.io/mkdocs-material/) and deployed to
+GitHub Pages.
 
-**Live site**: [https://nitinksingh.com/ai-resources/](https://nitinksingh.com/ai-resources/)
+**Live site**: <https://nitinksingh.com/ai-resources/>
 
-## Topics Covered
+## Two routes through it
 
-- AI fundamentals, foundation models, and prompting techniques
-- RAG & Knowledge Systems (embeddings, chunking, vector databases, GraphRAG, evaluation)
-- AI agents and agentic patterns
-- AI developer tools (GitHub Copilot, Claude Code, MCP)
-- Enterprise and design patterns for AI systems
-- Responsible AI and safety
+- **The reading path** — ten pages, four to five hours, no code. What these
+  systems are, how they work, and where they fail.
+- **The build path** — thirteen modules and thirteen labs. Everything runs against a model
+  on your own machine: no account, no API key, no cost.
 
-## Local Development
+Both start at [Choose your path](https://nitinksingh.com/ai-resources/00-start-here/).
 
-### Option 1: Docker Compose (recommended — no Python required)
+## How the content is layered
+
+Most topics appear at more than one depth, and each page links to its
+counterparts. **Understand** is the no-code layer. **Build** is the same idea as
+something you run and break. **Go deeper** is design-level depth. **Reference**
+is the glossary, a vetted reading list, and primary documentation by vendor.
+
+## Running it locally
+
+### Option 1: Docker Compose (no local Python needed)
 
 ```bash
 git clone https://github.com/nitin27may/ai-resources.git
 cd ai-resources
-docker-compose up
+docker compose up          # DOCS_PORT=8080 docker compose up  to use another port
 ```
 
 Site available at [http://localhost:8000](http://localhost:8000) with live reload.
 
 To stop:
 ```bash
-docker-compose down
+docker compose down
 ```
 
-### Option 2: VS Code Dev Container
-
-1. Clone the repo and open in VS Code:
-   ```bash
-   git clone https://github.com/nitin27may/ai-resources.git
-   code ai-resources
-   ```
-2. When prompted, click **Reopen in Container** (or use Command Palette: `Dev Containers: Reopen in Container`)
-3. The container builds automatically, installs dependencies, and starts the dev server on port 8000
-
-The dev container includes Python 3.12, all MkDocs plugins, WeasyPrint for PDF export, and pre-configured VS Code extensions for Markdown and Mermaid.
-
-### Option 3: Direct Python
+### Option 2: Direct Python
 
 ```bash
 git clone https://github.com/nitin27may/ai-resources.git
@@ -51,25 +50,38 @@ pip install -r requirements.txt
 mkdocs serve --dev-addr=0.0.0.0:8000 --livereload
 ```
 
-> PDF export (WeasyPrint) requires system libraries. Use Docker if you are not on Linux.
+## Adding a page
 
-## Adding Documentation
+1. Create the Markdown file in `docs/` under the right section.
+2. Add it to `nav:` in `mkdocs.yml`. Files are not auto-discovered, and a file
+   missing from the nav fails the strict build.
+3. Give it a header block and tags — see [CLAUDE.md](CLAUDE.md).
+4. Run the checks below.
 
-1. Create a Markdown file in `docs/` under the appropriate section
-2. Add it to the `nav:` section in `mkdocs.yml` — files are not auto-discovered
-3. The dev server reloads automatically; no restart needed
+**Never move, rename or delete a file under `docs/` without adding a
+`redirect_maps` entry in the same commit.** Every live URL is recorded in
+`planning/sitemap-baseline.txt`, and CI fails if one stops being served.
 
-## Build
+## Build and checks
 
 ```bash
-mkdocs build
-# Static output in ./site/
+mkdocs build --strict --clean -d /tmp/site
+
+planning/scripts/sitemap-guard.sh /tmp/site          # no live URL dropped
+python3 planning/scripts/check-links.py --min-inbound 2
+planning/scripts/style-greps.sh                      # every count should be 0
+
+(cd /tmp/site && python3 -m http.server 8899 &)
+python3 planning/scripts/check-diagrams.py           # every diagram renders
+python3 planning/scripts/check-themes.py             # light + dark, contrast >= 3:1
 ```
 
-To validate config without building:
-```bash
-mkdocs config
-```
+The last two need `playwright` with chromium. They exist because a strict build
+passed for months while every diagram on the site rendered blank and the light
+theme was unreachable — a green build says nothing about what a reader sees.
+
+`mkdocs config` is not a real command; `mkdocs build --strict` is the config
+check.
 
 ## Deployment
 
@@ -79,15 +91,16 @@ Pushing to `main` triggers the GitHub Actions workflow (`.github/workflows/deplo
 
 | Issue | Fix |
 |-------|-----|
-| Port 8000 in use | Stop the other service, or change the port in `devcontainer.json` |
-| Dev container won't start | Ensure Docker is running; try `Dev Containers: Rebuild Container` |
-| Mermaid diagrams not rendering | Verify `pymdownx.superfences` is configured in `mkdocs.yml` |
-| PDF export failing | Use Docker (WeasyPrint needs system libs not available on macOS/Windows) |
-| `git-revision-date` errors | Ensure the repo has git history (`git fetch --unshallow` in shallow clones) |
+| Port 8000 in use | `DOCS_PORT=8080 docker compose up`, or pass `--dev-addr` to `mkdocs serve` |
+| Diagrams not rendering | The fence format must stay `fence_div_format` in `mkdocs.yml`. `fence_code_format` hands the block to Material's own integration, which renders nothing. See `planning/README.md` |
+| Light mode snaps back to dark | Something is forcing the palette on load. `theme.palette` listing slate first is all that dark-by-default needs |
+| Strict build fails on a new file | Add it to `nav:` in `mkdocs.yml` |
+| `git-revision-date` warnings | The file is not committed yet, or the clone is shallow (`git fetch --unshallow`) |
 
 ## Contributing
 
 1. Fork the repository
 2. Create a branch: `git checkout -b docs/your-topic`
-3. Make changes following the documentation standards in `CLAUDE.md`
-4. Submit a pull request against `main`
+3. Follow the standards in [CLAUDE.md](CLAUDE.md)
+4. Run the checks above; CI runs the same ones
+5. Open a pull request against `main`

@@ -1,20 +1,24 @@
 ---
 title: Chunking Strategies
 description: A complete guide to document chunking — from fixed-size to semantic, context-aware, parent-child, late chunking, and agentic approaches.
-tags:
-  - Intermediate
-  - Chunking
 status: new
+tags:
+  - Go deeper
+  - Retrieval
 ---
 
-# Chunking Strategies
+# Chunking strategies
 
-!!! abstract "What You'll Learn"
+!!! abstract "Go deeper · 45 min · hands-on"
+    **Before this:** [Embeddings](embeddings.md)  ·  **After this:** [Vector databases](vector-databases.md)
+    **Hands-on version:** [7 Retrieval](../02-agents/retrieval.md)
+
+!!! abstract "What you'll learn"
     This page covers eight document chunking strategies used in production RAG systems: fixed-size, sentence, recursive character, semantic, context-aware, parent-child, late chunking, and agentic. Each section covers how it works, when to use it, and the trade-offs involved. A decision flowchart and chunk size guidelines table at the end give you a practical starting point for any use case.
 
 ---
 
-## Why Chunking Matters
+## Why chunking matters
 
 Every document in your knowledge base must be split into chunks before embedding and indexing. The way you split documents has a larger impact on retrieval quality than almost any other decision in the RAG pipeline.
 
@@ -23,12 +27,12 @@ The core tension is straightforward:
 - **Chunks too small** — each vector represents only a fragment of a thought. Retrieval returns pieces that lack the context needed to answer the question. The answer is scattered across five retrieved chunks instead of being in one.
 - **Chunks too large** — each vector averages across many topics. Similarity scores are diluted. Irrelevant content fills the context window alongside what you actually needed.
 
-!!! tip "The Goldilocks Problem"
+!!! tip "The goldilocks problem"
     There is no universally correct chunk size. The right size depends on your document type, your query patterns, your embedding model's token limit, and how much context your LLM needs to generate a good answer. Use evaluation metrics (context recall, faithfulness) to validate chunk size decisions — don't rely on intuition alone.
 
 ---
 
-## Strategy 1 — Fixed-Size Chunking
+## Strategy 1 — fixed-size chunking
 
 Split documents into chunks of N tokens or N characters, with optional overlap between adjacent chunks.
 
@@ -54,7 +58,7 @@ Split documents into chunks of N tokens or N characters, with optional overlap b
 
 ---
 
-## Strategy 2 — Sentence Chunking
+## Strategy 2 — sentence chunking
 
 Use NLP sentence boundary detection to split at natural sentence endings rather than arbitrary character counts.
 
@@ -66,7 +70,7 @@ This produces chunks with better internal coherence than fixed-size chunking —
 
 ---
 
-## Strategy 3 — Recursive Character Chunking
+## Strategy 3 — recursive character chunking
 
 Split using a hierarchy of separators, trying larger structural units first and falling back to smaller ones only when needed.
 
@@ -89,7 +93,7 @@ The result is chunks that respect paragraph and sentence boundaries where possib
 
 ---
 
-## Strategy 4 — Semantic Chunking
+## Strategy 4 — semantic chunking
 
 Find chunk boundaries by detecting topic shifts using embedding similarity rather than syntactic rules.
 
@@ -109,14 +113,14 @@ chunks = chunker.create_documents([document_text])
 
 Chunk boundaries align with actual topic transitions, not arbitrary character counts. Chunks are more semantically coherent.
 
-!!! warning "Semantic Chunking is Expensive"
+!!! warning "Semantic chunking is expensive"
     Semantic chunking requires embedding every sentence in every document during indexing — not just the final chunks. For a 1,000-word document split into ~50 sentences, that is 50 embedding API calls where fixed-size would require 3–5. Expect 2–5× the indexing cost and time compared to recursive character chunking. Reserve this for high-value corpora where retrieval quality is worth the cost.
 
 **When to use:** dense technical documents with clearly distinct sections, research papers, long-form articles. Not cost-effective for high-volume ingestion pipelines.
 
 ---
 
-## Strategy 5 — Context-Aware / Document-Aware Chunking
+## Strategy 5 — context-aware / document-aware chunking
 
 Apply different splitting rules based on the document's structure and type rather than treating all documents identically.
 
@@ -134,14 +138,14 @@ Different document types warrant different strategies:
 | Tables | Keep entire table as single chunk; do not split mid-row |
 | JSON / XML | Split on top-level array elements or key sections |
 
-!!! tip "Markdown Headers Are Natural Boundaries"
+!!! tip "Markdown headers are natural boundaries"
     If your knowledge base is primarily Markdown (documentation sites, Notion exports, GitHub wikis), splitting on heading boundaries is almost always the right starting point. Each `##` section represents a complete topic. LangChain's `MarkdownHeaderTextSplitter` handles this cleanly and preserves the header as metadata on each chunk.
 
 **When to use:** structured documentation, mixed-format corpora, any situation where document structure carries semantic meaning. This is the right default for documentation-heavy knowledge bases.
 
 ---
 
-## Strategy 6 — Parent-Child Chunking
+## Strategy 6 — parent-child chunking
 
 Maintain two levels of granularity: large parent chunks for context richness and small child chunks for retrieval precision.
 
@@ -150,22 +154,22 @@ Maintain two levels of granularity: large parent chunks for context richness and
 ```mermaid
 flowchart TD
     DOC["Document"]
-    DOC --> P1["Parent Chunk 1\n(512 tokens)"]
-    DOC --> P2["Parent Chunk 2\n(512 tokens)"]
-    DOC --> P3["Parent Chunk 3\n(512 tokens)"]
-    P1 --> C1["Child 1a\n(128 tokens)"]
-    P1 --> C2["Child 1b\n(128 tokens)"]
-    P1 --> C3["Child 1c\n(128 tokens)"]
-    P2 --> C4["Child 2a\n(128 tokens)"]
+    DOC --> P1["Parent Chunk 1<br/>(512 tokens)"]
+    DOC --> P2["Parent Chunk 2<br/>(512 tokens)"]
+    DOC --> P3["Parent Chunk 3<br/>(512 tokens)"]
+    P1 --> C1["Child 1a<br/>(128 tokens)"]
+    P1 --> C2["Child 1b<br/>(128 tokens)"]
+    P1 --> C3["Child 1c<br/>(128 tokens)"]
+    P2 --> C4["Child 2a<br/>(128 tokens)"]
 
-    C1 -- "Retrieved by\nsimilarity search" --> RET["Retrieved Child Chunk"]
-    RET -- "Fetch parent\nfrom docstore" --> FETCH["Parent Chunk 1\n(full context)"]
+    C1 -- "Retrieved by<br/>similarity search" --> RET["Retrieved Child Chunk"]
+    RET -- "Fetch parent<br/>from docstore" --> FETCH["Parent Chunk 1<br/>(full context)"]
     FETCH --> LLM["LLM Context Window"]
 
     style DOC fill:#0284c7,color:#fff
-    style P1 fill:#14b8a6,color:#fff
-    style P2 fill:#14b8a6,color:#fff
-    style P3 fill:#14b8a6,color:#fff
+    style P1 fill:#0f766e,color:#fff
+    style P2 fill:#0f766e,color:#fff
+    style P3 fill:#0f766e,color:#fff
     style C1 fill:#0d9488,color:#fff
     style C2 fill:#0d9488,color:#fff
     style C3 fill:#0d9488,color:#fff
@@ -181,7 +185,7 @@ This pattern requires a document store (separate from your vector database) that
 
 ---
 
-## Strategy 7 — Late Chunking
+## Strategy 7 — late chunking
 
 Embed the full document first, then chunk the resulting contextual embeddings rather than chunking the raw text first.
 
@@ -189,7 +193,7 @@ Embed the full document first, then chunk the resulting contextual embeddings ra
 
 Standard chunking loses cross-chunk context: a pronoun in chunk 3 that refers to an entity introduced in chunk 1 will be embedded without knowledge of that entity. Late chunking solves this because the pronoun was attended to by all other tokens — including the entity — during the single forward pass.
 
-??? note "How Late Chunking Works"
+??? note "How late chunking works"
     In a standard RAG pipeline: `text → chunk → embed each chunk independently`. The embedding model sees only the chunk's text.
 
     In late chunking: `text → embed full document (long-context model) → chunk the token embeddings`.
@@ -211,7 +215,7 @@ Jina AI developed and named this approach; their ColBERT-based models are the cu
 
 ---
 
-## Strategy 8 — Agentic Chunking
+## Strategy 8 — agentic chunking
 
 Use an LLM to read the document and determine chunk boundaries based on propositional content rather than syntactic or statistical signals.
 
@@ -225,11 +229,11 @@ The cost is significant: every document requires one or more LLM calls during in
 
 ---
 
-## Chunk Overlap
+## Chunk overlap
 
 Overlap means the last N tokens of one chunk are repeated as the first N tokens of the next. This reduces the chance of splitting a critical sentence or phrase across chunk boundaries.
 
-!!! note "Overlap Example"
+!!! note "Overlap example"
     With chunk size 256 and overlap 51 (~20%):
 
     ```
@@ -246,7 +250,7 @@ Overlap is less important when using sentence or semantic chunking because those
 
 ---
 
-## Chunk Size Guidelines
+## Chunk size guidelines
 
 | Use Case | Recommended Size | Reasoning |
 |---|---|---|
@@ -262,34 +266,34 @@ These are starting points. Measure context recall and faithfulness scores agains
 
 ---
 
-## Decision Flowchart
+## Decision flowchart
 
 ```mermaid
 flowchart TD
     Start(["Start: Choose a Chunking Strategy"])
-    Start --> Q1{"Document has clear structure:\nheadings, sections, or code blocks?"}
+    Start --> Q1{"Document has clear structure:<br/>headings, sections, or code blocks?"}
 
-    Q1 -- Yes --> CA["Context-Aware Chunking\n(Markdown, HTML, code, PDF sections)"]
-    CA --> Q2{"Cross-chunk references\nare common?\n(pronouns, defined terms)"}
-    Q2 -- Yes --> LC["Late Chunking\n(long-context embedding model)"]
-    Q2 -- No --> Q3{"Retrieval precision\nvs. answer context?"}
+    Q1 -- Yes --> CA["Context-Aware Chunking<br/>(Markdown, HTML, code, PDF sections)"]
+    CA --> Q2{"Cross-chunk references<br/>are common?<br/>(pronouns, defined terms)"}
+    Q2 -- Yes --> LC["Late Chunking<br/>(long-context embedding model)"]
+    Q2 -- No --> Q3{"Retrieval precision<br/>vs. answer context?"}
     Q3 -- "Need both" --> PC["Parent-Child Chunking"]
     Q3 -- "Precision sufficient" --> CA2["Context-Aware (done)"]
 
-    Q1 -- No --> Q4{"Budget for embedding cost\nduring indexing?"}
-    Q4 -- Yes --> Q5{"High-value corpus,\naccuracy critical?"}
-    Q5 -- Yes --> AG["Agentic Chunking\n(LLM-determined boundaries)"]
-    Q5 -- No --> SC["Semantic Chunking\n(embedding-based boundaries)"]
+    Q1 -- No --> Q4{"Budget for embedding cost<br/>during indexing?"}
+    Q4 -- Yes --> Q5{"High-value corpus,<br/>accuracy critical?"}
+    Q5 -- Yes --> AG["Agentic Chunking<br/>(LLM-determined boundaries)"]
+    Q5 -- No --> SC["Semantic Chunking<br/>(embedding-based boundaries)"]
 
-    Q4 -- No --> Q6{"Need better than\nfixed-size quality?"}
-    Q6 -- Yes --> RC["Recursive Character Chunking\n(pragmatic default)"]
-    Q6 -- No --> FC["Fixed-Size Chunking\n(prototype / bulk ingestion)"]
+    Q4 -- No --> Q6{"Need better than<br/>fixed-size quality?"}
+    Q6 -- Yes --> RC["Recursive Character Chunking<br/>(pragmatic default)"]
+    Q6 -- No --> FC["Fixed-Size Chunking<br/>(prototype / bulk ingestion)"]
 
     style Start fill:#0284c7,color:#fff
     style CA fill:#0d9488,color:#fff
     style CA2 fill:#0d9488,color:#fff
-    style LC fill:#14b8a6,color:#fff
-    style PC fill:#14b8a6,color:#fff
+    style LC fill:#0f766e,color:#fff
+    style PC fill:#0f766e,color:#fff
     style AG fill:#d97706,color:#fff
     style SC fill:#16a34a,color:#fff
     style RC fill:#16a34a,color:#fff
@@ -298,14 +302,14 @@ flowchart TD
 
 ---
 
-## References
+## Go deeper
 
-- [Pinecone: Chunking Strategies for LLM Applications](https://www.pinecone.io/learn/chunking-strategies/) — practical breakdown of chunking approaches with retrieval quality analysis
-- [Jina AI: Late Chunking in Long-Context Embedding Models](https://jina.ai/news/late-chunking-in-long-context-embedding-models/) — the original explanation of late chunking from the team that developed it
+- [Pinecone: chunking strategies](https://www.pinecone.io/learn/chunking-strategies/) — practical comparison with retrieval-quality analysis rather than assertion.
+- [Jina AI: late chunking](https://jina.ai/news/late-chunking-in-long-context-embedding-models/) — the original explanation, from the team that developed it.
+- [Embeddings](embeddings.md) — chunk size and embedding model choice constrain each other; decide them together.
 
 ---
-
-## Next Steps
+## Next steps
 
 - [Embeddings](embeddings.md) — understanding what your embedding model does with each chunk helps you make better chunking decisions
 - [Vector Databases](vector-databases.md) — how chunks and their vectors are stored, indexed, and queried

@@ -2,11 +2,16 @@
 title: Context engineering
 description: Deciding what the model is allowed to see, once putting everything in stops working.
 tags:
-  - Intermediate
+  - Build
   - Agents
+  - Models
 ---
 
 # Context engineering
+
+!!! abstract "Build · 1.5 h · hands-on"
+    **Before this:** [4 The harness](the-harness.md)  ·  **After this:** [6 Memory](memory.md)
+    **Overview version:** [How models work](../concepts/foundation-and-models.md)
 
 !!! abstract
     Every turn of the loop appends to a list, and you resend that list in full.
@@ -112,7 +117,7 @@ flowchart TB
     C --> CTX
     I --> CTX
 
-    classDef storage fill:#14b8a6,stroke:#119b91,color:#fff
+    classDef storage fill:#0f766e,stroke:#119b91,color:#fff
     classDef processing fill:#0284c7,stroke:#0270a8,color:#fff
     classDef warning fill:#d97706,stroke:#b86005,color:#fff
     classDef primary fill:#0d9488,stroke:#0b7a72,color:#fff

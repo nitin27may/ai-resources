@@ -1,15 +1,19 @@
 ---
 title: RAG Fundamentals
 description: Understand the evolution from Naive RAG to Advanced, Modular, and Agentic RAG — including failure modes and mitigation techniques.
-tags:
-  - Intermediate
-  - RAG
 status: new
+tags:
+  - Go deeper
+  - Retrieval
 ---
 
-# RAG Fundamentals
+# RAG fundamentals
 
-!!! abstract "What You'll Learn"
+!!! abstract "Go deeper · 40 min · code optional"
+    **Before this:** [Retrieval in depth](index.md)  ·  **After this:** [Embeddings](embeddings.md)
+    **Hands-on version:** [7 Retrieval](../02-agents/retrieval.md)
+
+!!! abstract "What you'll learn"
     This page traces the evolution of RAG from its original "naive" form through the advanced retrieval techniques, modular architecture patterns, and agentic approaches used in production today. You will understand where naive RAG breaks down, what techniques address each failure mode, and when to move beyond standard RAG entirely.
 
 ---
@@ -27,7 +31,7 @@ RAG has gone through four recognizable generations since the original 2020 paper
 
 ---
 
-## Naive RAG — The Basic Pipeline
+## Naive RAG — the basic pipeline
 
 Naive RAG splits the work into two phases: an offline indexing phase that runs once (or on a schedule), and an online query phase that runs on every request.
 
@@ -36,22 +40,22 @@ flowchart LR
     subgraph Index ["Indexing Phase (Offline)"]
         direction LR
         D["Document"] --> C["Chunk"]
-        C --> E["Embed\n(Embedding Model)"]
+        C --> E["Embed<br/>(Embedding Model)"]
         E --> S[("Vector Store")]
     end
 
     subgraph Query ["Query Phase (Online)"]
         direction LR
-        Q["User Question"] --> QE["Embed\n(Same Model)"]
-        QE --> R["Retrieve\nTop-K Chunks"]
-        R --> G["Generate\n(LLM + Context)"]
+        Q["User Question"] --> QE["Embed<br/>(Same Model)"]
+        QE --> R["Retrieve<br/>Top-K Chunks"]
+        R --> G["Generate<br/>(LLM + Context)"]
         G --> RS["Response"]
     end
 
     S --> R
 
     style D fill:#0284c7,color:#fff
-    style S fill:#14b8a6,color:#fff
+    style S fill:#0f766e,color:#fff
     style G fill:#0d9488,color:#fff
     style RS fill:#16a34a,color:#fff
     style Q fill:#0284c7,color:#fff
@@ -75,7 +79,7 @@ This pipeline is straightforward to implement and works well for simple, well-st
 
 ---
 
-## Failure Modes of Naive RAG
+## Failure modes of Naive RAG
 
 Understanding where naive RAG fails is more valuable than knowing how it works. Most production RAG issues trace back to one of these categories.
 
@@ -93,7 +97,7 @@ Understanding where naive RAG fails is more valuable than knowing how it works. 
 
 ---
 
-## Advanced RAG Techniques
+## Advanced RAG techniques
 
 Advanced RAG adds processing steps before retrieval, improves the retrieval step itself, and refines the context before it reaches the LLM.
 
@@ -176,6 +180,43 @@ Advanced RAG adds processing steps before retrieval, improves the retrieval step
 
 ---
 
+### Contextual retrieval
+
+A chunk taken out of a document loses what the document gave it. "The limit is
+50 per minute" is useless once separated from the page that said which API it
+belongs to, and it embeds badly too, because the embedding has no idea what the
+sentence is about.
+
+Contextual retrieval fixes this at indexing time. Before embedding each chunk,
+prepend a short, chunk-specific summary of where it came from, generated once
+from the surrounding document:
+
+```
+Original chunk:
+  "The limit is 50 per minute, after which requests are queued."
+
+Indexed as:
+  "From the Billing API reference, section 4.2 Rate limiting, describing
+   the Standard tier. The limit is 50 per minute, after which requests
+   are queued."
+```
+
+The stored text becomes self-describing, so it embeds closer to the questions
+people actually ask and survives being retrieved alone. Anthropic reported large
+reductions in retrieval failure from this technique, with a further improvement
+when combined with keyword search and reranking.
+
+The trade is an indexing-time cost: one model call per chunk, once. Prompt
+caching makes this far cheaper than it first appears, since the surrounding
+document is the same across all of its chunks. Compared with the recurring cost
+of wrong answers, it is usually the better side of the trade.
+
+It also stacks with everything else on this page rather than replacing it —
+contextual retrieval improves what is stored, hybrid search improves what is
+found, reranking improves what is kept.
+
+---
+
 ## Modular RAG
 
 Modular RAG treats the pipeline as a set of interchangeable components rather than a fixed sequence. The key insight is that different query types need different pipelines.
@@ -205,20 +246,20 @@ Agentic RAG is more powerful but also harder to control and evaluate. Latency in
 
 For a deeper treatment of agentic patterns, see [Agentic AI](../concepts/agentic-ai.md).
 
-!!! warning "Don't Skip Evaluation"
+!!! warning "Don't skip evaluation"
     RAG without metrics is flying blind. You can iterate on chunking strategies, embedding models, and retrieval parameters indefinitely without knowing if quality is actually improving. Instrument your pipeline with [RAG Evaluation](rag-evaluation.md) metrics from day one — faithfulness, answer relevance, and context recall at minimum.
 
 ---
 
-## References
+## Go deeper
 
-- [Azure AI Search: RAG Overview](https://learn.microsoft.com/en-us/azure/search/retrieval-augmented-generation-overview) — Microsoft's production-oriented RAG guidance including Azure AI Search integration
-- [LangChain RAG Tutorial](https://python.langchain.com/docs/tutorials/rag/) — end-to-end walkthrough of building RAG with LangChain
-- [LlamaIndex Documentation](https://docs.llamaindex.ai/en/stable/) — comprehensive RAG framework with advanced retrieval patterns and connectors
+- [RAG with Azure AI Search](https://learn.microsoft.com/en-us/azure/search/retrieval-augmented-generation-overview) — Microsoft's production-oriented guidance, strongest on hybrid search.
+- [LangChain RAG tutorial](https://docs.langchain.com/oss/python/langchain/rag) — end to end in code.
+- [LlamaIndex](https://developers.llamaindex.ai/python/framework/) — retrieval-first framework with the better ingestion story.
+- [Retrieval](../02-agents/retrieval.md) — build the naive pipeline yourself first, then watch it fail on a realistic corpus. Forty bland neighbours change everything.
 
 ---
-
-## Next Steps
+## Next steps
 
 - [Embeddings](embeddings.md) — understand what the embedding models in your pipeline actually do and how to choose between them
 - [Chunking Strategies](chunking-strategies.md) — chunking is the highest-leverage decision in a RAG pipeline

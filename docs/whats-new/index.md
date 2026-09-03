@@ -1,68 +1,93 @@
 ---
 tags:
-  - News
-description: Recent changes to the AI Knowledge Hub.
+  - Reference
+description: What changed on this site, newest first.
 ---
 
-# What's New
+# What's new
 
-Stay up to date with the latest additions to the AI Knowledge Hub and notable developments in the AI space.
+!!! abstract "Reference · 5 min · no code"
+    What changed on this site, newest first.
 
----
-
-## March 2026
-
-### Major Content Expansion — RAG & AI Developer Tools
-
-Two new sections have been added to the site, bringing 14 new pages and significantly deepening coverage of retrieval systems and AI developer tooling.
-
-#### :material-database-search: RAG & Knowledge Systems (6 new pages)
-
-The Retrieval & Data overview page now links to a dedicated section with production-depth coverage:
-
-- [RAG Fundamentals](../rag/rag-fundamentals.md) — Naive RAG through Agentic RAG, failure modes, and advanced techniques
-- [Embeddings](../rag/embeddings.md) — Model comparison, dimensions, input types, production guidance
-- [Chunking Strategies](../rag/chunking-strategies.md) — All 8 strategies including parent-child, late chunking, and agentic chunking
-- [Vector Databases](../rag/vector-databases.md) — Azure AI Search, Pinecone, Weaviate, Qdrant, Chroma, pgvector comparison
-- [GraphRAG](../rag/graphrag.md) — Microsoft GraphRAG architecture, local vs global search, when to use it
-- [RAG Evaluation](../rag/rag-evaluation.md) — RAGAS metrics, golden datasets, evaluation tools
-
-#### :material-code-braces: AI Developer Tools (5 new pages)
-
-A new section covering the AI tools that are now part of the daily engineering workflow:
-
-- [GitHub Copilot](../ai-dev-tools/github-copilot.md) — Code completion, Copilot Chat, PR reviews, tips and limitations
-- Copilot CLI & Extensions — since merged into [GitHub Copilot](../ai-dev-tools/github-copilot.md); both products it covered were retired in late 2025
-- [Claude Code](../ai-dev-tools/claude-code.md) — Setup, CLAUDE.md configuration, key capabilities
-- [Claude Code Skills & Agents](../ai-dev-tools/claude-code-skills.md) — Custom slash commands, subagents, hooks, MCP integration
-- [MCP](../ai-dev-tools/mcp.md) — Protocol architecture, building servers, official servers, security
-
-#### :material-map: Learning Paths (new page)
-
-Added [Learning Paths](../00-start-here/the-path.md) — four structured routes through the site for different roles and experience levels. Start here if you are not sure where to begin.
-
-#### Glossary additions
-
-Ten new terms added: MCP, A2A, AG-UI, Copilot Extension types, Parent-Child Chunking, Late Chunking, HNSW, RAGAS, Reranking, HyDE.
+Changes to the AI Knowledge Hub, newest first.
 
 ---
 
-### :material-party-popper: AI Knowledge Hub Launch
+## September 2026 — one ramp, two paths
 
-The AI Knowledge Hub went live in March 2026, restructured from the ground up to serve everyone in the organization -- from business analysts to software engineers to co-op students.
+The site had grown two halves that did not meet: a set of concept pages written
+in March, and a hands-on agent path added in August. Nine top-level tabs held
+them side by side, and nothing routed a reader from one to the other.
 
-**Original sections at launch:**
+It is now organised as four layers, and most topics appear at more than one of
+them on purpose.
 
-- [Getting Started](../getting-started/index.md) -- AI 101 for beginners
-- [Concepts](../concepts/index.md) -- Deep dives into 8 topic areas
-- [Patterns](../patterns/index.md) -- Architecture patterns for builders
-- [Glossary](../glossary/index.md) -- AI terms in plain English
-- [Tools & Frameworks](../tools-and-frameworks/index.md) -- What we use
-- [References](../references/index.md) -- Curated links to official docs
+- **[Choose your path](../00-start-here/index.md)** is the new entry point. Two
+  routes: a ten-page reading path with no code, and the build path with ten labs.
+- **Six tabs instead of nine**, ordered as a ramp: Start here, Understand,
+  Build, Go deeper, Reference.
+- **The reading path** puts retrieval before agents, because giving a model your
+  data is a smaller step than letting it act, and safety after agents, because
+  the failure that matters arrives through a tool result.
+- **Every page is tagged** by layer and topic, and
+  [Browse by tag](../tags.md) shows a single topic across every depth.
+- **A new build module: [structured output](../02-agents/structured-output.md)**,
+  between tool calling and the agent loop. It measures prompting, JSON mode and
+  schema-constrained decoding on the same task, and shows the failure a schema
+  cannot fix: asked for a required field the message never mentioned, the model
+  invented one on every run, on two different providers, and every invention was
+  schema-valid.
+- **Two more build modules**, both measured rather than asserted:
+  [memory](../02-agents/memory.md), where one inferred fact written to a store
+  was reported as established truth in every later conversation, and
+  [multi-agent](../02-agents/multi-agent.md), where splitting a task cost 2.6x
+  the tokens and produced a worse answer because a specialist judged its own
+  document irrelevant.
+- **The labs run on Azure OpenAI**, verified end to end. Setup and the labs
+  readme now carry a provider tab for it.
+- **No URL changed.** Every page that was reachable before is reachable at the
+  same address.
 
-!!! tip "Contribute"
-    Have feedback or want to add content? Reach out to the team or submit a pull request.
+## August 2026 — the build path
+
+Ten modules, each ending in code that runs against a model on your own machine.
+No account, no API key, no cost.
+
+- **[The build path](../00-start-here/the-path.md)** and
+  [Setup](../00-start-here/setup.md), covering four hardware tiers.
+- **Nine modules**: [tool calling](../02-agents/tool-calling.md),
+  [the agent loop](../02-agents/the-agent-loop.md),
+  [the harness](../02-agents/the-harness.md),
+  [context engineering](../02-agents/context-engineering.md),
+  [retrieval](../02-agents/retrieval.md),
+  [evaluation](../02-agents/evaluation.md),
+  [observability](../02-agents/observability.md),
+  [safety](../02-agents/safety.md) and
+  [production](../02-agents/production.md).
+- **Ten labs** in the repository, standard library only, each one demonstrating
+  the specific failure its module is about.
+- **[Resources](../reference/resources.md)** — a ranked reading list with a
+  reason to trust each item, and an explicit list of what to avoid and why.
+- **Corrections.** The Model Context Protocol page was rewritten against the
+  2026-07-28 revision. The Copilot CLI and Extensions page was removed: both
+  products it documented were retired in late 2025. The frameworks page was
+  rebuilt around Microsoft Agent Framework, which superseded Semantic Kernel and
+  AutoGen in April 2026.
+
+## March 2026 — launch
+
+The site went live with the concept, pattern and reference sections: AI 101,
+eight concept pages, [RAG and knowledge systems](../rag/index.md) in six parts,
+[architecture patterns](../patterns/index.md),
+[developer tools](../ai-dev-tools/index.md), the
+[glossary](../glossary/index.md) and
+[official sources](../references/index.md).
+
+The original "Learning Paths" page offered four routes by role. It was replaced
+in August by the single build path, and in September by the two paths on
+[Choose your path](../00-start-here/index.md).
 
 ---
 
-*Check back regularly for updates on new AI developments, tool releases, and knowledge additions.*
+Corrections and additions are welcome: open an issue or a pull request on
+[GitHub](https://github.com/nitin27may/ai-resources).

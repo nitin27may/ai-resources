@@ -1,20 +1,27 @@
 ---
 title: Embeddings
 description: How embedding models work, how to choose between OpenAI, Cohere, and open-source options, and practical guidance for production use.
-tags:
-  - Intermediate
-  - Embeddings
 status: new
+tags:
+  - Go deeper
+  - Retrieval
+  - Models
 ---
 
 # Embeddings
 
-!!! abstract "What You'll Learn"
+!!! abstract "Go deeper · 30 min · code optional"
+    **Before this:** [RAG fundamentals](rag-fundamentals.md)  ·  **After this:** [Chunking strategies](chunking-strategies.md)
+    **Hands-on version:** [7 Retrieval](../02-agents/retrieval.md)
+
+**Verified as of 2026-09-02.**
+
+!!! abstract "What you'll learn"
     This page explains how embedding models convert text into vectors, what happens inside the model at each stage, how to compare the major commercial and open-source options, and what production concerns — storage cost, batching, caching, and model consistency — you need to address before going to production.
 
 ---
 
-## What Are Embeddings?
+## What are embeddings?
 
 An embedding is a fixed-length list of numbers (a vector) that represents the meaning of a piece of text. The key property is that **similar meanings produce vectors that are close together** in the high-dimensional space, while dissimilar meanings produce vectors that are far apart.
 
@@ -34,20 +41,20 @@ The model has no explicit rule saying "cancel" and "end" are synonyms. It learne
 
 ---
 
-## How Embeddings Are Generated
+## How embeddings are generated
 
 ```mermaid
 flowchart LR
-    T["Input Text\n'How do I reset my password?'"]
-    --> TK["Tokenizer\nText → Token IDs"]
-    --> EN["Encoder\nTransformer Layers\n(BERT, RoBERTa, etc.)"]
-    --> PL["Pooling\nCLS token or mean\nof token embeddings"]
-    --> VE["Vector\n[0.021, -0.847, 0.392, ...]\n1536 or 3072 dims"]
+    T["Input Text<br/>'How do I reset my password?'"]
+    --> TK["Tokenizer<br/>Text → Token IDs"]
+    --> EN["Encoder<br/>Transformer Layers<br/>(BERT, RoBERTa, etc.)"]
+    --> PL["Pooling<br/>CLS token or mean<br/>of token embeddings"]
+    --> VE["Vector<br/>[0.021, -0.847, 0.392, ...]<br/>1536 or 3072 dims"]
 
     style T fill:#0284c7,color:#fff
-    style TK fill:#14b8a6,color:#fff
+    style TK fill:#0f766e,color:#fff
     style EN fill:#0d9488,color:#fff
-    style PL fill:#14b8a6,color:#fff
+    style PL fill:#0f766e,color:#fff
     style VE fill:#16a34a,color:#fff
 ```
 
@@ -65,7 +72,7 @@ flowchart LR
 
 ---
 
-## Embedding Model Comparison
+## Embedding model comparison
 
 | Model | Provider | Dimensions | Multilingual | Max Tokens | Notes |
 |---|---|---|---|---|---|
@@ -79,12 +86,12 @@ flowchart LR
 | `all-mpnet-base-v2` | sentence-transformers | 768 | No | 384 | Solid local option; widely used baseline |
 | `nomic-embed-text-v1.5` | Nomic | 768 (reducible) | No | 8,192 | Open-source; supports Matryoshka; Apache 2.0 |
 
-!!! note "Check the MTEB Leaderboard"
+!!! note "Check the MTEB leaderboard"
     The [MTEB leaderboard](https://huggingface.co/spaces/mteb/leaderboard) (Massive Text Embedding Benchmark) is the standard reference for comparing embedding models across retrieval, classification, clustering, and semantic similarity tasks. Rankings shift as new models are released. Check it before committing to a model for a new project.
 
 ---
 
-## Input Types Matter
+## Input types matter
 
 Some embedding providers distinguish between the type of content being embedded. Cohere and Voyage AI expose this as an explicit parameter; OpenAI handles it implicitly through model training.
 
@@ -97,12 +104,12 @@ Some embedding providers distinguish between the type of content being embedded.
 
 Using `search_document` for indexing and `search_query` for queries is not optional with Cohere — it's part of the model's design. The model was trained with asymmetric embeddings: queries and documents are mapped to nearby but distinct regions of the embedding space.
 
-!!! tip "Always Match Input Types"
+!!! tip "Always match input types"
     If you index with `search_document` and retrieve with `search_document` instead of `search_query`, retrieval quality drops measurably. This is one of the most common configuration mistakes in Cohere-based RAG pipelines.
 
 ---
 
-## Choosing the Right Model
+## Choosing the right model
 
 === "Use OpenAI"
 
@@ -142,7 +149,7 @@ Using `search_document` for indexing and `search_query` for queries is not optio
 
 ---
 
-## Dimension Reduction — Matryoshka Embeddings
+## Dimension reduction — Matryoshka embeddings
 
 OpenAI's `text-embedding-3` models and some open-source models (Nomic, `bge-m3`) support **Matryoshka Representation Learning** (MRL). The model is trained so that the first N dimensions of a 3072-dim vector are themselves a valid, lower-quality embedding.
 
@@ -152,7 +159,7 @@ Practical use: embed at full 3072 dimensions during indexing. If storage or quer
 
 ---
 
-## Production Considerations
+## Production considerations
 
 **Storage cost**
 
@@ -179,20 +186,19 @@ Query embeddings can be cached when the same or semantically identical queries a
 
 Do not cache document embeddings in memory — store them in the vector database where they belong.
 
-!!! warning "Never Mix Embedding Models"
+!!! warning "Never mix embedding models"
     Your index and your query must use the same embedding model, same version, and same input type configuration. Mixing models — even different versions of the same model — produces vectors in different spaces that cannot be meaningfully compared. If you need to upgrade embedding models, you must re-embed your entire index. Plan for this operationally: version your indexes, and keep the old index live during migration.
 
 ---
 
-## References
+## Go deeper
 
-- [OpenAI Embeddings Guide](https://platform.openai.com/docs/guides/embeddings) — covers model selection, dimension reduction, and the Matryoshka approach
-- [Cohere Embed Documentation](https://docs.cohere.com/docs/cohere-embed) — input type explanation, multilingual support, and multimodal capabilities
-- [MTEB Leaderboard](https://huggingface.co/spaces/mteb/leaderboard) — current benchmark rankings across all major embedding models
+- [OpenAI embeddings guide](https://developers.openai.com/api/docs/guides/embeddings) — model selection, dimension reduction and the Matryoshka approach.
+- [Cohere Embed](https://docs.cohere.com/docs/cohere-embed) — input types, multilingual and multimodal. The input-type distinction is the part most people miss.
+- [MTEB leaderboard](https://huggingface.co/spaces/mteb/leaderboard) — current rankings. Use it to shortlist, never to decide: benchmark order rarely survives contact with your own corpus.
 
 ---
-
-## Next Steps
+## Next steps
 
 - [Chunking Strategies](chunking-strategies.md) — how you chunk documents directly affects what your embedding model sees and what it can represent
 - [Vector Databases](vector-databases.md) — where to store, index, and query the vectors your embedding model produces
