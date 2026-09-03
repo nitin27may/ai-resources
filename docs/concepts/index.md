@@ -5,13 +5,13 @@ tags:
   - Models
 ---
 
-# AI Concepts
+# AI concepts
 
 !!! abstract "Understand · 5 min · no code"
     **Before this:** [Choose your path](../00-start-here/index.md)  ·  **After this:** [How models work](foundation-and-models.md)
     The no-code layer. Every page here links to its hands-on and in-depth versions.
 
-Explore the building blocks of modern AI. Each topic is self-contained -- start with whatever interests you most.
+Explore the building blocks of modern AI. Each topic is self-contained — start with whatever interests you most.
 
 <div class="grid cards" markdown>
 
@@ -35,7 +35,7 @@ Explore the building blocks of modern AI. Each topic is self-contained -- start 
 
 -   :material-connection:{ .lg .middle } __Agentic AI__
 
-    Protocols, orchestration, memory, and the ecosystem powering AI agents -- MCP, A2A, AG-UI.
+    Protocols, orchestration, memory, and the ecosystem powering AI agents — MCP, A2A, AG-UI.
 
     [:octicons-arrow-right-24: Agentic AI](agentic-ai.md)
 
@@ -47,7 +47,7 @@ Explore the building blocks of modern AI. Each topic is self-contained -- start 
 
 -   :material-tune-variant:{ .lg .middle } __Fine-Tuning & Training__
 
-    When and how to customize AI models for your specific needs -- fine-tuning, LoRA, RLHF.
+    When and how to customize AI models for your specific needs — fine-tuning, LoRA, RLHF.
 
     [:octicons-arrow-right-24: Fine-Tuning & Training](fine-tuning-and-training.md)
 

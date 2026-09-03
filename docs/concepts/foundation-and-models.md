@@ -5,38 +5,38 @@ tags:
   - Models
 ---
 
-# Foundation & Models
+# Foundation & models
 
 !!! abstract "Understand · 30 min · no code"
     **Before this:** [AI 101](../getting-started/index.md)  ·  **After this:** [Prompting](prompting-and-techniques.md)
     **Hands-on version:** [4 Context engineering](../02-agents/context-engineering.md)  ·  **In depth:** [Frameworks and platforms](../tools-and-frameworks/index.md)
 
-Modern AI is built on **foundation models** -- large neural networks trained on massive datasets that can be adapted to a wide range of tasks. This page breaks down how these models work, the different types available, and the key concepts you need to understand before building AI-powered applications.
+Modern AI is built on **foundation models** — large neural networks trained on massive datasets that can be adapted to a wide range of tasks. This page breaks down how these models work, the different types available, and the key concepts you need to understand before building AI-powered applications.
 
 ---
 
-## What Is a Large Language Model (LLM)?
+## What is a large language model (LLM)?
 
 A Large Language Model is a type of AI that has been trained on vast amounts of text data to understand and generate human language. At its core, an LLM predicts the **next most likely token** (word or sub-word) given everything that came before it.
 
-Think of it like a very sophisticated autocomplete: you give it a sentence, and it figures out what should come next -- except it can do this across paragraphs, pages, and even entire documents.
+Think of it like a very sophisticated autocomplete: you give it a sentence, and it figures out what should come next — except it can do this across paragraphs, pages, and even entire documents.
 
 !!! tip "Key Insight"
     LLMs do not "understand" language the way humans do. They learn **statistical patterns** in text. Their ability to generate coherent, useful responses comes from the sheer scale of data and parameters, not from genuine comprehension.
 
-### How It Works (Simplified)
+### How it works (simplified)
 
-1. **Training**: The model reads billions of text samples and learns patterns -- grammar, facts, reasoning styles, code syntax, and more.
+1. **Training**: The model reads billions of text samples and learns patterns — grammar, facts, reasoning styles, code syntax, and more.
 2. **Prompt**: You provide an input (the prompt).
 3. **Inference**: The model generates output by predicting tokens one at a time, each informed by the tokens before it.
 
 ---
 
-## The Transformer Architecture
+## The transformer architecture
 
 Nearly all modern language models are built on the **Transformer** architecture, introduced in the 2017 paper *"Attention Is All You Need"*.
 
-The key innovation is the **self-attention mechanism**, which allows the model to weigh the importance of every word in a sentence relative to every other word -- regardless of distance. This solved a major limitation of earlier architectures (RNNs, LSTMs) that struggled with long-range dependencies.
+The key innovation is the **self-attention mechanism**, which allows the model to weigh the importance of every word in a sentence relative to every other word — regardless of distance. This solved a major limitation of earlier architectures (RNNs, LSTMs) that struggled with long-range dependencies.
 
 Self-attention
 :   A mechanism that lets each token in a sequence look at all other tokens to determine context. For example, in "The cat sat on the mat because **it** was tired," attention helps the model understand that "it" refers to "the cat."
@@ -49,11 +49,11 @@ Pre-training
 
 ---
 
-## Tokens and Context Windows
+## Tokens and context windows
 
 ### Tokens
 
-Models do not process raw text. Instead, text is broken into **tokens** -- small units that might be whole words, parts of words, or punctuation.
+Models do not process raw text. Instead, text is broken into **tokens** — small units that might be whole words, parts of words, or punctuation.
 
 | Text | Approximate Tokens |
 |---|---|
@@ -65,7 +65,7 @@ Models do not process raw text. Instead, text is broken into **tokens** -- small
 !!! note "Why Tokens Matter"
     You are billed per token (input + output) when using commercial APIs. Understanding tokenization helps you estimate costs and optimize prompts.
 
-### Context Window
+### Context window
 
 The **context window** is the maximum number of tokens a model can process in a single request (input + output combined). It defines how much information the model can "see" at once.
 
@@ -84,9 +84,9 @@ working budget — see [context engineering](../02-agents/context-engineering.md
 
 ---
 
-## Types of AI Models
+## Types of AI models
 
-### Comparison Table
+### Comparison table
 
 | Feature | Foundation Model | LLM | SLM | VLM |
 |---|---|---|---|---|
@@ -97,7 +97,7 @@ working budget — see [context engineering](../02-agents/context-engineering.md
 | **Cost** | High | High | Low to moderate | Moderate to high |
 | **Deployment** | Cloud | Cloud | Edge or cloud | Cloud |
 
-### Foundation Models
+### Foundation models
 
 A **foundation model** is any large-scale model trained on broad, diverse data that can be adapted (via prompting, fine-tuning, or RAG) to many downstream tasks. The GPT, Claude, Gemini and Llama families are all foundation models.
 
@@ -108,11 +108,11 @@ A **foundation model** is any large-scale model trained on broad, diverse data t
     tiers**, and get current names from the vendor's live model page at the moment
     you need one.
 
-### Large Language Models (LLMs)
+### Large language models (LLMs)
 
 LLMs are foundation models specifically focused on text. They excel at complex reasoning, long-form generation, summarization, translation, and code. Their strength is versatility, but they require significant compute resources.
 
-### Small Language Models (SLMs)
+### Small language models (SLMs)
 
 SLMs trade some capability for **efficiency**. Models in the 1B-14B range — Microsoft's Phi family, Google's Gemma, the smaller Qwen variants — run on consumer hardware or at the edge. They are ideal when:
 
@@ -121,30 +121,30 @@ SLMs trade some capability for **efficiency**. Models in the 1B-14B range — Mi
 - The task is well-defined and does not require broad world knowledge
 - Data privacy requires on-premise or on-device deployment
 
-### Vision Language Models (VLMs)
+### Vision language models (VLMs)
 
 VLMs extend language models with the ability to process **images** alongside text. You can ask them to describe a photo, extract data from a chart, or answer questions about a diagram. Most frontier families ship a multimodal variant; several open-weight families do too.
 
 ---
 
-## How Inference Works
+## How inference works
 
 When you send a prompt to an AI model, here is what happens behind the scenes:
 
 ```mermaid
 graph LR
     A["User Prompt"] --> B["Tokenizer"]
-    B --> C["Model\n(Transformer)"]
-    C --> D["Token\nPrediction"]
+    B --> C["Model<br/>(Transformer)"]
+    C --> D["Token<br/>Prediction"]
     D --> E["Detokenizer"]
-    E --> F["Generated\nResponse"]
+    E --> F["Generated<br/>Response"]
 
-    style A fill:#057398,stroke:#004987,color:#fff
-    style B fill:#00A0DF,stroke:#004987,color:#fff
-    style C fill:#632C4F,stroke:#632C4F,color:#fff
-    style D fill:#853175,stroke:#632C4F,color:#fff
-    style E fill:#00A0DF,stroke:#004987,color:#fff
-    style F fill:#259638,stroke:#259638,color:#fff
+    style A fill:#0284c7,stroke:#0284c7,color:#fff
+    style B fill:#0284c7,stroke:#0284c7,color:#fff
+    style C fill:#0d9488,stroke:#0d9488,color:#fff
+    style D fill:#0f766e,stroke:#0d9488,color:#fff
+    style E fill:#0284c7,stroke:#0284c7,color:#fff
+    style F fill:#16a34a,stroke:#16a34a,color:#fff
 ```
 
 1. **Tokenization**: Your text prompt is split into tokens using the model's tokenizer.
@@ -155,7 +155,7 @@ graph LR
 6. **Repetition**: Steps 3-5 repeat until the model generates a stop token or reaches the maximum output length.
 7. **Detokenization**: The output tokens are converted back into human-readable text.
 
-### Key Inference Parameters
+### Key inference parameters
 
 Temperature
 :   Controls randomness. Lower values (0.0-0.3) produce focused, deterministic output. Higher values (0.7-1.0) increase creativity and variation.
@@ -171,7 +171,7 @@ Max tokens
 
 ---
 
-## Choosing the Right Model
+## Choosing the right model
 
 There is no single "best" model. The right choice depends on your requirements:
 

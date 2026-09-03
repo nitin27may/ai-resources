@@ -52,7 +52,7 @@ flowchart LR
 
     classDef primary fill:#0d9488,color:#fff
     classDef processing fill:#0284c7,color:#fff
-    classDef storage fill:#14b8a6,color:#fff
+    classDef storage fill:#0f766e,color:#fff
     classDef warning fill:#d97706,color:#fff
     classDef success fill:#16a34a,color:#fff
 ```

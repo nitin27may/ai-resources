@@ -8,7 +8,7 @@ tags:
   - Azure
 ---
 
-# Vector Databases
+# Vector databases
 
 !!! abstract "Go deeper · 40 min · code optional"
     **Before this:** [Chunking strategies](chunking-strategies.md)  ·  **After this:** [GraphRAG](graphrag.md)
@@ -19,13 +19,13 @@ tags:
 
 ---
 
-## What Makes a Vector Database Different
+## What makes a vector database different
 
 Traditional databases search by exact match or range queries. Vector databases search by _similarity_ — finding the vectors closest to a query vector in high-dimensional space (typically 768–3072 dimensions for modern embedding models).
 
 The core operation is **k-nearest neighbor (kNN) search**, and because exact kNN at scale is too slow, most systems use **approximate nearest neighbor (ANN)** algorithms that trade a small amount of recall for dramatically faster queries.
 
-### ANN Algorithms
+### ANN algorithms
 
 **HNSW — Hierarchical Navigable Small Worlds**
 
@@ -45,7 +45,7 @@ Partitions the vector space into Voronoi cells (clusters). At query time, only t
 
 Brute-force exact search. 100% recall, no approximation error. Only practical up to ~100K vectors. Useful for small datasets or as a ground-truth baseline.
 
-### Filtering + Metadata
+### Filtering + metadata
 
 Raw ANN search gives you the nearest vectors — but in practice you almost always need to filter first ("only search documents from tenant X" or "only search articles from 2024"). How a database handles **pre-filtering vs post-filtering** significantly affects both accuracy and performance:
 
@@ -56,7 +56,7 @@ Qdrant's payload filtering and Azure AI Search's hybrid filter support are both 
 
 ---
 
-## Vector Database Comparison
+## Vector database comparison
 
 | Database | Hosting | Scale | Hybrid Search | Filtering | Best For |
 |---|---|---|---|---|---|
@@ -70,7 +70,7 @@ Qdrant's payload filtering and Azure AI Search's hybrid filter support are both 
 
 ---
 
-## Indexing Pipeline
+## Indexing pipeline
 
 When you ingest documents into a RAG system, each document goes through a pipeline before it's queryable:
 
@@ -86,7 +86,7 @@ flowchart LR
     style B fill:#0d9488,color:#fff
     style C fill:#0d9488,color:#fff
     style D fill:#0d9488,color:#fff
-    style E fill:#14b8a6,color:#fff
+    style E fill:#0f766e,color:#fff
     style F fill:#16a34a,color:#fff
 ```
 
@@ -100,7 +100,7 @@ flowchart LR
 
 ---
 
-## Query Pipeline
+## Query pipeline
 
 At query time the same flow runs in reverse:
 
@@ -117,7 +117,7 @@ flowchart LR
     style A fill:#0284c7,color:#fff
     style B fill:#0d9488,color:#fff
     style C fill:#0d9488,color:#fff
-    style D fill:#14b8a6,color:#fff
+    style D fill:#0f766e,color:#fff
     style E fill:#d97706,color:#fff
     style F fill:#0284c7,color:#fff
     style G fill:#16a34a,color:#fff
@@ -127,7 +127,7 @@ flowchart LR
 
 ---
 
-## Performance Tradeoffs
+## Performance tradeoffs
 
 | Algorithm | Query Speed | Recall | Memory Usage | Build Time |
 |---|---|---|---|---|
@@ -139,11 +139,11 @@ flowchart LR
 
 ---
 
-## Azure AI Search Deep Dive
+## Azure AI Search deep dive
 
 For Azure-based workloads, Azure AI Search is the default choice. It combines keyword search, vector search, and semantic reranking in a single managed service with enterprise security.
 
-### Hybrid Search
+### Hybrid search
 
 A single query can combine:
 
@@ -153,7 +153,7 @@ A single query can combine:
 
 The scores are combined using Reciprocal Rank Fusion (RRF) before reranking. This consistently outperforms pure vector search in production RAG benchmarks.
 
-### Integrated Vectorization
+### Integrated vectorization
 
 Azure AI Search can automatically embed documents on ingest via a **skillset** — you don't need to run a separate embedding pipeline. Point it at an Azure OpenAI embedding deployment and it handles chunking + embedding as part of the indexer run.
 
@@ -164,7 +164,7 @@ Azure AI Search can automatically embed documents on ingest via a **skillset** �
 - Managed Identity for connecting to Azure OpenAI, Azure Blob, and Azure SQL data sources
 - Customer-managed encryption keys (CMK)
 
-### Index Schema (simplified)
+### Index schema (simplified)
 
 ```json
 {
@@ -182,7 +182,7 @@ Azure AI Search can automatically embed documents on ingest via a **skillset** �
 
 ---
 
-## Decision Guide
+## Decision guide
 
 === "Managed Cloud"
 
@@ -230,7 +230,7 @@ Azure AI Search can automatically embed documents on ingest via a **skillset** �
 
 ---
 
-## Next Steps
+## Next steps
 
 - [RAG Fundamentals](rag-fundamentals.md) — understand chunking, embedding, and retrieval before optimizing your vector store
 - [GraphRAG](graphrag.md) — when standard vector search isn't enough for multi-hop or holistic queries

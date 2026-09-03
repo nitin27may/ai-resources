@@ -15,7 +15,7 @@ A curated collection of official documentation, learning resources, and communit
 
 ---
 
-## Official Documentation
+## Official documentation
 
 ### Microsoft
 
@@ -80,7 +80,7 @@ A curated collection of official documentation, learning resources, and communit
 
 ---
 
-## RAG & Embeddings
+## RAG & embeddings
 
 | Resource | Level | Description |
 |----------|-------|-------------|
@@ -114,9 +114,9 @@ A curated collection of official documentation, learning resources, and communit
 
 ---
 
-## Learning Resources
+## Learning resources
 
-### Courses & Learning Paths
+### Courses & learning paths
 
 | Resource | Provider | Level |
 |----------|----------|-------|
@@ -127,7 +127,7 @@ A curated collection of official documentation, learning resources, and communit
 | [AI Agents for Beginners](https://github.com/microsoft/ai-agents-for-beginners) | Microsoft (GitHub) | Beginner |
 | [Deep Learning Specialization](https://www.deeplearning.ai/courses/deep-learning-specialization/) | DeepLearning.AI | Advanced |
 
-### Blogs & Research
+### Blogs & research
 
 | Resource | Focus |
 |----------|-------|
@@ -139,7 +139,7 @@ A curated collection of official documentation, learning resources, and communit
 
 ---
 
-## Community & Open Source
+## Community & open source
 
 | Resource | Description |
 |----------|-------------|

@@ -17,11 +17,11 @@ tags:
     This page remains the broader ecosystem tour — protocols, orchestration, and where agentic patterns came from.
 
 
-Traditional AI applications take a prompt and return a response. **Agentic AI** goes further -- it can plan, use tools, make decisions, and take multi-step actions to accomplish goals. This page covers the protocols, patterns, and infrastructure that make agentic AI possible.
+Traditional AI applications take a prompt and return a response. **Agentic AI** goes further — it can plan, use tools, make decisions, and take multi-step actions to accomplish goals. This page covers the protocols, patterns, and infrastructure that make agentic AI possible.
 
 ---
 
-## What Makes AI "Agentic"?
+## What makes AI "agentic"?
 
 A standard LLM interaction is **reactive**: you ask, it answers. An agentic system is **proactive**: given a goal, it can break it into steps, decide which tools to use, evaluate its own output, and iterate until the goal is met.
 
@@ -39,16 +39,16 @@ A standard LLM interaction is **reactive**: you ask, it answers. An agentic syst
 
 ---
 
-## The Agentic Ecosystem
+## The agentic ecosystem
 
 The modern agentic AI ecosystem consists of models, protocols, frameworks, and infrastructure working together:
 
 ```mermaid
 graph TD
     subgraph Protocols
-        MCP["MCP\n(Model Context Protocol)"]
-        A2A["A2A\n(Agent-to-Agent)"]
-        AGUI["AG-UI\n(Agent-User Interface)"]
+        MCP["MCP<br/>(Model Context Protocol)"]
+        A2A["A2A<br/>(Agent-to-Agent)"]
+        AGUI["AG-UI<br/>(Agent-User Interface)"]
     end
 
     subgraph Frameworks
@@ -59,41 +59,41 @@ graph TD
     end
 
     subgraph Infrastructure
-        MEM["Memory\nSystems"]
-        OBS["Observability\n& Tracing"]
-        TOOLS["Tool\nRegistries"]
+        MEM["Memory<br/>Systems"]
+        OBS["Observability<br/>& Tracing"]
+        TOOLS["Tool<br/>Registries"]
     end
 
     subgraph Models
-        LLM["LLMs\n(GPT, Claude, Gemini)"]
-        SLM["SLMs\n(Phi, Gemma)"]
+        LLM["LLMs<br/>(GPT, Claude, Gemini)"]
+        SLM["SLMs<br/>(Phi, Gemma)"]
     end
 
     Models --> Frameworks
     Protocols --> Frameworks
     Infrastructure --> Frameworks
 
-    style MCP fill:#057398,stroke:#004987,color:#fff
-    style A2A fill:#00A0DF,stroke:#004987,color:#fff
-    style AGUI fill:#57C0E8,stroke:#004987,color:#000
-    style LG fill:#632C4F,stroke:#632C4F,color:#fff
-    style AG fill:#853175,stroke:#632C4F,color:#fff
-    style SK fill:#9E57A2,stroke:#632C4F,color:#fff
-    style CW fill:#853175,stroke:#632C4F,color:#fff
-    style MEM fill:#004987,stroke:#004987,color:#fff
-    style OBS fill:#057398,stroke:#004987,color:#fff
-    style TOOLS fill:#00A0DF,stroke:#004987,color:#fff
-    style LLM fill:#259638,stroke:#259638,color:#fff
-    style SLM fill:#259638,stroke:#259638,color:#fff
+    style MCP fill:#0284c7,stroke:#0284c7,color:#fff
+    style A2A fill:#0284c7,stroke:#0284c7,color:#fff
+    style AGUI fill:#0f766e,stroke:#0284c7,color:#fff
+    style LG fill:#0d9488,stroke:#0d9488,color:#fff
+    style AG fill:#0f766e,stroke:#0d9488,color:#fff
+    style SK fill:#0f766e,stroke:#0d9488,color:#fff
+    style CW fill:#0f766e,stroke:#0d9488,color:#fff
+    style MEM fill:#0284c7,stroke:#0284c7,color:#fff
+    style OBS fill:#0284c7,stroke:#0284c7,color:#fff
+    style TOOLS fill:#0284c7,stroke:#0284c7,color:#fff
+    style LLM fill:#16a34a,stroke:#16a34a,color:#fff
+    style SLM fill:#16a34a,stroke:#16a34a,color:#fff
 ```
 
 ---
 
-## Key Protocols
+## Key protocols
 
 ### Model Context Protocol (MCP)
 
-**MCP** is an open standard (created by Anthropic) that defines how AI models connect to external tools and data sources. Think of it as a **USB-C for AI** -- a universal interface that lets any model talk to any tool.
+**MCP** is an open standard (created by Anthropic) that defines how AI models connect to external tools and data sources. Think of it as a **USB-C for AI** — a universal interface that lets any model talk to any tool.
 
 **Why it matters:**
 
@@ -112,7 +112,7 @@ MCP Client
 Transport
 :   Communication layer (stdio for local, HTTP with SSE for remote).
 
-### Agent-to-Agent Protocol (A2A)
+### Agent-to-agent protocol (A2A)
 
 **A2A** (by Google) enables agents built on different frameworks to communicate with each other. While MCP connects models to tools, A2A connects **agents to other agents**.
 
@@ -122,7 +122,7 @@ Transport
 - **Tasks**: Structured units of work that one agent can send to another.
 - **Streaming**: Support for long-running tasks with progress updates.
 
-### AG-UI Protocol
+### AG-UI protocol
 
 **AG-UI** (Agent-User Interface) standardizes the communication between AI agents and frontend interfaces. It defines how agents stream their progress, decisions, and outputs to users in real time.
 
@@ -134,11 +134,11 @@ Transport
 
 ---
 
-## Tool Use and Function Calling
+## Tool use and function calling
 
-**Tool use** (also called function calling) is the mechanism that lets an LLM invoke external functions. The model does not execute code directly -- instead, it outputs a structured request (function name + arguments), the application executes it, and the result is fed back to the model.
+**Tool use** (also called function calling) is the mechanism that lets an LLM invoke external functions. The model does not execute code directly — instead, it outputs a structured request (function name + arguments), the application executes it, and the result is fed back to the model.
 
-### How It Works
+### How it works
 
 1. You define available tools (name, description, parameters) in the system prompt or API call.
 2. The model decides whether a tool is needed to answer the user's question.
@@ -151,9 +151,9 @@ Transport
 
 ---
 
-## Agentic Design Patterns
+## Agentic design patterns
 
-### ReAct (Reasoning + Acting)
+### ReAct (reasoning + acting)
 
 The **ReAct** pattern interleaves reasoning and action. The agent thinks about what to do, takes an action (tool call), observes the result, and then thinks again.
 
@@ -167,7 +167,7 @@ Answer: Your order #789 has been shipped. Tracking number: XYZ123.
 
 ### Reflection
 
-In the **Reflection** pattern, an agent evaluates its own output and decides whether to revise it. This is like a built-in code review -- the agent generates a draft, critiques it, and improves it.
+In the **Reflection** pattern, an agent evaluates its own output and decides whether to revise it. This is like a built-in code review — the agent generates a draft, critiques it, and improves it.
 
 **Common implementation:**
 
@@ -176,27 +176,27 @@ In the **Reflection** pattern, an agent evaluates its own output and decides whe
 3. If the critic finds issues, the generator revises.
 4. This loop repeats until quality is acceptable or a max iteration is reached.
 
-### Supervisor / Router
+### Supervisor / router
 
 A **Supervisor** agent acts as a coordinator. It receives a user request, decides which specialized agent should handle it, routes the task, and aggregates results.
 
 ```mermaid
 graph TD
-    U["User\nRequest"] --> S["Supervisor\nAgent"]
-    S -->|"Code question"| C["Coding\nAgent"]
-    S -->|"Data question"| D["Data\nAgent"]
-    S -->|"Writing task"| W["Writing\nAgent"]
+    U["User<br/>Request"] --> S["Supervisor<br/>Agent"]
+    S -->|"Code question"| C["Coding<br/>Agent"]
+    S -->|"Data question"| D["Data<br/>Agent"]
+    S -->|"Writing task"| W["Writing<br/>Agent"]
     C --> S
     D --> S
     W --> S
-    S --> R["Final\nResponse"]
+    S --> R["Final<br/>Response"]
 
-    style U fill:#057398,stroke:#004987,color:#fff
-    style S fill:#632C4F,stroke:#632C4F,color:#fff
-    style C fill:#00A0DF,stroke:#004987,color:#fff
-    style D fill:#00A0DF,stroke:#004987,color:#fff
-    style W fill:#00A0DF,stroke:#004987,color:#fff
-    style R fill:#259638,stroke:#259638,color:#fff
+    style U fill:#0284c7,stroke:#0284c7,color:#fff
+    style S fill:#0d9488,stroke:#0d9488,color:#fff
+    style C fill:#0284c7,stroke:#0284c7,color:#fff
+    style D fill:#0284c7,stroke:#0284c7,color:#fff
+    style W fill:#0284c7,stroke:#0284c7,color:#fff
+    style R fill:#16a34a,stroke:#16a34a,color:#fff
 ```
 
 ### Handoff
@@ -207,18 +207,18 @@ In a **Handoff** pattern, one agent transfers control to another when the task m
 
 ---
 
-## Agent Memory
+## Agent memory
 
 Agents need memory to maintain context across interactions and learn from past experience.
 
-### Short-Term Memory
+### Short-term memory
 
 - Stored within the current conversation or session.
 - Typically the messages in the LLM's context window.
 - Lost when the session ends.
 - **Example:** Remembering what the user said three messages ago.
 
-### Long-Term Memory
+### Long-term memory
 
 - Persisted across sessions in an external store (database, vector store, file system).
 - Allows agents to remember user preferences, past interactions, and learned facts.
@@ -230,7 +230,7 @@ Agents need memory to maintain context across interactions and learn from past e
 
 ---
 
-## Human-in-the-Loop
+## Human-in-the-loop
 
 Not every decision should be automated. **Human-in-the-loop (HITL)** patterns ensure that a human reviews and approves critical actions before they are executed.
 
@@ -249,11 +249,11 @@ Not every decision should be automated. **Human-in-the-loop (HITL)** patterns en
 
 ---
 
-## Observability and Tracing
+## Observability and tracing
 
 Agentic systems are harder to debug than simple API calls. An agent might make a dozen tool calls, revise its plan three times, and route through multiple sub-agents before producing a response. **Observability** gives you visibility into this process.
 
-### What to Trace
+### What to trace
 
 - **Agent decisions**: Why did the agent choose this tool? Why did it route to this sub-agent?
 - **Tool calls**: What was called, with what arguments, what was returned, how long did it take?
@@ -261,7 +261,7 @@ Agentic systems are harder to debug than simple API calls. An agent might make a
 - **Latency breakdown**: Where is time being spent?
 - **Errors and retries**: What failed and how did the agent recover?
 
-### Tools for Observability
+### Tools for observability
 
 | Tool | Type | Key Features |
 |---|---|---|
@@ -272,14 +272,14 @@ Agentic systems are harder to debug than simple API calls. An agent might make a
 
 ---
 
-## Deterministic vs Non-Deterministic Workflows
+## Deterministic vs non-deterministic workflows
 
 | Aspect | Deterministic | Non-Deterministic |
 |---|---|---|
 | **Flow** | Predefined sequence of steps | Agent decides the path dynamically |
 | **Predictability** | Same input always produces same flow | Flow may vary between runs |
 | **Use case** | Structured processes (approvals, pipelines) | Open-ended tasks (research, analysis) |
-| **Debugging** | Easier -- follow the fixed path | Harder -- need observability |
+| **Debugging** | Easier — follow the fixed path | Harder — need observability |
 | **Example** | "Extract data, validate, save to DB" | "Research this topic and write a report" |
 
 !!! tip "Start Deterministic, Add Agency Gradually"
@@ -287,7 +287,7 @@ Agentic systems are harder to debug than simple API calls. An agent might make a
 
 ---
 
-## Orchestration Frameworks
+## Orchestration frameworks
 
 | Framework | Maintainer | Key Strengths |
 |---|---|---|

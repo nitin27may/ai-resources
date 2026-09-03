@@ -5,7 +5,7 @@ tags:
   - Agents
 ---
 
-# AI Agents
+# AI agents
 
 !!! abstract "Understand · 40 min · no code"
     **Before this:** [Retrieval and data](retrieval-and-data.md)  ·  **After this:** [Agentic AI](agentic-ai.md)
@@ -16,16 +16,16 @@ tags:
     Those build the loop by hand and show what surrounds it. This page is the component overview, kept for orientation and for its workflow-vs-agent section.
 
 
-## What is an AI Agent?
+## What is an AI agent?
 
 AI Agents consist of five core components: **Input**, **Reasoning**, **Tools**, **Memory**, and **Actions/Outputs**. An AI agent uses an LLM to process user inputs, make decisions, call tools or MCP servers to perform actions, and generate responses. 
 
-### Core Components
+### Core components
 
 The following diagram illustrates the core components and their interactions in an AI agent:
 
 ```mermaid
-%%{init: {'theme':'base', 'themeVariables': {'fontSize':'18px'}}}%%
+%%{init: {'themeVariables': {'fontSize':'18px'}}}%%
 
 flowchart LR
     Input["INPUT<br/>────────<br/>Receives and processes<br/>information from users<br/>and environment"]
@@ -46,22 +46,22 @@ flowchart LR
     Reasoning ==>|Execute| Output
 
     
-    style Input fill:#004987,stroke:#003665,stroke-width:4px,color:#ffffff,font-weight:bold
-    style Reasoning fill:#632C4F,stroke:#4E223E,stroke-width:4px,color:#ffffff,font-weight:bold
-    style Tools fill:#853175,stroke:#6A275E,stroke-width:4px,color:#ffffff,font-weight:bold
-    style Memory fill:#00A0DF,stroke:#0080B3,stroke-width:4px,color:#ffffff,font-weight:bold
-    style Output fill:#259638,stroke:#1C712A,stroke-width:4px,color:#ffffff,font-weight:bold
+    style Input fill:#0284c7,stroke:#0270a8,stroke-width:4px,color:#ffffff,font-weight:bold
+    style Reasoning fill:#0d9488,stroke:#0b7a72,stroke-width:4px,color:#ffffff,font-weight:bold
+    style Tools fill:#0f766e,stroke:#119b91,stroke-width:4px,color:#ffffff,font-weight:bold
+    style Memory fill:#0284c7,stroke:#0270a8,stroke-width:4px,color:#ffffff,font-weight:bold
+    style Output fill:#16a34a,stroke:#15803d,stroke-width:4px,color:#ffffff,font-weight:bold
 
 ```
 
-### Detailed Component Architecture
+### Detailed component architecture
 
 The following diagram shows a detailed view of each component with specific examples:
 
 ```mermaid
 graph LR
     subgraph INPUT["INPUT LAYER"]
-        style INPUT fill:#057398,stroke:#045672,stroke-width:3px,color:#fff
+        style INPUT fill:#0284c7,stroke:#0270a8,stroke-width:3px,color:#fff
         I1["User Queries<br/>Natural language questions<br/>Chat messages"]
         I2["Documents & Files<br/>Images<br/>PDFs<br/>Spreadsheets"]
         I3["External Triggers<br/>Events<br/>Alerts<br/>API calls"]
@@ -69,7 +69,7 @@ graph LR
     end
 
     subgraph REASONING["REASONING ENGINE"]
-        style REASONING fill:#00A0DF,stroke:#0080B3,stroke-width:3px,color:#fff
+        style REASONING fill:#0284c7,stroke:#0270a8,stroke-width:3px,color:#fff
         R1["Large Language Model<br/>Understands intent<br/>Plans actions"]
         R2["Prompt Engineering<br/>Instructions<br/>Guidelines"]
         R3["Orchestration<br/>Coordinates workflow<br/>Manages multi-step tasks"]
@@ -77,7 +77,7 @@ graph LR
     end
 
     subgraph TOOLS["TOOLS"]
-        style TOOLS fill:#57C0E8,stroke:#3BA8D0,stroke-width:3px,color:#121212
+        style TOOLS fill:#0f766e,stroke:#119b91,stroke-width:3px,color:#121212
         T1["Code Execution<br/>Run Python code<br/>Data analysis"]
         T2["Search<br/>Document retrieval<br/>Web search"]
         T3["Custom Functions<br/>API calls<br/>Business logic"]
@@ -85,7 +85,7 @@ graph LR
     end
 
     subgraph MEMORY["MEMORY"]
-        style MEMORY fill:#9E57A2,stroke:#7E4582,stroke-width:3px,color:#fff
+        style MEMORY fill:#0f766e,stroke:#119b91,stroke-width:3px,color:#fff
         M1["Conversation History<br/>Messages<br/>Thread continuity"]
         M2["Agent State<br/>Configuration<br/>Status tracking"]
         M3["Knowledge Base<br/>Documents<br/>Vector embeddings"]
@@ -93,7 +93,7 @@ graph LR
     end
 
     subgraph ACTIONS["ACTIONS/OUTPUTS"]
-        style ACTIONS fill:#259638,stroke:#1C712A,stroke-width:3px,color:#fff
+        style ACTIONS fill:#16a34a,stroke:#15803d,stroke-width:3px,color:#fff
         A1["Text Responses<br/>Answers<br/>Summaries<br/>Explanations"]
         A2["Generated Content<br/>Code<br/>Visualizations<br/>Reports"]
         A3["State Changes<br/>Save conversation<br/>Update context"]
@@ -132,11 +132,11 @@ graph LR
     A2 --> M4
 
     %% Styling
-    classDef inputStyle fill:#057398,stroke:#045672,stroke-width:2px,color:#fff
-    classDef reasoningStyle fill:#00A0DF,stroke:#0080B3,stroke-width:2px,color:#fff
-    classDef toolStyle fill:#57C0E8,stroke:#3BA8D0,stroke-width:2px,color:#121212
-    classDef memoryStyle fill:#9E57A2,stroke:#7E4582,stroke-width:2px,color:#fff
-    classDef actionStyle fill:#259638,stroke:#1C712A,stroke-width:2px,color:#fff
+    classDef inputStyle fill:#0284c7,stroke:#0270a8,stroke-width:2px,color:#fff
+    classDef reasoningStyle fill:#0284c7,stroke:#0270a8,stroke-width:2px,color:#fff
+    classDef toolStyle fill:#0f766e,stroke:#119b91,stroke-width:2px,color:#121212
+    classDef memoryStyle fill:#0f766e,stroke:#119b91,stroke-width:2px,color:#fff
+    classDef actionStyle fill:#16a34a,stroke:#15803d,stroke-width:2px,color:#fff
 
     class I1,I2,I3,I4 inputStyle
     class R1,R2,R3,R4 reasoningStyle
@@ -146,12 +146,12 @@ graph LR
 
 ```
 
-## Conceptual Overview of AI Agents
+## Conceptual overview of AI agents
 
 !!! abstract "Definition"
     An autonomous system that perceives its environment, reasons about context, takes actions via tools or APIs, and learns through feedback to achieve defined objectives.
 
-### Core Architectural Components
+### Core architectural components
 
 - **Perception Layer**: Interfaces that receive context or inputs (text, data, voice, sensors, APIs)
 - **Reasoning & Planning Layer**: LLM or symbolic reasoning engine responsible for decision-making
@@ -160,12 +160,12 @@ graph LR
 - **Feedback Loop**: Evaluates outcomes and adapts strategies for continuous improvement
 - **Agent Lifecycle**: Initialization → Perception → Reasoning → Action → Evaluation → Learning
 
-## When to Use AI Agents?
+## When to use AI agents?
 
 !!! success "Ideal Use Cases"
     AI agents are suitable for applications that require autonomous decision-making, ad hoc planning, trial-and-error exploration, and conversation-based user interactions. They are particularly useful for scenarios where the input task is unstructured and cannot be easily defined in advance.
 
-### Common Scenarios Where AI Agents Excel
+### Common scenarios where AI agents excel
 
 1. **Customer Support**: AI agents can handle multi-modal queries (text, voice, images) from customers, use tools to look up information, and provide natural language responses
 2. **Education and Tutoring**: AI agents can leverage external knowledge bases to provide personalized tutoring and answer student questions
@@ -175,12 +175,12 @@ graph LR
 !!! info "Key Characteristic"
     AI agents are designed to operate in a dynamic and underspecified setting, where the exact sequence of steps to fulfill a user request is not known in advance and might require exploration and close collaboration with users.
 
-## When Not to Use AI Agents?
+## When not to use AI agents?
 
 !!! warning "Limitations"
     AI agents are not well-suited for tasks that are highly structured and require strict adherence to predefined rules. If your application anticipates a specific kind of input and has a well-defined sequence of operations to perform, using AI agents might introduce unnecessary uncertainty, latency, and cost.
 
-### Alternative Approaches
+### Alternative approaches
 
 !!! tip "Use Functions Instead"
     If you can write a function to handle the task, do that instead of using an AI agent. You can use AI to help you write that function.
@@ -190,15 +190,15 @@ graph LR
 
 ---
 
-## Multi-Agent Systems
+## Multi-agent systems
 
-### What is a Multi-Agent System?
+### What is a multi-agent system?
 
 A **multi-agent system** (or multi-agent application) is a collection of agents that collaborate to solve tasks. Each agent maintains specific capabilities—reasoning, acting, and communicating—and can adapt to changes in the task or environment.
 
-### Multi-Agent Orchestration Patterns
+### Multi-agent orchestration patterns
 
-#### 1. Multi-Agent Workflows (Defined Orchestration)
+#### 1. multi-agent workflows (defined orchestration)
 
 ```mermaid 
 graph TD
@@ -211,9 +211,9 @@ graph TD
     end
 %% Styling
 
-classDef agentStyle fill:#057398,stroke:#045672,stroke-width:3px,color:#fff
-classDef orchestratorStyle fill:#853175,stroke:#6A275E,stroke-width:3px,color:#fff
-classDef noteStyle fill:#E6F1F5,stroke:#C0DCE5,stroke-width:1px,color:#374151  
+classDef agentStyle fill:#0284c7,stroke:#0270a8,stroke-width:3px,color:#fff
+classDef orchestratorStyle fill:#0f766e,stroke:#119b91,stroke-width:3px,color:#fff
+classDef noteStyle fill:#0f766e,stroke:#119b91,stroke-width:1px,color:#fff  
 
 class Agent1,Agent2,Agent3,AgentA1,AgentA2,AgentA3,AgentA4 agentStyle
 class Orchestrator orchestratorStyle
@@ -226,7 +226,7 @@ class Note1,Note2,Patterns noteStyle
     
     **Example**: A document processing workflow might have agents that specialize in text extraction, analysis, and formatting, working in a predetermined sequence with defined inputs and outputs for each stage.
 
-#### 2. Autonomous Multi-Agent Orchestration (AI-Driven Orchestration)
+#### 2. autonomous multi-agent orchestration (AI-driven orchestration)
 
 ```mermaid 
 %% Autonomous (AI Driven) Orchestration
@@ -250,9 +250,9 @@ graph TD
 
 %% Styling
 classDef userStyle fill:#555659,stroke:#3D3D40,stroke-width:2px,color:#fff
-classDef agentStyle fill:#057398,stroke:#045672,stroke-width:3px,color:#fff
-classDef orchestratorStyle fill:#853175,stroke:#6A275E,stroke-width:3px,color:#fff
-classDef noteStyle fill:#E6F1F5,stroke:#C0DCE5,stroke-width:1px,color:#374151
+classDef agentStyle fill:#0284c7,stroke:#0270a8,stroke-width:3px,color:#fff
+classDef orchestratorStyle fill:#0f766e,stroke:#119b91,stroke-width:3px,color:#fff
+classDef noteStyle fill:#0f766e,stroke:#119b91,stroke-width:1px,color:#fff
 
 class User1,User2 userStyle
 class Agent1,Agent2,Agent3,AgentA1,AgentA2,AgentA3,AgentA4 agentStyle
@@ -270,19 +270,19 @@ class Note1,Note2,Patterns noteStyle
 
 ## Workflows
 
-### What is a Workflow?
+### What is a workflow?
 
 A **workflow** can express a predefined sequence of operations that can include AI agents as components while maintaining consistency and reliability. Workflows are designed to handle complex and long-running processes that might involve multiple agents, human interactions, and integrations with external systems.
 
 The execution sequence of a workflow can be explicitly defined, allowing for more control over the execution path.
 
-### Workflow Example: Connecting Agents and Functions
+### Workflow example: connecting agents and functions
 
 The following diagram illustrates an example of a workflow that connects two AI agents and a function:
 
 ```mermaid
 
-%%{init: {'theme':'base', 'themeVariables': {'fontSize':'16px'}}}%%
+%%{init: {'themeVariables': {'fontSize':'16px'}}}%%
 
 graph LR
     Start([User Input])
@@ -298,29 +298,29 @@ graph LR
     Func2 -->|"4. Processed Data"| Agent2
     Agent2 -->|"5. Final Response"| End
     
-    style Start fill:#004987,stroke:#003665,stroke-width:3px,color:#ffffff,font-weight:bold
-    style Func1 fill:#057398,stroke:#045672,stroke-width:4px,color:#ffffff,font-weight:bold
-    style Agent1 fill:#853175,stroke:#6A275E,stroke-width:4px,color:#ffffff,font-weight:bold
-    style Func2 fill:#57C0E8,stroke:#3BA8D0,stroke-width:4px,color:#121212,font-weight:bold
-    style Agent2 fill:#00A0DF,stroke:#0080B3,stroke-width:4px,color:#ffffff,font-weight:bold
-    style End fill:#259638,stroke:#1C712A,stroke-width:3px,color:#ffffff,font-weight:bold
+    style Start fill:#0284c7,stroke:#0270a8,stroke-width:3px,color:#ffffff,font-weight:bold
+    style Func1 fill:#0284c7,stroke:#0270a8,stroke-width:4px,color:#ffffff,font-weight:bold
+    style Agent1 fill:#0f766e,stroke:#119b91,stroke-width:4px,color:#ffffff,font-weight:bold
+    style Func2 fill:#0f766e,stroke:#119b91,stroke-width:4px,color:#121212,font-weight:bold
+    style Agent2 fill:#0284c7,stroke:#0270a8,stroke-width:4px,color:#ffffff,font-weight:bold
+    style End fill:#16a34a,stroke:#15803d,stroke-width:3px,color:#ffffff,font-weight:bold
     
-    linkStyle 0 stroke:#004987,stroke-width:3px
-    linkStyle 1 stroke:#057398,stroke-width:3px
-    linkStyle 2 stroke:#853175,stroke-width:3px
-    linkStyle 3 stroke:#57C0E8,stroke-width:3px
-    linkStyle 4 stroke:#00A0DF,stroke-width:3px
+    linkStyle 0 stroke:#0284c7,stroke-width:3px
+    linkStyle 1 stroke:#0284c7,stroke-width:3px
+    linkStyle 2 stroke:#14b8a6,stroke-width:3px
+    linkStyle 3 stroke:#14b8a6,stroke-width:3px
+    linkStyle 4 stroke:#0284c7,stroke-width:3px
 
 ```
 
 !!! note "Dynamic Workflows"
     Workflows can also express dynamic sequences using conditional routing, model-based decision making, and concurrent execution. This is how multi-agent orchestration patterns are implemented. The orchestration patterns provide mechanisms to coordinate multiple agents to work on complex tasks that require multiple steps and decision points, addressing the limitations of single agents.
 
-### What Problems Do Workflows Solve?
+### What problems do workflows solve?
 
 Workflows provide a structured way to manage complex processes that involve multiple steps, decision points, and interactions with various systems or agents. The types of tasks workflows are designed to handle often require more than one AI agent.
 
-### Key Benefits of Workflows
+### Key benefits of workflows
 
 !!! success "Workflow Advantages"
     
@@ -336,7 +336,7 @@ Workflows provide a structured way to manage complex processes that involve mult
 
 ---
 
-## Architectural Patterns for AI Agents
+## Architectural patterns for AI agents
 
 The following table summarizes common architectural patterns for implementing AI agents:
 

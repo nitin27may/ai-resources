@@ -5,7 +5,7 @@ tags:
   - Operations
 ---
 
-# Infrastructure & Operations
+# Infrastructure & operations
 
 !!! abstract "Understand · 15 min · no code"
     **Before this:** [Fine-tuning and training](fine-tuning-and-training.md)  ·  **After this:** [The build path](../00-start-here/the-path.md)
@@ -20,9 +20,9 @@ Building an AI model is only half the challenge. Running it reliably, efficientl
 
 ---
 
-## MLOps: DevOps for Machine Learning
+## MLOps: DevOps for machine learning
 
-**MLOps** (Machine Learning Operations) applies the principles of DevOps -- automation, monitoring, version control, CI/CD -- to the machine learning lifecycle. It bridges the gap between data science experiments and production systems.
+**MLOps** (Machine Learning Operations) applies the principles of DevOps — automation, monitoring, version control, CI/CD — to the machine learning lifecycle. It bridges the gap between data science experiments and production systems.
 
 ### MLOps vs DevOps
 
@@ -38,30 +38,30 @@ Building an AI model is only half the challenge. Running it reliably, efficientl
 !!! tip "MLOps Maturity"
     Most teams start at "manual everything" (level 0) and gradually automate. You do not need a fully automated MLOps pipeline on day one. Start with version control for data and models, then add automation incrementally.
 
-### The MLOps Lifecycle
+### The MLOps lifecycle
 
 ```mermaid
 graph LR
-    A["Data\nCollection"] --> B["Data\nPreparation"]
-    B --> C["Model\nTraining"]
-    C --> D["Model\nEvaluation"]
-    D --> E["Model\nRegistry"]
+    A["Data<br/>Collection"] --> B["Data<br/>Preparation"]
+    B --> C["Model<br/>Training"]
+    C --> D["Model<br/>Evaluation"]
+    D --> E["Model<br/>Registry"]
     E --> F["Deployment"]
     F --> G["Monitoring"]
-    G -->|"Drift\nDetected"| A
+    G -->|"Drift<br/>Detected"| A
 
-    style A fill:#057398,stroke:#004987,color:#fff
-    style B fill:#00A0DF,stroke:#004987,color:#fff
-    style C fill:#632C4F,stroke:#632C4F,color:#fff
-    style D fill:#853175,stroke:#632C4F,color:#fff
-    style E fill:#9E57A2,stroke:#632C4F,color:#fff
-    style F fill:#004987,stroke:#004987,color:#fff
-    style G fill:#259638,stroke:#259638,color:#fff
+    style A fill:#0284c7,stroke:#0284c7,color:#fff
+    style B fill:#0284c7,stroke:#0284c7,color:#fff
+    style C fill:#0d9488,stroke:#0d9488,color:#fff
+    style D fill:#0f766e,stroke:#0d9488,color:#fff
+    style E fill:#0f766e,stroke:#0d9488,color:#fff
+    style F fill:#0284c7,stroke:#0284c7,color:#fff
+    style G fill:#16a34a,stroke:#16a34a,color:#fff
 ```
 
 **Key stages:**
 
-1. **Data Collection**: Gather raw data from sources -- databases, APIs, logs, user interactions.
+1. **Data Collection**: Gather raw data from sources — databases, APIs, logs, user interactions.
 2. **Data Preparation**: Clean, transform, and feature-engineer the data. Track lineage so you know where every data point came from.
 3. **Model Training**: Train (or fine-tune) the model. Log hyperparameters, metrics, and artifacts.
 4. **Model Evaluation**: Compare the new model against baselines using defined metrics. Automated evaluation gates prevent bad models from reaching production.
@@ -71,11 +71,11 @@ graph LR
 
 ---
 
-## Model Drift and Monitoring
+## Model drift and monitoring
 
 **Model drift** is the gradual degradation of model performance over time. A model that was accurate at launch may become unreliable as the real world changes around it.
 
-### Types of Drift
+### Types of drift
 
 Data drift
 :   The distribution of input data changes. For example, a customer sentiment model trained on pre-pandemic reviews may perform poorly on post-pandemic data because the language and topics shifted.
@@ -86,7 +86,7 @@ Concept drift
 Feature drift
 :   The data pipeline changes, causing features to be computed differently or become unavailable. For example, a feature that previously held "days since last purchase" is now always zero due to a data pipeline bug.
 
-### Monitoring Strategy
+### Monitoring strategy
 
 | What to Monitor | How | Alert Threshold |
 |---|---|---|
@@ -98,15 +98,15 @@ Feature drift
 | **Token usage** | Monitor tokens consumed per request | Unexpected spikes in consumption |
 
 !!! warning "Monitoring Is Not Optional"
-    In production AI systems, monitoring is as critical as the model itself. Without it, you will not know your model is degrading until users complain -- or worse, until bad decisions are already made.
+    In production AI systems, monitoring is as critical as the model itself. Without it, you will not know your model is degrading until users complain — or worse, until bad decisions are already made.
 
 ---
 
-## Quantization and Model Optimization
+## Quantization and model optimization
 
-**Quantization** reduces the precision of a model's numerical weights -- for example, from 32-bit floating point (FP32) to 8-bit integers (INT8) or even 4-bit. This dramatically reduces model size, memory usage, and inference latency, often with minimal impact on quality.
+**Quantization** reduces the precision of a model's numerical weights — for example, from 32-bit floating point (FP32) to 8-bit integers (INT8) or even 4-bit. This dramatically reduces model size, memory usage, and inference latency, often with minimal impact on quality.
 
-### How Quantization Works
+### How quantization works
 
 | Precision | Bits per Weight | Relative Size | Typical Quality Impact |
 |---|---|---|---|
@@ -115,7 +115,7 @@ Feature drift
 | INT8 | 8 | 0.25x | Minimal for most tasks |
 | INT4 | 4 | 0.125x | Noticeable on complex reasoning |
 
-### Quantization Methods
+### Quantization methods
 
 Post-training quantization (PTQ)
 :   Applied after training is complete. No additional training data is needed. Fast and easy but may lose more quality than training-aware methods.
@@ -131,11 +131,11 @@ GPTQ / AWQ / GGUF
 
 ---
 
-## Edge AI and On-Device Inference
+## Edge AI and on-device inference
 
-**Edge AI** runs models directly on local devices -- laptops, phones, IoT devices, on-premise servers -- rather than sending data to the cloud. This is increasingly practical with small language models and quantization.
+**Edge AI** runs models directly on local devices — laptops, phones, IoT devices, on-premise servers — rather than sending data to the cloud. This is increasingly practical with small language models and quantization.
 
-### When to Use Edge AI
+### When to use edge AI
 
 | Scenario | Why Edge Makes Sense |
 |---|---|
@@ -145,7 +145,7 @@ GPTQ / AWQ / GGUF
 | **Cost at scale** | No per-query API costs for high-volume use cases |
 | **Regulatory compliance** | Data residency requirements mandate local processing |
 
-### Edge AI Technologies
+### Edge AI technologies
 
 | Technology | Description |
 |---|---|
@@ -155,17 +155,17 @@ GPTQ / AWQ / GGUF
 | **Apple Core ML** | On-device inference optimized for Apple hardware |
 | **Windows ML** | ML inference on Windows devices using DirectML |
 
-### Trade-Offs
+### Trade-offs
 
 Edge AI is not free. You gain privacy, latency, and cost benefits, but you trade model capability. A 3B-parameter quantized model running on a laptop will not match the quality of GPT-4o running in the cloud. Choose edge deployment when the trade-off makes sense for your use case.
 
 ---
 
-## Cost Management in AI
+## Cost management in AI
 
 AI infrastructure costs can scale quickly if not managed carefully. Here are the main cost drivers and how to control them:
 
-### Cost Drivers
+### Cost drivers
 
 | Cost Driver | Description | How to Optimize |
 |---|---|---|
@@ -175,7 +175,7 @@ AI infrastructure costs can scale quickly if not managed carefully. Here are the
 | **Data processing** | ETL pipelines, embedding generation, indexing | Batch operations, incremental updates instead of full re-indexing |
 | **Monitoring** | Logging, tracing, evaluation | Sample traces rather than logging everything, set retention policies |
 
-### Cost Optimization Strategies
+### Cost optimization strategies
 
 === "Prompt Optimization"
 
@@ -203,7 +203,7 @@ AI infrastructure costs can scale quickly if not managed carefully. Here are the
 
 ---
 
-## Putting It All Together
+## Putting it all together
 
 A production AI system brings together all of these concerns:
 

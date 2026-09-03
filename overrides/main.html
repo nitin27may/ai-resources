@@ -68,21 +68,23 @@
 
 {% block scripts %}
   {{ super() }}
-  <!-- Force dark theme as default; only respect explicit user choice of light -->
-  <script>
-    (function () {
-      var stored = localStorage.getItem("data-md-color-scheme");
-      if (stored !== "default") {
-        document.body.setAttribute("data-md-color-scheme", "slate");
-        document.body.setAttribute("data-md-color-primary", "indigo");
-        document.body.setAttribute("data-md-color-accent", "indigo");
-        localStorage.setItem("data-md-color-scheme", "slate");
-      }
-    })();
-  </script>
+  {#
+    There used to be a script here that forced the slate (dark) scheme on every
+    page load unless localStorage held the key "data-md-color-scheme" set to
+    "default".
+
+    Material never writes that key -- it stores the palette choice under
+    `__palette`. So the condition was true on every load, and the script
+    reasserted dark on every navigation. A reader could click the light-mode
+    toggle, see the page turn light, click any link, and land back in dark. The
+    light theme was effectively unreachable for the whole site.
+
+    It was also unnecessary. `theme.palette` in mkdocs.yml lists slate first,
+    which already makes dark the default for a first-time visitor, and Material
+    then persists whatever the reader chooses. Deleting the script gives us
+    dark-by-default AND a toggle that sticks.
+  #}
 {% endblock %}
-
-
 
 {% block footer %}
   {% include "partials/footer.html" %}

@@ -1,12 +1,59 @@
 #!/usr/bin/env bash
-# Phase 3 and 5 done-checks. All counts should be 0 when the phase is complete.
+# Phase 3 and 5 done-checks. Every count should be 0 when those phases are complete.
+# Fence-aware: Mermaid edge labels (`A -- Yes --> B`) and code blocks are not prose,
+# so they are excluded rather than counted as style violations.
 cd "$(dirname "$0")/../.."
-echo -n "double-hyphen dashes in prose:    "; grep -rn ' -- ' docs --include=*.md | wc -l
-echo -n "foreign mermaid hex values:       "; grep -rniE '#057398|#00A0DF|#004987|#38bdf8|#632C4F|#853175|#9e57a2|#259638' docs | wc -l
-echo -n "\\n inside mermaid labels:         "; grep -rn '\\n' docs --include=*.md | wc -l
-echo -n "org-internal voice:               "; grep -rniE "\\bour organization|in the organization|\\bour stack|what we use in \\bour|we invest in|co-op|reach out to the team|\\bour enterprise|everyone in the organization" docs | wc -l
-echo -n "unicode emojis:                   "; grep -rnP --include=*.md '[\x{1F300}-\x{1FAFF}\x{2600}-\x{27BF}]' docs | wc -l
-echo -n "bare '## References' sections:    "; grep -rl '^## References' docs | wc -l
-echo -n "Title Case H2s (approx):          "; grep -rhE '^## [A-Z][a-z]+ [A-Z][a-z]' docs | wc -l
-echo -n "pages without a level tag:        "; for f in $(find docs -name '*.md'); do grep -qE '^\s+- (Start here|Understand|Build|Go deeper|Tools|Reference)$' "$f" || echo "$f"; done | wc -l
-echo -n "'eleven' module claims:           "; grep -rni 'eleven' docs | wc -l
+python3 - <<'PY'
+import glob, re
+
+def prose_lines():
+    for p in sorted(glob.glob("docs/**/*.md", recursive=True)):
+        fence = False
+        for i, l in enumerate(open(p, encoding="utf-8").read().split("\n"), 1):
+            if l.lstrip().startswith("```"):
+                fence = not fence; continue
+            if not fence: yield p, i, l
+
+def mermaid_lines():
+    for p in sorted(glob.glob("docs/**/*.md", recursive=True)):
+        inm = False
+        for i, l in enumerate(open(p, encoding="utf-8").read().split("\n"), 1):
+            st = l.strip()
+            if st.startswith("```mermaid"): inm = True; continue
+            if st.startswith("```"): inm = False; continue
+            if inm: yield p, i, l
+
+APPROVED = {"#0d9488","#0b7a72","#16a34a","#15803d","#0284c7","#0270a8",
+            "#d97706","#b86005","#14b8a6","#119b91","#dc2626","#b91c1c",
+            "#ffffff","#fff","#121212","#374151","#555659","#3d3d40"}
+PROPER = ("Claude","GraphRAG","GitHub","Azure","Microsoft","OpenAI","Google","Copilot",
+           "RAG","MCP","AI","LLM","Anthropic","Meta","Naive","Semantic","Agent","Foundry")
+ORG = re.compile(r"\bour organization|in the organization|\bour stack|what we use in \bour|"
+                 r"we invest in|co-op|reach out to the team|\bour enterprise|"
+                 r"everyone in the organization", re.I)
+
+checks = {
+ "double-hyphen dashes in prose": sum(l.count(" -- ") for _,_,l in prose_lines()),
+ "non-palette mermaid colours":   sum(1 for _,_,l in mermaid_lines()
+                                      for c in re.findall(r"#[0-9a-fA-F]{3,6}", l)
+                                      if c.lower() not in APPROVED),
+ "styled nodes missing color:#fff": sum(1 for _,_,l in mermaid_lines()
+                                        if re.search(r"(fill:#|style \w+ fill)", l)
+                                        and "color:#" not in l),
+ "\\n inside mermaid labels":     sum(l.count("\\n") for _,_,l in mermaid_lines()),
+ "org-internal voice":            sum(1 for _,_,l in prose_lines() if ORG.search(l)),
+ "unicode emojis":                sum(1 for _,_,l in prose_lines()
+                                      if re.search(r"[\U0001F300-\U0001FAFF☀-➿]", l)),
+ "bare '## References' sections": sum(1 for _,_,l in prose_lines() if l.strip() == "## References"),
+ "Title Case H2s":                sum(1 for _,_,l in prose_lines()
+                                      if re.match(r"^## [A-Z][a-z]+ [A-Z][a-z]", l)
+                                      and l.split()[2] not in PROPER),
+ "'eleven' module claims":        sum(1 for _,_,l in prose_lines() if re.search(r"\beleven\b", l, re.I)),
+}
+for k, v in checks.items(): print(f"{k:34s} {v}")
+untagged = [p for p in glob.glob("docs/**/*.md", recursive=True)
+            if not re.search(r"(?m)^\s+- (Start here|Understand|Build|Go deeper|Tools|Reference)$",
+                             open(p, encoding="utf-8").read())]
+print(f"{'pages without a level tag':34s} {len(untagged)}")
+for p in untagged: print("   ", p)
+PY

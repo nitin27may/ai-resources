@@ -8,7 +8,7 @@ tags:
 description: A free path from AI basics to agents in production. Read to understand, or build ten labs that run on your own machine.
 ---
 
-# AI Knowledge Hub
+# AI knowledge hub
 
 An open reference on how modern AI systems actually work, from the first
 explanation of what a language model is through to running an agent in

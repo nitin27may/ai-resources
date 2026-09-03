@@ -119,7 +119,7 @@ flowchart LR
     classDef primary fill:#0d9488,stroke:#0b7a72,color:#fff
     classDef processing fill:#0284c7,stroke:#0270a8,color:#fff
     classDef warning fill:#d97706,stroke:#b86005,color:#fff
-    classDef storage fill:#14b8a6,stroke:#119b91,color:#fff
+    classDef storage fill:#0f766e,stroke:#119b91,color:#fff
     classDef danger fill:#dc2626,stroke:#b91c1c,color:#fff
 ```
 

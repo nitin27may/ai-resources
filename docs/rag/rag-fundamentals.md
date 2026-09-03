@@ -7,7 +7,7 @@ tags:
   - Retrieval
 ---
 
-# RAG Fundamentals
+# RAG fundamentals
 
 !!! abstract "Go deeper · 40 min · code optional"
     **Before this:** [Retrieval in depth](index.md)  ·  **After this:** [Embeddings](embeddings.md)
@@ -31,7 +31,7 @@ RAG has gone through four recognizable generations since the original 2020 paper
 
 ---
 
-## Naive RAG — The Basic Pipeline
+## Naive RAG — the basic pipeline
 
 Naive RAG splits the work into two phases: an offline indexing phase that runs once (or on a schedule), and an online query phase that runs on every request.
 
@@ -40,22 +40,22 @@ flowchart LR
     subgraph Index ["Indexing Phase (Offline)"]
         direction LR
         D["Document"] --> C["Chunk"]
-        C --> E["Embed\n(Embedding Model)"]
+        C --> E["Embed<br/>(Embedding Model)"]
         E --> S[("Vector Store")]
     end
 
     subgraph Query ["Query Phase (Online)"]
         direction LR
-        Q["User Question"] --> QE["Embed\n(Same Model)"]
-        QE --> R["Retrieve\nTop-K Chunks"]
-        R --> G["Generate\n(LLM + Context)"]
+        Q["User Question"] --> QE["Embed<br/>(Same Model)"]
+        QE --> R["Retrieve<br/>Top-K Chunks"]
+        R --> G["Generate<br/>(LLM + Context)"]
         G --> RS["Response"]
     end
 
     S --> R
 
     style D fill:#0284c7,color:#fff
-    style S fill:#14b8a6,color:#fff
+    style S fill:#0f766e,color:#fff
     style G fill:#0d9488,color:#fff
     style RS fill:#16a34a,color:#fff
     style Q fill:#0284c7,color:#fff
@@ -79,7 +79,7 @@ This pipeline is straightforward to implement and works well for simple, well-st
 
 ---
 
-## Failure Modes of Naive RAG
+## Failure modes of Naive RAG
 
 Understanding where naive RAG fails is more valuable than knowing how it works. Most production RAG issues trace back to one of these categories.
 
@@ -97,7 +97,7 @@ Understanding where naive RAG fails is more valuable than knowing how it works. 
 
 ---
 
-## Advanced RAG Techniques
+## Advanced RAG techniques
 
 Advanced RAG adds processing steps before retrieval, improves the retrieval step itself, and refines the context before it reaches the LLM.
 
@@ -222,7 +222,7 @@ For a deeper treatment of agentic patterns, see [Agentic AI](../concepts/agentic
 
 ---
 
-## Next Steps
+## Next steps
 
 - [Embeddings](embeddings.md) — understand what the embedding models in your pipeline actually do and how to choose between them
 - [Chunking Strategies](chunking-strategies.md) — chunking is the highest-leverage decision in a RAG pipeline

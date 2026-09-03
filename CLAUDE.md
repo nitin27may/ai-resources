@@ -96,16 +96,26 @@ Never use Unicode emojis anywhere. Use MkDocs Material icons instead:
 
 Use these theme-compatible hex values (work in light and dark modes):
 
-| Use | Color |
-|-----|-------|
-| Main flows / primary | `#0d9488` (teal) |
-| Success paths | `#16a34a` (green) |
-| Processing/logic | `#0284c7` (sky blue) |
-| Warnings/important | `#d97706` (amber) |
-| Data/storage | `#14b8a6` (teal-light) |
-| Error/danger | `#dc2626` (red) |
+| Use | Color | White-text contrast |
+|-----|-------|---------------------|
+| Main flows / primary | `#0d9488` (teal) | 3.74:1 |
+| Success paths | `#16a34a` (green) | 3.30:1 |
+| Processing/logic | `#0284c7` (sky blue) | 4.10:1 |
+| Warnings/important | `#d97706` (amber) | 3.19:1 |
+| Data/storage | `#0f766e` (deep teal) | 5.47:1 |
+| Error/danger | `#dc2626` (red) | 4.83:1 |
 
 Always set `color:#fff` on styled nodes.
+
+**Data/storage was `#14b8a6`.** White text on it measures 2.49:1, below the 3:1
+minimum for large text, so labels were hard to read in both themes. `#0f766e`
+is the same hue and passes at 5.47:1. `#14b8a6` is still fine as a *stroke*,
+where no text sits on it.
+
+Every fill above carries white label text at 3:1 or better, which is the bar for
+large text and graphical objects. `planning/scripts/check-themes.py` measures
+this against the rendered SVG in both schemes and fails below 3:1 — a build
+passing `--strict` tells you nothing about whether a diagram is legible.
 
 ### Admonitions
 

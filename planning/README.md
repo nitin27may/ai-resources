@@ -44,6 +44,41 @@ These are true as of 2026-09-02 and are load-bearing for the content. Do not "co
 - **The labs default to `qwen2.5:14b` on Ollama** deliberately (no reasoning trace). Do not swap in a reasoning model.
 - **This site's own numbers**: ten Build modules (0 to 9), ten labs, 74 glossary terms, 44 pages before this work.
 
+## Do not revert: Mermaid fence format
+
+`mkdocs.yml` uses `fence_div_format` for the mermaid custom fence, not the
+`fence_code_format` that Material's own documentation shows. That is deliberate.
+
+Material's built-in Mermaid integration claims `pre.mermaid`, swaps it for a
+`div.mermaid`, loads `mermaid@11` (unpinned) from unpkg, and renders into it. On
+this site that produced an **empty div on every page**: no SVG, no console error,
+all 49 diagrams invisible in production, and it had been shipping that way. It
+reproduces on a stock Material site with no overrides and no custom CSS, so it is
+upstream, not a local misconfiguration.
+
+`fence_div_format` emits `div.mermaid` directly, so Material's handler finds no
+`pre.mermaid` to claim, and `overrides/assets/javascripts/mermaid-init.js` owns
+rendering against a pinned mermaid version. Verified with a headless browser:
+29 pages, 49 diagrams, all rendering in both colour schemes.
+
+If someone "corrects" the fence back to `fence_code_format` to match the Material
+docs, every diagram on the site goes blank again and nothing will fail in CI.
+Re-check with `planning/scripts/check-diagrams.py` before touching it.
+
+## Do not revert: the forced-dark script
+
+`overrides/main.html` no longer forces the slate scheme on load. The script that
+did read `localStorage["data-md-color-scheme"]`, a key **Material never writes**
+(it stores the palette under `__palette`), so the condition was true on every
+page load and dark was reasserted every time. A reader could click the light
+toggle, watch the page turn light, follow any link, and be back in dark. Light
+mode was unreachable for the whole site.
+
+Dark-by-default does not need a script: `theme.palette` lists slate first, which
+Material already treats as the default for a first-time visitor, and it then
+persists whatever the reader picks. `planning/scripts/check-themes.py` asserts
+the light scheme survives navigation.
+
 ## Rules that apply to every phase
 
 - Never move, rename or delete a file under docs/ in Phases 1 to 8. If a later phase must, add the old path to `redirect_maps` in mkdocs.yml in the same commit.

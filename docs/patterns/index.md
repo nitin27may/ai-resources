@@ -5,7 +5,7 @@ tags:
   - Patterns
 ---
 
-# Architecture Patterns
+# Architecture patterns
 
 !!! abstract "Go deeper · 5 min · no code"
     **Before this:** [9 Production](../02-agents/production.md)  ·  **After this:** [Design patterns](design-patterns.md)
@@ -29,7 +29,7 @@ Proven patterns and principles for building AI systems. This section is primaril
 
 -   :material-cog-outline:{ .lg .middle } __Design Principles__
 
-    Core architectural principles -- async-first, event streaming, serialization, and extensibility.
+    Core architectural principles — async-first, event streaming, serialization, and extensibility.
 
     [:octicons-arrow-right-24: Design Principles](design-principles.md)
 

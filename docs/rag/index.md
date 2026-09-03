@@ -7,7 +7,7 @@ tags:
   - Retrieval
 ---
 
-# RAG & Knowledge Systems
+# RAG & knowledge systems
 
 !!! abstract "Go deeper · 10 min · no code"
     **Before this:** [5 Retrieval](../02-agents/retrieval.md)  ·  **After this:** [RAG fundamentals](rag-fundamentals.md)
@@ -19,31 +19,31 @@ This section covers everything from the basics of how RAG pipelines work, throug
 
 ---
 
-## When to Use RAG
+## When to use RAG
 
 Not every use case needs RAG. The diagram below maps common scenarios to the right approach.
 
 ```mermaid
 flowchart TD
     A["Start: What does your use case need?"]
-    A --> B{"Static knowledge,\nno private data?"}
-    B -- Yes --> C["Prompt Only\nSimple Q&A, general tasks"]
-    B -- No --> D{"Private or\nfrequently updated data?"}
-    D -- Yes --> E{"Relationships\nbetween entities matter?"}
-    E -- No --> F["RAG\nDocument retrieval, knowledge bases,\ncustomer support, internal search"]
-    E -- Yes --> G["GraphRAG\nOrg charts, legal networks,\ntechnical dependency graphs"]
-    D -- No --> H{"Need domain-specific\nstyle or behavior?"}
-    H -- Yes --> I["Fine-tuning\nSpecialized vocabulary, tone,\nor task format"]
+    A --> B{"Static knowledge,<br/>no private data?"}
+    B -- Yes --> C["Prompt Only<br/>Simple Q&A, general tasks"]
+    B -- No --> D{"Private or<br/>frequently updated data?"}
+    D -- Yes --> E{"Relationships<br/>between entities matter?"}
+    E -- No --> F["RAG<br/>Document retrieval, knowledge bases,<br/>customer support, internal search"]
+    E -- Yes --> G["GraphRAG<br/>Org charts, legal networks,<br/>technical dependency graphs"]
+    D -- No --> H{"Need domain-specific<br/>style or behavior?"}
+    H -- Yes --> I["Fine-tuning<br/>Specialized vocabulary, tone,<br/>or task format"]
     H -- No --> C
-    F --> J{"High accuracy critical\nor both needed?"}
-    J -- Yes --> K["Hybrid: RAG + Fine-tuning\nDomain model with live retrieval"]
+    F --> J{"High accuracy critical<br/>or both needed?"}
+    J -- Yes --> K["Hybrid: RAG + Fine-tuning<br/>Domain model with live retrieval"]
     J -- No --> F
 
     style C fill:#0284c7,color:#fff
     style F fill:#0d9488,color:#fff
     style G fill:#16a34a,color:#fff
     style I fill:#d97706,color:#fff
-    style K fill:#14b8a6,color:#fff
+    style K fill:#0f766e,color:#fff
 ```
 
 !!! info "Prerequisites"
@@ -57,7 +57,7 @@ flowchart TD
 
 ---
 
-## What's in This Section
+## What's in this section
 
 <div class="grid cards" markdown>
 
@@ -123,7 +123,7 @@ flowchart TD
 
 ---
 
-## Next Steps
+## Next steps
 
 - [RAG Fundamentals](rag-fundamentals.md) — start here if you are new to RAG pipelines
 - [Embeddings](embeddings.md) — understand the foundation of all vector-based retrieval

@@ -20,7 +20,7 @@ tags:
 
 ---
 
-## Why Standard RAG Falls Short
+## Why standard RAG falls short
 
 Standard RAG retrieves text chunks based on semantic similarity. That works well for direct factual lookups — "What is the refund policy?" or "What does function X do?" — but breaks down for questions that require synthesizing information across many documents or reasoning about relationships.
 
@@ -44,7 +44,7 @@ The core problem is **multi-hop reasoning**: answering these questions requires 
 
 ---
 
-## What GraphRAG Adds
+## What GraphRAG adds
 
 Where standard RAG stores text chunks + vectors, GraphRAG builds a richer intermediate representation:
 
@@ -57,28 +57,28 @@ This knowledge graph sits between your raw documents and the LLM, enabling queri
 
 ---
 
-## Microsoft GraphRAG Architecture
+## Microsoft GraphRAG architecture
 
-### Phase 1 — Indexing Pipeline
+### Phase 1 — indexing pipeline
 
 The indexing pipeline transforms raw documents into a queryable knowledge graph. This is the expensive part.
 
 ```mermaid
 flowchart TD
     A([Document Corpus]) --> B[Chunk Documents]
-    B --> C[Entity Extraction\nLLM per chunk]
-    B --> D[Relationship Extraction\nLLM per chunk]
+    B --> C[Entity Extraction<br/>LLM per chunk]
+    B --> D[Relationship Extraction<br/>LLM per chunk]
     C --> E[(Knowledge Graph)]
     D --> E
-    E --> F[Community Detection\nLeiden Algorithm]
-    F --> G[Community Summarization\nLLM per community]
+    E --> F[Community Detection<br/>Leiden Algorithm]
+    F --> G[Community Summarization<br/>LLM per community]
     G --> H([Query Ready])
 
     style A fill:#0284c7,color:#fff
     style B fill:#0d9488,color:#fff
     style C fill:#0d9488,color:#fff
     style D fill:#0d9488,color:#fff
-    style E fill:#14b8a6,color:#fff
+    style E fill:#0f766e,color:#fff
     style F fill:#0284c7,color:#fff
     style G fill:#d97706,color:#fff
     style H fill:#16a34a,color:#fff
@@ -95,19 +95,19 @@ flowchart TD
 !!! note
     For a 1,000-document corpus you might expect 5,000–20,000 LLM calls during indexing, depending on document length and entity density. At GPT-4o pricing, this can cost $50–500+ per full index build. Plan accordingly and test on a sample first.
 
-### Phase 2 — Query Pipeline
+### Phase 2 — query pipeline
 
 GraphRAG supports two fundamentally different query modes:
 
 ```mermaid
 flowchart TD
     A([User Query]) --> B{Query Mode}
-    B -- Local --> C[Entity Match\nVector Search]
-    B -- Global --> D[Community Summary\nAggregation]
-    C --> E[Graph Traversal\nNeighborhood Context]
-    E --> F[Entity + Relationship\n+ Chunk Context]
-    D --> G[Map: Score summaries\nper community]
-    G --> H[Reduce: Synthesize\nacross top communities]
+    B -- Local --> C[Entity Match<br/>Vector Search]
+    B -- Global --> D[Community Summary<br/>Aggregation]
+    C --> E[Graph Traversal<br/>Neighborhood Context]
+    E --> F[Entity + Relationship<br/>+ Chunk Context]
+    D --> G[Map: Score summaries<br/>per community]
+    G --> H[Reduce: Synthesize<br/>across top communities]
     F --> I[LLM Response]
     H --> I
 
@@ -115,8 +115,8 @@ flowchart TD
     style B fill:#d97706,color:#fff
     style C fill:#0d9488,color:#fff
     style D fill:#0d9488,color:#fff
-    style E fill:#14b8a6,color:#fff
-    style F fill:#14b8a6,color:#fff
+    style E fill:#0f766e,color:#fff
+    style F fill:#0f766e,color:#fff
     style G fill:#0284c7,color:#fff
     style H fill:#0284c7,color:#fff
     style I fill:#16a34a,color:#fff
@@ -128,7 +128,7 @@ flowchart TD
 
 ---
 
-## Local vs Global Query Modes
+## Local vs global query modes
 
 | Query Type | Mode | Example |
 |---|---|---|
@@ -143,7 +143,7 @@ When in doubt: if your question names a specific entity, use local. If your ques
 
 ---
 
-## GraphRAG vs Standard RAG Comparison
+## GraphRAG vs standard RAG comparison
 
 | Dimension | Standard RAG | GraphRAG |
 |---|---|---|
@@ -197,7 +197,7 @@ When in doubt: if your question names a specific entity, use local. If your ques
 
 ---
 
-## Next Steps
+## Next steps
 
 - [RAG Fundamentals](rag-fundamentals.md) — core concepts that GraphRAG builds on top of
 - [RAG Evaluation](rag-evaluation.md) — how to measure whether GraphRAG actually improves answer quality for your use case

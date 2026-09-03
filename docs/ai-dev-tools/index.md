@@ -9,7 +9,7 @@ tags:
   - MCP
 ---
 
-# AI Developer Tools
+# AI developer tools
 
 !!! abstract "Tools · 10 min · no code"
     **Before this:** [Frameworks and platforms](../tools-and-frameworks/index.md)  ·  **After this:** [GitHub Copilot](github-copilot.md)
@@ -34,7 +34,7 @@ The landscape breaks into three tiers, each with a different scope and mental mo
 
 ---
 
-## What's in This Section
+## What's in this section
 
 <div class="grid cards" markdown>
 
@@ -92,7 +92,7 @@ The landscape breaks into three tiers, each with a different scope and mental mo
 
 ---
 
-## Next Steps
+## Next steps
 
 - [GitHub Copilot](github-copilot.md) — start here if you're new to AI coding tools
 - [Claude Code](claude-code.md) — start here if you want agentic, autonomous coding assistance

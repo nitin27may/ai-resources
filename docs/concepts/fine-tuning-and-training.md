@@ -6,7 +6,7 @@ tags:
   - Models
 ---
 
-# Fine-Tuning & Training
+# Fine-tuning & training
 
 !!! abstract "Understand · 15 min · no code"
     **Before this:** [Safety and responsible AI](safety-and-responsible-ai.md)  ·  **After this:** [Infrastructure and operations](infrastructure-and-operations.md)
@@ -16,28 +16,28 @@ Prompting and RAG handle most AI use cases. But when you need a model to adopt a
 
 ---
 
-## When to Fine-Tune: The Decision Flow
+## When to fine-tune: the decision flow
 
 Before investing in fine-tuning, make sure simpler approaches will not work. Here is a decision framework:
 
 ```mermaid
 graph TD
-    A["You have an\nAI use case"] --> B{"Can prompt\nengineering\nsolve it?"}
-    B -->|"Yes"| C["Use Prompting\n(lowest cost)"]
-    B -->|"No"| D{"Do you need\nreal-time or\nchanging data?"}
-    D -->|"Yes"| E["Use RAG\n(moderate cost)"]
-    D -->|"No"| F{"Do you need the\nmodel to behave\ndifferently?"}
-    F -->|"Yes"| G["Fine-Tune\n(higher cost)"]
-    F -->|"No"| H["Combine\nRAG + Prompting"]
+    A["You have an<br/>AI use case"] --> B{"Can prompt<br/>engineering<br/>solve it?"}
+    B -->|"Yes"| C["Use Prompting<br/>(lowest cost)"]
+    B -->|"No"| D{"Do you need<br/>real-time or<br/>changing data?"}
+    D -->|"Yes"| E["Use RAG<br/>(moderate cost)"]
+    D -->|"No"| F{"Do you need the<br/>model to behave<br/>differently?"}
+    F -->|"Yes"| G["Fine-Tune<br/>(higher cost)"]
+    F -->|"No"| H["Combine<br/>RAG + Prompting"]
 
-    style A fill:#057398,stroke:#004987,color:#fff
-    style B fill:#00A0DF,stroke:#004987,color:#fff
-    style C fill:#259638,stroke:#259638,color:#fff
-    style D fill:#00A0DF,stroke:#004987,color:#fff
-    style E fill:#259638,stroke:#259638,color:#fff
-    style F fill:#632C4F,stroke:#632C4F,color:#fff
-    style G fill:#853175,stroke:#632C4F,color:#fff
-    style H fill:#259638,stroke:#259638,color:#fff
+    style A fill:#0284c7,stroke:#0284c7,color:#fff
+    style B fill:#0284c7,stroke:#0284c7,color:#fff
+    style C fill:#16a34a,stroke:#16a34a,color:#fff
+    style D fill:#0284c7,stroke:#0284c7,color:#fff
+    style E fill:#16a34a,stroke:#16a34a,color:#fff
+    style F fill:#0d9488,stroke:#0d9488,color:#fff
+    style G fill:#0f766e,stroke:#0d9488,color:#fff
+    style H fill:#16a34a,stroke:#16a34a,color:#fff
 ```
 
 !!! tip "The 80/20 Rule"
@@ -45,22 +45,22 @@ graph TD
 
 ---
 
-## What Is Fine-Tuning?
+## What is fine-tuning?
 
 **Fine-tuning** is the process of taking a pre-trained model and further training it on a smaller, task-specific dataset. The model adjusts its internal weights to become better at the specific task while retaining its general capabilities.
 
 ### Analogy
 
-Think of a pre-trained model as a university graduate with broad knowledge. Fine-tuning is like that graduate doing a specialized internship -- they apply their general knowledge to a specific domain and get better at it.
+Think of a pre-trained model as a university graduate with broad knowledge. Fine-tuning is like that graduate doing a specialized internship — they apply their general knowledge to a specific domain and get better at it.
 
-### What Fine-Tuning Changes
+### What fine-tuning changes
 
 - **Output style and tone**: Write in your brand voice, match a specific format.
 - **Domain behavior**: Respond like a medical professional, legal expert, or financial analyst.
 - **Task specialization**: Get consistently better at a narrow task (classification, extraction, scoring).
 - **Reduced prompting**: The model "just knows" things that previously required long prompts.
 
-### What Fine-Tuning Does NOT Do
+### What fine-tuning does NOT do
 
 - It does not give the model access to new data at inference time (that is what RAG does).
 - It does not guarantee elimination of hallucinations.
@@ -68,11 +68,11 @@ Think of a pre-trained model as a university graduate with broad knowledge. Fine
 
 ---
 
-## Supervised Fine-Tuning (SFT)
+## Supervised fine-tuning (SFT)
 
 **Supervised Fine-Tuning** is the most common approach. You provide a dataset of input-output pairs (examples of what the model should produce) and train it to replicate those patterns.
 
-### Training Data Format
+### Training data format
 
 Most fine-tuning APIs expect data in a conversational format:
 
@@ -86,7 +86,7 @@ Most fine-tuning APIs expect data in a conversational format:
 }
 ```
 
-### How Much Data Do You Need?
+### How much data do you need?
 
 | Goal | Minimum Examples | Recommended |
 |---|---|---|
@@ -99,11 +99,11 @@ Most fine-tuning APIs expect data in a conversational format:
 
 ---
 
-## LoRA and Efficient Fine-Tuning
+## LoRA and efficient fine-tuning
 
 Training all parameters of a large model is expensive and slow. **LoRA (Low-Rank Adaptation)** and related techniques make fine-tuning practical by training only a small fraction of the model's parameters.
 
-### How LoRA Works
+### How LoRA works
 
 Instead of updating all model weights during training, LoRA:
 
@@ -123,18 +123,18 @@ Instead of updating all model weights during training, LoRA:
 
 ### QLoRA
 
-**QLoRA** combines LoRA with **quantization** -- reducing the precision of the frozen model weights (e.g., from 16-bit to 4-bit). This further reduces memory requirements, making it possible to fine-tune large models on consumer-grade GPUs.
+**QLoRA** combines LoRA with **quantization** — reducing the precision of the frozen model weights (e.g., from 16-bit to 4-bit). This further reduces memory requirements, making it possible to fine-tune large models on consumer-grade GPUs.
 
 !!! tip "LoRA for Experimentation"
     LoRA's low cost and fast iteration make it ideal for experimentation. You can quickly test whether fine-tuning will help your use case before committing to a full training run.
 
 ---
 
-## Transfer Learning
+## Transfer learning
 
 **Transfer learning** is the broader concept that fine-tuning is built on. The idea is simple: knowledge learned from one task can be **transferred** to help with a related task.
 
-### Why It Works
+### Why it works
 
 A model pre-trained on billions of words of text has already learned:
 
@@ -145,37 +145,37 @@ A model pre-trained on billions of words of text has already learned:
 
 When you fine-tune, you are not teaching the model language from scratch. You are redirecting its existing capabilities toward your specific domain.
 
-### The Transfer Learning Pipeline
+### The transfer learning pipeline
 
 ```mermaid
 graph LR
-    A["Large Dataset\n(general text)"] --> B["Pre-Training"]
-    B --> C["Foundation\nModel"]
-    C --> D["Domain Dataset\n(your data)"]
+    A["Large Dataset<br/>(general text)"] --> B["Pre-Training"]
+    B --> C["Foundation<br/>Model"]
+    C --> D["Domain Dataset<br/>(your data)"]
     D --> E["Fine-Tuning"]
-    E --> F["Specialized\nModel"]
+    E --> F["Specialized<br/>Model"]
 
-    style A fill:#057398,stroke:#004987,color:#fff
-    style B fill:#00A0DF,stroke:#004987,color:#fff
-    style C fill:#632C4F,stroke:#632C4F,color:#fff
-    style D fill:#853175,stroke:#632C4F,color:#fff
-    style E fill:#9E57A2,stroke:#632C4F,color:#fff
-    style F fill:#259638,stroke:#259638,color:#fff
+    style A fill:#0284c7,stroke:#0284c7,color:#fff
+    style B fill:#0284c7,stroke:#0284c7,color:#fff
+    style C fill:#0d9488,stroke:#0d9488,color:#fff
+    style D fill:#0f766e,stroke:#0d9488,color:#fff
+    style E fill:#0f766e,stroke:#0d9488,color:#fff
+    style F fill:#16a34a,stroke:#16a34a,color:#fff
 ```
 
 ---
 
-## RLHF: Reinforcement Learning from Human Feedback
+## RLHF: reinforcement learning from human feedback
 
 **RLHF** is the technique that transformed raw language models into the helpful, harmless assistants we use today. It aligns model behavior with human preferences.
 
-### How RLHF Works (Simplified)
+### How RLHF works (simplified)
 
 1. **Supervised Fine-Tuning**: Start with a base model and fine-tune it on curated examples of good responses.
 2. **Reward Model Training**: Have humans rank multiple model outputs for the same prompt. Use these rankings to train a separate "reward model" that predicts which responses humans prefer.
 3. **Reinforcement Learning**: Use the reward model to further train the language model. The language model learns to generate responses that score high on the reward model.
 
-### Why RLHF Matters
+### Why RLHF matters
 
 - It is the reason models refuse harmful requests, stay on topic, and try to be helpful.
 - It is how model providers align general-purpose models with safety guidelines.
@@ -194,11 +194,11 @@ RLAIF (RL from AI Feedback)
 
 ---
 
-## Cost and Effort Considerations
+## Cost and effort considerations
 
 Fine-tuning is not free. Here is an honest look at the investment required:
 
-### Cost Factors
+### Cost factors
 
 | Factor | Description |
 |---|---|
@@ -209,7 +209,7 @@ Fine-tuning is not free. Here is an honest look at the investment required:
 | **Hosting** | Fine-tuned models may need dedicated endpoints, increasing serving costs. |
 | **Maintenance** | As your domain changes, training data and models need updating. |
 
-### Comparison of Approaches
+### Comparison of approaches
 
 | Approach | Upfront Cost | Ongoing Cost | Time to Deploy | Flexibility |
 |---|---|---|---|---|
@@ -219,7 +219,7 @@ Fine-tuning is not free. Here is an honest look at the investment required:
 | Full fine-tuning | High (multi-GPU + data prep) | Hosting + API costs | Weeks to months | Low (expensive to update) |
 
 !!! warning "Do Not Fine-Tune Prematurely"
-    Fine-tuning should be your last resort, not your first approach. Exhaust prompt engineering and RAG first. If you still cannot achieve the quality you need, then consider fine-tuning -- starting with LoRA.
+    Fine-tuning should be your last resort, not your first approach. Exhaust prompt engineering and RAG first. If you still cannot achieve the quality you need, then consider fine-tuning — starting with LoRA.
 
 ---
 

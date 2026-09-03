@@ -6,7 +6,7 @@ tags:
   - Copilot
 ---
 
-# AI-Generated Code Quality Pipeline
+# AI-generated code quality pipeline
 
 !!! abstract "Go deeper · 40 min · hands-on"
     **Before this:** [Design principles](design-principles.md)  ·  **After this:** [Frameworks and platforms](../tools-and-frameworks/index.md)
@@ -15,7 +15,7 @@ AI coding assistants can accelerate delivery, but they can also introduce dead c
 
 ---
 
-## Why AI-Generated Code Needs Extra Guardrails
+## Why AI-generated code needs extra guardrails
 
 AI tools are good at producing complete-looking solutions quickly. That speed is valuable, but it also makes it easier to accumulate code that is never used, hard to maintain, or insufficiently tested.
 
@@ -33,7 +33,7 @@ The most common risks are:
 
 ---
 
-## Tool Selection by Language
+## Tool selection by language
 
 ### TypeScript / Next.js / Angular
 
@@ -69,7 +69,7 @@ The most common risks are:
 | Dependency hygiene | `dotnet-unused` | Finds package references that are no longer needed |
 | Naming and style | `StyleCop.Analyzers` | Keeps generated code aligned with project standards |
 
-### Cross-Language
+### Cross-language
 
 | Concern | Tool | How It Helps |
 |---------|------|--------------|
@@ -80,11 +80,11 @@ The most common risks are:
 
 ---
 
-## GitHub Actions Pipeline
+## GitHub Actions pipeline
 
 The pipeline should combine fast pull request checks with deeper scheduled scans. Pull request checks keep quality visible during review, while scheduled scans help catch slow-growing code health problems.
 
-### Workflow 1: Pull Request Quality Gate
+### Workflow 1: pull request quality gate
 
 ```yaml
 name: Code Quality Gate
@@ -133,7 +133,7 @@ jobs:
             --ignore "node_modules,bin,obj,dist,.next,__pycache__"
 ```
 
-### Workflow 2: Scheduled Deep Scan
+### Workflow 2: scheduled deep scan
 
 ```yaml
 name: Nightly Code Health
@@ -183,7 +183,7 @@ jobs:
       - run: npx next build
 ```
 
-### Workflow 3: Catch-All Lint Aggregation
+### Workflow 3: catch-all lint aggregation
 
 ```yaml
 name: MegaLinter
@@ -215,7 +215,7 @@ jobs:
 
 ---
 
-## Branch Protection and Repository Settings
+## Branch protection and repository settings
 
 Quality checks only matter if they are enforced consistently.
 
@@ -237,7 +237,7 @@ Recommended status checks:
 
 ---
 
-## GitHub-Native Features to Pair With the Pipeline
+## GitHub-native features to pair with the pipeline
 
 GitHub Actions should be complemented by the native capabilities already available in the platform:
 
@@ -251,7 +251,7 @@ These features do not replace language-specific analyzers, but they make the ove
 
 ---
 
-## What This Pipeline Catches Beyond Default Checks
+## What this pipeline catches beyond default checks
 
 | Concern | Native Platform Coverage | Added Value From This Pipeline |
 |---------|--------------------------|--------------------------------|
@@ -266,7 +266,7 @@ These features do not replace language-specific analyzers, but they make the ove
 
 ---
 
-## Licensing and Security Notes
+## Licensing and security notes
 
 When selecting code quality tools for AI-heavy repositories, confirm the following before standardizing on them:
 
@@ -284,7 +284,7 @@ For the tools listed on this page, good operational practices include:
 
 ---
 
-## Suggested Rollout Path
+## Suggested rollout path
 
 1. Start with non-blocking warnings for dead code, duplication, and typos.
 2. Add language-specific analyzers for the stacks you actively ship.

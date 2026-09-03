@@ -7,7 +7,7 @@ tags:
   - Claude Code
 ---
 
-# Claude Code Skills & Agents
+# Claude Code skills & agents
 
 !!! abstract "Tools · 40 min · hands-on"
     **Before this:** [Claude Code](claude-code.md)  ·  **After this:** [Model Context Protocol](mcp.md)
@@ -82,7 +82,7 @@ sometimes go in a skill.
 
 The Agent tool lets Claude Code spawn specialized subprocess agents. Each subagent runs in its own context, which keeps large search results or experimental work isolated from the main session's context window.
 
-### Built-in Subagent Types
+### Built-in subagent types
 
 | Type | Purpose | When to Use |
 |---|---|---|
@@ -90,7 +90,7 @@ The Agent tool lets Claude Code spawn specialized subprocess agents. Each subage
 | Explore | Fast codebase exploration — file patterns, code search | When you need to find files or grep for patterns quickly |
 | Plan | Software architecture planning | Before implementing a complex feature — get a plan first |
 
-### When to Use Subagents
+### When to use subagents
 
 **Parallel independent research.** If a task requires exploring multiple separate parts of the codebase, running subagents in parallel is faster than sequential exploration in the main thread. For example: simultaneously searching the API controllers, the data access layer, and the test suite for usages of a type being renamed.
 
@@ -98,7 +98,7 @@ The Agent tool lets Claude Code spawn specialized subprocess agents. Each subage
 
 **Isolated experimentation.** Worktree-isolated subagents (see below) let the agent make changes on a copy of the repo without touching your working tree.
 
-### Foreground vs Background
+### Foreground vs background
 
 **Foreground (default):** The main agent waits for the subagent to complete before continuing. Use this when the subagent's result informs the next step — for example, when you need the search results before writing code.
 
@@ -106,7 +106,7 @@ The Agent tool lets Claude Code spawn specialized subprocess agents. Each subage
 
 Don't default to background. If the result will influence the next action, run foreground — background saves time only when the two workstreams are truly independent.
 
-### Worktree Isolation
+### Worktree isolation
 
 Setting `isolation: "worktree"` causes Claude Code to create a temporary git worktree before running the subagent. The agent works on that copy of the repository, not your working tree.
 
@@ -183,7 +183,7 @@ Hooks live in `settings.json`, either globally at `~/.claude/settings.json` or p
 
 The `matcher` field targets a specific tool name (`Edit`, `Bash`, `Read`, etc.). Omitting `matcher` applies the hook to all tool uses of that hook type.
 
-### Common Hook Patterns
+### Common hook patterns
 
 - **Auto-lint on edit:** run `eslint` or `dotnet format` after every file edit so the agent sees lint errors and self-corrects
 - **Auto-test on change:** run the relevant test suite after edits so the agent catches regressions in the same session
@@ -193,7 +193,7 @@ The `matcher` field targets a specific tool name (`Edit`, `Bash`, `Read`, etc.).
 !!! warning
     Hooks run with your full user permissions. A `PostToolUse` hook that runs `bash` with project-supplied commands is as privileged as running that command yourself. If you're working with `.claude/settings.json` from a repository you don't fully trust, review the hooks before running any Claude Code sessions.
 
-## MCP Integration
+## MCP integration
 
 Claude Code is an MCP host — it can connect to MCP servers that expose tools, resources, and prompts. This is how you extend Claude Code with capabilities beyond the built-in file/shell/git tools: querying a database, calling an internal API, fetching from a knowledge base, or interfacing with external services.
 
@@ -228,7 +228,7 @@ For building custom MCP servers, configuring authentication, and the full list o
 - [Hooks reference](https://code.claude.com/docs/en/hooks) — all 31 events
 - [Subagents](https://code.claude.com/docs/en/sub-agents)
 
-## Next Steps
+## Next steps
 
 - [Model Context Protocol (MCP)](mcp.md) — build custom MCP servers and extend Claude Code with external tools
 - [Claude Code](claude-code.md) — installation, CLAUDE.md configuration, and core capabilities

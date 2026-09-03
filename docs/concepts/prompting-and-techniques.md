@@ -5,7 +5,7 @@ tags:
   - Prompting
 ---
 
-# Prompting & Techniques
+# Prompting & techniques
 
 !!! abstract "Understand · 30 min · code optional"
     **Before this:** [How models work](foundation-and-models.md)  ·  **After this:** [Retrieval and data](retrieval-and-data.md)
@@ -15,7 +15,7 @@ The quality of output you get from an AI model depends heavily on how you ask. *
 
 ---
 
-## What Is Prompt Engineering?
+## What is prompt engineering?
 
 Prompt engineering is the art and science of crafting instructions (prompts) that get the best possible output from an AI model. It matters because:
 
@@ -24,15 +24,15 @@ Prompt engineering is the art and science of crafting instructions (prompts) tha
 - Prompt engineering is the **lowest-effort, highest-impact** way to improve AI application quality.
 
 !!! tip "Prompt Engineering Is Iterative"
-    Rarely will your first prompt be perfect. Treat prompts like code -- write, test, evaluate, refine. Keep a library of prompts that work well for your use cases.
+    Rarely will your first prompt be perfect. Treat prompts like code — write, test, evaluate, refine. Keep a library of prompts that work well for your use cases.
 
 ---
 
-## System Prompts
+## System prompts
 
 A **system prompt** (also called a system message) is a special instruction that sets the model's behavior, personality, and constraints for the entire conversation. It is typically invisible to the end user.
 
-### What Goes in a System Prompt
+### What goes in a system prompt
 
 - **Role definition**: "You are a helpful customer service agent for Contoso Electronics."
 - **Behavior rules**: "Always respond in formal English. Never discuss competitors."
@@ -58,9 +58,9 @@ Rules:
 
 ---
 
-## Zero-Shot vs Few-Shot Learning
+## Zero-shot vs few-shot learning
 
-### Zero-Shot
+### Zero-shot
 
 In **zero-shot** prompting, you ask the model to perform a task without providing any examples. You rely entirely on the model's training to understand what you want.
 
@@ -76,7 +76,7 @@ Classify the following customer feedback as Positive, Negative, or Neutral:
 
 Zero-shot works well for straightforward tasks where the model's training covers the domain.
 
-### Few-Shot
+### Few-shot
 
 In **few-shot** prompting, you provide a few examples of the desired input-output pattern before asking the model to handle a new input. This "teaches" the model the pattern you expect.
 
@@ -103,7 +103,7 @@ Classification:
 !!! tip "How Many Examples?"
     For most tasks, 2-5 examples are sufficient. More examples improve consistency but consume tokens. Include examples that cover edge cases and the range of expected outputs.
 
-### When to Use Which
+### When to use which
 
 | Approach | Best For | Limitations |
 |---|---|---|
@@ -112,7 +112,7 @@ Classification:
 
 ---
 
-## Chain of Thought (CoT) Prompting
+## Chain of Thought (CoT) prompting
 
 **Chain of thought** prompting asks the model to show its reasoning step by step before arriving at an answer. This dramatically improves performance on tasks that require logic, math, or multi-step reasoning.
 
@@ -148,7 +148,7 @@ Both arrive at the same answer in this simple case, but for complex problems, Co
 - Each step can be verified independently.
 - Errors are easier to spot and diagnose.
 
-### How to Trigger CoT
+### How to trigger CoT
 
 You can trigger chain of thought with simple additions to your prompt:
 
@@ -158,15 +158,15 @@ You can trigger chain of thought with simple additions to your prompt:
 - "Break this down into steps before answering."
 
 !!! note "Some Models Have Built-In CoT"
-    Models like OpenAI's o1/o3 and DeepSeek R1 automatically use chain of thought reasoning internally. For these models, you do not need to explicitly request step-by-step reasoning -- they do it by default.
+    Models like OpenAI's o1/o3 and DeepSeek R1 automatically use chain of thought reasoning internally. For these models, you do not need to explicitly request step-by-step reasoning — they do it by default.
 
 ---
 
-## Grounding Techniques
+## Grounding techniques
 
 **Grounding** means anchoring the model's responses in specific, provided information rather than letting it rely on its general training data. This reduces hallucinations and improves accuracy.
 
-### Common Grounding Techniques
+### Common grounding techniques
 
 Contextual grounding
 :   Include relevant documents, data, or facts directly in the prompt. The model answers based on this provided context.
@@ -193,16 +193,16 @@ Constraint-based grounding
 
 ---
 
-## Best Practices for Effective Prompts
+## Best practices for effective prompts
 
-### 1. Be Specific
+### 1. be specific
 
 | Vague | Specific |
 |---|---|
 | "Tell me about Azure" | "Explain the key differences between Azure App Service and Azure Container Apps for deploying web applications" |
 | "Write code" | "Write a Python function that takes a list of integers and returns the two numbers that sum to a target value" |
 
-### 2. Provide Structure
+### 2. provide structure
 
 Tell the model exactly what format you want:
 
@@ -214,7 +214,7 @@ Analyze the following log entry and respond with:
 - Recommended Action: (what to do next)
 ```
 
-### 3. Use Delimiters
+### 3. use delimiters
 
 Separate different parts of your prompt clearly:
 
@@ -229,7 +229,7 @@ Summarize the following article in 3 bullet points.
 Return a JSON array of strings, each containing one bullet point.
 ```
 
-### 4. Assign a Role
+### 4. assign a role
 
 Give the model a persona that matches your need:
 
@@ -239,7 +239,7 @@ in PostgreSQL performance tuning. The user will describe a slow query
 and you will provide optimization recommendations.
 ```
 
-### 5. Specify What NOT to Do
+### 5. specify what NOT to do
 
 Models sometimes need explicit negative instructions:
 
@@ -251,7 +251,7 @@ Models sometimes need explicit negative instructions:
 
 ---
 
-## Common Mistakes to Avoid
+## Common mistakes to avoid
 
 !!! danger "Prompt Anti-Patterns"
 

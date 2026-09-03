@@ -19,7 +19,7 @@ tags:
 
 ---
 
-## What Are Embeddings?
+## What are embeddings?
 
 An embedding is a fixed-length list of numbers (a vector) that represents the meaning of a piece of text. The key property is that **similar meanings produce vectors that are close together** in the high-dimensional space, while dissimilar meanings produce vectors that are far apart.
 
@@ -39,20 +39,20 @@ The model has no explicit rule saying "cancel" and "end" are synonyms. It learne
 
 ---
 
-## How Embeddings Are Generated
+## How embeddings are generated
 
 ```mermaid
 flowchart LR
-    T["Input Text\n'How do I reset my password?'"]
-    --> TK["Tokenizer\nText → Token IDs"]
-    --> EN["Encoder\nTransformer Layers\n(BERT, RoBERTa, etc.)"]
-    --> PL["Pooling\nCLS token or mean\nof token embeddings"]
-    --> VE["Vector\n[0.021, -0.847, 0.392, ...]\n1536 or 3072 dims"]
+    T["Input Text<br/>'How do I reset my password?'"]
+    --> TK["Tokenizer<br/>Text → Token IDs"]
+    --> EN["Encoder<br/>Transformer Layers<br/>(BERT, RoBERTa, etc.)"]
+    --> PL["Pooling<br/>CLS token or mean<br/>of token embeddings"]
+    --> VE["Vector<br/>[0.021, -0.847, 0.392, ...]<br/>1536 or 3072 dims"]
 
     style T fill:#0284c7,color:#fff
-    style TK fill:#14b8a6,color:#fff
+    style TK fill:#0f766e,color:#fff
     style EN fill:#0d9488,color:#fff
-    style PL fill:#14b8a6,color:#fff
+    style PL fill:#0f766e,color:#fff
     style VE fill:#16a34a,color:#fff
 ```
 
@@ -70,7 +70,7 @@ flowchart LR
 
 ---
 
-## Embedding Model Comparison
+## Embedding model comparison
 
 | Model | Provider | Dimensions | Multilingual | Max Tokens | Notes |
 |---|---|---|---|---|---|
@@ -89,7 +89,7 @@ flowchart LR
 
 ---
 
-## Input Types Matter
+## Input types matter
 
 Some embedding providers distinguish between the type of content being embedded. Cohere and Voyage AI expose this as an explicit parameter; OpenAI handles it implicitly through model training.
 
@@ -107,7 +107,7 @@ Using `search_document` for indexing and `search_query` for queries is not optio
 
 ---
 
-## Choosing the Right Model
+## Choosing the right model
 
 === "Use OpenAI"
 
@@ -147,7 +147,7 @@ Using `search_document` for indexing and `search_query` for queries is not optio
 
 ---
 
-## Dimension Reduction — Matryoshka Embeddings
+## Dimension reduction — Matryoshka embeddings
 
 OpenAI's `text-embedding-3` models and some open-source models (Nomic, `bge-m3`) support **Matryoshka Representation Learning** (MRL). The model is trained so that the first N dimensions of a 3072-dim vector are themselves a valid, lower-quality embedding.
 
@@ -157,7 +157,7 @@ Practical use: embed at full 3072 dimensions during indexing. If storage or quer
 
 ---
 
-## Production Considerations
+## Production considerations
 
 **Storage cost**
 
@@ -197,7 +197,7 @@ Do not cache document embeddings in memory — store them in the vector database
 
 ---
 
-## Next Steps
+## Next steps
 
 - [Chunking Strategies](chunking-strategies.md) — how you chunk documents directly affects what your embedding model sees and what it can represent
 - [Vector Databases](vector-databases.md) — where to store, index, and query the vectors your embedding model produces

@@ -60,9 +60,15 @@ markdown_extensions:
       pygments_lang_class: true
   - pymdownx.superfences:
       custom_fences:
+        # `fence_div_format`, not `fence_code_format`. The code format emits
+        # `pre.mermaid`, which Material's own Mermaid integration then claims --
+        # and on this site (and on a stock Material site) that integration
+        # silently produced empty diagrams. Emitting `div.mermaid` keeps
+        # Material's handler out of it; assets/javascripts/mermaid-init.js does
+        # the rendering against a pinned version.
         - name: mermaid
           class: mermaid
-          format: !!python/name:pymdownx.superfences.fence_code_format
+          format: !!python/name:pymdownx.superfences.fence_div_format
       preserve_tabs: true
   - pymdownx.inlinehilite
   - pymdownx.snippets:
@@ -94,6 +100,10 @@ extra_css:
 
 extra_javascript:
   - assets/javascripts/fullwidth-toggle.js
+  # Pinned. Material's built-in integration pulls `mermaid@11`, an unpinned
+  # major, which is how a silent upstream break reached production unnoticed.
+  - https://unpkg.com/mermaid@11.12.0/dist/mermaid.min.js
+  - assets/javascripts/mermaid-init.js
 
 # Plugins configuration
 plugins:

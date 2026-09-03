@@ -6,15 +6,15 @@ tags:
   - Agents
 ---
 
-# Design Patterns for AI Agent Systems
+# Design patterns for AI agent systems
 
 !!! abstract "Go deeper · 45 min · code optional"
     **Before this:** [Architecture patterns](index.md)  ·  **After this:** [Design principles](design-principles.md)
     **Hands-on version:** [2 The agent loop](../02-agents/the-agent-loop.md)
 
-## Foundation: Basic Architecture Patterns
+## Foundation: basic architecture patterns
 
-### Simple Model
+### Simple model
 
 #### When to use:
 
@@ -29,7 +29,7 @@ tags:
 - Easy to implement with direct LLM API calls
 - Limited to text processing, analysis, or generation
 
-#### Example Use Cases:
+#### Example use cases:
 
 - Text completion and generation
 - Simple question answering
@@ -38,7 +38,7 @@ tags:
 
 ---
 
-### Single Agent
+### Single agent
 
 #### When to use:
 
@@ -55,7 +55,7 @@ tags:
 - Can handle action-taking with appropriate tools
 - May struggle with highly complex multi-step tasks
 
-#### Example Use Cases:
+#### Example use cases:
 
 - Simple automation tasks
 - Basic tool calling scenarios
@@ -64,7 +64,7 @@ tags:
 
 ---
 
-### Multi-Agent Workflow
+### Multi-agent workflow
 
 #### When to use:
 
@@ -82,7 +82,7 @@ tags:
 - Requires upfront design
 - Less flexible than autonomous approaches
 
-#### Example Use Cases:
+#### Example use cases:
 
 - Content creation pipeline (research, writing, editing agents)
 - Customer service routing (triage, specialist, resolution)
@@ -91,11 +91,11 @@ tags:
 
 ---
 
-## Workflow Patterns (Explicit Control)
+## Workflow patterns (explicit control)
 
 Workflow patterns provide developer-defined execution paths with predictable behavior. These patterns borrow concepts from graph theory to model multi-agent orchestration as computational graphs where nodes represent computational units and edges define control flow between nodes.
 
-### Sequential Workflows
+### Sequential workflows
 
 Sequential workflows implement linear execution where each node's output feeds into the next node (A → B → C), ensuring ordered processing with predictable execution timing.
 
@@ -114,17 +114,17 @@ flowchart LR
     C -->|Analysis Results| D
     D -.->|Final Report| End
     
-    style User fill:#004987,stroke:#003665,stroke-width:2px,color:#fff
-    style A fill:#259638,stroke:#1C712A,stroke-width:3px,color:#fff
-    style B fill:#632C4F,stroke:#4E223E,stroke-width:3px,color:#fff
-    style C fill:#853175,stroke:#6A275E,stroke-width:3px,color:#fff
-    style D fill:#057398,stroke:#045672,stroke-width:3px,color:#fff
-    style End fill:#259638,stroke:#1C712A,stroke-width:2px,color:#fff
+    style User fill:#0284c7,stroke:#0270a8,stroke-width:2px,color:#fff
+    style A fill:#16a34a,stroke:#15803d,stroke-width:3px,color:#fff
+    style B fill:#0d9488,stroke:#0b7a72,stroke-width:3px,color:#fff
+    style C fill:#0f766e,stroke:#119b91,stroke-width:3px,color:#fff
+    style D fill:#0284c7,stroke:#0270a8,stroke-width:3px,color:#fff
+    style End fill:#16a34a,stroke:#15803d,stroke-width:2px,color:#fff
 ```
 
 ---
 
-### Conditional Workflows
+### Conditional workflows
 
 Conditional workflows use logic-based edges to determine the next node based on conditions, enabling branching execution paths and dynamic routing.
 
@@ -142,16 +142,16 @@ flowchart LR
     B -.->|Fail| A
     D -.->|Deployed| End
     
-    style User fill:#004987,stroke:#003665,stroke-width:2px,color:#fff
-    style A fill:#259638,stroke:#1C712A,stroke-width:3px,color:#fff
-    style B fill:#853175,stroke:#6A275E,stroke-width:3px,color:#fff
-    style D fill:#632C4F,stroke:#4E223E,stroke-width:3px,color:#fff
-    style End fill:#259638,stroke:#1C712A,stroke-width:2px,color:#fff
+    style User fill:#0284c7,stroke:#0270a8,stroke-width:2px,color:#fff
+    style A fill:#16a34a,stroke:#15803d,stroke-width:3px,color:#fff
+    style B fill:#0f766e,stroke:#119b91,stroke-width:3px,color:#fff
+    style D fill:#0d9488,stroke:#0b7a72,stroke-width:3px,color:#fff
+    style End fill:#16a34a,stroke:#15803d,stroke-width:2px,color:#fff
 ```
 
 ---
 
-### Supervisor Workflows
+### Supervisor workflows
 
 A supervisor workflow is a conditional workflow variant where a central control node evaluates requests and routes tasks to specialized agents based on task characteristics.
 
@@ -172,17 +172,17 @@ flowchart TD
     Billing -.-> End
     Sales -.-> End
     
-    style User fill:#004987,stroke:#003665,stroke-width:2px,color:#fff
-    style Supervisor fill:#9E57A2,stroke:#7E4582,stroke-width:3px,color:#fff
-    style Tech fill:#259638,stroke:#1C712A,stroke-width:3px,color:#fff
-    style Billing fill:#632C4F,stroke:#4E223E,stroke-width:3px,color:#fff
-    style Sales fill:#853175,stroke:#6A275E,stroke-width:3px,color:#fff
-    style End fill:#259638,stroke:#1C712A,stroke-width:2px,color:#fff
+    style User fill:#0284c7,stroke:#0270a8,stroke-width:2px,color:#fff
+    style Supervisor fill:#0f766e,stroke:#119b91,stroke-width:3px,color:#fff
+    style Tech fill:#16a34a,stroke:#15803d,stroke-width:3px,color:#fff
+    style Billing fill:#0d9488,stroke:#0b7a72,stroke-width:3px,color:#fff
+    style Sales fill:#0f766e,stroke:#119b91,stroke-width:3px,color:#fff
+    style End fill:#16a34a,stroke:#15803d,stroke-width:2px,color:#fff
 ```
 
 ---
 
-### Hierarchical Workflows
+### Hierarchical workflows
 
 ```mermaid
 flowchart TD
@@ -218,23 +218,23 @@ flowchart TD
     Payment -.-> End3
     Refund -.-> End4
     
-    style User fill:#004987,stroke:#003665,stroke-width:2px,color:#fff
-    style Main fill:#9E57A2,stroke:#7E4582,stroke-width:4px,color:#fff
-    style TechSup fill:#632C4F,stroke:#4E223E,stroke-width:3px,color:#fff
-    style BillSup fill:#853175,stroke:#6A275E,stroke-width:3px,color:#fff
-    style L1 fill:#259638,stroke:#1C712A,stroke-width:2px,color:#fff
-    style L2 fill:#057398,stroke:#045672,stroke-width:2px,color:#fff
-    style Payment fill:#259638,stroke:#1C712A,stroke-width:2px,color:#fff
-    style Refund fill:#057398,stroke:#045672,stroke-width:2px,color:#fff
-    style End1 fill:#259638,stroke:#1C712A,stroke-width:2px,color:#fff
-    style End2 fill:#259638,stroke:#1C712A,stroke-width:2px,color:#fff
-    style End3 fill:#259638,stroke:#1C712A,stroke-width:2px,color:#fff
-    style End4 fill:#259638,stroke:#1C712A,stroke-width:2px,color:#fff
+    style User fill:#0284c7,stroke:#0270a8,stroke-width:2px,color:#fff
+    style Main fill:#0f766e,stroke:#119b91,stroke-width:4px,color:#fff
+    style TechSup fill:#0d9488,stroke:#0b7a72,stroke-width:3px,color:#fff
+    style BillSup fill:#0f766e,stroke:#119b91,stroke-width:3px,color:#fff
+    style L1 fill:#16a34a,stroke:#15803d,stroke-width:2px,color:#fff
+    style L2 fill:#0284c7,stroke:#0270a8,stroke-width:2px,color:#fff
+    style Payment fill:#16a34a,stroke:#15803d,stroke-width:2px,color:#fff
+    style Refund fill:#0284c7,stroke:#0270a8,stroke-width:2px,color:#fff
+    style End1 fill:#16a34a,stroke:#15803d,stroke-width:2px,color:#fff
+    style End2 fill:#16a34a,stroke:#15803d,stroke-width:2px,color:#fff
+    style End3 fill:#16a34a,stroke:#15803d,stroke-width:2px,color:#fff
+    style End4 fill:#16a34a,stroke:#15803d,stroke-width:2px,color:#fff
 ```
 
 ---
 
-### Parallel Workflows
+### Parallel workflows
 
 ```mermaid
 flowchart TD
@@ -259,26 +259,26 @@ flowchart TD
     
     Merge -.->|Final Output| End
     
-    style User fill:#004987,stroke:#003665,stroke-width:2px,color:#fff
-    style Split fill:#9E57A2,stroke:#7E4582,stroke-width:3px,color:#fff
-    style A1 fill:#259638,stroke:#1C712A,stroke-width:3px,color:#fff
-    style A2 fill:#632C4F,stroke:#4E223E,stroke-width:3px,color:#fff
-    style A3 fill:#853175,stroke:#6A275E,stroke-width:3px,color:#fff
-    style Merge fill:#057398,stroke:#045672,stroke-width:3px,color:#fff
-    style End fill:#259638,stroke:#1C712A,stroke-width:2px,color:#fff
+    style User fill:#0284c7,stroke:#0270a8,stroke-width:2px,color:#fff
+    style Split fill:#0f766e,stroke:#119b91,stroke-width:3px,color:#fff
+    style A1 fill:#16a34a,stroke:#15803d,stroke-width:3px,color:#fff
+    style A2 fill:#0d9488,stroke:#0b7a72,stroke-width:3px,color:#fff
+    style A3 fill:#0f766e,stroke:#119b91,stroke-width:3px,color:#fff
+    style Merge fill:#0284c7,stroke:#0270a8,stroke-width:3px,color:#fff
+    style End fill:#16a34a,stroke:#15803d,stroke-width:2px,color:#fff
 ```
 
 ---
 
-## Autonomous Patterns (Emergent Control)
+## Autonomous patterns (emergent control)
 
 Autonomous patterns enable runtime-determined execution based on task state and agent reasoning. The critical concept is that the flow of control is driven by an AI model and dynamically determined at runtime. Rather than following prescribed paths, agents orchestrate through communication and shared understanding of the current task context.
 
 These patterns exist on a spectrum of control, from structured orchestration to fully emergent behavior.
 
-### Plan-Based Orchestration Pattern
+### Plan-based orchestration pattern
 
-### Handoff Pattern
+### Handoff pattern
 
 ```mermaid
 graph TD
@@ -298,23 +298,23 @@ graph TD
     
     Master --> Response[Response to User]
     
-    style User fill:#E6F1F5,stroke:#004987,color:#000
-    style Master fill:#57C0E8,stroke:#853175,color:#000
-    style Specialist1 fill:#C8E5CD,stroke:#259638,color:#000
-    style Specialist2 fill:#81B8CB,stroke:#057398,color:#000
-    style Specialist3 fill:#9E57A2,stroke:#632C4F,color:#000
-    style Response fill:#C0DCE5,stroke:#632C4F,color:#000
+    style User fill:#0f766e,stroke:#0284c7,color:#fff
+    style Master fill:#0f766e,stroke:#14b8a6,color:#fff
+    style Specialist1 fill:#16a34a,stroke:#16a34a,color:#fff
+    style Specialist2 fill:#119b91,stroke:#0284c7,color:#fff
+    style Specialist3 fill:#0f766e,stroke:#0d9488,color:#fff
+    style Response fill:#119b91,stroke:#0d9488,color:#fff
 ```
 
 ---
 
-### Conversation-Driven Pattern (AI-Driven Conversation Pattern)
+### Conversation-driven pattern (AI-driven conversation pattern)
 
 ---
 
-## Pattern Selection Criteria
+## Pattern selection criteria
 
-### Based on Task Characteristics:
+### Based on task characteristics:
 
 - **Well-defined, repeatable processes** → Workflow patterns (Sequential, Conditional, Parallel)
 - **Dynamic, exploratory tasks** → Autonomous patterns (Conversation-driven)
@@ -322,7 +322,7 @@ graph TD
 - **Domain expertise needed** → Handoff patterns
 - **Emergent solutions required** → AI-Driven Conversation
 
-### Based on System Requirements:
+### Based on system requirements:
 
 - **High predictability needed** → Workflow patterns
 - **Maximum autonomy required** → AI-Driven Conversation
@@ -330,7 +330,7 @@ graph TD
 - **Scalability concerns** → Parallel Workflows or Handoff patterns
 - **Transparency required** → Conversation-driven patterns (shared visibility)
 
-### Based on Implementation Considerations:
+### Based on implementation considerations:
 
 - **Developer resources available** → Workflow patterns (explicit control)
 - **Rapid prototyping needed** → Conversation-driven patterns (simple implementation)

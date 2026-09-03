@@ -6,19 +6,19 @@ tags:
   - Retrieval
 ---
 
-# Enterprise AI Patterns
+# Enterprise AI patterns
 
 !!! abstract "Understand · 30 min · no code"
     **Before this:** [Agentic AI](../concepts/agentic-ai.md)  ·  **After this:** [Safety and responsible AI](../concepts/safety-and-responsible-ai.md)
     **Hands-on version:** [5 Retrieval](../02-agents/retrieval.md)  ·  **In depth:** [RAG fundamentals](../rag/rag-fundamentals.md)
 
-Enterprise AI patterns are proven architectural approaches that organizations use to integrate AI into business processes at scale. Each pattern addresses a different class of problem -- from augmenting human work to fully automating document pipelines.
+Enterprise AI patterns are proven architectural approaches that organizations use to integrate AI into business processes at scale. Each pattern addresses a different class of problem — from augmenting human work to fully automating document pipelines.
 
 This page covers five patterns commonly seen in enterprise AI adoption. Understanding these patterns helps teams choose the right approach for their use case and avoid over-engineering or under-investing.
 
 ---
 
-## Copilot Pattern
+## Copilot pattern
 
 The **Copilot pattern** embeds an AI assistant directly into an existing application or workflow. The AI augments the user's capabilities rather than replacing them. The human stays in control, reviewing and approving AI suggestions before they take effect.
 
@@ -29,7 +29,7 @@ The **Copilot pattern** embeds an AI assistant directly into an existing applica
 - Context is drawn from the user's current work (documents, emails, data)
 - Responses are grounded in organizational data through retrieval
 
-**Example:** Microsoft 365 Copilot surfaces relevant information, drafts content, and automates tasks inside Word, Excel, Outlook, and Teams -- but the user always reviews and accepts the output.
+**Example:** Microsoft 365 Copilot surfaces relevant information, drafts content, and automates tasks inside Word, Excel, Outlook, and Teams — but the user always reviews and accepts the output.
 
 ```mermaid
 graph LR
@@ -43,12 +43,12 @@ graph LR
     C -->|Suggested Response| U
     U -->|Accept / Edit / Reject| O[Final Output]
 
-    style U fill:#057398,stroke:#004987,color:#fff
-    style C fill:#00A0DF,stroke:#057398,color:#fff
-    style T1 fill:#8b5cf6,stroke:#7c3aed,color:#fff
-    style T2 fill:#8b5cf6,stroke:#7c3aed,color:#fff
-    style T3 fill:#8b5cf6,stroke:#7c3aed,color:#fff
-    style O fill:#259638,stroke:#1a7a2b,color:#fff
+    style U fill:#0284c7,stroke:#0284c7,color:#fff
+    style C fill:#0284c7,stroke:#0284c7,color:#fff
+    style T1 fill:#0d9488,stroke:#0b7a72,color:#fff
+    style T2 fill:#0d9488,stroke:#0b7a72,color:#fff
+    style T3 fill:#0d9488,stroke:#0b7a72,color:#fff
+    style O fill:#16a34a,stroke:#15803d,color:#fff
 ```
 
 **When to use the Copilot pattern:**
@@ -59,7 +59,7 @@ graph LR
 
 ---
 
-## Autonomous Agent Pattern
+## Autonomous agent pattern
 
 The **Autonomous Agent pattern** deploys AI that operates independently, making decisions and taking actions with minimal human oversight. The agent perceives its environment, reasons about goals, and executes multi-step plans on its own.
 
@@ -76,9 +76,9 @@ The **Autonomous Agent pattern** deploys AI that operates independently, making 
 graph LR
     A[Human in the Loop] --> B[Human on the Loop] --> C[Human out of the Loop]
 
-    style A fill:#259638,stroke:#1a7a2b,color:#fff
-    style B fill:#057398,stroke:#004987,color:#fff
-    style C fill:#632C4F,stroke:#4a2039,color:#fff
+    style A fill:#16a34a,stroke:#15803d,color:#fff
+    style B fill:#0284c7,stroke:#0284c7,color:#fff
+    style C fill:#0d9488,stroke:#0b7a72,color:#fff
 ```
 
 | Level | Description | Example |
@@ -99,16 +99,16 @@ graph LR
 
 ---
 
-## Intelligent Document Processing (IDP)
+## Intelligent document processing (IDP)
 
-**Intelligent Document Processing** uses AI to extract, classify, and process information from unstructured and semi-structured documents. It combines multiple AI capabilities -- OCR, natural language processing, classification, and entity extraction -- into an end-to-end pipeline.
+**Intelligent Document Processing** uses AI to extract, classify, and process information from unstructured and semi-structured documents. It combines multiple AI capabilities — OCR, natural language processing, classification, and entity extraction — into an end-to-end pipeline.
 
 **Key capabilities:**
 
-- **Document classification** -- Automatically identify document type (invoice, contract, claim form)
-- **Data extraction** -- Pull structured data from unstructured text, tables, and handwriting
-- **Validation** -- Cross-check extracted data against business rules and reference data
-- **Integration** -- Feed extracted data into downstream business systems
+- **Document classification** — Automatically identify document type (invoice, contract, claim form)
+- **Data extraction** — Pull structured data from unstructured text, tables, and handwriting
+- **Validation** — Cross-check extracted data against business rules and reference data
+- **Integration** — Feed extracted data into downstream business systems
 
 **Common use cases:**
 
@@ -142,10 +142,10 @@ graph LR
 
 **Modern conversational AI characteristics:**
 
-- **Context awareness** -- Maintains conversation history and understands references to previous turns
-- **Grounded responses** -- Retrieves information from organizational knowledge bases to provide accurate answers
-- **Multi-turn reasoning** -- Handles complex requests that require clarification and follow-up
-- **Channel flexibility** -- Deploys across web chat, Teams, Slack, voice, and mobile
+- **Context awareness** — Maintains conversation history and understands references to previous turns
+- **Grounded responses** — Retrieves information from organizational knowledge bases to provide accurate answers
+- **Multi-turn reasoning** — Handles complex requests that require clarification and follow-up
+- **Channel flexibility** — Deploys across web chat, Teams, Slack, voice, and mobile
 
 **When to use Conversational AI:**
 
@@ -161,7 +161,7 @@ graph LR
 
 ## Agentic RAG
 
-**Agentic RAG** is the evolution of basic Retrieval-Augmented Generation. In standard RAG, a single retrieval step fetches context before the model generates a response. In Agentic RAG, an AI agent actively decides **what** to retrieve, **when** to retrieve it, and **how** to refine its search -- iterating until it has enough information to produce a high-quality answer.
+**Agentic RAG** is the evolution of basic Retrieval-Augmented Generation. In standard RAG, a single retrieval step fetches context before the model generates a response. In Agentic RAG, an AI agent actively decides **what** to retrieve, **when** to retrieve it, and **how** to refine its search — iterating until it has enough information to produce a high-quality answer.
 
 **Basic RAG vs. Agentic RAG:**
 
@@ -182,15 +182,15 @@ graph TD
         E -->|Sufficient| G2[Generate Response]
     end
 
-    style Q1 fill:#057398,stroke:#004987,color:#fff
-    style R1 fill:#9E57A2,stroke:#853175,color:#fff
-    style G1 fill:#259638,stroke:#1a7a2b,color:#fff
-    style Q2 fill:#057398,stroke:#004987,color:#fff
-    style A fill:#00A0DF,stroke:#057398,color:#fff
-    style R2 fill:#9E57A2,stroke:#853175,color:#fff
-    style R3 fill:#9E57A2,stroke:#853175,color:#fff
-    style E fill:#632C4F,stroke:#4a2039,color:#fff
-    style G2 fill:#259638,stroke:#1a7a2b,color:#fff
+    style Q1 fill:#0284c7,stroke:#0284c7,color:#fff
+    style R1 fill:#0f766e,stroke:#14b8a6,color:#fff
+    style G1 fill:#16a34a,stroke:#15803d,color:#fff
+    style Q2 fill:#0284c7,stroke:#0284c7,color:#fff
+    style A fill:#0284c7,stroke:#0284c7,color:#fff
+    style R2 fill:#0f766e,stroke:#14b8a6,color:#fff
+    style R3 fill:#0f766e,stroke:#14b8a6,color:#fff
+    style E fill:#0d9488,stroke:#0b7a72,color:#fff
+    style G2 fill:#16a34a,stroke:#15803d,color:#fff
 ```
 
 **Key differences from basic RAG:**
@@ -212,7 +212,7 @@ graph TD
 
 ---
 
-## Choosing the Right Pattern
+## Choosing the right pattern
 
 The right pattern depends on the problem, the users, and the organizational context. Many real-world solutions combine multiple patterns.
 

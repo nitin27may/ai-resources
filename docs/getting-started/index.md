@@ -5,7 +5,7 @@ tags:
   - Models
 ---
 
-# Getting Started with AI
+# Getting started with AI
 
 !!! abstract "Start here · 30 min · no code"
     **Before this:** [Choose your path](../00-start-here/index.md)  ·  **After this:** [How models work](../concepts/foundation-and-models.md)
@@ -14,16 +14,16 @@ A plain-English introduction to Artificial Intelligence, Machine Learning, and L
 
 ---
 
-## What is Artificial Intelligence?
+## What is artificial intelligence?
 
-**Artificial Intelligence (AI)** is the broad field of creating computer systems that can perform tasks typically requiring human intelligence -- things like understanding language, recognizing patterns, making decisions, and generating content.
+**Artificial Intelligence (AI)** is the broad field of creating computer systems that can perform tasks typically requiring human intelligence — things like understanding language, recognizing patterns, making decisions, and generating content.
 
 !!! info "AI is Not New"
     AI as a field has existed since the 1950s. What has changed dramatically in recent years is the scale of data, computing power, and breakthroughs in neural network architectures that have made AI practical and powerful.
 
 ---
 
-## What is Machine Learning?
+## What is machine learning?
 
 **Machine Learning (ML)** is a subset of AI where systems learn patterns from data rather than being explicitly programmed with rules.
 
@@ -32,26 +32,26 @@ graph LR
     A[Traditional Programming] --> B["Rules + Data = Output"]
     C[Machine Learning] --> D["Data + Output = Rules"]
 
-    style A fill:#057398,stroke:#045672,stroke-width:2px,color:#fff
-    style B fill:#00A0DF,stroke:#0080B3,stroke-width:2px,color:#fff
-    style C fill:#632C4F,stroke:#4E223E,stroke-width:2px,color:#fff
-    style D fill:#853175,stroke:#6A275E,stroke-width:2px,color:#fff
+    style A fill:#0284c7,stroke:#0270a8,stroke-width:2px,color:#fff
+    style B fill:#0284c7,stroke:#0270a8,stroke-width:2px,color:#fff
+    style C fill:#0d9488,stroke:#0b7a72,stroke-width:2px,color:#fff
+    style D fill:#0f766e,stroke:#119b91,stroke-width:2px,color:#fff
 ```
 
 Instead of writing rules manually, you feed the system examples and it figures out the patterns. This is how spam filters, recommendation engines, and fraud detection work.
 
 ---
 
-## What are Large Language Models?
+## What are large language models?
 
 **Large Language Models (LLMs)** are AI systems trained on massive amounts of text data. They can understand and generate human language with remarkable fluency.
 
-### How LLMs Work (Simplified)
+### How LLMs work (simplified)
 
-1. **Training** -- The model reads billions of pages of text and learns patterns about language, facts, and reasoning
-2. **Input (Prompt)** -- You give the model a question or instruction in natural language
-3. **Processing** -- The model uses its learned patterns to predict the most appropriate response
-4. **Output** -- The model generates a response, token by token (roughly word by word)
+1. **Training** — The model reads billions of pages of text and learns patterns about language, facts, and reasoning
+2. **Input (Prompt)** — You give the model a question or instruction in natural language
+3. **Processing** — The model uses its learned patterns to predict the most appropriate response
+4. **Output** — The model generates a response, token by token (roughly word by word)
 
 !!! tip "Think of it Like This"
     An LLM is like an extremely well-read assistant that has absorbed vast amounts of written knowledge. It does not "think" like a human, but it can produce remarkably useful responses by predicting what text should come next based on patterns it learned.
@@ -79,15 +79,15 @@ and [Meta](https://www.llama.com/). Each publishes a live model page; every
 secondary summary, this one included, is a snapshot that starts ageing the day
 it is written.
 
-## Key Terms to Know
+## Key terms to know
 
 Here are the essential terms you will encounter throughout this site:
 
 **Token**
-:   The basic unit LLMs process -- roughly three-quarters of a word in English. Model inputs, outputs, and context limits are commonly measured in tokens.
+:   The basic unit LLMs process — roughly three-quarters of a word in English. Model inputs, outputs, and context limits are commonly measured in tokens.
 
 **Prompt**
-:   The input you give to an AI model -- your question, instruction, or context.
+:   The input you give to an AI model — your question, instruction, or context.
 
 **Context Window**
 :   How much text a model can consider at once. A 128K context window means roughly 100,000 words.
@@ -102,7 +102,7 @@ Here are the essential terms you will encounter throughout this site:
 :   A technique that gives AI access to your specific data before generating a response, making answers more accurate and grounded.
 
 **AI Agent**
-:   An AI system that can plan, reason, and take actions autonomously -- not just answer questions, but actually do things.
+:   An AI system that can plan, reason, and take actions autonomously — not just answer questions, but actually do things.
 
 !!! note "Want More Terms?"
     Visit the complete [Glossary](../glossary/index.md) for 70+ AI terms explained in plain English.
