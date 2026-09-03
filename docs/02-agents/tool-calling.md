@@ -9,6 +9,10 @@ tags:
 
 # Tool calling
 
+!!! abstract "Build · 45 min · hands-on"
+    **Before this:** [0 Setup](../00-start-here/setup.md)  ·  **After this:** [2 The agent loop](the-agent-loop.md)
+    **Overview version:** [What an agent is](../concepts/ai-agents.md)
+
 !!! abstract
     "Function calling" is a misleading name. The model never calls anything. It
     emits a structured *request* — a name and a JSON string of arguments — and
@@ -18,6 +22,13 @@ tags:
 **Prerequisites:** [Setup](../00-start-here/setup.md) — a model answering locally.
 
 **Verified as of 2026-08-21.**
+
+!!! tip "Arriving here first?"
+    This module assumes you know what a language model is and roughly what an
+    agent does. If either is new, read
+    [How models work](../concepts/foundation-and-models.md) and
+    [What an agent is](../concepts/ai-agents.md) first — about 70 minutes, no
+    code — then come back. Everything after this point builds on both.
 
 ## What you'll be able to do
 

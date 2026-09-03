@@ -7,6 +7,10 @@ tags:
 
 # References
 
+!!! abstract "Reference · browse · no code"
+    **Before this:** [Resources](../reference/resources.md)
+    Primary documentation by vendor. For a ranked, opinionated shortlist instead, see Resources.
+
 A curated collection of official documentation, learning resources, and community links organized by category.
 
 ---

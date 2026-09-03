@@ -8,6 +8,10 @@ tags:
 
 # Tools & Frameworks
 
+!!! abstract "Go deeper · 30 min · no code"
+    **Before this:** [Code quality pipeline](../patterns/code-quality-pipeline.md)  ·  **After this:** [Developer tools](../ai-dev-tools/index.md)
+    **In depth:** [Resources](../reference/resources.md)
+
 The AI ecosystem moves fast. This page provides a curated overview of the tools and frameworks most relevant to building enterprise AI solutions -- organized into orchestration frameworks, AI platforms, and developer tools.
 
 Each entry includes a brief description, who it is for, and a link to official documentation.

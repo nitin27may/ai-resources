@@ -10,6 +10,9 @@ tags:
 
 # Setup
 
+!!! abstract "Build · 30 min · hands-on"
+    **Before this:** [The build path](the-path.md)  ·  **After this:** [1 Tool calling](../02-agents/tool-calling.md)
+
 !!! abstract
     One goal: a model answering on hardware you control, at zero cost. Everything
     after this assumes you have it. If you get stuck here, nothing later works —

@@ -10,6 +10,10 @@ tags:
 
 # RAG Evaluation
 
+!!! abstract "Go deeper · 40 min · code optional"
+    **Before this:** [GraphRAG](graphrag.md)  ·  **After this:** [6 Evaluation](../02-agents/evaluation.md)
+    **Hands-on version:** [6 Evaluation](../02-agents/evaluation.md)
+
 !!! abstract
     Building a RAG system is straightforward. Knowing whether it actually works is harder. This page covers the four RAGAS metrics that give you a quantitative view of retrieval and generation quality, how to build a golden dataset for repeatable evaluation, and which tools integrate that pipeline into your workflow.
 

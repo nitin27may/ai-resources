@@ -9,6 +9,9 @@ tags:
 
 # Claude Code
 
+!!! abstract "Tools · 40 min · hands-on"
+    **Before this:** [GitHub Copilot](github-copilot.md)  ·  **After this:** [Claude Code skills and agents](claude-code-skills.md)
+
 !!! abstract
     Claude Code is an agentic CLI that reads your codebase, edits files, runs shell commands, and makes multi-file changes iteratively toward a goal. This page covers installation, how the tool use loop works, and how to configure project-specific behavior with `CLAUDE.md`.
 

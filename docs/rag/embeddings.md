@@ -10,6 +10,10 @@ tags:
 
 # Embeddings
 
+!!! abstract "Go deeper · 30 min · code optional"
+    **Before this:** [RAG fundamentals](rag-fundamentals.md)  ·  **After this:** [Chunking strategies](chunking-strategies.md)
+    **Hands-on version:** [5 Retrieval](../02-agents/retrieval.md)
+
 !!! abstract "What You'll Learn"
     This page explains how embedding models convert text into vectors, what happens inside the model at each stage, how to compare the major commercial and open-source options, and what production concerns — storage cost, batching, caching, and model consistency — you need to address before going to production.
 

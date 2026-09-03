@@ -9,6 +9,10 @@ tags:
 
 # RAG & Knowledge Systems
 
+!!! abstract "Go deeper · 10 min · no code"
+    **Before this:** [5 Retrieval](../02-agents/retrieval.md)  ·  **After this:** [RAG fundamentals](rag-fundamentals.md)
+    **Overview version:** [Retrieval and data](../concepts/retrieval-and-data.md)
+
 Retrieval-augmented generation (RAG) solves a fundamental problem with LLMs: their knowledge is frozen at training time, and their context windows — however large — cannot hold an entire enterprise knowledge base. RAG bridges that gap by fetching relevant information at inference time and grounding the model's response in retrieved facts.
 
 This section covers everything from the basics of how RAG pipelines work, through embedding model selection, chunking strategy trade-offs, vector database operations, graph-enhanced retrieval, and how to measure whether any of it is actually working.

@@ -9,6 +9,9 @@ tags:
 
 # GitHub Copilot
 
+!!! abstract "Tools · 30 min · no code"
+    **Before this:** [Developer tools](index.md)  ·  **After this:** [Claude Code](claude-code.md)
+
 !!! abstract
     Copilot spans inline completion, a chat pane, an agent mode that edits across
     files, a standalone terminal CLI, and a coding agent that opens pull

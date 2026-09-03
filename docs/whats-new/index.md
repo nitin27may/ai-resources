@@ -6,6 +6,9 @@ description: What changed on this site, newest first.
 
 # What's new
 
+!!! abstract "Reference · 5 min · no code"
+    What changed on this site, newest first.
+
 Changes to the AI Knowledge Hub, newest first.
 
 ---

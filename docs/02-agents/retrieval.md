@@ -9,6 +9,10 @@ tags:
 
 # Retrieval
 
+!!! abstract "Build · 1.5 h · hands-on"
+    **Before this:** [4 Context engineering](context-engineering.md)  ·  **After this:** [6 Evaluation](evaluation.md)
+    **Overview version:** [Retrieval and data](../concepts/retrieval-and-data.md)  ·  **In depth:** [Retrieval in depth](../rag/index.md)
+
 !!! abstract
     Retrieval fetches information the model does not have and puts it in context.
     The mechanism is three lines — embed, compare, take the top matches. The hard

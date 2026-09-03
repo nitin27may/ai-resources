@@ -7,6 +7,10 @@ tags:
 
 # Foundation & Models
 
+!!! abstract "Understand · 30 min · no code"
+    **Before this:** [AI 101](../getting-started/index.md)  ·  **After this:** [Prompting](prompting-and-techniques.md)
+    **Hands-on version:** [4 Context engineering](../02-agents/context-engineering.md)  ·  **In depth:** [Frameworks and platforms](../tools-and-frameworks/index.md)
+
 Modern AI is built on **foundation models** -- large neural networks trained on massive datasets that can be adapted to a wide range of tasks. This page breaks down how these models work, the different types available, and the key concepts you need to understand before building AI-powered applications.
 
 ---

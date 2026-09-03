@@ -8,6 +8,10 @@ description: Two routes through this site — one to understand AI without writi
 
 # Choose your path
 
+!!! abstract "Start here · 10 min · no code"
+    **After this:** [AI 101](../getting-started/index.md)
+    Two routes through the site. Pick either; you can switch at any point.
+
 There are two ways through this site, and they are both complete. Pick by what
 you want to have at the end: an accurate picture of how these systems work, or
 an agent running on your own machine.
@@ -23,6 +27,8 @@ territory.
 
 Each step needs only the ones before it. Prompting needs models. Retrieval is
 "give the model your data". An agent is "let the model act", which needs both.
+All ten pages live under [Understand](../concepts/index.md), and you can read
+them there in any order once you have the first two.
 
 | # | Read | Time |
 |---|---|---|
@@ -88,3 +94,6 @@ all four layers.
 
 Start with [AI 101](../getting-started/index.md). It takes half an hour and it
 is the right first page whichever route you end up taking.
+
+If you have been here before, [What's new](../whats-new/index.md) lists what
+changed and when.

@@ -10,6 +10,10 @@ tags:
 
 # Context engineering
 
+!!! abstract "Build · 1.5 h · hands-on"
+    **Before this:** [3 The harness](the-harness.md)  ·  **After this:** [5 Retrieval](retrieval.md)
+    **Overview version:** [How models work](../concepts/foundation-and-models.md)
+
 !!! abstract
     Every turn of the loop appends to a list, and you resend that list in full.
     It only grows. Eventually it outgrows the window — and the failure is

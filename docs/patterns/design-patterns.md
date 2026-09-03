@@ -8,6 +8,10 @@ tags:
 
 # Design Patterns for AI Agent Systems
 
+!!! abstract "Go deeper · 45 min · code optional"
+    **Before this:** [Architecture patterns](index.md)  ·  **After this:** [Design principles](design-principles.md)
+    **Hands-on version:** [2 The agent loop](../02-agents/the-agent-loop.md)
+
 ## Foundation: Basic Architecture Patterns
 
 ### Simple Model

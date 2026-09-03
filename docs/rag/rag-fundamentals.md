@@ -9,6 +9,10 @@ tags:
 
 # RAG Fundamentals
 
+!!! abstract "Go deeper · 40 min · code optional"
+    **Before this:** [Retrieval in depth](index.md)  ·  **After this:** [Embeddings](embeddings.md)
+    **Hands-on version:** [5 Retrieval](../02-agents/retrieval.md)
+
 !!! abstract "What You'll Learn"
     This page traces the evolution of RAG from its original "naive" form through the advanced retrieval techniques, modular architecture patterns, and agentic approaches used in production today. You will understand where naive RAG breaks down, what techniques address each failure mode, and when to move beyond standard RAG entirely.
 

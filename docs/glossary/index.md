@@ -7,6 +7,9 @@ tags:
 
 # AI Glossary
 
+!!! abstract "Reference · browse · no code"
+    Every term used on this site, in plain English. Keep it open while you read anything else.
+
 A comprehensive reference of AI terms and concepts explained in plain English. Use your browser's search (Ctrl+F / Cmd+F) or the site search to find specific terms.
 
 ---

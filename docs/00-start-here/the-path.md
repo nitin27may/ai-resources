@@ -9,6 +9,10 @@ tags:
 
 # The path
 
+!!! abstract "Start here · 10 min · no code"
+    **Before this:** [Choose your path](index.md)  ·  **After this:** [Setup](setup.md)
+    The overview of the ten build modules. The reading path, which needs no code, is on Choose your path.
+
 !!! abstract
     Ten modules, in order, each ending in code you run. No account, no API
     key, no cost — everything works against a model on your own machine.
@@ -24,10 +28,11 @@ you know anything about machine learning, and it never asks you to train
 anything.
 
 If you are looking for AI literacy rather than construction — what these systems
-are, where they fail, how to evaluate a proposal — read
-[AI 101](../getting-started/index.md), the [glossary](../glossary/index.md), and
-[Safety](../02-agents/safety.md), and stop there. That is a good afternoon and
-you will not need the labs.
+are, where they fail, how to evaluate a proposal — take the
+[reading path](index.md) instead. Ten pages, four to five hours, no code, and it
+covers the same ground this path does without asking you to build anything. It
+is a complete route, not a consolation prize; plenty of people only ever need
+that one.
 
 ## The rule
 

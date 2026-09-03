@@ -7,6 +7,10 @@ tags:
 
 # AI Agents
 
+!!! abstract "Understand · 40 min · no code"
+    **Before this:** [Retrieval and data](retrieval-and-data.md)  ·  **After this:** [Agentic AI](agentic-ai.md)
+    **Hands-on version:** [2 The agent loop](../02-agents/the-agent-loop.md)  ·  **In depth:** [Design patterns](../patterns/design-patterns.md)
+
 !!! info "Start with the hands-on module"
     For the buildable version of this material, see [The agent loop](../02-agents/the-agent-loop.md) and [The harness](../02-agents/the-harness.md).
     Those build the loop by hand and show what surrounds it. This page is the component overview, kept for orientation and for its workflow-vs-agent section.

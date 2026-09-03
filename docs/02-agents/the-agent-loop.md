@@ -9,6 +9,10 @@ tags:
 
 # The agent loop
 
+!!! abstract "Build · 1 h · hands-on"
+    **Before this:** [1 Tool calling](tool-calling.md)  ·  **After this:** [3 The harness](the-harness.md)
+    **Overview version:** [What an agent is](../concepts/ai-agents.md)  ·  **In depth:** [Design patterns](../patterns/design-patterns.md)
+
 !!! abstract
     An agent is a model calling tools in a loop until it stops asking for them.
     That is the entire idea. This page has you write the loop by hand — roughly

@@ -7,6 +7,10 @@ tags:
 
 # Design Principles
 
+!!! abstract "Go deeper · 20 min · no code"
+    **Before this:** [Design patterns](design-patterns.md)  ·  **After this:** [Code quality pipeline](code-quality-pipeline.md)
+    **Hands-on version:** [3 The harness](../02-agents/the-harness.md)
+
 ## Overview
 
 As we build our agent framework step by step, we'll make key architectural decisions that determine how easy your agents are to develop, debug, and scale. These aren't abstract principles but practical choices that address real problems you'll encounter when building agent applications.

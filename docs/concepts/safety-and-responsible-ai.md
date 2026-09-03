@@ -7,6 +7,10 @@ tags:
 
 # Safety & Responsible AI
 
+!!! abstract "Understand · 30 min · no code"
+    **Before this:** [Enterprise AI patterns](../patterns/enterprise-patterns.md)  ·  **After this:** [Fine-tuning and training](fine-tuning-and-training.md)
+    **Hands-on version:** [8 Safety](../02-agents/safety.md)  ·  **In depth:** [Resources](../reference/resources.md)
+
 AI models are powerful but imperfect. They can generate incorrect information, be manipulated by adversarial inputs, and produce harmful content if not properly managed. This page covers the key safety concepts every team building with AI should understand -- not heavy governance, but practical knowledge that keeps your applications trustworthy.
 
 ---

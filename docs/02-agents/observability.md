@@ -10,6 +10,10 @@ tags:
 
 # Observability
 
+!!! abstract "Build · 1 h · hands-on"
+    **Before this:** [6 Evaluation](evaluation.md)  ·  **After this:** [8 Safety](safety.md)
+    **Overview version:** [Agentic AI](../concepts/agentic-ai.md)
+
 !!! abstract
     A trace is a tree of named, timed, nested spans with attributes. That is the
     entire data model, and you can build a useful one in about thirty lines. This

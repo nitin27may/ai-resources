@@ -9,6 +9,10 @@ tags:
 
 # Safety and failure modes
 
+!!! abstract "Build · 1.5 h · hands-on"
+    **Before this:** [7 Observability](observability.md)  ·  **After this:** [9 Production](production.md)
+    **Overview version:** [Safety and responsible AI](../concepts/safety-and-responsible-ai.md)
+
 !!! abstract
     An agent that reads anything it did not write can be instructed by it. The
     model cannot separate "data to reason about" from "instructions to follow",

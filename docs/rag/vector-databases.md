@@ -10,6 +10,10 @@ tags:
 
 # Vector Databases
 
+!!! abstract "Go deeper · 40 min · code optional"
+    **Before this:** [Chunking strategies](chunking-strategies.md)  ·  **After this:** [GraphRAG](graphrag.md)
+    **Hands-on version:** [5 Retrieval](../02-agents/retrieval.md)
+
 !!! abstract
     Vector databases store and search high-dimensional embeddings using approximate nearest neighbor (ANN) algorithms. This page covers how they work, compares the major options, and gives you a practical decision framework for choosing between managed cloud services, self-hosted options, and lightweight alternatives.
 

@@ -9,6 +9,9 @@ tags:
 
 # Resources
 
+!!! abstract "Reference · 20 min · no code"
+    **After this:** [Official sources](../references/index.md)
+
 !!! abstract
     Curation, not accumulation. Every item below has a reason to trust it stated
     next to it, and every link was checked on the date shown. The **avoid** list

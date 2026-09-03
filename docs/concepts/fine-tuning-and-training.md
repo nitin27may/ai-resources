@@ -8,6 +8,10 @@ tags:
 
 # Fine-Tuning & Training
 
+!!! abstract "Understand · 15 min · no code"
+    **Before this:** [Safety and responsible AI](safety-and-responsible-ai.md)  ·  **After this:** [Infrastructure and operations](infrastructure-and-operations.md)
+    **In depth:** [Retrieval in depth](../rag/index.md)
+
 Prompting and RAG handle most AI use cases. But when you need a model to adopt a specific behavior, tone, or deep domain expertise that cannot be achieved through instructions alone, **fine-tuning** is the next step. This page explains when and how to customize AI models for your specific needs.
 
 ---

@@ -8,6 +8,10 @@ tags:
 
 # Enterprise AI Patterns
 
+!!! abstract "Understand · 30 min · no code"
+    **Before this:** [Agentic AI](../concepts/agentic-ai.md)  ·  **After this:** [Safety and responsible AI](../concepts/safety-and-responsible-ai.md)
+    **Hands-on version:** [5 Retrieval](../02-agents/retrieval.md)  ·  **In depth:** [RAG fundamentals](../rag/rag-fundamentals.md)
+
 Enterprise AI patterns are proven architectural approaches that organizations use to integrate AI into business processes at scale. Each pattern addresses a different class of problem -- from augmenting human work to fully automating document pipelines.
 
 This page covers five patterns commonly seen in enterprise AI adoption. Understanding these patterns helps teams choose the right approach for their use case and avoid over-engineering or under-investing.

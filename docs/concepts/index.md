@@ -7,6 +7,10 @@ tags:
 
 # AI Concepts
 
+!!! abstract "Understand · 5 min · no code"
+    **Before this:** [Choose your path](../00-start-here/index.md)  ·  **After this:** [How models work](foundation-and-models.md)
+    The no-code layer. Every page here links to its hands-on and in-depth versions.
+
 Explore the building blocks of modern AI. Each topic is self-contained -- start with whatever interests you most.
 
 <div class="grid cards" markdown>

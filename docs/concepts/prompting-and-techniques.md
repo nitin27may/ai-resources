@@ -7,6 +7,10 @@ tags:
 
 # Prompting & Techniques
 
+!!! abstract "Understand · 30 min · code optional"
+    **Before this:** [How models work](foundation-and-models.md)  ·  **After this:** [Retrieval and data](retrieval-and-data.md)
+    **Hands-on version:** [1 Tool calling](../02-agents/tool-calling.md)
+
 The quality of output you get from an AI model depends heavily on how you ask. **Prompt engineering** is the practice of designing inputs that guide AI models toward accurate, useful, and relevant responses. This page covers the core techniques, from basic principles to advanced strategies.
 
 ---

@@ -8,6 +8,10 @@ tags:
 
 # Agentic AI
 
+!!! abstract "Understand · 40 min · no code"
+    **Before this:** [What an agent is](ai-agents.md)  ·  **After this:** [Enterprise AI patterns](../patterns/enterprise-patterns.md)
+    **Hands-on version:** [3 The harness](../02-agents/the-harness.md)  ·  **In depth:** [Model Context Protocol](../ai-dev-tools/mcp.md)
+
 !!! info "Start with the hands-on module"
     For the buildable version of this material, see [The harness](../02-agents/the-harness.md) and [Retrieval](../02-agents/retrieval.md).
     This page remains the broader ecosystem tour — protocols, orchestration, and where agentic patterns came from.

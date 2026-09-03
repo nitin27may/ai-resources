@@ -7,6 +7,10 @@ tags:
 
 # Retrieval & Data
 
+!!! abstract "Understand · 30 min · no code"
+    **Before this:** [Prompting](prompting-and-techniques.md)  ·  **After this:** [What an agent is](ai-agents.md)
+    **Hands-on version:** [5 Retrieval](../02-agents/retrieval.md)  ·  **In depth:** [Retrieval in depth](../rag/index.md)
+
 !!! info "Start with the hands-on module"
     For the buildable version of this material, see [Retrieval](../02-agents/retrieval.md), then the [RAG section](../rag/index.md).
     This page is the short overview; both of those go considerably deeper.

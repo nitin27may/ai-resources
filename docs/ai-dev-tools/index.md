@@ -11,6 +11,9 @@ tags:
 
 # AI Developer Tools
 
+!!! abstract "Tools · 10 min · no code"
+    **Before this:** [Frameworks and platforms](../tools-and-frameworks/index.md)  ·  **After this:** [GitHub Copilot](github-copilot.md)
+
 AI coding tools have moved from novelty to essential infrastructure. The question is no longer whether to use them, but which ones fit which tasks — and how to use them without accumulating bad habits.
 
 The landscape breaks into three tiers, each with a different scope and mental model:

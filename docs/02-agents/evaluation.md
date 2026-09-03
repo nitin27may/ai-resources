@@ -9,6 +9,10 @@ tags:
 
 # Evaluation
 
+!!! abstract "Build · 2 h · hands-on"
+    **Before this:** [5 Retrieval](retrieval.md)  ·  **After this:** [7 Observability](observability.md)
+    **In depth:** [RAG evaluation](../rag/rag-evaluation.md)
+
 !!! abstract
     The last two modules ended in failures that look exactly like success —
     context silently truncated, retrieval one hundredth of a point from wrong.

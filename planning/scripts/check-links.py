@@ -27,7 +27,10 @@ broken, inbound, external, headers = [], {r: 0 for r in rel}, set(), 0
 for p in pages:
     src = p[len(DOCS)+1:]
     txt = open(p, encoding="utf-8").read()
-    if re.search(r'^!!! abstract "(Start here|Understand|Build|Go deeper|Tools|Reference) ·', txt, re.M): headers += 1
+    h1 = re.search(r"(?m)^#\s+.*$", txt)
+    if h1 and txt[h1.end():].lstrip("\n").startswith('!!! abstract "') and re.match(
+            r'!!! abstract "(Start here|Understand|Build|Go deeper|Tools|Reference) ·',
+            txt[h1.end():].lstrip("\n")): headers += 1
     for m in re.finditer(r"\]\(([^)\s]+?)(#[^)\s]*)?\)", txt):
         t, frag = m.group(1), m.group(2)
         if t.startswith(("http://", "https://")): external.add(t.rstrip(".,;:")); continue

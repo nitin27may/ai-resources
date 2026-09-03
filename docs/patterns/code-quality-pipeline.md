@@ -8,6 +8,9 @@ tags:
 
 # AI-Generated Code Quality Pipeline
 
+!!! abstract "Go deeper · 40 min · hands-on"
+    **Before this:** [Design principles](design-principles.md)  ·  **After this:** [Frameworks and platforms](../tools-and-frameworks/index.md)
+
 AI coding assistants can accelerate delivery, but they can also introduce dead code, duplicate logic, inconsistent patterns, and over-complex implementations. This page outlines a practical quality pipeline that helps teams review AI-generated code with the same rigor as any other production change.
 
 ---

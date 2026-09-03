@@ -9,6 +9,9 @@ tags:
 
 # GraphRAG
 
+!!! abstract "Go deeper · 40 min · no code"
+    **Before this:** [Vector databases](vector-databases.md)  ·  **After this:** [RAG evaluation](rag-evaluation.md)
+
 !!! abstract
     GraphRAG extends retrieval-augmented generation by building a knowledge graph — entities, relationships, and community summaries — on top of your document corpus. This page covers the architecture, indexing pipeline, local vs global query modes, available implementations, and the real cost and complexity tradeoffs before you commit to it.
 

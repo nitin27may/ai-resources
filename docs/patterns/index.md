@@ -7,6 +7,10 @@ tags:
 
 # Architecture Patterns
 
+!!! abstract "Go deeper · 5 min · no code"
+    **Before this:** [9 Production](../02-agents/production.md)  ·  **After this:** [Design patterns](design-patterns.md)
+    Structure for agent systems. Enterprise AI patterns sits in Understand, because it needs no code.
+
 Proven patterns and principles for building AI systems. This section is primarily for developers, architects, and technical leads, but anyone can benefit from understanding how AI systems are structured.
 
 <div class="grid cards" markdown>

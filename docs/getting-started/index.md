@@ -7,6 +7,9 @@ tags:
 
 # Getting Started with AI
 
+!!! abstract "Start here · 30 min · no code"
+    **Before this:** [Choose your path](../00-start-here/index.md)  ·  **After this:** [How models work](../concepts/foundation-and-models.md)
+
 A plain-English introduction to Artificial Intelligence, Machine Learning, and Large Language Models. No prior technical knowledge required.
 
 ---

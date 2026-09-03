@@ -9,6 +9,10 @@ tags:
 
 # Model Context Protocol (MCP)
 
+!!! abstract "Tools · 45 min · hands-on"
+    **Before this:** [Claude Code skills and agents](claude-code-skills.md)  ·  **After this:** [Resources](../reference/resources.md)
+    **Overview version:** [Agentic AI](../concepts/agentic-ai.md)
+
 !!! abstract
     MCP standardises how AI applications connect to external tools and data.
     Write one server, and any compliant host can use it. This page covers the
