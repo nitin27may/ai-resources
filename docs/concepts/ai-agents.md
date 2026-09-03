@@ -349,14 +349,11 @@ The following table summarizes common architectural patterns for implementing AI
 
 ---
 
-## References
+## Go deeper
 
-- [Microsoft AI Agents Overview](https://learn.microsoft.com/en-us/azure/ai-services/agents/overview)
-- [Semantic Kernel Agents](https://learn.microsoft.com/en-us/agent-framework/)
-- [AutoGen Multi-Agent Framework](https://microsoft.github.io/autogen/)
-- [LangGraph Agent Documentation](https://langchain-ai.github.io/langgraph/)
-- [Anthropic: Building Effective Agents](https://www.anthropic.com/engineering/building-effective-agents)
-- [OpenAI Function Calling Guide](https://platform.openai.com/docs/guides/function-calling)
-
-
-
+- [Anthropic: building effective agents](https://www.anthropic.com/engineering/building-effective-agents) — the clearest statement of when a workflow beats an agent, which is more often than the marketing suggests.
+- [Foundry Agent Service overview](https://learn.microsoft.com/en-us/azure/foundry/agents/overview) — what a managed agent runtime actually provides, if you would rather not build the harness.
+- [Microsoft Agent Framework](https://learn.microsoft.com/en-us/agent-framework/) — the current .NET and Python SDK.
+- [LangGraph](https://docs.langchain.com/oss/python/langgraph/overview) — the same ideas as a state graph.
+- [OpenAI function calling](https://developers.openai.com/api/docs/guides/function-calling) — the request and response shape that the rest of the industry copied.
+- [Don't build multi-agents](https://cognition.com/blog/dont-build-multi-agents) and [how we built our multi-agent research system](https://www.anthropic.com/engineering/multi-agent-research-system) — published a day apart, arguing opposite conclusions. Read them as a pair; the disagreement teaches more than either alone.

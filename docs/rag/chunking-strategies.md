@@ -302,13 +302,13 @@ flowchart TD
 
 ---
 
-## References
+## Go deeper
 
-- [Pinecone: Chunking Strategies for LLM Applications](https://www.pinecone.io/learn/chunking-strategies/) — practical breakdown of chunking approaches with retrieval quality analysis
-- [Jina AI: Late Chunking in Long-Context Embedding Models](https://jina.ai/news/late-chunking-in-long-context-embedding-models/) — the original explanation of late chunking from the team that developed it
+- [Pinecone: chunking strategies](https://www.pinecone.io/learn/chunking-strategies/) — practical comparison with retrieval-quality analysis rather than assertion.
+- [Jina AI: late chunking](https://jina.ai/news/late-chunking-in-long-context-embedding-models/) — the original explanation, from the team that developed it.
+- [Embeddings](embeddings.md) — chunk size and embedding model choice constrain each other; decide them together.
 
 ---
-
 ## Next steps
 
 - [Embeddings](embeddings.md) — understanding what your embedding model does with each chunk helps you make better chunking decisions

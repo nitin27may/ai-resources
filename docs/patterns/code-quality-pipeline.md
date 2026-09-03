@@ -294,12 +294,12 @@ For the tools listed on this page, good operational practices include:
 
 ---
 
-## References
+## Go deeper
 
-- [GitHub Actions Documentation](https://docs.github.com/en/actions)
-- [Knip](https://knip.dev/)
-- [Vulture](https://github.com/jendrikseipp/vulture)
-- [Ruff](https://docs.astral.sh/ruff/)
-- [JSCPD](https://github.com/kucherenko/jscpd)
-- [Lizard](https://github.com/terryyin/lizard)
-- [Deptry](https://deptry.com/)
+- [GitHub Actions](https://docs.github.com/en/actions) — the runner, the cache and the permissions model this pipeline depends on.
+- [Ruff](https://docs.astral.sh/ruff/) — the Python linter fast enough to run on every save, not just in CI.
+- [Knip](https://knip.dev/) — dead files, exports and dependencies in TypeScript. The check that catches what an assistant left behind.
+- [Vulture](https://github.com/jendrikseipp/vulture) — the Python equivalent, with a confidence score you should tune before trusting.
+- [jscpd](https://github.com/kucherenko/jscpd) — copy-paste detection. Generated code duplicates more than hand-written code does.
+- [Lizard](https://github.com/terryyin/lizard) — cyclomatic complexity across a dozen languages, which is the cheapest proxy for "this needs review".
+- [Deptry](https://deptry.com/) — dependency drift: declared but unused, used but undeclared.

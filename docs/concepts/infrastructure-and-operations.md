@@ -220,9 +220,10 @@ Each layer has its own best practices, but they are deeply interconnected. A cha
 
 ---
 
-## References
+## Go deeper
 
-- [Azure Machine Learning](https://learn.microsoft.com/en-us/azure/machine-learning/)
-- [MLflow](https://mlflow.org/docs/latest/index.html)
-- [ONNX Runtime Quantization](https://onnxruntime.ai/docs/performance/model-optimizations/quantization.html)
-- [Azure AI Foundry](https://learn.microsoft.com/en-us/azure/ai-studio/)
+- [Azure Machine Learning](https://learn.microsoft.com/en-us/azure/machine-learning/) — the full MLOps toolchain, most of which you do not need for LLM applications.
+- [Azure AI Foundry](https://learn.microsoft.com/en-us/azure/foundry/) — the parts you probably do need: deployments, evaluation and content filtering.
+- [MLflow](https://mlflow.org/docs/latest/index.html) — experiment tracking and a model registry that works outside any one cloud.
+- [ONNX Runtime quantization](https://onnxruntime.ai/docs/performance/model-optimizations/quantization.html) — the mechanics behind "make it smaller and faster", with the accuracy trade-off stated.
+- [NVIDIA NIM](https://docs.nvidia.com/nim/) — the realistic route to self-hosting a model behind an OpenAI-compatible endpoint.

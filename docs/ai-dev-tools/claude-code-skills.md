@@ -222,12 +222,12 @@ Once connected, the tools exposed by MCP servers appear alongside Claude Code's 
 
 For building custom MCP servers, configuring authentication, and the full list of official servers, see the [Model Context Protocol](mcp.md) page.
 
-## References
+## Go deeper
 
-- [Extend Claude with skills](https://code.claude.com/docs/en/skills)
-- [Hooks reference](https://code.claude.com/docs/en/hooks) — all 31 events
-- [Subagents](https://code.claude.com/docs/en/sub-agents)
-
+- [Agent Skills](https://code.claude.com/docs/en/skills) — the format and, more importantly, how a skill gets loaded automatically from its description.
+- [Hooks reference](https://code.claude.com/docs/en/hooks) — all 31 events. The three shown above are the common ones, not the complete set.
+- [Subagents](https://code.claude.com/docs/en/sub-agents) — tool restrictions and isolation, which is what makes delegation safe.
+- [Agent Skills specification](https://agentskills.io/specification) — the cross-vendor format. The same `SKILL.md` folder runs on more than one vendor's tooling.
 ## Next steps
 
 - [Model Context Protocol (MCP)](mcp.md) — build custom MCP servers and extend Claude Code with external tools

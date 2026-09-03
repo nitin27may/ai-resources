@@ -197,11 +197,11 @@ sweep, and is plain markdown you can read, edit or delete. `/memory` browses it.
 !!! tip
     Use `CLAUDE.md` to encode your project conventions once rather than repeating them in every session. Conventions in `CLAUDE.md` are always active; conventions in prompts are only active for that prompt.
 
-## References
+## Go deeper
 
-- [Claude Code documentation](https://code.claude.com/docs)
-- [How Claude remembers your project](https://code.claude.com/docs/en/memory) — the source for the section above
-
+- [Claude Code documentation](https://code.claude.com/docs) — the reference for every flag, setting and surface.
+- [Memory](https://code.claude.com/docs/en/memory) — the source for the section above. Worth reading directly, because how a tool remembers your project decides how much you have to repeat yourself.
+- [Common workflows](https://code.claude.com/docs/en/common-workflows) — the patterns that survive contact with a real codebase.
 ## Next steps
 
 - [Claude Code Skills & Agents](claude-code-skills.md) — custom slash commands, subagents, hooks, and MCP integration

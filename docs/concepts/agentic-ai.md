@@ -300,11 +300,11 @@ Each framework has its own philosophy. LangGraph is graph-first (you define node
 
 ---
 
-## References
+## Go deeper
 
-- [Model Context Protocol (MCP)](https://modelcontextprotocol.io/)
-- [Google A2A Protocol](https://a2a-protocol.org)
-- [AG-UI Protocol](https://docs.ag-ui.com/)
-- [Microsoft AutoGen](https://microsoft.github.io/autogen/)
-- [Semantic Kernel Agents](https://learn.microsoft.com/en-us/agent-framework/)
-- [LangGraph Documentation](https://langchain-ai.github.io/langgraph/)
+- [Model Context Protocol](https://modelcontextprotocol.io/) — the tool-connection standard. The [hands-on version](../ai-dev-tools/mcp.md) is on this site.
+- [A2A protocol](https://a2a-protocol.org) — agent-to-agent delegation. Linux Foundation since June 2025, so treat "A2A by Google" as a dated phrase.
+- [AG-UI protocol](https://docs.ag-ui.com/) — the agent-to-user interaction layer, the least settled of the three.
+- [Microsoft Agent Framework](https://learn.microsoft.com/en-us/agent-framework/) — the current Microsoft answer, and the successor to both Semantic Kernel and AutoGen.
+- [LangGraph](https://docs.langchain.com/oss/python/langgraph/overview) — orchestration as an explicit graph, with checkpoints and resumable state.
+- [Anthropic: building effective agents](https://www.anthropic.com/engineering/building-effective-agents) — still the best shared vocabulary for these patterns. Read the banner: the authors mark it superseded on practice, not on terminology.

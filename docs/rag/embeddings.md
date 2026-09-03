@@ -189,14 +189,13 @@ Do not cache document embeddings in memory — store them in the vector database
 
 ---
 
-## References
+## Go deeper
 
-- [OpenAI Embeddings Guide](https://platform.openai.com/docs/guides/embeddings) — covers model selection, dimension reduction, and the Matryoshka approach
-- [Cohere Embed Documentation](https://docs.cohere.com/docs/cohere-embed) — input type explanation, multilingual support, and multimodal capabilities
-- [MTEB Leaderboard](https://huggingface.co/spaces/mteb/leaderboard) — current benchmark rankings across all major embedding models
+- [OpenAI embeddings guide](https://developers.openai.com/api/docs/guides/embeddings) — model selection, dimension reduction and the Matryoshka approach.
+- [Cohere Embed](https://docs.cohere.com/docs/cohere-embed) — input types, multilingual and multimodal. The input-type distinction is the part most people miss.
+- [MTEB leaderboard](https://huggingface.co/spaces/mteb/leaderboard) — current rankings. Use it to shortlist, never to decide: benchmark order rarely survives contact with your own corpus.
 
 ---
-
 ## Next steps
 
 - [Chunking Strategies](chunking-strategies.md) — how you chunk documents directly affects what your embedding model sees and what it can represent

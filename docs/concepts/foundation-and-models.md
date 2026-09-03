@@ -189,11 +189,13 @@ There is no single "best" model. The right choice depends on your requirements:
 
 ---
 
-## References
+## Go deeper
 
-- [Azure OpenAI Models](https://learn.microsoft.com/en-us/azure/ai-services/openai/concepts/models)
-- [Microsoft Phi Models](https://azure.microsoft.com/en-us/products/phi)
-- [Google Gemini](https://deepmind.google/technologies/gemini/)
-- [Anthropic Claude Models](https://docs.anthropic.com/en/docs/about-claude/models)
-- [Meta Llama](https://www.llama.com/)
-- [OpenAI Models Overview](https://platform.openai.com/docs/models)
+Model names change every few months. These are the live catalogues, which is why they are listed instead of a table.
+
+- [Anthropic models](https://docs.claude.com/en/docs/about-claude/models) — context windows and capability per model.
+- [OpenAI models](https://developers.openai.com/api/docs/models) — the current catalogue with pricing.
+- [Google Gemini](https://deepmind.google/models/gemini/) — the model family and its long-context claims.
+- [Azure model catalogue](https://learn.microsoft.com/en-us/azure/foundry/foundry-models/concepts/models-sold-directly-by-azure) — what is actually deployable on Azure today, which lags the vendors' own launches.
+- [Meta Llama](https://www.llama.com/) — open-weight models, and the licence terms that matter if you ship them.
+- [Microsoft Phi](https://azure.microsoft.com/en-us/products/phi) — the small-model end, where on-device becomes realistic.

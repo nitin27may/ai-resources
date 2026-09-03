@@ -221,15 +221,15 @@ Azure AI Search can automatically embed documents on ingest via a **skillset** �
 
 ---
 
-## References
+## Go deeper
 
-- [Azure AI Search documentation](https://learn.microsoft.com/en-us/azure/search/)
-- [Pinecone documentation](https://docs.pinecone.io/)
-- [Weaviate documentation](https://weaviate.io/developers/weaviate)
-- [Qdrant documentation](https://qdrant.tech/documentation/)
+- [Azure AI Search](https://learn.microsoft.com/en-us/azure/search/) — hybrid search and integrated vectorization; the default on Azure.
+- [Pinecone](https://docs.pinecone.io/guides/get-started/overview) — managed, with the clearest documentation of the group.
+- [Weaviate](https://docs.weaviate.io/weaviate) — open source with a hosted option, strong on hybrid search and filtering.
+- [Qdrant](https://qdrant.tech/documentation/) — open source, Rust, notably good filtered-search performance.
+- [pgvector](https://github.com/pgvector/pgvector) — vector search in Postgres. If you already run Postgres and are under roughly ten million vectors, start here and stop.
 
 ---
-
 ## Next steps
 
 - [RAG Fundamentals](rag-fundamentals.md) — understand chunking, embedding, and retrieval before optimizing your vector store

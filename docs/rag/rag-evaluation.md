@@ -217,7 +217,7 @@ The quality of your evaluation is only as good as your test set.
 
     Good choice if your RAG pipeline is already deployed on Azure — evaluation runs in the same environment without exporting data to a third-party service.
 
-    Reference: [Azure AI Evaluation docs](https://learn.microsoft.com/en-us/azure/ai-studio/how-to/evaluate-generative-ai-app)
+    Reference: [Azure AI Evaluation docs](https://learn.microsoft.com/en-us/azure/foundry/how-to/evaluate-generative-ai-app)
 
 === "DeepEval"
 
@@ -257,13 +257,13 @@ The quality of your evaluation is only as good as your test set.
 
     LangSmith supports custom evaluators, dataset management, and comparison views across runs — useful for tracking metric changes across experiments rather than just point-in-time scores.
 
-## References
+## Go deeper
 
-- [promptfoo model-graded assertions](https://www.promptfoo.dev/docs/configuration/expected-outputs/model-graded/) — actively maintained, local judges supported
-- [Phoenix](https://github.com/Arize-ai/phoenix) — `pip install arize-phoenix && phoenix serve` for local tracing plus evals, no account
-- [RAGAS](https://github.com/vibrantlabsai/ragas) — for the metric definitions; see the caveat above before depending on it
-- [Azure AI Evaluation](https://learn.microsoft.com/en-us/azure/ai-studio/how-to/evaluate-generative-ai-app)
-
+- [promptfoo model-graded assertions](https://www.promptfoo.dev/docs/configuration/expected-outputs/model-graded/) — actively maintained, runs in CI, and supports local judges. Set the grader explicitly or it reaches for a hosted model.
+- [Phoenix](https://github.com/Arize-ai/phoenix) — `pip install arize-phoenix && phoenix serve` gives tracing and evals with no account. Elastic 2.0 licensed, not OSI open source.
+- [RAGAS](https://github.com/vibrantlabsai/ragas) — learn the metric definitions here. See the caveat above before depending on the library.
+- [Azure AI evaluation](https://learn.microsoft.com/en-us/azure/foundry/how-to/evaluate-generative-ai-app) — the managed option, if your data cannot leave Azure.
+- [Evaluation](../02-agents/evaluation.md) — the agent-level version, where pass^k and judge calibration matter more than any single metric.
 ## Next steps
 
 - [RAG Fundamentals](rag-fundamentals.md) — understand retrieval architecture before optimizing it

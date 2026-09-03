@@ -269,9 +269,11 @@ Models sometimes need explicit negative instructions:
 
 ---
 
-## References
+## Go deeper
 
-- [Microsoft Prompt Engineering Guide](https://learn.microsoft.com/en-us/azure/ai-services/openai/concepts/prompt-engineering)
-- [OpenAI Prompt Engineering Guide](https://platform.openai.com/docs/guides/prompt-engineering)
-- [Anthropic Prompt Engineering](https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview)
-- [Google Prompting Guide](https://ai.google.dev/gemini-api/docs/prompting-strategies)
+Each vendor documents its own model's quirks. Read the one you are actually using; the general advice overlaps heavily.
+
+- [Anthropic prompt engineering](https://docs.claude.com/en/docs/build-with-claude/prompt-engineering/overview) — the most detailed of the four, and the most transferable.
+- [OpenAI prompt engineering](https://developers.openai.com/api/docs/guides/prompt-engineering) — concise, with reasoning-model guidance that differs from the usual advice.
+- [Azure OpenAI prompt engineering](https://learn.microsoft.com/en-us/azure/foundry/openai/concepts/prompt-engineering) — the same ground with enterprise framing and content-filter behaviour.
+- [Google prompting strategies](https://ai.google.dev/gemini-api/docs/prompting-strategies) — Gemini-specific, notably on long context.

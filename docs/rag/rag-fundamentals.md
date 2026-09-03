@@ -214,14 +214,14 @@ For a deeper treatment of agentic patterns, see [Agentic AI](../concepts/agentic
 
 ---
 
-## References
+## Go deeper
 
-- [Azure AI Search: RAG Overview](https://learn.microsoft.com/en-us/azure/search/retrieval-augmented-generation-overview) — Microsoft's production-oriented RAG guidance including Azure AI Search integration
-- [LangChain RAG Tutorial](https://python.langchain.com/docs/tutorials/rag/) — end-to-end walkthrough of building RAG with LangChain
-- [LlamaIndex Documentation](https://docs.llamaindex.ai/en/stable/) — comprehensive RAG framework with advanced retrieval patterns and connectors
+- [RAG with Azure AI Search](https://learn.microsoft.com/en-us/azure/search/retrieval-augmented-generation-overview) — Microsoft's production-oriented guidance, strongest on hybrid search.
+- [LangChain RAG tutorial](https://docs.langchain.com/oss/python/langchain/rag) — end to end in code.
+- [LlamaIndex](https://developers.llamaindex.ai/python/framework/) — retrieval-first framework with the better ingestion story.
+- [Retrieval](../02-agents/retrieval.md) — build the naive pipeline yourself first, then watch it fail on a realistic corpus. Forty bland neighbours change everything.
 
 ---
-
 ## Next steps
 
 - [Embeddings](embeddings.md) — understand what the embedding models in your pipeline actually do and how to choose between them

@@ -223,8 +223,9 @@ Fine-tuning is not free. Here is an honest look at the investment required:
 
 ---
 
-## References
+## Go deeper
 
-- [Fine-tuning Azure OpenAI](https://learn.microsoft.com/en-us/azure/ai-services/openai/how-to/fine-tuning)
-- [Hugging Face PEFT/LoRA](https://huggingface.co/docs/peft/)
-- [OpenAI Fine-tuning Guide](https://platform.openai.com/docs/guides/fine-tuning)
+- [Azure OpenAI fine-tuning](https://learn.microsoft.com/en-us/azure/foundry/openai/how-to/fine-tuning) — the managed path, including what it costs to keep a fine-tuned deployment running.
+- [OpenAI model optimization](https://developers.openai.com/api/docs/guides/model-optimization) — when the vendor itself suggests prompting or retrieval before fine-tuning.
+- [Hugging Face PEFT](https://huggingface.co/docs/peft/index) — LoRA and QLoRA as working code, if you are tuning open-weight models yourself.
+- [Retrieval in depth](../rag/index.md) — read this before committing to fine-tuning. For most knowledge problems, retrieval is the cheaper and more correctable answer.

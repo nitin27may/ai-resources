@@ -226,10 +226,11 @@ These services can be integrated as guardrails in your AI application pipeline, 
 
 ---
 
-## References
+## Go deeper
 
-- [Microsoft Responsible AI](https://www.microsoft.com/en-us/ai/responsible-ai)
-- [Azure AI Content Safety](https://learn.microsoft.com/en-us/azure/ai-services/content-safety/)
-- [Azure Prompt Shields](https://learn.microsoft.com/en-us/azure/ai-services/content-safety/concepts/jailbreak-detection)
-- [NIST AI Risk Management Framework](https://www.nist.gov/artificial-intelligence/executive-order-safe-secure-and-trustworthy-artificial-intelligence)
-- [Google Responsible AI Practices](https://ai.google/responsibility/responsible-ai-practices/)
+- [OWASP Top 10 for agentic applications](https://genai.owasp.org/resource/owasp-top-10-for-agentic-applications-for-2026/) — the vendor-neutral taxonomy, each item tied to a documented incident. Start here.
+- [Microsoft Responsible AI](https://www.microsoft.com/en-us/ai/responsible-ai) — principles plus the assessment templates, which are the useful part.
+- [Azure AI Content Safety](https://learn.microsoft.com/en-us/azure/ai-services/content-safety/) — filtering and groundedness detection as a service.
+- [Azure prompt shields](https://learn.microsoft.com/en-us/azure/ai-services/content-safety/concepts/jailbreak-detection) — injection detection, and honest about being one layer rather than a solution.
+- [NIST AI Risk Management Framework](https://www.nist.gov/artificial-intelligence/executive-order-safe-secure-and-trustworthy-artificial-intelligence) — the reference most governance and procurement conversations end up citing.
+- [Google responsible AI principles](https://ai.google/principles/) — a third framing, useful when you need to show more than one.

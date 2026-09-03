@@ -113,13 +113,12 @@ own codebases**, and the perception gap is roughly 40 points wide in the
 flattering direction. That does not mean they are useless — it means *your* sense
 of speedup is not evidence, and you should measure if the answer matters.
 
-## References
+## Go deeper
 
-- [Copilot documentation](https://docs.github.com/en/copilot)
-- [Copilot coding agent](https://docs.github.com/en/copilot/concepts/agents/coding-agent/about-coding-agent) — 59-minute session cap, one PR per task
-- [Measuring the impact of early-2025 AI on experienced developers](https://metr.org/blog/2025-07-10-early-2025-ai-experienced-os-dev-study/) — METR's RCT
-- [Uplift update](https://metr.org/blog/2026-02-24-uplift-update/) — the larger 2026 follow-up
-
+- [Copilot documentation](https://docs.github.com/en/copilot) — every surface, and which plan each one needs.
+- [Cloud agent](https://docs.github.com/en/copilot/concepts/agents/cloud-agent/about-cloud-agent) — the asynchronous agent: a 59-minute session cap and one pull request per task, which shapes what you can hand it.
+- [METR: measuring the impact of early-2025 AI on experienced developers](https://metr.org/blog/2025-07-10-early-2025-ai-experienced-os-dev-study/) — the randomised trial where developers were slower with AI and believed they were faster. Read it before quoting any productivity number.
+- [METR uplift update](https://metr.org/blog/2026-02-24-uplift-update/) — the larger follow-up, and a rare case of a group publishing results against its own earlier framing.
 ## Next
 
 [Claude Code](claude-code.md) — the other agentic CLI, and a different set of

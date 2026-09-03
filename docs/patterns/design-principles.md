@@ -101,10 +101,10 @@ The `BaseTool` interface lets you start with simple functions and later add REST
 
 ---
 
-## References
+## Go deeper
 
-- [Semantic Kernel Architecture](https://learn.microsoft.com/en-us/agent-framework/)
-- [LangGraph Documentation](https://langchain-ai.github.io/langgraph/)
-- [AutoGen Framework](https://microsoft.github.io/autogen/)
-- [Azure AI Agent Service](https://learn.microsoft.com/en-us/azure/ai-services/agents/)
-- [OpenAI Assistants API](https://platform.openai.com/docs/assistants/overview)
+- [Microsoft Agent Framework](https://learn.microsoft.com/en-us/agent-framework/) — async-first, streaming and serialization as implemented in a production SDK.
+- [LangGraph](https://docs.langchain.com/oss/python/langgraph/overview) — checkpointing and resumable state, which is where serialization stops being theoretical.
+- [Foundry Agent Service](https://learn.microsoft.com/en-us/azure/foundry/agents/overview) — the managed take on the same lifecycle concerns.
+- [OpenAI Agents SDK](https://openai.github.io/openai-agents-python/) — a deliberately small surface area; a useful contrast to the larger frameworks.
+- [The harness](../02-agents/the-harness.md) — these principles as something you build and then break on purpose.

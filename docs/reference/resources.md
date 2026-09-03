@@ -18,7 +18,7 @@ tags:
     at the bottom is as useful as the rest — most of it is material that ranks
     well and is quietly out of date.
 
-**Verified as of 2026-08-21.**
+**Verified as of 2026-09-02.**
 
 ## How to judge a source yourself
 

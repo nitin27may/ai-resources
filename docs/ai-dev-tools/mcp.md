@@ -186,14 +186,14 @@ practical defence is architectural: cut one leg of the trifecta of *private data
 **Sandbox untrusted servers.** Treat installing one with the scrutiny of
 installing any executable.
 
-## References
+## Go deeper
 
-- [MCP Specification](https://modelcontextprotocol.io/specification) — always check the revision date
-- [Architecture](https://modelcontextprotocol.io/docs/learn/architecture) — better than the spec for first contact; includes full wire traces
-- [Python SDK](https://github.com/modelcontextprotocol/python-sdk) — read the v1→v2 migration guide as teaching material
-- [MCP Inspector](https://github.com/modelcontextprotocol/inspector)
-- [MCP Registry](https://github.com/modelcontextprotocol/registry)
-
+- [MCP specification](https://modelcontextprotocol.io/specification) — check the revision date every single time. `2026-07-28` removed the handshake and sessions.
+- [Architecture](https://modelcontextprotocol.io/docs/learn/architecture) — better than the spec for first contact, with full wire traces.
+- [Python SDK](https://github.com/modelcontextprotocol/python-sdk) — read the v1 to v2 migration guide as teaching material, not just as an upgrade chore.
+- [MCP Inspector](https://github.com/modelcontextprotocol/inspector) — debug a server without wiring up a host. The fastest way to see what your server actually exposes.
+- [MCP Registry](https://github.com/modelcontextprotocol/registry) — the curated index. Use it instead of the awesome-list, which nobody is reviewing.
+- [GitHub MCP server](https://github.com/github/github-mcp-server) — GitHub's own, and the replacement for the archived reference server most tutorials still configure.
 ## Next
 
 [Agent Skills](../02-agents/the-harness.md) and the wider interop story — MCP is

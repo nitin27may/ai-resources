@@ -340,10 +340,11 @@ graph TD
 
 ---
 
-## References
+## Go deeper
 
-- [Microsoft: Multi-Agent Design Patterns](https://learn.microsoft.com/en-us/azure/foundry/agents/overview)
-- [Anthropic: Building Effective Agents](https://www.anthropic.com/engineering/building-effective-agents)
-- [LangGraph Design Patterns](https://docs.langchain.com/oss/python/langgraph/overview)
-- [AutoGen Agent Patterns](https://microsoft.github.io/autogen/docs/tutorial)
-- [Semantic Kernel Orchestration](https://learn.microsoft.com/en-us/agent-framework/)
+- [Anthropic: building effective agents](https://www.anthropic.com/engineering/building-effective-agents) — where most of this vocabulary comes from, and clear that the simplest pattern that works is the right one.
+- [Foundry Agent Service](https://learn.microsoft.com/en-us/azure/foundry/agents/overview) — these patterns as a managed service.
+- [Microsoft Agent Framework](https://learn.microsoft.com/en-us/agent-framework/) — graph-based orchestration on .NET and Python.
+- [LangGraph](https://docs.langchain.com/oss/python/langgraph/overview) — supervisor, hierarchical and parallel patterns as explicit graphs with checkpointing.
+- [OpenAI Agents SDK](https://openai.github.io/openai-agents-python/) — handoffs as a first-class concept, which is the pattern most frameworks model worst.
+- [Build the loop yourself](../02-agents/the-agent-loop.md) — about thirty lines. Do this once and every pattern above reads differently.

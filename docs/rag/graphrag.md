@@ -189,14 +189,14 @@ When in doubt: if your question names a specific entity, use local. If your ques
 
 ---
 
-## References
+## Go deeper
 
-- [Microsoft GraphRAG documentation](https://microsoft.github.io/graphrag/)
-- [Microsoft GraphRAG GitHub repository](https://github.com/microsoft/graphrag)
-- [From Local to Global: A Graph RAG Approach to Query-Focused Summarization (arXiv)](https://arxiv.org/abs/2404.16130)
+- [Microsoft GraphRAG documentation](https://microsoft.github.io/graphrag/) — the reference implementation, including the indexing cost you must budget for.
+- [GraphRAG on GitHub](https://github.com/microsoft/graphrag) — source and examples. Read the prompt-tuning step; it is where most of the quality comes from.
+- [From local to global: a graph RAG approach](https://arxiv.org/abs/2404.16130) — the original paper. Short, and clear that the win is corpus-level sensemaking rather than factoid lookup.
+- [Vector databases](vector-databases.md) — the honest comparison. For single-hop questions, plain retrieval with reranking usually wins at a fraction of the cost.
 
 ---
-
 ## Next steps
 
 - [RAG Fundamentals](rag-fundamentals.md) — core concepts that GraphRAG builds on top of

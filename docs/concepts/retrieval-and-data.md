@@ -246,16 +246,15 @@ This is one of the most common decisions in AI application design. Here is a cle
 
 ---
 
-## References
+## Go deeper
 
-- [RAG with Azure AI Search](https://learn.microsoft.com/en-us/azure/search/retrieval-augmented-generation-overview)
-- [Azure AI Search](https://learn.microsoft.com/en-us/azure/search/)
-- [LangChain RAG Tutorial](https://python.langchain.com/docs/tutorials/rag/)
-- [Microsoft GraphRAG](https://microsoft.github.io/graphrag/)
-- [Pinecone Learning Center](https://www.pinecone.io/learn/)
+- [Retrieval in depth](../rag/index.md) — six pages on this site covering chunking, embeddings, vector databases, GraphRAG and evaluation. Start there before any vendor guide.
+- [RAG with Azure AI Search](https://learn.microsoft.com/en-us/azure/search/retrieval-augmented-generation-overview) — Microsoft's production-oriented walkthrough, including hybrid search.
+- [LangChain RAG tutorial](https://docs.langchain.com/oss/python/langchain/rag) — end to end in code, if you want a framework doing the wiring.
+- [Microsoft GraphRAG](https://microsoft.github.io/graphrag/) — read the indexing-cost section before you get excited.
+- [Pinecone learning centre](https://www.pinecone.io/learn/) — vendor-published, but the chunking and hybrid-search explanations are genuinely good.
 
 ---
-
 ## Next steps
 
 - For deeper RAG coverage: [RAG & Knowledge Systems](../rag/index.md)
