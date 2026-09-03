@@ -57,9 +57,11 @@ harness · 5 Context engineering · 6 Memory · 7 Retrieval · 8 Evaluation ·
 ## Known debt, recorded not hidden
 
 - ~~The six C# samples target a pre-1.0 Agent Framework preview.~~ **Done
-  2026-09-03.** All six ported to Agent Framework 1.x and compiling from a clean
-  package cache. `samples/readme.md` documents every API change, since none of
-  them fail with a helpful message.
+  2026-09-03** (PR #20, #21). Ported to Agent Framework 1.x, then repointed from
+  Foundry server-side agents to Azure OpenAI so they can actually be *run* rather
+  than only compiled — they now use the same three environment variables as the
+  Python labs, and all six were run end to end. `samples/readme.md` documents the
+  pre-1.0 renames and the two type clashes.
 - **Renumbering the build modules churns cross-references.** It happened twice
   in one session. Nav labels and prose carry the numbers; file paths do not, so
   no URL is at risk, but budget for a sitewide pass and check
