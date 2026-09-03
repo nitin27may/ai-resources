@@ -1,5 +1,5 @@
 ---
-description: The component view of an AI agent, and the question that actually matters: when a workflow beats an agent.
+description: "The component view of an AI agent, and the question that actually matters: when a workflow beats an agent."
 tags:
   - Understand
   - Agents

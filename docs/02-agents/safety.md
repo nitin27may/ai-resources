@@ -1,7 +1,6 @@
 ---
 title: Safety and failure modes
 description: What happens when the content your agent reads is trying to manipulate it — and why the fix is architectural, not a better prompt.
-  - Safety
 tags:
   - Build
   - Safety

@@ -1,7 +1,6 @@
 ---
 title: The harness
 description: Everything that surrounds the agent loop once you stop trusting the model to behave.
-  - Agents
 tags:
   - Build
   - Agents

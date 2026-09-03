@@ -1,7 +1,6 @@
 ---
 title: The agent loop
 description: Build the loop yourself in about thirty lines, so that agent.run() is never a black box again.
-  - Agents
 tags:
   - Build
   - Agents

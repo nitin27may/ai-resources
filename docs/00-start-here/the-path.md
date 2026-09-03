@@ -1,7 +1,6 @@
 ---
 title: The path
 description: Ten modules from a model on your laptop to an agent in production. Every one ends in something that runs, free.
-  - Getting Started
 tags:
   - Start here
   - Agents

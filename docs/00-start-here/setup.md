@@ -1,7 +1,6 @@
 ---
 title: Setup
 description: Get a model answering on your own machine, for free, in under an hour.
-  - Getting Started
 tags:
   - Build
   - Agents

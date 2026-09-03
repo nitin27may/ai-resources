@@ -1,7 +1,6 @@
 ---
 title: Context engineering
 description: Deciding what the model is allowed to see, once putting everything in stops working.
-  - Agents
 tags:
   - Build
   - Agents

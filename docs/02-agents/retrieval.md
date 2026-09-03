@@ -1,7 +1,6 @@
 ---
 title: Retrieval
 description: Getting information the model was never trained on into its context — and why it works on your test corpus and fails on your real one.
-  - RAG
 tags:
   - Build
   - Retrieval
