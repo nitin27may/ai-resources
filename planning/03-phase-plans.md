@@ -1,5 +1,10 @@
 # ai-resources phase plans — 2026-09-02
 
+
+> **Historical record.** All phases in this document are complete (see
+> `STATUS.md`). Counts and module numbers quoted here are from the time of
+> writing. Kept for the per-phase reasoning and the check-script rationale.
+
 Detailed task lists for the phases in ai-resources-restructure-plan-2026-09-02.md. One phase = one branch = one PR. Nothing here changes an existing URL until Phase 9, which only adds URLs.
 
 ## Cross-cutting checks (every phase)

@@ -1,5 +1,12 @@
 # ai-resources restructure plan — 2026-09-02
 
+
+> **Historical record.** This is the plan that was executed, not a plan to
+> execute. It was written against a ten-module build path; the path now has
+> thirteen modules, and page counts and numbering have moved since. The layer
+> model, the routing conventions and the topic ladders in it are still the
+> conventions in force — those are restated current in `../CLAUDE.md`.
+
 Companion to ai-resources-audit-2026-09-02.md. This is the content, navigation and style design. No URLs change in this plan.
 
 ## Decisions recorded (from Nitin, 2026-09-02)

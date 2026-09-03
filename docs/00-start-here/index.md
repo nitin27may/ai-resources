@@ -27,8 +27,9 @@ territory.
 
 Each step needs only the ones before it. Prompting needs models. Retrieval is
 "give the model your data". An agent is "let the model act", which needs both.
-All ten pages live under [Understand](../concepts/index.md), and you can read
-them there in any order once you have the first two.
+AI 101 sits in Start here; the other nine live under
+[Understand](../concepts/index.md), where you can also read them in any order
+once you have the first two.
 
 | # | Read | Time |
 |---|---|---|
