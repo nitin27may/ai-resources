@@ -32,7 +32,7 @@ them there in any order once you have the first two.
 
 | # | Read | Time |
 |---|---|---|
-| 1 | [AI 101](../getting-started/index.md) — what AI, ML and an LLM actually are | 30 min |
+| 1 | [AI 101](../getting-started/index.md) — what AI, ML and an LLM actually are, and the three things a model cannot do | 40 min |
 | 2 | [How models work](../concepts/foundation-and-models.md) — tokens, context windows, inference | 30 min |
 | 3 | [Prompting](../concepts/prompting-and-techniques.md) — system prompts, few-shot, chain of thought | 30 min |
 | 4 | [Retrieval and data](../concepts/retrieval-and-data.md) — RAG, embeddings, vector search, GraphRAG | 30 min |
