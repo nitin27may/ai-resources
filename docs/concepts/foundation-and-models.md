@@ -5,13 +5,20 @@ tags:
   - Models
 ---
 
-# Foundation & models
+# How models work
 
 !!! abstract "Understand · 30 min · no code"
     **Before this:** [AI 101](../getting-started/index.md)  ·  **After this:** [Prompting](prompting-and-techniques.md)
     **Hands-on version:** [4 Context engineering](../02-agents/context-engineering.md)  ·  **In depth:** [Frameworks and platforms](../tools-and-frameworks/index.md)
 
-Modern AI is built on **foundation models** — large neural networks trained on massive datasets that can be adapted to a wide range of tasks. This page breaks down how these models work, the different types available, and the key concepts you need to understand before building AI-powered applications.
+Modern AI is built on **foundation models** — large neural networks trained on
+broad data and adapted to many tasks. This page is the layer beneath
+[AI 101](../getting-started/index.md): what a token really is, what a context
+window really costs, what the settings do, and how to choose a model without
+naming one.
+
+Still no code. Everything here is conceptual, and every idea has a hands-on
+counterpart in the build path.
 
 ---
 
@@ -63,7 +70,22 @@ Models do not process raw text. Instead, text is broken into **tokens** — smal
 | 1,000 words of English | ~750 tokens |
 
 !!! note "Why tokens matter"
-    You are billed per token (input + output) when using commercial APIs. Understanding tokenization helps you estimate costs and optimize prompts.
+    You are billed per token, input and output both. Tokenisation is also where
+    several practical surprises live.
+
+**Three tokenisation effects worth knowing:**
+
+- **Other languages cost more.** Tokenisers are fit to their training mix, which
+  skews English. The same sentence in Hindi, Japanese or Arabic can take two to
+  three times as many tokens as its English translation — so the same feature
+  costs more, and hits the context limit sooner, for some of your users than for
+  others.
+- **Numbers and code fragment badly.** A long number or an unusual identifier
+  can become many tokens. This is also part of why models are shaky at digit-level
+  arithmetic: they may not see the number as one thing at all.
+- **Whitespace and formatting are not free.** Pretty-printed JSON, deep
+  indentation and long tables all bill. Compact your payloads before you blame
+  the model for being expensive.
 
 ### Context window
 
@@ -73,7 +95,7 @@ Context windows in the current frontier generation run from roughly **200K to
 2M tokens**, with small local models often at 4K-128K. Naming specific models
 here would date this page within months — check the provider's live model page
 for current figures: [OpenAI](https://developers.openai.com/api/docs/models),
-[Anthropic](https://platform.claude.com/docs/en/about-claude/models/overview),
+[Anthropic](https://docs.claude.com/en/docs/about-claude/models),
 [Google](https://ai.google.dev/gemini-api/docs/models).
 
 A larger window costs more and is slower. It is also **not** the same as usable
@@ -81,6 +103,32 @@ context: of 13 models advertising 128K+, 11 fell below half their short-context
 accuracy at just 32K once lexical overlap between question and answer was
 removed (NoLiMa, ICML 2025). Treat the advertised number as a ceiling, not a
 working budget — see [context engineering](../02-agents/context-engineering.md).
+
+### The context window is not the output limit
+
+These are two different numbers and they are constantly confused.
+
+| | What it limits | Typical size |
+|---|---|---|
+| **Context window** | Everything the model considers: system prompt, conversation, retrieved documents *and* the answer | Large — 200K and up on frontier models |
+| **Max output tokens** | Only what the model may generate in one response | Much smaller — often a few thousand to tens of thousands |
+
+A model with a two-million-token window will still refuse to write you a
+two-million-token document. If a long answer stops mid-sentence, the output
+limit is the first thing to check, not the context window.
+
+### Prompt caching, the lever most people miss
+
+Because the model has no memory, applications resend the same system prompt and
+the same documents on every turn. Providers let you mark that stable prefix as
+cacheable: the first call pays full price, and later calls that reuse the same
+prefix pay substantially less for it and return faster.
+
+The practical consequence is architectural rather than clever. Put the parts
+that never change — system prompt, tool definitions, reference documents — at
+the *front* of the prompt, and the parts that change every turn at the end.
+Reorder those and the cache stops matching. This is one of the largest cost
+levers available and it costs nothing to design for.
 
 ---
 
@@ -127,6 +175,57 @@ VLMs extend language models with the ability to process **images** alongside tex
 
 ---
 
+## Reasoning models, and paying for thinking
+
+A newer distinction cuts across the tiers above: some models are trained to
+**work through a problem before answering**, generating a long internal chain of
+reasoning that you are usually not shown.
+
+The trade is straightforward:
+
+| | Standard model | Reasoning model |
+|---|---|---|
+| Latency | Fast | Slow — often much slower |
+| Cost | Output tokens you see | Output tokens you see, **plus** the hidden reasoning |
+| Better at | Summarising, extraction, drafting, classification | Maths, logic, planning, multi-step debugging |
+| Worse at | Hard multi-step problems | Everything where the thinking is wasted |
+
+Two things this changes in practice.
+
+**Reasoning is billed.** The hidden working-out is output, charged at output
+rates. A short answer can be expensive.
+
+**It can consume the whole budget.** Because the reasoning comes first, a
+reasoning model under a tight output cap can spend its entire allowance thinking
+and return nothing at all. Measured on one of the labs on this site, a reasoning
+model emitted nearly 4,000 characters of reasoning and **zero** characters of
+answer under a 1,024-token cap, while a similar non-reasoning model answered in
+ten seconds. That is why [the labs](../00-start-here/the-path.md) default to a
+non-reasoning model: the failure is worth understanding, but not while you are
+still learning what a tool call is.
+
+Reach for reasoning when the task genuinely has steps. For most retrieval,
+summarisation and extraction work, it buys latency and cost and returns nothing.
+
+## Why "how many parameters" stopped being a useful question
+
+Parameter counts used to be a rough proxy for capability. Two things broke that.
+
+**Mixture of experts.** Many current models activate only a fraction of their
+parameters for any given token, routing each one to a subset of specialised
+sub-networks. A model can hold a very large total while only paying to run a
+small part of it. Total and active parameter counts can differ by an order of
+magnitude, so a single headline number tells you neither cost nor capability.
+
+**Training quality dominates.** Data curation, training length and
+post-training now separate models more than raw size does. Smaller,
+better-trained models routinely beat larger, older ones.
+
+Most vendors have stopped publishing the figure. Judge on measured behaviour for
+your task — see [evaluation](../02-agents/evaluation.md) — not on a number.
+
+---
+
 ## How inference works
 
 When you send a prompt to an AI model, here is what happens behind the scenes:
@@ -166,8 +265,42 @@ Top-p (nucleus sampling)
 Max tokens
 :   The maximum number of tokens the model will generate in its response.
 
+Stop sequences
+:   Strings that cause generation to halt when produced. Useful when you are
+    parsing the output and need a reliable end marker.
+
 !!! warning "Temperature is not creativity"
-    Setting temperature to 1.0 does not make the model "more creative" in a meaningful sense. It increases randomness, which can lead to incoherent or off-topic output. For most production use cases, keep temperature between 0.0 and 0.5.
+    Setting temperature to 1.0 does not make the model "more creative" in any
+    meaningful sense. It increases randomness, which as often produces
+    incoherent or off-topic output. For most production use, keep it between
+    0.0 and 0.5.
+
+!!! warning "Temperature 0 is not a guarantee of identical output"
+    It is the closest you can get, and it is not a promise. Providers batch
+    requests together, floating-point addition is not associative, and the
+    composition of a batch varies with load — so the same prompt at temperature
+    0 can return different text on different days. Model versions also change
+    underneath a stable name.
+
+    This matters most for testing. A test that asserts exact output will fail
+    eventually for reasons that have nothing to do with your code. Assert on
+    properties — valid schema, required fields present, a constraint satisfied —
+    and see [evaluation](../02-agents/evaluation.md) for how to measure a system
+    whose output is not deterministic.
+
+### The knowledge cutoff
+
+Every model's knowledge stops at a date. Ask about anything after it and you
+will usually still get a fluent answer, because generating plausible text is the
+whole mechanism.
+
+Two practical notes. A model is often unreliable about its *own* cutoff, since
+that fact was itself learned during training. And the cutoff is a soft edge
+rather than a wall: coverage of the months just before it is thin, because the
+internet had not finished writing about them yet.
+
+Anything current, internal or proprietary has to be supplied in the prompt. That
+is [retrieval](retrieval-and-data.md), and it is not optional.
 
 ---
 
@@ -185,7 +318,20 @@ There is no single "best" model. The right choice depends on your requirements:
 | Long document processing | Model with large context window |
 
 !!! tip "Start simple"
-    Begin with a hosted LLM and well-crafted prompts. Only move to fine-tuning or smaller models when you have a clear need for cost reduction, latency improvement, or domain specialization.
+    Begin with a capable hosted model and well-crafted prompts. Move to
+    fine-tuning or smaller models only when you have a measured need: cost,
+    latency, privacy or domain specialisation.
+
+!!! warning "Choose the model last"
+    The order most teams use is backwards. Model choice is the easiest decision
+    to change — usually a configuration line — and it is rarely what decides
+    whether the system works.
+
+    What decides that is everything around the model: what you retrieve and how
+    well, what the model is permitted to do, how failures are caught, and
+    whether you can tell a good answer from a bad one. Build a way to measure
+    quality first. Then swapping models becomes an experiment you can run in an
+    afternoon instead of an argument nobody can settle.
 
 ---
 
