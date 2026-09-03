@@ -53,6 +53,8 @@ checks = {
  "unicode emojis":                sum(1 for _,_,l in prose_lines()
                                       if re.search(r"[\U0001F300-\U0001FAFF☀-➿]", l)),
  "bare '## References' sections": sum(1 for _,_,l in prose_lines() if l.strip() == "## References"),
+ "headings ending in a colon": sum(1 for _,_,l in prose_lines()
+                                      if re.match(r"^#{2,6} .*:\s*$", l)),
  "site name lower-cased": sum(1 for _,_,l in prose_lines()
                                       if "AI knowledge hub" in l),
  "numbered headings lowercased": sum(1 for _,_,l in prose_lines()

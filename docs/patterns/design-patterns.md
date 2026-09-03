@@ -16,21 +16,18 @@ tags:
 
 ### Simple model
 
-#### When to use:
-
+#### When to use
 - Tasks require only text generation
 - No external actions or tool usage needed
 - Direct question-answer scenarios from training data
 - Document summarization or code generation from specifications
 
-#### Characteristics:
-
+#### Characteristics
 - Fast and cost-effective
 - Easy to implement with direct LLM API calls
 - Limited to text processing, analysis, or generation
 
-#### Example use cases:
-
+#### Example use cases
 - Text completion and generation
 - Simple question answering
 - Content summarization
@@ -40,23 +37,20 @@ tags:
 
 ### Single agent
 
-#### When to use:
-
+#### When to use
 - Tasks require actions beyond text generation
 - Solution involves known action sequences with action-perception loops
 - Can be handled effectively by one type of expertise
 - Tasks involve API calls with result validation
 - No need for specialized domain expertise or complex collaboration
 
-#### Characteristics:
-
+#### Characteristics
 - Flexible with tool usage capabilities
 - Moderate complexity
 - Can handle action-taking with appropriate tools
 - May struggle with highly complex multi-step tasks
 
-#### Example use cases:
-
+#### Example use cases
 - Simple automation tasks
 - Basic tool calling scenarios
 - Straightforward decision-making
@@ -66,24 +60,21 @@ tags:
 
 ### Multi-agent workflow
 
-#### When to use:
-
+#### When to use
 - Solution can be expressed as a well-defined workflow
 - Benefits from specialized expertise or domain separation
 - Different parts of the task require distinct domain knowledge
 - Collaboration pattern between agents is well-understood
 - Each agent's role and handoffs follow established processes
 
-#### Characteristics:
-
+#### Characteristics
 - Structured and maintainable
 - Clear agent responsibilities
 - Orchestrated, predictable execution flow
 - Requires upfront design
 - Less flexible than autonomous approaches
 
-#### Example use cases:
-
+#### Example use cases
 - Content creation pipeline (research, writing, editing agents)
 - Customer service routing (triage, specialist, resolution)
 - Financial analysis (market data, risk assessment, portfolio optimization)
@@ -312,26 +303,70 @@ graph TD
 
 ---
 
+## When multiple agents actually help
+
+The most consequential decision on this page, and the one most often made by
+default rather than deliberately. Multi-agent architectures are attractive
+because they map neatly onto how we think about teams. That is not evidence that
+they work better.
+
+Two companies shipping real agents published opposite conclusions **one day
+apart** in June 2025, and reading them as a pair teaches the actual criterion:
+
+- Cognition argued **against** multi-agent systems: sub-agents lose the context
+  the main agent had, make conflicting assumptions, and produce work that does
+  not compose. Their prescription was a single agent with a continuous context.
+- Anthropic described a multi-agent research system that **worked**, where
+  parallel sub-agents each explored a different line of enquiry and returned
+  findings.
+
+Both are right, and the difference between the cases is the criterion:
+
+| Multi-agent tends to work | Multi-agent tends to fail |
+|---|---|
+| Read-heavy work: search, research, review | Work that writes or edits shared state |
+| Sub-tasks that are genuinely independent | Sub-tasks that depend on each other's decisions |
+| Findings compose by concatenation | Results must be reconciled into one coherent artefact |
+| Parallelism is the point | The task is sequential anyway |
+
+Cognition later [revised their position](https://cognition.com/blog/multi-agents-working):
+what works is multiple agents contributing intelligence while **writes stay
+single-threaded**. That is the rule worth remembering. Parallelise the reading;
+keep one writer.
+
+!!! warning "Each agent multiplies the cost and the failure surface"
+    Every sub-agent has its own context, resends its own history, and can fail
+    in its own plausible-looking way. Three agents is not three times the cost —
+    it is three times the cost plus the coordination overhead plus the tokens
+    spent passing context between them.
+
+    It also multiplies what you must trace. Debugging "why did it do that?"
+    across four agents needs correlated traces from the start, not after the
+    first incident.
+
+**The order to try:** one agent with more tools, then one agent with better
+retrieval, then sub-agents for parallel read-only work, then multiple writers.
+Most teams that reach for the last one have not exhausted the first.
+
+---
+
 ## Pattern selection criteria
 
-### Based on task characteristics:
-
+### By task
 - **Well-defined, repeatable processes** → Workflow patterns (Sequential, Conditional, Parallel)
 - **Dynamic, exploratory tasks** → Autonomous patterns (Conversation-driven)
 - **Complex planning required** → Plan-Based Orchestration
 - **Domain expertise needed** → Handoff patterns
 - **Emergent solutions required** → AI-Driven Conversation
 
-### Based on system requirements:
-
+### By system requirement
 - **High predictability needed** → Workflow patterns
 - **Maximum autonomy required** → AI-Driven Conversation
 - **Resource constraints** → Handoff patterns (minimal coordination overhead)
 - **Scalability concerns** → Parallel Workflows or Handoff patterns
 - **Transparency required** → Conversation-driven patterns (shared visibility)
 
-### Based on implementation considerations:
-
+### By implementation constraint
 - **Developer resources available** → Workflow patterns (explicit control)
 - **Rapid prototyping needed** → Conversation-driven patterns (simple implementation)
 - **Production reliability critical** → Workflow patterns with explicit task management
