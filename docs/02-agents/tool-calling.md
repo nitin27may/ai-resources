@@ -71,6 +71,40 @@ for the wrong tool, and no amount of prompt engineering elsewhere fixes it.
 traceback the model never sees and cannot correct. A returned error gives it a
 chance to try again with different arguments.
 
+## A tool call is structured output
+
+Worth naming, because it makes the rest of the field legible: a tool definition
+*is* a JSON Schema, and the model's request to call it *is* schema-constrained
+output. Same mechanism, two names.
+
+Which means the guarantees are the same, and so are the limits:
+
+| Guaranteed | Not guaranteed |
+|---|---|
+| The request names a tool you defined | That it is the *right* tool for the task |
+| The arguments match your schema's shape | That the values are correct or safe |
+| Required fields are present | That a required field was filled from evidence rather than invented |
+
+A model that must supply `order_id` and does not know one will supply something
+that looks like an order ID. Constrained decoding removed your parse errors; it
+did not remove wrong answers, it made them well-formed. Validate the values, not
+just the shape.
+
+Two practical consequences for the code you are about to write:
+
+- **Give the model a way to not call a tool.** If the only representable actions
+  are tool calls, you have arranged for one to happen. An explicit "insufficient
+  information" path — a tool, or simply a prompt that permits a plain answer —
+  prevents an invented call.
+- **Descriptions do the work in both directions.** The tool description decides
+  whether the right tool is chosen; the per-parameter descriptions decide
+  whether the arguments are sensible. `"ISO 8601 date, UTC"` in a parameter
+  description is worth more than a paragraph of system prompt.
+
+The overview version of this, including JSON mode and where schema enforcement
+sits relative to asking politely, is in
+[Prompting](../concepts/prompting-and-techniques.md#structured-output-stop-asking-start-constraining).
+
 ## Build it
 
 [**Lab 02 — tool dispatch**](https://github.com/nitin27may/ai-resources/tree/main/labs/02-tool-dispatch) · free, local, ~1 minute

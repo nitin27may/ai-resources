@@ -7,10 +7,12 @@ tags:
   - Claude Code
 ---
 
-# Claude Code skills & agents
+# Claude Code skills and agents
 
 !!! abstract "Tools · 40 min · hands-on"
     **Before this:** [Claude Code](claude-code.md)  ·  **After this:** [Model Context Protocol](mcp.md)
+
+**Verified as of 2026-09-02.**
 
 !!! abstract
     Beyond basic prompting, Claude Code supports skills (custom slash commands), subagents for parallel and isolated work, hooks that fire on tool events, and MCP server integration. This page covers each mechanism, when to use it, and how to configure it.
