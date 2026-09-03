@@ -2,12 +2,13 @@
 
 Update this file at the end of every working session. A new session reads this first, then planning/README.md.
 
-**Last updated:** 2026-09-03. Phases 1-6 and 8 done, phase 7 half done. Open in PR #19.
+**Last updated:** 2026-09-03. All phases done including 9a-9c. Open in PR #19.
 **Branch:** `restructure/layered-hub`. One branch, one PR, one commit per phase.
 **CI:** green on PR #19 — strict build, tag assertions, sitemap guard and link check all pass.
 
-**What is left:** the Azure OpenAI tab (phase 7, needs an endpoint and key from
-Nitin) and the phase 9 content modules (structured output, memory, multi-agent).
+**What is left:** porting the six C# samples to Agent Framework 1.x, which is a
+real port rather than a version bump (see samples/readme.md). Everything else on
+the plan is done.
 
 | Phase | State | PR | Notes |
 |---|---|---|---|
@@ -19,9 +20,9 @@ Nitin) and the phase 9 content modules (structured output, memory, multi-agent).
 | 6 Reference layer | done | 0d22cfc | Official sources rewritten with NVIDIA; 61 redirects fixed; 23 Go deeper sections; all 182 external links resolve |
 | 7 Azure OpenAI and C# | partly done | | C# half done: all 6 samples compile on .NET 10 (mcpuse.cs never did before), readme rewritten, samples linked from the site. **Still blocked:** the Azure OpenAI tab in Setup and labs needs an endpoint + key from Nitin in env vars |
 | 8 Repo docs and Docker | done | 45553ff | CLAUDE.md rewritten, copilot-instructions is a pointer, one Dockerfile (non-root, healthcheck), container verified healthy |
-| 9a Structured output | not started | | |
-| 9b Memory | not started | | |
-| 9c Multi-agent + agentic RAG | not started | | |
+| 9a Structured output | done | 89524cb | Module 2 + lab. Measured on two providers: schema holds 6/6 where prompt-only and JSON mode drop to 0/6 |
+| 9b Memory | done | 2ec9327 | Module 6 + lab. Poisoning reproduced identically on both providers |
+| 9c Multi-agent | done | 2ec9327 | Module 12 + lab. Split cost 2.6x tokens AND lost information the single agent had |
 
 States: not started, in progress, in review, merged, blocked.
 
@@ -44,6 +45,15 @@ The last two need playwright with chromium. They exist because a `--strict`
 build passed for months while every diagram on the site rendered blank and the
 light theme was unreachable. Building is not the same as rendering.
 
+## The build path as it now stands
+
+Thirteen modules, thirteen labs, all verified against both a local Ollama model
+and Azure OpenAI on 2026-09-03:
+
+0 Setup · 1 Tool calling · 2 Structured output · 3 The agent loop · 4 The
+harness · 5 Context engineering · 6 Memory · 7 Retrieval · 8 Evaluation ·
+9 Observability · 10 Safety · 11 Production · 12 Multi-agent
+
 ## Known debt, recorded not hidden
 
 - **The six C# samples target a pre-1.0 Agent Framework preview.** They compile,
@@ -51,9 +61,10 @@ light theme was unreachable. Building is not the same as rendering.
   against them (`Azure.AI.Projects.OpenAI` gone, `AIProjectClient.CreateAIAgent`
   gone, `AgentThread` moved). Porting is real work, not a version bump.
   `samples/readme.md` states this plainly.
-- **The Azure OpenAI tab for Setup and the labs is not written.** It needs one
-  live test against a real endpoint to confirm the auth header shape on the
-  `/openai/v1` path. Needs an endpoint and key from Nitin, in env vars only.
+- **Renumbering the build modules churns cross-references.** It happened twice
+  in one session. Nav labels and prose carry the numbers; file paths do not, so
+  no URL is at risk, but budget for a sitewide pass and check
+  `planning/scripts/style-greps.sh` for the module-count guard.
 
 ## Deferred deliberately
 
