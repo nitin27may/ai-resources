@@ -2,8 +2,12 @@
 
 Update this file at the end of every working session. A new session reads this first, then planning/README.md.
 
-**Last updated:** 2026-09-02, phases 1-5 merged into the branch.
+**Last updated:** 2026-09-03. Phases 1-6 and 8 done, phase 7 half done. Open in PR #19.
 **Branch:** `restructure/layered-hub`. One branch, one PR, one commit per phase.
+**CI:** green on PR #19 — strict build, tag assertions, sitemap guard and link check all pass.
+
+**What is left:** the Azure OpenAI tab (phase 7, needs an endpoint and key from
+Nitin) and the phase 9 content modules (structured output, memory, multi-agent).
 
 | Phase | State | PR | Notes |
 |---|---|---|---|
