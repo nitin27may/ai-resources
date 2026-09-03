@@ -10,7 +10,7 @@ tags:
 
 !!! abstract "Understand · 40 min · no code"
     **Before this:** [What an agent is](ai-agents.md)  ·  **After this:** [Enterprise AI patterns](../patterns/enterprise-patterns.md)
-    **Hands-on version:** [3 The harness](../02-agents/the-harness.md)  ·  **In depth:** [Model Context Protocol](../ai-dev-tools/mcp.md)
+    **Hands-on version:** [4 The harness](../02-agents/the-harness.md)  ·  **In depth:** [Model Context Protocol](../ai-dev-tools/mcp.md)
 
 [What an agent is](ai-agents.md) covered the loop and when not to use one.
 This page is the ecosystem around it: the patterns agents are built from, how

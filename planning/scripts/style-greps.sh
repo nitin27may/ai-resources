@@ -65,7 +65,13 @@ checks = {
  "Title Case H2s":                sum(1 for _,_,l in prose_lines()
                                       if re.match(r"^## [A-Z][a-z]+ [A-Z][a-z]", l)
                                       and l.split()[2] not in PROPER),
- "'eleven' module claims":        sum(1 for _,_,l in prose_lines() if re.search(r"\beleven\b", l, re.I)),
+ # The build path has eleven modules (0-10). Guard against the previous count
+ # reappearing, which is how the last miscount survived for months.
+ # whats-new is a changelog: its August entry correctly records that ten
+ # modules shipped then. Everywhere else, "ten modules" is now stale.
+ "stale 'ten modules' claims":    sum(1 for f,_,l in prose_lines()
+                                      if re.search(r"\bten modules\b", l, re.I)
+                                      and "whats-new" not in f),
 }
 for k, v in checks.items(): print(f"{k:34s} {v}")
 untagged = [p for p in glob.glob("docs/**/*.md", recursive=True)

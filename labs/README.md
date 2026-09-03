@@ -24,6 +24,7 @@ have no GPU, 8 GB of RAM, or only a browser.
 | Lab | Module | What it makes visible |
 |-----|--------|-----------------------|
 | [01-first-call](01-first-call/) | The model | A conversation is a list you resend. The model is stateless. |
+| [02b-structured-output](02b-structured-output/) | [Structured output](../docs/02-agents/structured-output.md) | A schema guarantees shape, never truth. Make refusal representable. |
 | [02-tool-dispatch](02-tool-dispatch/) | [Tool calling](../docs/02-agents/tool-calling.md) | The model requests; *you* execute. Arguments are an unvalidated string. |
 | [03-agent-loop](03-agent-loop/) | [The agent loop](../docs/02-agents/the-agent-loop.md) | think → act → observe → repeat, in ~30 lines. |
 | [04-loop-with-recovery](04-loop-with-recovery/) | [The harness](../docs/02-agents/the-harness.md) | Errors as context vs. limits in code; budgets that actually stop a run. |

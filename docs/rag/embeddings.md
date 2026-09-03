@@ -12,7 +12,7 @@ tags:
 
 !!! abstract "Go deeper · 30 min · code optional"
     **Before this:** [RAG fundamentals](rag-fundamentals.md)  ·  **After this:** [Chunking strategies](chunking-strategies.md)
-    **Hands-on version:** [5 Retrieval](../02-agents/retrieval.md)
+    **Hands-on version:** [6 Retrieval](../02-agents/retrieval.md)
 
 **Verified as of 2026-09-02.**
 

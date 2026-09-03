@@ -9,7 +9,7 @@ tags:
 # Evaluation
 
 !!! abstract "Build · 2 h · hands-on"
-    **Before this:** [5 Retrieval](retrieval.md)  ·  **After this:** [7 Observability](observability.md)
+    **Before this:** [6 Retrieval](retrieval.md)  ·  **After this:** [8 Observability](observability.md)
     **In depth:** [RAG evaluation](../rag/rag-evaluation.md)
 
 !!! abstract

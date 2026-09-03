@@ -1,6 +1,6 @@
 ---
 title: The path
-description: Ten modules from a model on your laptop to an agent in production. Every one ends in something that runs, free.
+description: Eleven modules from a model on your laptop to an agent in production. Every one ends in something that runs, free.
 tags:
   - Start here
   - Agents
@@ -13,7 +13,7 @@ tags:
     The overview of the ten build modules. The reading path, which needs no code, is on Choose your path.
 
 !!! abstract
-    Ten modules, in order, each ending in code you run. No account, no API
+    Eleven modules, in order, each ending in code you run. No account, no API
     key, no cost — everything works against a model on your own machine.
     Roughly 12-15 hours if you do the labs, which is the only way it works.
 
@@ -48,14 +48,15 @@ agents rather than built one.
 flowchart TB
     S(["0 · Setup<br/>a model on your machine"]):::success
     S --> T["1 · Tool calling<br/>the model requests, you execute"]:::primary
-    T --> L["2 · The agent loop<br/>think, act, observe, repeat"]:::primary
-    L --> H["3 · The harness<br/>everything around the loop"]:::primary
-    H --> C["4 · Context engineering<br/>what the model may see"]:::processing
-    C --> R["5 · Retrieval<br/>what it was never told"]:::processing
-    R --> E["6 · Evaluation<br/>whether it actually works"]:::warning
-    E --> O["7 · Observability<br/>where it went wrong"]:::warning
-    O --> F["8 · Safety<br/>when content fights back"]:::danger
-    F --> P(["9 · Production<br/>real users, real money"]):::storage
+    T --> SO["2 · Structured output<br/>output your code can rely on"]:::primary
+    SO --> L["3 · The agent loop<br/>think, act, observe, repeat"]:::primary
+    L --> H["4 · The harness<br/>everything around the loop"]:::primary
+    H --> C["5 · Context engineering<br/>what the model may see"]:::processing
+    C --> R["6 · Retrieval<br/>what it was never told"]:::processing
+    R --> E["7 · Evaluation<br/>whether it actually works"]:::warning
+    E --> O["8 · Observability<br/>where it went wrong"]:::warning
+    O --> F["9 · Safety<br/>when content fights back"]:::danger
+    F --> P(["10 · Production<br/>real users, real money"]):::storage
 
     classDef success fill:#16a34a,stroke:#15803d,color:#fff
     classDef primary fill:#0d9488,stroke:#0b7a72,color:#fff
@@ -69,14 +70,15 @@ flowchart TB
 |---|---|---|---|
 | 0 | [Setup](setup.md) | A model answering locally, four hardware tiers | 30 min |
 | 1 | [Tool calling](../02-agents/tool-calling.md) | Dispatch a tool call by hand | 45 min |
-| 2 | [The agent loop](../02-agents/the-agent-loop.md) | A ~30-line loop, no framework | 1 h |
-| 3 | [The harness](../02-agents/the-harness.md) | Break it four ways; add guardrails | 1 h |
-| 4 | [Context engineering](../02-agents/context-engineering.md) | Watch the context window eat your system prompt | 1.5 h |
-| 5 | [Retrieval](../02-agents/retrieval.md) | Local RAG, and the case it silently gets wrong | 1.5 h |
-| 6 | [Evaluation](../02-agents/evaluation.md) | Measure pass^k; calibrate a judge | 2 h |
-| 7 | [Observability](../02-agents/observability.md) | A tracer, and where the tokens really go | 1 h |
-| 8 | [Safety](../02-agents/safety.md) | Inject an instruction through tool output | 1.5 h |
-| 9 | [Production](../02-agents/production.md) | Make a retry stop charging twice | 1 h |
+| 2 | [Structured output](../02-agents/structured-output.md) | Measure three ways to get parseable output; make one invent an answer | 45 min |
+| 3 | [The agent loop](../02-agents/the-agent-loop.md) | A ~30-line loop, no framework | 1 h |
+| 4 | [The harness](../02-agents/the-harness.md) | Break it four ways; add guardrails | 1 h |
+| 5 | [Context engineering](../02-agents/context-engineering.md) | Watch the context window eat your system prompt | 1.5 h |
+| 6 | [Retrieval](../02-agents/retrieval.md) | Local RAG, and the case it silently gets wrong | 1.5 h |
+| 7 | [Evaluation](../02-agents/evaluation.md) | Measure pass^k; calibrate a judge | 2 h |
+| 8 | [Observability](../02-agents/observability.md) | A tracer, and where the tokens really go | 1 h |
+| 9 | [Safety](../02-agents/safety.md) | Inject an instruction through tool output | 1.5 h |
+| 10 | [Production](../02-agents/production.md) | Make a retry stop charging twice | 1 h |
 
 ## What each module actually shows you
 
@@ -87,6 +89,10 @@ messages with no error. Raising it is the first thing you do.
 
 **Tool calling** — the model never calls anything. It emits `{name, arguments}`
 as a JSON *string*, and your code decides whether to honour it.
+
+**Structured output** — a schema guarantees the shape and nothing else. Asked
+for a required quantity that the message never stated, the model invented one on
+every run, on two different providers, and every invention was schema-valid.
 
 **The agent loop** — the exit condition is the part people miss: the loop ends
 when the model returns content instead of a tool call. Nothing else stops it.

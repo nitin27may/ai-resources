@@ -9,7 +9,7 @@ tags:
 
 !!! abstract "Understand · 40 min · no code"
     **Before this:** [Retrieval and data](retrieval-and-data.md)  ·  **After this:** [Agentic AI](agentic-ai.md)
-    **Hands-on version:** [2 The agent loop](../02-agents/the-agent-loop.md)  ·  **In depth:** [Design patterns](../patterns/design-patterns.md)
+    **Hands-on version:** [3 The agent loop](../02-agents/the-agent-loop.md)  ·  **In depth:** [Design patterns](../patterns/design-patterns.md)
 
 [AI 101](../getting-started/index.md) made the point that a model cannot *do*
 anything — it only produces text. An agent is what you build around that

@@ -9,7 +9,7 @@ tags:
 
 !!! abstract "Understand · 15 min · no code"
     **Before this:** [Fine-tuning and training](fine-tuning-and-training.md)  ·  **After this:** [The build path](../00-start-here/the-path.md)
-    **Hands-on version:** [9 Production](../02-agents/production.md)  ·  **In depth:** [Code quality pipeline](../patterns/code-quality-pipeline.md)
+    **Hands-on version:** [10 Production](../02-agents/production.md)  ·  **In depth:** [Code quality pipeline](../patterns/code-quality-pipeline.md)
 
 !!! info "Start with the hands-on module"
     For the buildable version of this material, see [Production](../02-agents/production.md).

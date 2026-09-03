@@ -160,14 +160,15 @@ nav:
   - Build:
       - 0 Setup: 00-start-here/setup.md
       - 1 Tool calling: 02-agents/tool-calling.md
-      - 2 The agent loop: 02-agents/the-agent-loop.md
-      - 3 The harness: 02-agents/the-harness.md
-      - 4 Context engineering: 02-agents/context-engineering.md
-      - 5 Retrieval: 02-agents/retrieval.md
-      - 6 Evaluation: 02-agents/evaluation.md
-      - 7 Observability: 02-agents/observability.md
-      - 8 Safety: 02-agents/safety.md
-      - 9 Production: 02-agents/production.md
+      - 2 Structured output: 02-agents/structured-output.md
+      - 3 The agent loop: 02-agents/the-agent-loop.md
+      - 4 The harness: 02-agents/the-harness.md
+      - 5 Context engineering: 02-agents/context-engineering.md
+      - 6 Retrieval: 02-agents/retrieval.md
+      - 7 Evaluation: 02-agents/evaluation.md
+      - 8 Observability: 02-agents/observability.md
+      - 9 Safety: 02-agents/safety.md
+      - 10 Production: 02-agents/production.md
   - Go deeper:
       - Retrieval in depth:
           - rag/index.md

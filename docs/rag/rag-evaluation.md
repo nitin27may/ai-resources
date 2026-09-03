@@ -11,8 +11,8 @@ tags:
 # RAG evaluation
 
 !!! abstract "Go deeper · 40 min · code optional"
-    **Before this:** [GraphRAG](graphrag.md)  ·  **After this:** [6 Evaluation](../02-agents/evaluation.md)
-    **Hands-on version:** [6 Evaluation](../02-agents/evaluation.md)
+    **Before this:** [GraphRAG](graphrag.md)  ·  **After this:** [7 Evaluation](../02-agents/evaluation.md)
+    **Hands-on version:** [7 Evaluation](../02-agents/evaluation.md)
 
 **Verified as of 2026-09-02.**
 

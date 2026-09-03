@@ -9,7 +9,7 @@ tags:
 
 !!! abstract "Understand · 30 min · no code"
     **Before this:** [Prompting](prompting-and-techniques.md)  ·  **After this:** [What an agent is](ai-agents.md)
-    **Hands-on version:** [5 Retrieval](../02-agents/retrieval.md)  ·  **In depth:** [Retrieval in depth](../rag/index.md)
+    **Hands-on version:** [6 Retrieval](../02-agents/retrieval.md)  ·  **In depth:** [Retrieval in depth](../rag/index.md)
 
 A model knows only what it was trained on, and it never knew anything of yours.
 **Retrieval-augmented generation** closes that gap by fetching the relevant

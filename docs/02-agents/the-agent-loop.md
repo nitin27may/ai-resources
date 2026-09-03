@@ -9,7 +9,7 @@ tags:
 # The agent loop
 
 !!! abstract "Build · 1 h · hands-on"
-    **Before this:** [1 Tool calling](tool-calling.md)  ·  **After this:** [3 The harness](the-harness.md)
+    **Before this:** [1 Tool calling](tool-calling.md)  ·  **After this:** [4 The harness](the-harness.md)
     **Overview version:** [What an agent is](../concepts/ai-agents.md)  ·  **In depth:** [Design patterns](../patterns/design-patterns.md)
 
 !!! abstract

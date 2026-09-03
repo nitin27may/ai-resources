@@ -11,7 +11,7 @@ tags:
 
 !!! abstract "Go deeper · 45 min · hands-on"
     **Before this:** [Embeddings](embeddings.md)  ·  **After this:** [Vector databases](vector-databases.md)
-    **Hands-on version:** [5 Retrieval](../02-agents/retrieval.md)
+    **Hands-on version:** [6 Retrieval](../02-agents/retrieval.md)
 
 !!! abstract "What you'll learn"
     This page covers eight document chunking strategies used in production RAG systems: fixed-size, sentence, recursive character, semantic, context-aware, parent-child, late chunking, and agentic. Each section covers how it works, when to use it, and the trade-offs involved. A decision flowchart and chunk size guidelines table at the end give you a practical starting point for any use case.

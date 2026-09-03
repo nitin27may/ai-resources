@@ -10,7 +10,7 @@ tags:
 # Observability
 
 !!! abstract "Build · 1 h · hands-on"
-    **Before this:** [6 Evaluation](evaluation.md)  ·  **After this:** [8 Safety](safety.md)
+    **Before this:** [7 Evaluation](evaluation.md)  ·  **After this:** [9 Safety](safety.md)
     **Overview version:** [Agentic AI](../concepts/agentic-ai.md)
 
 !!! abstract

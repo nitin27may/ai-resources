@@ -10,7 +10,7 @@ tags:
 
 !!! abstract "Go deeper · 45 min · code optional"
     **Before this:** [Architecture patterns](index.md)  ·  **After this:** [Design principles](design-principles.md)
-    **Hands-on version:** [2 The agent loop](../02-agents/the-agent-loop.md)
+    **Hands-on version:** [3 The agent loop](../02-agents/the-agent-loop.md)
 
 ## Foundation: basic architecture patterns
 

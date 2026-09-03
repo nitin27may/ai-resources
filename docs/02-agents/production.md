@@ -9,7 +9,7 @@ tags:
 # Production
 
 !!! abstract "Build · 1 h · hands-on"
-    **Before this:** [8 Safety](safety.md)  ·  **After this:** [Retrieval in depth](../rag/index.md)
+    **Before this:** [9 Safety](safety.md)  ·  **After this:** [Retrieval in depth](../rag/index.md)
     **Overview version:** [Infrastructure and operations](../concepts/infrastructure-and-operations.md)  ·  **In depth:** [Architecture patterns](../patterns/index.md)
 
 !!! abstract

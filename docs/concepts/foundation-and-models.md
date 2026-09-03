@@ -9,7 +9,7 @@ tags:
 
 !!! abstract "Understand · 30 min · no code"
     **Before this:** [AI 101](../getting-started/index.md)  ·  **After this:** [Prompting](prompting-and-techniques.md)
-    **Hands-on version:** [4 Context engineering](../02-agents/context-engineering.md)  ·  **In depth:** [Frameworks and platforms](../tools-and-frameworks/index.md)
+    **Hands-on version:** [5 Context engineering](../02-agents/context-engineering.md)  ·  **In depth:** [Frameworks and platforms](../tools-and-frameworks/index.md)
 
 Modern AI is built on **foundation models** — large neural networks trained on
 broad data and adapted to many tasks. This page is the layer beneath

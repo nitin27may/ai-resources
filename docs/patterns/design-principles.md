@@ -9,7 +9,7 @@ tags:
 
 !!! abstract "Go deeper · 20 min · no code"
     **Before this:** [Design patterns](design-patterns.md)  ·  **After this:** [Code quality pipeline](code-quality-pipeline.md)
-    **Hands-on version:** [3 The harness](../02-agents/the-harness.md)
+    **Hands-on version:** [4 The harness](../02-agents/the-harness.md)
 
 These are the architectural decisions that decide whether an agent system is
 debuggable and operable, independent of framework or vendor. They divide into

@@ -227,7 +227,10 @@ Three practical notes:
 
 The same mechanism underlies tool calling: a tool definition is a schema, and
 the model's request to call it is schema-constrained output.
-[Tool calling](../02-agents/tool-calling.md) builds one by hand.
+[Tool calling](../02-agents/tool-calling.md) builds one by hand, and
+[Structured output](../02-agents/structured-output.md) measures all three levels
+against each other — including the run where a required field the message never
+mentioned was invented on every attempt, on two different providers.
 
 ---
 

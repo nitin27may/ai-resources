@@ -31,6 +31,14 @@ them on purpose.
   the failure that matters arrives through a tool result.
 - **Every page is tagged** by layer and topic, and
   [Browse by tag](../tags.md) shows a single topic across every depth.
+- **A new build module: [structured output](../02-agents/structured-output.md)**,
+  between tool calling and the agent loop. It measures prompting, JSON mode and
+  schema-constrained decoding on the same task, and shows the failure a schema
+  cannot fix: asked for a required field the message never mentioned, the model
+  invented one on every run, on two different providers, and every invention was
+  schema-valid.
+- **The labs run on Azure OpenAI**, verified end to end. Setup and the labs
+  readme now carry a provider tab for it.
 - **No URL changed.** Every page that was reachable before is reachable at the
   same address.
 

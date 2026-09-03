@@ -10,7 +10,7 @@ tags:
 # The harness
 
 !!! abstract "Build · 1 h · hands-on"
-    **Before this:** [2 The agent loop](the-agent-loop.md)  ·  **After this:** [4 Context engineering](context-engineering.md)
+    **Before this:** [3 The agent loop](the-agent-loop.md)  ·  **After this:** [5 Context engineering](context-engineering.md)
     **Overview version:** [Agentic AI](../concepts/agentic-ai.md)  ·  **In depth:** [Design principles](../patterns/design-principles.md)
 
 !!! abstract

@@ -20,10 +20,24 @@ API_KEY = os.getenv("LAB_API_KEY", "ollama")  # Ollama ignores it; hosted APIs d
 MODEL = os.getenv("LAB_MODEL", "qwen2.5:14b")
 
 
+class ProviderError(RuntimeError):
+    """The provider answered and refused the request.
+
+    Separate from a connection failure on purpose: a 400 means your payload was
+    rejected (an unsupported option, a bad deployment name, a content filter),
+    and the provider's own message is the thing worth reading. Labs catch this
+    to report a capability difference rather than dying.
+    """
+
+    def __init__(self, status, message):
+        super().__init__(message)
+        self.status = status
+
+
 LAST_USAGE = {}
 
 
-def chat(messages, tools=None, temperature=0, max_tokens=4096):
+def chat(messages, tools=None, temperature=0, max_tokens=4096, response_format=None):
     """One request to the model. Returns a portable assistant message dict.
 
     Note what gets stripped. Reasoning models served over an OpenAI-compatible
@@ -37,6 +51,13 @@ def chat(messages, tools=None, temperature=0, max_tokens=4096):
                "max_tokens": max_tokens}
     if tools:
         payload["tools"] = tools
+    # response_format is how a provider is told to constrain the output shape.
+    # {"type": "json_object"} asks for valid JSON and nothing more;
+    # {"type": "json_schema", ...} restricts generation to a schema. Lab 02b
+    # measures the difference. Left out of the payload entirely when unset, so
+    # providers that do not know the field are unaffected.
+    if response_format:
+        payload["response_format"] = response_format
     req = urllib.request.Request(
         f"{BASE_URL}/chat/completions",
         data=json.dumps(payload).encode(),
@@ -46,11 +67,23 @@ def chat(messages, tools=None, temperature=0, max_tokens=4096):
         with urllib.request.urlopen(req, timeout=300) as r:
             body = json.load(r)
             choice = body["choices"][0]
+    except urllib.error.HTTPError as e:
+        # The server answered and refused. That is a different problem from not
+        # reaching it at all, and it is the provider's message that helps --
+        # telling an Azure user to `ollama pull gpt-4.1` wastes their afternoon.
+        detail = ""
+        try:
+            detail = e.read().decode(errors="replace")[:400]
+        except Exception:
+            pass
+        raise ProviderError(e.code, f"HTTP {e.code} from {BASE_URL}: {detail or e.reason}")
     except urllib.error.URLError as e:
         raise SystemExit(
             f"\nCould not reach {BASE_URL} -- {e}\n"
-            f"Is the model server running?  OLLAMA_CONTEXT_LENGTH=64000 ollama serve\n"
-            f"Is the model pulled?          ollama pull {MODEL}\n"
+            f"If you are running locally:   OLLAMA_CONTEXT_LENGTH=64000 ollama serve\n"
+            f"                              ollama pull {MODEL}\n"
+            f"If you are using a hosted provider, check LAB_BASE_URL and that\n"
+            f"the host is reachable from here.\n"
         )
     msg = choice["message"]
     out = {"role": msg["role"], "content": msg.get("content") or ""}

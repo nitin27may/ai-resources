@@ -12,7 +12,7 @@ GitHub Pages.
 
 - **The reading path** — ten pages, four to five hours, no code. What these
   systems are, how they work, and where they fail.
-- **The build path** — ten modules and ten labs. Everything runs against a model
+- **The build path** — eleven modules and eleven labs. Everything runs against a model
   on your own machine: no account, no API key, no cost.
 
 Both start at [Choose your path](https://nitinksingh.com/ai-resources/00-start-here/).

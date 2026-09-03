@@ -9,7 +9,7 @@ tags:
 # Tool calling
 
 !!! abstract "Build · 45 min · hands-on"
-    **Before this:** [0 Setup](../00-start-here/setup.md)  ·  **After this:** [2 The agent loop](the-agent-loop.md)
+    **Before this:** [0 Setup](../00-start-here/setup.md)  ·  **After this:** [3 The agent loop](the-agent-loop.md)
     **Overview version:** [What an agent is](../concepts/ai-agents.md)
 
 !!! abstract
