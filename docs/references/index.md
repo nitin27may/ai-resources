@@ -62,7 +62,7 @@ A curated collection of official documentation, learning resources, and communit
 
 | Resource | Description |
 |----------|-------------|
-| [Llama](https://llama.meta.com/) | Open-source large language models |
+| [Llama](https://www.llama.com/) | Open-source large language models |
 | [PyTorch](https://pytorch.org/docs/) | ML framework documentation |
 
 ### GitHub

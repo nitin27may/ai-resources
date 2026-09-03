@@ -55,6 +55,12 @@ jobs:
             || { echo "::error::JSON-LD missing from built output"; exit 1; }
           echo "analytics, Open Graph and JSON-LD all present"
 
+      - name: Assert no live URL was dropped
+        run: planning/scripts/sitemap-guard.sh site
+
+      - name: Check internal links and anchors
+        run: python3 planning/scripts/check-links.py
+
       - name: Upload artifacts
         uses: actions/upload-pages-artifact@v3
         with:

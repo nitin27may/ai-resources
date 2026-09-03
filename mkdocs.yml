@@ -6,7 +6,11 @@ repo_url: https://github.com/nitin27may/ai-resources
 # "AI Knowledge Hub", which is the site name -- the header widget then read as a
 # second copy of the title rather than as a link to source.
 repo_name: nitin27may/ai-resources
-edit_uri: "?path=/docs/"
+# `edit/main/docs/` is the GitHub form. This was `?path=/docs/`, which is the
+# Azure DevOps convention carried over from the original internal repo -- on
+# github.com it produced a URL that is not an edit link, so the edit and view
+# icons on every page went nowhere.
+edit_uri: edit/main/docs/
 
 # Theme configuration
 theme:
@@ -95,6 +99,11 @@ extra_javascript:
 plugins:
   - search
   - tags
+  # No page has moved yet. This is enabled so that when one does, its old URL
+  # keeps working in the same commit that moves it. Every live URL is listed in
+  # planning/sitemap-baseline.txt and CI fails if one stops being served.
+  - redirects:
+      redirect_maps: {}
   - git-revision-date-localized:
       enable_creation_date: true
       type: date

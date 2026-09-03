@@ -191,5 +191,5 @@ There is no single "best" model. The right choice depends on your requirements:
 - [Microsoft Phi Models](https://azure.microsoft.com/en-us/products/phi)
 - [Google Gemini](https://deepmind.google/technologies/gemini/)
 - [Anthropic Claude Models](https://docs.anthropic.com/en/docs/about-claude/models)
-- [Meta Llama](https://llama.meta.com/)
+- [Meta Llama](https://www.llama.com/)
 - [OpenAI Models Overview](https://platform.openai.com/docs/models)

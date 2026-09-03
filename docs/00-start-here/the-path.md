@@ -1,6 +1,6 @@
 ---
 title: The path
-description: Eleven modules from a model on your laptop to an agent in production. Every one ends in something that runs, free.
+description: Ten modules from a model on your laptop to an agent in production. Every one ends in something that runs, free.
 tags:
   - Beginner
   - Getting Started
@@ -9,7 +9,7 @@ tags:
 # The path
 
 !!! abstract
-    Eleven modules, in order, each ending in code you run. No account, no API
+    Ten modules, in order, each ending in code you run. No account, no API
     key, no cost — everything works against a model on your own machine.
     Roughly 12-15 hours if you do the labs, which is the only way it works.
 

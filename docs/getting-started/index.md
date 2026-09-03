@@ -90,7 +90,7 @@ Here are the essential terms you will encounter throughout this site:
 :   An AI system that can plan, reason, and take actions autonomously -- not just answer questions, but actually do things.
 
 !!! note "Want More Terms?"
-    Visit the complete [Glossary](../glossary/index.md) for 60+ AI terms explained in plain English.
+    Visit the complete [Glossary](../glossary/index.md) for 70+ AI terms explained in plain English.
 
 ---
 
