@@ -161,6 +161,80 @@ Edge AI is not free. You gain privacy, latency, and cost benefits, but you trade
 
 ---
 
+## Serving models, and where latency comes from
+
+If you call a hosted API, the provider handles this and you should still
+understand it, because it explains what you can and cannot make faster.
+
+Generation happens one token at a time, and each token depends on the one
+before, so a response cannot be produced in parallel. That single fact drives
+almost everything about latency.
+
+| Term | What it means | Why you care |
+|---|---|---|
+| **Time to first token** | Delay before the first character appears | What users actually perceive as speed |
+| **Tokens per second** | Generation rate after the first token | How long a long answer takes |
+| **Prefill** | Processing your prompt before generating | Grows with prompt length; parallelisable |
+| **Decode** | Generating the response | Grows with answer length; not parallelisable |
+| **KV cache** | Retained attention state so earlier tokens are not recomputed | Why long conversations use memory, not just tokens |
+
+Three practical consequences:
+
+- **Stream the response.** It does not reduce total time, but it cuts perceived
+  latency enormously. A user watching text appear after 300ms is having a better
+  experience than one staring at a spinner for six seconds, even when the second
+  finishes sooner.
+- **Shorter outputs are the real speed lever.** Prompt length affects prefill,
+  which is fast and parallel. Output length affects decode, which is neither.
+  "Answer in one sentence" does more for latency than trimming the prompt.
+- **Batching trades latency for throughput.** Serving stacks group concurrent
+  requests to use the GPU efficiently. Good for cost per request, slightly worse
+  for any individual one.
+
+If you self-host, this is what a serving engine such as vLLM or NVIDIA NIM does
+for you: continuous batching, paged KV cache, and an OpenAI-compatible endpoint
+so your application code does not change. Running a model with a naive loop
+gives a small fraction of the throughput of the same hardware served properly.
+
+---
+
+## Rate limits, quotas and failover
+
+The operational surprise that hits most teams first, and it is rarely in the
+design document.
+
+Providers limit both requests and tokens per minute, and the token limit usually
+binds first. A feature that works in testing fails at launch not because the
+code is wrong but because ten concurrent users with long prompts exceed a quota
+nobody checked.
+
+What this demands:
+
+- **Retry with exponential backoff and jitter**, honouring the `Retry-After`
+  header. Retrying immediately makes an overload worse.
+- **Retry only what is safe to retry.** A timeout does not tell you whether the
+  work happened. If the call had a side effect, retrying can duplicate it —
+  which is why idempotency keys exist. See
+  [production](../02-agents/production.md).
+- **A queue for anything that can be asynchronous.** Batch endpoints cost
+  substantially less for work that does not need an immediate answer.
+- **Know your fallback before you need it.** A second deployment in another
+  region, or a smaller model that degrades quality instead of failing. Decide
+  which, and test it; a fallback path that has never run is not a fallback.
+- **Cap per user and per tenant.** Without it, one runaway loop consumes the
+  quota for everyone, and the outage looks like a provider problem.
+
+!!! warning "Model versions move underneath you"
+    A model name is not a version. Providers update what a name points to, and
+    deprecate versions on their own schedule. Behaviour can change without any
+    deployment on your side.
+
+    Pin an explicit version where the provider allows it, subscribe to
+    deprecation notices, and keep an evaluation set you can rerun to answer
+    "did it get worse?" with evidence rather than impressions.
+
+---
+
 ## Cost management in AI
 
 AI infrastructure costs can scale quickly if not managed carefully. Here are the main cost drivers and how to control them:

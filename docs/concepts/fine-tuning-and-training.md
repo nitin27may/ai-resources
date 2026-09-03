@@ -194,6 +194,71 @@ RLAIF (RL from AI Feedback)
 
 ---
 
+## Distillation: the technique worth knowing
+
+Distillation trains a small model on a large model's outputs. You take the task
+you care about, generate a few thousand high-quality examples with a frontier
+model, and fine-tune a small open-weight model on them.
+
+The result is a model that is far cheaper and faster than the frontier model,
+and much better at *that one task* than its size would suggest. It stays poor at
+everything else, which is the trade.
+
+This is the most economically interesting form of fine-tuning right now, and it
+is the shape of most "we cut inference costs by 90%" stories. It needs a narrow,
+high-volume task, and it needs an evaluation set — otherwise you cannot tell
+whether the small model is close enough.
+
+Two cautions. Check the frontier provider's terms: some restrict using their
+outputs to train competing models. And distillation inherits the teacher's
+mistakes, silently and permanently.
+
+---
+
+## When fine-tuning is genuinely the answer
+
+This page has spent a lot of words on when not to. Here is the positive list,
+because the pendulum has swung far enough that real use cases get dismissed.
+
+**A consistent output format or style you cannot get from prompting.** If you
+need every response in a specific structure or house voice, and the system
+prompt is doing it in 800 tokens on every call, training that in is cheaper and
+more reliable. See also
+[structured output](prompting-and-techniques.md#structured-output-stop-asking-start-constraining),
+which solves the format half without training.
+
+**A narrow, high-volume task where cost dominates.** Classification, extraction,
+routing, tagging. Thousands of calls a day on a small model beats a frontier
+model on price by orders of magnitude, and the task is narrow enough that the
+smaller model can match it.
+
+**Specialist vocabulary the base model handles badly.** Clinical coding, legal
+citation formats, internal jargon and part numbers. Note the distinction: you
+are teaching the model to *handle* the vocabulary, not to memorise your facts.
+The facts still come from retrieval.
+
+**Behaviour that is hard to describe but easy to demonstrate.** Some judgements
+resist being written as rules and are obvious across fifty examples. That is
+exactly what training is for.
+
+!!! warning "A fine-tuned model is a dependency, not an artefact"
+    The cost people miss is not the training run, it is everything after. Base
+    models are deprecated on the provider's schedule, not yours, and a
+    fine-tuned model does not move to a new base without retraining. Your
+    training data becomes an asset you have to keep, version and be able to
+    regenerate.
+
+    Budget for retraining on someone else's timetable, and keep the pipeline
+    reproducible. If you cannot rerun the training today, you do not have a
+    fine-tuned model — you have a fine-tuned model you are afraid to touch.
+
+**Before and after, on the same evaluation set.** Fine-tuning can make a model
+worse at things it was previously fine at, and you will not notice unless you
+measure both. Build the evaluation set before you train, not to justify the
+result afterwards.
+
+---
+
 ## Cost and effort considerations
 
 Fine-tuning is not free. Here is an honest look at the investment required:
