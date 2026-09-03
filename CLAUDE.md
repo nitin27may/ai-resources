@@ -2,6 +2,10 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+## Active restructure (2026-09)
+
+A layered restructure is in progress. **Read `planning/STATUS.md` and `planning/README.md` before changing anything under `docs/` or `mkdocs.yml`.** The planning folder holds the audit, the target structure, per-phase task lists, the per-page matrix, and the check scripts. Rule until it completes: no file under `docs/` moves, renames or is deleted without a `redirect_maps` entry.
+
 ## Project Overview
 
 This is an **MkDocs Material** documentation site — the "AI Knowledge Hub" — a centralized learning resource covering AI concepts, patterns, and tools for multiple audiences. It is deployed to GitHub Pages via GitHub Actions.
