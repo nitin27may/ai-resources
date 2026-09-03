@@ -347,4 +347,5 @@ graph TD
 - [Microsoft Agent Framework](https://learn.microsoft.com/en-us/agent-framework/) — graph-based orchestration on .NET and Python.
 - [LangGraph](https://docs.langchain.com/oss/python/langgraph/overview) — supervisor, hierarchical and parallel patterns as explicit graphs with checkpointing.
 - [OpenAI Agents SDK](https://openai.github.io/openai-agents-python/) — handoffs as a first-class concept, which is the pattern most frameworks model worst.
+- [C# samples in this repository](https://github.com/nitin27may/ai-resources/tree/main/samples) — the handoff, tool and workflow patterns as single-file programs you can run with `dotnet run`.
 - [Build the loop yourself](../02-agents/the-agent-loop.md) — about thirty lines. Do this once and every pattern above reads differently.

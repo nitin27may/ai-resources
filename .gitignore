@@ -34,3 +34,8 @@ Thumbs.db
 # Environment variables
 .env
 .env.local
+
+# .NET file-based apps drop these next to the samples
+samples/*.csproj
+samples/bin/
+samples/obj/

@@ -12,9 +12,9 @@ Update this file at the end of every working session. A new session reads this f
 | 3 Home, AI 101, What's new | done | daeabdc | org voice gone, model table to capability tiers, 3 dated entries |
 | 4 Header blocks and hand-offs | done | 3afbb9c | 44 header blocks, module 1 entry + module 9 exit, inbound floor of 2 |
 | 5 Style sweep | done | 65a9930 | 297 headings, palette, dashes. Found and fixed: blank Mermaid sitewide, unreachable light theme, 2 pinned light diagrams, teal contrast |
-| 6 Reference layer | not started | | |
-| 7 Azure OpenAI and C# | blocked (partly) | | C# samples can proceed. The Azure tab needs an endpoint + key from Nitin in env vars |
-| 8 Repo docs and Docker | not started | | |
+| 6 Reference layer | done | 0d22cfc | Official sources rewritten with NVIDIA; 61 redirects fixed; 23 Go deeper sections; all 182 external links resolve |
+| 7 Azure OpenAI and C# | partly done | | C# half done: all 6 samples compile on .NET 10 (mcpuse.cs never did before), readme rewritten, samples linked from the site. **Still blocked:** the Azure OpenAI tab in Setup and labs needs an endpoint + key from Nitin in env vars |
+| 8 Repo docs and Docker | done | 45553ff | CLAUDE.md rewritten, copilot-instructions is a pointer, one Dockerfile (non-root, healthcheck), container verified healthy |
 | 9a Structured output | not started | | |
 | 9b Memory | not started | | |
 | 9c Multi-agent + agentic RAG | not started | | |
@@ -39,6 +39,17 @@ python3 planning/scripts/check-themes.py       # light + dark, contrast >= 3:1
 The last two need playwright with chromium. They exist because a `--strict`
 build passed for months while every diagram on the site rendered blank and the
 light theme was unreachable. Building is not the same as rendering.
+
+## Known debt, recorded not hidden
+
+- **The six C# samples target a pre-1.0 Agent Framework preview.** They compile,
+  but the current packages changed the Azure surface enough that all six fail
+  against them (`Azure.AI.Projects.OpenAI` gone, `AIProjectClient.CreateAIAgent`
+  gone, `AgentThread` moved). Porting is real work, not a version bump.
+  `samples/readme.md` states this plainly.
+- **The Azure OpenAI tab for Setup and the labs is not written.** It needs one
+  live test against a real endpoint to confirm the auth header shape on the
+  `/openai/v1` path. Needs an endpoint and key from Nitin, in env vars only.
 
 ## Deferred deliberately
 
