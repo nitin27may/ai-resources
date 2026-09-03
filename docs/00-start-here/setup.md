@@ -105,13 +105,68 @@ If you cannot run a model locally, in rough order of how stable they have proven
 - **A hosted free tier** — several exist. They change often, so this page does not
   pin one; check the provider's current limits before building on it.
 
-Whichever you use, the labs need only an OpenAI-compatible endpoint:
+Whichever you use, the labs need only an OpenAI-compatible endpoint.
 
-```bash
-export LAB_BASE_URL=...   # e.g. https://api.example.com/v1
-export LAB_API_KEY=...
-export LAB_MODEL=...
-```
+## Pointing the labs at a hosted provider
+
+Every lab reads the same four environment variables and nothing else. No lab
+code changes between these.
+
+=== "Ollama (default, free)"
+
+    ```bash
+    export LAB_BASE_URL=http://127.0.0.1:11434/v1
+    export LAB_API_KEY=ollama            # ignored, but the header must exist
+    export LAB_MODEL=qwen2.5:14b
+    export LAB_EMBED_MODEL=nomic-embed-text
+    ```
+
+=== "OpenAI"
+
+    ```bash
+    export LAB_BASE_URL=https://api.openai.com/v1
+    export LAB_API_KEY=sk-...
+    export LAB_MODEL=<a current model>
+    export LAB_EMBED_MODEL=text-embedding-3-small
+    ```
+
+=== "Azure OpenAI"
+
+    ```bash
+    export LAB_BASE_URL="https://<your-resource>.openai.azure.com/openai/v1"
+    export LAB_API_KEY="<your key>"
+    export LAB_MODEL="<your chat deployment name>"
+    export LAB_EMBED_MODEL="<your embedding deployment name>"
+    ```
+
+    Three things differ from the others, and each has cost someone an afternoon.
+
+    **`LAB_MODEL` is your deployment name, not a model name.** If you deployed
+    a model and called the deployment `chat-prod`, that is the value. Sending
+    the model's own name gives you `DeploymentNotFound`.
+
+    **Embeddings need a second deployment.** Ollama and OpenAI serve chat and
+    embeddings from one endpoint, so one name covers both. On Azure they are
+    separate deployments, so `LAB_EMBED_MODEL` must be set independently or
+    [module 5](../02-agents/retrieval.md) fails with `DeploymentNotFound` while
+    everything else works.
+
+    **Use the `/openai/v1` path.** It speaks the standard OpenAI shape, so the
+    key goes in an `Authorization: Bearer` header and no `api-version` query
+    parameter is needed. The older
+    `/openai/deployments/<name>/chat/completions?api-version=...` path also
+    works and requires an `api-key` header instead; the labs assume the former.
+
+!!! success "Verified on 2026-09-02"
+    All ten labs were run end to end against Azure OpenAI with only these four
+    variables set, and no change to any lab. Module 5's measured result was
+    identical to the local run: dense retrieval ranking the right answer first
+    by a margin of 0.014.
+
+!!! danger "Never put a key in the repository"
+    Export these in your shell, or keep them in a `.env` file that is
+    git-ignored. A key committed to a public repository is compromised within
+    minutes, and rotating it is the only fix.
 
 ## Verify
 

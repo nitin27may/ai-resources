@@ -36,18 +36,41 @@ have no GPU, 8 GB of RAM, or only a browser.
 
 ## Swapping the model or the provider
 
-Every lab reads three environment variables and nothing else:
+Every lab reads four environment variables and nothing else. The code does not
+change between providers, which is the point — nothing here is tied to a vendor.
 
 ```bash
 # Local (default) — free
-LAB_BASE_URL=http://127.0.0.1:11434/v1  LAB_API_KEY=ollama  LAB_MODEL=qwen2.5:14b
+LAB_BASE_URL=http://127.0.0.1:11434/v1
+LAB_API_KEY=ollama
+LAB_MODEL=qwen2.5:14b
+LAB_EMBED_MODEL=nomic-embed-text
 
-# A hosted OpenAI-compatible API — identical code, one line of config
-LAB_BASE_URL=https://api.openai.com/v1  LAB_API_KEY=sk-...  LAB_MODEL=<a current model>
+# OpenAI
+LAB_BASE_URL=https://api.openai.com/v1
+LAB_API_KEY=sk-...
+LAB_MODEL=<a current model>
+LAB_EMBED_MODEL=text-embedding-3-small
+
+# Azure OpenAI
+LAB_BASE_URL=https://<resource>.openai.azure.com/openai/v1
+LAB_API_KEY=<key>
+LAB_MODEL=<chat DEPLOYMENT name, not the model name>
+LAB_EMBED_MODEL=<embedding DEPLOYMENT name>
 ```
 
-Run a lab both ways. The code does not change, which is the point — the
-concepts here are not tied to any vendor.
+**Azure notes.** `LAB_MODEL` is the deployment name you chose, not the model's
+name — sending the latter returns `DeploymentNotFound`. Chat and embeddings are
+separate deployments on Azure, unlike Ollama and OpenAI where one name serves
+both, so `LAB_EMBED_MODEL` has to be set independently or lab 06 fails while
+everything else works. The `/openai/v1` path speaks the standard OpenAI shape,
+so the key goes in `Authorization: Bearer` with no `api-version` parameter.
+
+**Verified 2026-09-02:** all ten labs run clean against Azure OpenAI with only
+these variables set and no code change. Lab 06 reproduced the documented 0.014
+margin exactly.
+
+Keys belong in your shell or a git-ignored `.env`, never in the repository.
 
 ## Why the default model is not a reasoning model
 
