@@ -1,5 +1,11 @@
 # ai-resources audit — 2026-09-02
 
+
+> **Historical record.** This audit describes the site as it was on 2026-09-02,
+> before the restructure. Every finding in it has been actioned. Kept because the
+> reasoning explains why the current structure is the way it is. For the current
+> state, read `STATUS.md`.
+
 **Repo:** ~/workspace/ai-resources (nitin27may/ai-resources), HEAD b937fe5, main, clean tree
 **Live:** https://nitinksingh.com/ai-resources/ (HTTP 200, last deploy 2026-09-02 01:06 UTC)
 **Scale:** 44 pages, ~56,000 words, 10 Python labs, 6 C# samples

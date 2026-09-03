@@ -2,7 +2,9 @@
 
 Update this file at the end of every working session. A new session reads this first, then planning/README.md.
 
-**Last updated:** 2026-09-03. All phases done including 9a-9c. Open in PR #19.
+**Last updated:** 2026-09-03. **The plan is complete and merged.** PRs #19
+(restructure), #20 (C# port to Agent Framework 1.x) and #21 (samples repointed
+to Azure OpenAI) are all merged and deployed.
 **Branch:** `restructure/layered-hub`. One branch, one PR, one commit per phase.
 **CI:** green on PR #19 — strict build, tag assertions, sitemap guard and link check all pass.
 

@@ -4,6 +4,13 @@ This folder is the complete brief for restructuring the AI Knowledge Hub. It is 
 
 Read in this order:
 
+**Current** (act on these): `STATUS.md`, this file, `04-page-matrix.md`,
+`05-url-fixes.md`, `sitemap-baseline.txt`, `scripts/`.
+**Historical** (read for reasoning, do not act on): `01-audit.md`,
+`02-restructure-plan.md`, `03-phase-plans.md` — all three carry a banner saying
+so. The restructure they describe is complete and merged; the conventions they
+established are restated current in `../CLAUDE.md`.
+
 | File | What it is |
 |---|---|
 | STATUS.md | Where things stand. Read first, update last. |

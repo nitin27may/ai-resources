@@ -69,9 +69,9 @@ both, so `LAB_EMBED_MODEL` has to be set independently or lab 06 fails while
 everything else works. The `/openai/v1` path speaks the standard OpenAI shape,
 so the key goes in `Authorization: Bearer` with no `api-version` parameter.
 
-**Verified 2026-09-02:** all ten labs run clean against Azure OpenAI with only
-these variables set and no code change. Lab 06 reproduced the documented 0.014
-margin exactly.
+**Verified 2026-09-03:** all thirteen labs run clean against Azure OpenAI with
+only these variables set and no code change. Lab 06 reproduced the documented
+0.014 margin exactly.
 
 Keys belong in your shell or a git-ignored `.env`, never in the repository.
 
