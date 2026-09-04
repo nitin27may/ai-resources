@@ -83,6 +83,21 @@ documented figure.
 
 Keys belong in your shell or a git-ignored `.env`, never in the repository.
 
+## Tests
+
+`_shared.py` is the one piece of code every lab depends on, and two of its
+guarantees fail silently: that usage accounting survives concurrency (lab 11
+reads it from worker threads), and that provider-private fields never reach the
+message list (which is what lets the same code run on Ollama, OpenAI and Azure).
+
+```bash
+python3 -m unittest discover -s labs/tests -v
+```
+
+Standard library only, like the labs. Nothing starts a model or opens a socket —
+the transport is stubbed — so it runs in about a third of a second and in CI on
+every pull request.
+
 ## Why the default model is not a reasoning model
 
 `qwen2.5:14b` is the default because it returns no thinking trace. Reasoning
