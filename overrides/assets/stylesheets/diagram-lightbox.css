@@ -1,0 +1,114 @@
+/*
+ * Full-screen diagram lightbox. Pairs with diagram-lightbox.js.
+ *
+ * Every colour here is a Material CSS variable, so the overlay follows the
+ * site's light/dark palette with no second set of rules and no hardcoded hex
+ * that would go unreadable in one scheme.
+ */
+
+/* ---------------------------------------------------------- the trigger */
+
+[data-zoomable] {
+  position: relative;
+  cursor: zoom-in;
+}
+
+.dlb-expand {
+  position: absolute;
+  top: 0.35rem;
+  right: 0.35rem;
+  width: 1.9rem;
+  height: 1.9rem;
+  border: 1px solid var(--md-default-fg-color--lightest);
+  border-radius: 0.25rem;
+  background: var(--md-default-bg-color);
+  color: var(--md-default-fg-color--light);
+  font-size: 1rem;
+  line-height: 1;
+  cursor: zoom-in;
+  opacity: 0;
+  transition: opacity 0.15s ease;
+}
+
+[data-zoomable]:hover .dlb-expand,
+[data-zoomable]:focus-within .dlb-expand {
+  opacity: 1;
+}
+
+/* Keyboard users never trigger :hover, so the affordance has to be reachable
+   without a pointer. */
+.dlb-expand:focus-visible {
+  opacity: 1;
+  outline: 2px solid var(--md-accent-fg-color);
+  outline-offset: 2px;
+}
+
+/* ---------------------------------------------------------- the overlay */
+
+.dlb {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  display: none;
+  flex-direction: column;
+  background: color-mix(in srgb, var(--md-default-bg-color) 92%, transparent);
+  backdrop-filter: blur(6px);
+}
+
+.dlb.is-open {
+  display: flex;
+}
+
+html.dlb-open {
+  overflow: hidden;
+}
+
+.dlb__bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.6rem 1rem;
+  color: var(--md-default-fg-color--light);
+  font-size: 0.7rem;
+}
+
+.dlb__close {
+  border: 0;
+  background: transparent;
+  color: var(--md-default-fg-color);
+  font-size: 1.3rem;
+  line-height: 1;
+  padding: 0.3rem 0.6rem;
+  border-radius: 0.25rem;
+  cursor: pointer;
+}
+
+.dlb__close:hover,
+.dlb__close:focus-visible {
+  background: var(--md-default-fg-color--lightest);
+  outline: none;
+}
+
+.dlb__stage {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  touch-action: none;          /* let the JS own pan and zoom gestures */
+}
+
+.dlb__stage svg {
+  max-width: none !important;  /* beats Material's img/svg width cap */
+  transform-origin: center center;
+  transition: none;            /* transitions fight per-frame drag updates */
+  user-select: none;
+}
+
+/* The hint text is the only thing that has to go on small screens; the
+   gestures still work. */
+@media screen and (max-width: 46.1875em) {
+  .dlb__hint {
+    display: none;
+  }
+}
