@@ -69,11 +69,34 @@ both, so `LAB_EMBED_MODEL` has to be set independently or lab 06 fails while
 everything else works. The `/openai/v1` path speaks the standard OpenAI shape,
 so the key goes in `Authorization: Bearer` with no `api-version` parameter.
 
-**Verified 2026-09-03:** all thirteen labs run clean against Azure OpenAI with
-only these variables set and no code change. Lab 06 reproduced the documented
-0.014 margin exactly.
+**Verified 2026-09-04:** all thirteen labs run clean against Azure OpenAI with
+only these variables set and no code change.
+
+Lab 06 is the one lab whose printed numbers are provider-dependent, because
+absolute cosine scores differ per embedding model. The margins quoted in the
+[retrieval module](../docs/02-agents/retrieval.md) are the `nomic-embed-text`
+run: dense 0.580 vs 0.566, a margin of 0.014. On Azure with
+`text-embedding-3-small` the same query gives 0.413 vs 0.406 — a margin of
+0.007, half as wide. The conclusion the lab draws is unchanged and slightly
+stronger, and the lab prints whatever it actually measured rather than the
+documented figure.
 
 Keys belong in your shell or a git-ignored `.env`, never in the repository.
+
+## Tests
+
+`_shared.py` is the one piece of code every lab depends on, and two of its
+guarantees fail silently: that usage accounting survives concurrency (lab 11
+reads it from worker threads), and that provider-private fields never reach the
+message list (which is what lets the same code run on Ollama, OpenAI and Azure).
+
+```bash
+python3 -m unittest discover -s labs/tests -v
+```
+
+Standard library only, like the labs. Nothing starts a model or opens a socket —
+the transport is stubbed — so it runs in about a third of a second and in CI on
+every pull request.
 
 ## Why the default model is not a reasoning model
 

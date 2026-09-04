@@ -267,7 +267,9 @@ given a way to be right about being unable to answer.
     On six documents, everything works. The build module measures what happens
     when forty plausible neighbours are added: dense search sat **0.014** away
     from returning the wrong document while still ranking the right one first.
-    Read the margin, not the rank — see [Retrieval](../02-agents/retrieval.md).
+    The exact figure depends on the embedding model — on another it was half
+    that — and the size of the gap is the point, not the digits. Read the
+    margin, not the rank — see [Retrieval](../02-agents/retrieval.md).
 
 ### The other four
 

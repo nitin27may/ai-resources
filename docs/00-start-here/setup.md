@@ -157,11 +157,15 @@ code changes between these.
     `/openai/deployments/<name>/chat/completions?api-version=...` path also
     works and requires an `api-key` header instead; the labs assume the former.
 
-!!! success "Verified on 2026-09-02"
+!!! success "Verified on 2026-09-04"
     All thirteen labs were run end to end against Azure OpenAI with only these four
-    variables set, and no change to any lab. Module 5's measured result was
-    identical to the local run: dense retrieval ranking the right answer first
-    by a margin of 0.014.
+    variables set, and no change to any lab.
+
+    One result does not carry across unchanged. The [retrieval
+    module](../02-agents/retrieval.md) reports a dense margin of 0.014 measured
+    on `nomic-embed-text`; on Azure with `text-embedding-3-small` the same query
+    gives 0.007. Absolute cosine scores belong to the embedding model, not to
+    the corpus, so compare the shape of the result rather than the digits.
 
 !!! danger "Never put a key in the repository"
     Export these in your shell, or keep them in a `.env` file that is

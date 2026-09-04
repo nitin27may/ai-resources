@@ -96,6 +96,7 @@ markdown_extensions:
 extra_css:
   - assets/stylesheets/theme.css
   - assets/stylesheets/fullwidth-toggle.css
+  - assets/stylesheets/diagram-lightbox.css
   - assets/stylesheets/footer-custom.css
 
 extra_javascript:
@@ -104,6 +105,9 @@ extra_javascript:
   # major, which is how a silent upstream break reached production unnoticed.
   - https://unpkg.com/mermaid@11.12.0/dist/mermaid.min.js
   - assets/javascripts/mermaid-init.js
+  # Independent of mermaid-init.js on purpose -- it waits for an <svg> to appear
+  # rather than being called by the renderer, so it ports to any Material site.
+  - assets/javascripts/diagram-lightbox.js
 
 # Plugins configuration
 plugins:
