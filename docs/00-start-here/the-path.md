@@ -117,8 +117,8 @@ answer, because a specialist judged its own document irrelevant and the
 supervisor could not recover what was never returned.
 
 **Retrieval** — on six documents everything works. Add forty bland neighbours and
-dense search sits **0.014** from being wrong while still ranking first. Read the
-margin, not the rank.
+dense search sits **0.014** from being wrong while still ranking first, and half
+that on a different embedding model. Read the margin, not the rank.
 
 **Evaluation** — pass@1 was 1.00 across 24 runs. That is not a good agent, it is
 a bad suite. If your evals are green on the first run, they are too easy.

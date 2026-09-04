@@ -69,9 +69,17 @@ both, so `LAB_EMBED_MODEL` has to be set independently or lab 06 fails while
 everything else works. The `/openai/v1` path speaks the standard OpenAI shape,
 so the key goes in `Authorization: Bearer` with no `api-version` parameter.
 
-**Verified 2026-09-03:** all thirteen labs run clean against Azure OpenAI with
-only these variables set and no code change. Lab 06 reproduced the documented
-0.014 margin exactly.
+**Verified 2026-09-04:** all thirteen labs run clean against Azure OpenAI with
+only these variables set and no code change.
+
+Lab 06 is the one lab whose printed numbers are provider-dependent, because
+absolute cosine scores differ per embedding model. The margins quoted in the
+[retrieval module](../docs/02-agents/retrieval.md) are the `nomic-embed-text`
+run: dense 0.580 vs 0.566, a margin of 0.014. On Azure with
+`text-embedding-3-small` the same query gives 0.413 vs 0.406 — a margin of
+0.007, half as wide. The conclusion the lab draws is unchanged and slightly
+stronger, and the lab prints whatever it actually measured rather than the
+documented figure.
 
 Keys belong in your shell or a git-ignored `.env`, never in the repository.
 

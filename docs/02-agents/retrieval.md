@@ -82,8 +82,15 @@ follow the standard process" — and asks again:
 | Dense only | 0.580 | 0.566 | **0.014** |
 | Hybrid (dense + exact match) | 0.415 | 0.283 | **0.132** |
 
+Those scores come from `nomic-embed-text`. Absolute cosine values are a property
+of the embedding model, so they move when you change it: on Azure OpenAI with
+`text-embedding-3-small` the same query scores 0.413 against 0.406, a dense
+margin of 0.007, and 0.129 hybrid. The lab prints what it measured rather than
+these figures. **Verified as of 2026-09-04.**
+
 **Both still rank the answer first.** Read the margin, not the rank. Dense is
-fourteen thousandths from being wrong; hybrid has ten times the separation.
+thousandths from being wrong — fourteen of them on one embedding model, seven on
+another; hybrid has an order of magnitude more separation on both.
 
 Scale from 46 chunks to 46,000 and the dense margin goes negative. You will not
 see that happen. You will just start getting confident wrong answers, because
@@ -163,6 +170,10 @@ the same question on forty-six, and a question the corpus cannot answer.
      hybrid  0.415 vs 0.283 distractor   margin 0.132
 4. unanswerable       A: not in the provided context
 ```
+
+Your scores will differ if you are not on `nomic-embed-text` — see the table
+above. What should reproduce is the shape: dense ranks it first by a hair, and
+hybrid widens the gap by roughly an order of magnitude.
 
 **What failure looks like:** case 3 does not fail. That is the demonstration —
 the system that is one hundredth of a point from being wrong looks exactly like
