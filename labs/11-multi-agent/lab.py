@@ -16,7 +16,7 @@ from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
-from _shared import chat, banner, MODEL, LAST_USAGE  # noqa: E402
+from _shared import chat, banner, MODEL, last_usage  # noqa: E402
 
 # A tiny corpus. Three topics, deliberately independent of each other -- which
 # is the condition the whole lab is about.
@@ -39,13 +39,9 @@ QUESTION = ("A customer bought a faulty electronic item 20 days ago and wants to
             "relevant.")
 
 
-def usage_of(_):
-    return dict(LAST_USAGE)
-
-
 def one_call(prompt, max_tokens=400):
     r = chat([{"role": "user", "content": prompt}], max_tokens=max_tokens)
-    return r["content"].strip(), dict(LAST_USAGE)
+    return r["content"].strip(), last_usage()
 
 
 # ------------------------------------------------------------ A. single agent

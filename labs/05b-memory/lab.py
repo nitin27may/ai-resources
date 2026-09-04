@@ -77,11 +77,17 @@ print("""
 # --------------------------------------------------------------- 2. with memory
 banner("2. The same two sessions, with a store")
 
-mem = remember([], "Customer always chooses eco-friendly packaging.",
-               source="stated by customer, session 1")
+remember([], "Customer always chooses eco-friendly packaging.",
+         source="stated by customer, session 1")
 print("\n  Written to memory.json:")
-print(f"    {mem[0]['fact']}   (source: {mem[0]['source']})")
-print("\n  Session 2 (still a new conversation)")
+written = load()
+print(f"    {written[0]['fact']}   (source: {written[0]['source']})")
+
+# Session 2 reads the store back off disk. Nothing is carried in a variable --
+# that is the point, and it is why load() exists rather than reusing the list
+# remember() just returned.
+print("\n  Session 2 (still a new conversation; memory read back from the file)")
+mem = load()
 print(f"  user  > {q}")
 print(f"  agent < {ask(q, mem)}")
 print("""

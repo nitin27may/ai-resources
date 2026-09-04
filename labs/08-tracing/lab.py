@@ -9,7 +9,7 @@ Run:  python3 labs/08-tracing/lab.py
 """
 import json, sys, time, pathlib
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parents[1]))
-from _shared import chat, banner, MODEL, LAST_USAGE  # noqa: E402
+from _shared import chat, banner, MODEL, last_usage  # noqa: E402
 
 # ------------------------------------------------------------- the tracer
 SPANS = []
@@ -73,7 +73,7 @@ def run_traced(goal):
         for turn in range(1, 7):
             with span(f"chat turn {turn}", "llm") as c:
                 reply = chat(msgs, tools=TOOLS)
-                c["attrs"].update(dict(LAST_USAGE))
+                c["attrs"].update(last_usage())
             msgs.append(reply)
             calls = reply.get("tool_calls") or []
             if not calls:

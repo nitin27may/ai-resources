@@ -7,6 +7,7 @@ is BASE_URL, API_KEY and MODEL.
 """
 import json
 import os
+import threading
 import urllib.error
 import urllib.request
 
@@ -34,7 +35,18 @@ class ProviderError(RuntimeError):
         self.status = status
 
 
-LAST_USAGE = {}
+# Token usage is carried out-of-band so it never lands in the message list and
+# gets resent to the model. It is thread-local rather than a module global on
+# purpose: lab 11 calls chat() concurrently in a ThreadPoolExecutor, and with a
+# shared dict one worker can clear and overwrite another's usage in the gap
+# between the call returning and the caller reading it -- silently corrupting
+# the very token comparison that lab exists to make.
+_usage = threading.local()
+
+
+def last_usage():
+    """Token usage from THIS thread's most recent chat() call."""
+    return dict(getattr(_usage, "last", None) or {})
 
 
 def chat(messages, tools=None, temperature=0, max_tokens=4096, response_format=None):
@@ -87,10 +99,8 @@ def chat(messages, tools=None, temperature=0, max_tokens=4096, response_format=N
         )
     msg = choice["message"]
     out = {"role": msg["role"], "content": msg.get("content") or ""}
-    # usage is what every tracing tool is built on. Carried out-of-band so it
-    # never lands in the message list and gets resent to the model.
-    LAST_USAGE.clear()
-    LAST_USAGE.update(body.get("usage") or {})
+    # usage is what every tracing tool is built on. Read it with last_usage().
+    _usage.last = body.get("usage") or {}
     if msg.get("tool_calls"):
         out["tool_calls"] = msg["tool_calls"]
     # A reasoning model can spend its whole output budget thinking and return

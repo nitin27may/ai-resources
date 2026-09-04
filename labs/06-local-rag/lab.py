@@ -133,7 +133,7 @@ print("""  Note the scores are still respectable. Cosine similarity always retur
   you the answer is absent; only the instruction to refuse can.""")
 
 banner("What you just learned")
-print("""
+print(f"""
   - Retrieval is embed, compare, take the top k. A vector database adds speed
     and scale, not a different idea.
 
@@ -141,9 +141,9 @@ print("""
     everything works and nothing you measured transfers. Retrieval quality is a
     property of scale and of how similar your near-misses are.
 
-  - Read the margin, not the rank. At 46 chunks dense still ranked the answer
-    first, by 0.014. That is not a working system; that is a system about to
-    stop working. Hybrid held a margin ten times wider on the same query.
+  - Read the margin, not the rank. At {len(big)} chunks dense still ranked the
+    answer first, by {dense_margin:.3f}. That is not a working system; that is a
+    system about to stop working. Hybrid held a margin {hyb_margin / max(dense_margin, 1e-9):.0f}x wider on the same query.
 
   - Hybrid is the highest-leverage change in most RAG systems and costs almost
     nothing. Anthropic measured a dense-only pipeline at a 5.7% top-20 failure
