@@ -28,6 +28,18 @@ page once there is something durable to write.
 
 States: not started, in progress, in review, merged, blocked.
 
+## Enterprise guidance (2026-09-17, branch `docs/enterprise-best-practices`)
+
+Three Go deeper pages under `docs/enterprise/`: identity and authorization
+(AUTH-01 to 25), building agents (AGT-01 to 34), building MCP servers (MCP-01 to
+30). Rule IDs are meant to be cited in reviews, so **never renumber a published
+rule**; retire it and add a new ID instead. Sources are in
+`planning/research/enterprise-best-practices/` (01 to 07 research, 08 primary-source
+verification). Before editing a number or a preview/GA claim, re-check 08: it
+corrected OWASP MCP06 (renamed "Intent Flow Subversion" in the repo, stale on
+owasp.org), GitHub MCP dynamic toolsets (removed May 2026), and which Content
+Safety features are GA (only Prompt Shields).
+
 ## How to resume
 1. `git status` and `git log --oneline -5` to see where the last session stopped.
 2. Read the phase's task list in planning/03-phase-plans.md and tick items off in the notes column here as you go.

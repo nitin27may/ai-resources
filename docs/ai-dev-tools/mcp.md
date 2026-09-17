@@ -185,6 +185,10 @@ practical defence is architectural: cut one leg of the trifecta of *private data
 **Sandbox untrusted servers.** Treat installing one with the scrutiny of
 installing any executable.
 
+For the full set of rules, see
+[Building MCP servers in the enterprise](../enterprise/building-mcp-servers.md) and
+[Identity and authorization for agents and MCP](../enterprise/identity-and-authorization.md).
+
 ## Go deeper
 
 - [MCP specification](https://modelcontextprotocol.io/specification) — check the revision date every single time. `2026-07-28` removed the handshake and sessions.
