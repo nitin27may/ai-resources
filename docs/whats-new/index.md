@@ -13,6 +13,25 @@ Changes to the AI Knowledge Hub, newest first.
 
 ---
 
+## September 2026 — enterprise guidance
+
+Three pages of best practices for teams building agents and MCP servers inside an
+organisation. They are written as numbered rules (MUST, SHOULD, AVOID) that a
+design review or pull request can cite, and each rule links to the incident or
+standard behind it. They are framework-neutral, with Azure named where a control
+has an obvious home.
+
+- **[Identity and authorization](../enterprise/identity-and-authorization.md)**
+  covers the four ways an agent runs (for a signed-in user, in the background as
+  itself, in the background for a user who has left, and as its own user account),
+  and why no token should travel further than the service it was issued for.
+- **[Building agents](../enterprise/building-agents.md)** covers design-time
+  risk checks, limits enforced in code, containment for agents that run code,
+  human approval that people still read, and release gates.
+- **[Building MCP servers](../enterprise/building-mcp-servers.md)** covers tool
+  design, what to do when a catalogue grows past what a model can choose from
+  reliably, tool integrity, and supply chain.
+
 ## September 2026 — one ramp, two paths
 
 The site had grown two halves that did not meet: a set of concept pages written

@@ -189,6 +189,10 @@ nav:
           - Design patterns: patterns/design-patterns.md
           - Design principles: patterns/design-principles.md
           - Code quality pipeline: patterns/code-quality-pipeline.md
+      - Enterprise guidance:
+          - Identity and authorization: enterprise/identity-and-authorization.md
+          - Building agents: enterprise/building-agents.md
+          - Building MCP servers: enterprise/building-mcp-servers.md
       - Frameworks and platforms: tools-and-frameworks/index.md
       - Developer tools:
           - ai-dev-tools/index.md

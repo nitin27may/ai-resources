@@ -21,6 +21,12 @@ Proven patterns and principles for building AI systems. This section is primaril
 
     [:octicons-arrow-right-24: Design Patterns](design-patterns.md)
 
+-   :material-shield-account-outline:{ .lg .middle } __Enterprise guidance__
+
+    Best practices for identity and authorization, building agents, and building MCP servers, with the incidents behind each rule.
+
+    [:octicons-arrow-right-24: Identity and authorization](../enterprise/identity-and-authorization.md)
+
 -   :material-domain:{ .lg .middle } __Enterprise Patterns__
 
     Copilot pattern, autonomous agents, intelligent document processing, conversational AI, and agentic RAG.

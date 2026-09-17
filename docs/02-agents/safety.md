@@ -195,6 +195,7 @@ credentials. The layering is not what makes it safe; the scoping is.
 
 ## Go deeper
 
+- [Building agents in the enterprise](../enterprise/building-agents.md) — this module's lessons written as rules a design review can cite, including containment for agents that run code.
 - [The lethal trifecta](https://simonwillison.net/2025/Jun/16/the-lethal-trifecta/) — Willison. The framing, and a living index of incidents.
 - [The Attacker Moves Second](https://arxiv.org/abs/2510.09023) — OpenAI, Anthropic and DeepMind jointly breaking 12 published defences at >90%.
 - [OWASP Top 10 for Agentic Applications](https://genai.owasp.org/resource/owasp-top-10-for-agentic-applications-for-2026/) — the vendor-neutral taxonomy: goal hijack, tool misuse, memory poisoning, cascading failures, rogue agents.

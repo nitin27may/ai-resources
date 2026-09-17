@@ -187,6 +187,8 @@ schedule. Cost-aware CI is the part most production writing skips.
 
 ## Go deeper
 
+- [Building agents in the enterprise](../enterprise/building-agents.md) — the rules this module's checklist grows into once an agent has real users, real data and an owner who has to sign it off.
+- [Identity and authorization for agents and MCP](../enterprise/identity-and-authorization.md) — background agents, agents acting for a user, and why no token should travel further than the service it was issued for.
 - [Effective harnesses for long-running agents](https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents) — durable state and structured handoffs across context windows.
 - [12-Factor Agents](https://github.com/humanlayer/12-factor-agents) — own your control flow, compact errors into context. A 2025 document.
 - [Building effective agents](https://www.anthropic.com/engineering/building-effective-agents) — read the superseded banner; the patterns vocabulary still holds.
