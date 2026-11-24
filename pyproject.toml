@@ -12,7 +12,7 @@ requires-python = ">=3.12"
 dependencies = [
     "mkdocs>=1.6,<2",
     "mkdocs-material>=9.7,<10",
-    "pymdown-extensions>=11,<12",
+    "pymdown-extensions>=11,<14",
     # Enabled in mkdocs.yml: glightbox, git-revision-date-localized, redirects.
     # `search` and `tags` ship with MkDocs and Material respectively.
     "mkdocs-glightbox>=0.5,<1",
