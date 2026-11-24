@@ -21,33 +21,30 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           fetch-depth: 0
 
-      - name: Setup Python
-        uses: actions/setup-python@v5
+      - name: Setup uv
+        uses: astral-sh/setup-uv@v10.4.0
         with:
-          python-version: '3.11'
-          cache: 'pip'
-
-      # Runs before the site dependencies because it needs none of them: the
-      # labs are standard library only and their tests stub the transport, so
-      # this costs a second and fails fast.
-      - name: Run labs tests
-        run: python3 -m unittest discover -s labs/tests -v
+          python-version: '3.14'
+          enable-cache: true
 
       - name: Install dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install -r requirements.txt
+        run: uv sync --locked
+
+      # The labs are standard library only and their tests stub the transport,
+      # so this is quick and fails fast.
+      - name: Run labs tests
+        run: uv run python -m unittest discover -s labs/tests -v
 
       - name: Setup Pages
-        uses: actions/configure-pages@v4
+        uses: actions/configure-pages@v6
 
       - name: Build MkDocs site
         run: |
-          mkdocs build --strict --verbose --clean
+          uv run mkdocs build --strict --verbose --clean
 
       - name: Assert analytics and social tags are present
         run: |
@@ -65,15 +62,14 @@ jobs:
         run: planning/scripts/sitemap-guard.sh site
 
       - name: Check internal links and anchors
-        run: python3 planning/scripts/check-links.py
+        run: uv run python planning/scripts/check-links.py
 
       - name: Validate page front matter
         run: |
-          python3 -m pip install --quiet pyyaml
-          python3 planning/scripts/check-frontmatter.py
+          uv run python planning/scripts/check-frontmatter.py
 
       - name: Upload artifacts
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v5
         with:
           path: './site'
 
@@ -87,4 +83,4 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5
