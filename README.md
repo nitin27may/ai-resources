@@ -41,13 +41,13 @@ To stop:
 docker compose down
 ```
 
-### Option 2: Direct Python
+### Option 2: Direct Python (3.12+, with [uv](https://docs.astral.sh/uv/))
 
 ```bash
 git clone https://github.com/nitin27may/ai-resources.git
 cd ai-resources
-pip install -r requirements.txt
-mkdocs serve --dev-addr=0.0.0.0:8000 --livereload
+uv sync
+uv run mkdocs serve --dev-addr=0.0.0.0:8000 --livereload
 ```
 
 ## Adding a page

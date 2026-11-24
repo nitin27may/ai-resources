@@ -56,8 +56,8 @@ mkdocs serve --dev-addr=0.0.0.0:8000   # or directly, if deps are installed
 # Build (this is also the config check -- `mkdocs config` is not a command)
 mkdocs build --strict --clean -d /tmp/site
 
-# Install
-pip install -r requirements.txt
+# Install (Python 3.12+, uv; prefix commands with `uv run`)
+uv sync
 ```
 
 ### The five checks before any commit
@@ -192,7 +192,7 @@ Types: `note`, `abstract`, `info`, `tip`, `success`, `question`, `warning`,
 - Dark is the default because `theme.palette` lists slate first. Do not add a
   script to force it — the last one made light mode unreachable.
 - Plugins actually enabled: `search`, `tags`, `redirects`,
-  `git-revision-date-localized`, `glightbox`. `requirements.txt` lists only what
+  `git-revision-date-localized`, `glightbox`. `pyproject.toml` lists only what
   is enabled; do not add a package without enabling it.
 
 ## Deployment
